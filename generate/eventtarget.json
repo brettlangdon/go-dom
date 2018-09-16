@@ -1,0 +1,20 @@
+{
+  "Type": "EventTarget",
+  "ImportJS": true,
+  "Interface": true,
+  "Functions": [
+    {
+      "Name": "addEventListener",
+      "Arguments": [
+        {
+          "Name": "t",
+          "Type": "string"
+        },
+        {
+          "Name": "listener",
+          "Type": "js.Callback"
+        }
+      ]
+    }
+  ]
+}

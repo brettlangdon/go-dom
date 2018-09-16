@@ -1,0 +1,75 @@
+{
+  "Type": "document",
+  "Implements": [
+    "EventTarget",
+    "Node"
+  ],
+  "Properties": [
+    {
+      "Name": "body",
+      "Type": "*Element"
+    }
+  ],
+  "Functions": [
+    {
+      "Name": "createElement",
+      "Arguments": [
+        {
+          "Name": "tagName",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": "*Element"
+    },
+    {
+      "Name": "getElementById",
+      "Arguments": [
+        {
+          "Name": "id",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": "*Element"
+    },
+    {
+      "Name": "querySelector",
+      "Arguments": [
+        {
+          "Name": "selector",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": "*Element"
+    },
+    {
+      "Name": "querySelectorAll",
+      "Arguments": [
+        {
+          "Name": "selector",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": "[]*Element"
+    },
+    {
+      "Name": "getElementsByName",
+      "Arguments": [
+        {
+          "Name": "name",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": "[]*Element"
+    },
+    {
+      "Name": "write",
+      "Arguments": [
+        {
+          "Name": "markup",
+          "Type": "string"
+        }
+      ],
+      "ReturnType": null
+    }
+  ]
+}
