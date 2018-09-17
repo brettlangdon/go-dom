@@ -1,5 +1,6 @@
 {
   "Type": "Event",
+  "ImportJS": true,
   "Implements": [
     "EventIFace"
   ]

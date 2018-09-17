@@ -4,55 +4,63 @@ package dom
 import "syscall/js"
 
 type Node struct {
-	js.Value
+	Value
 }
 
-func (n *Node) JSValue() js.Value { return n.Value }
-func (n *Node) AddEventListener(t string, listener js.Callback) {
-	n.Call("addEventListener", ToJSValue(t), ToJSValue(listener))
+func NewNode(v js.Value) *Node {
+	val := Value{Value: v}
+	if val.IsNull() || val.IsUndefined() {
+		return nil
+	}
+	return val.ToNode()
+}
+func (v Value) ToNode() *Node { return &Node{Value: v} }
+func (n *Node) AddEventListener(t string, listener *Callback) Value {
+	val := Value{Value: n.Call("addEventListener", ToJSValue(t), ToJSValue(listener))}
+	return val
 }
 func (n *Node) AppendChild(aChild *Element) *Element {
-	val := n.Call("appendChild", ToJSValue(aChild))
-	return &Element{Value: val}
+	val := Value{Value: n.Call("appendChild", ToJSValue(aChild))}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetBaseURI() string {
-	val := n.Get("baseURI")
+	val := Value{Value: n.Get("baseURI")}
 	return val.String()
 }
 func (n *Node) GetFirstChild() *Element {
-	val := n.Get("firstChild")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("firstChild")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetLastChild() *Element {
-	val := n.Get("lastChild")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("lastChild")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetNextSibling() *Element {
-	val := n.Get("nextSibling")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("nextSibling")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetPreviousSibling() *Element {
-	val := n.Get("previousSibling")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("previousSibling")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetParentElement() *Element {
-	val := n.Get("parentElement")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("parentElement")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetRootElement() *Element {
-	val := n.Get("rootElement")
-	return &Element{Value: val}
+	val := Value{Value: n.Get("rootElement")}
+	return NewElement(val.JSValue())
 }
 func (n *Node) GetPrefix() string {
-	val := n.Get("prefix")
+	val := Value{Value: n.Get("prefix")}
 	return val.String()
 }
 func (n *Node) GetNodeName() string {
-	val := n.Get("nodeName")
+	val := Value{Value: n.Get("nodeName")}
 	return val.String()
 }
 func (n *Node) GetTextContent() string {
-	val := n.Get("textContent")
+	val := Value{Value: n.Get("textContent")}
 	return val.String()
 }
 func (n *Node) SetTextContent(v string) {

@@ -1,6 +1,5 @@
 {
   "Type": "EventTargetIFace",
-  "ImportJS": true,
   "Interface": true,
   "Functions": [
     {
@@ -12,7 +11,7 @@
         },
         {
           "Name": "listener",
-          "Type": "js.Callback"
+          "Type": "*Callback"
         }
       ]
     }

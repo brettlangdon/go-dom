@@ -1,0 +1,36 @@
+{
+  "Type": "Console",
+  "ImportJS": true,
+  "GlobalAPI": "console",
+  "Functions": [
+    {
+      "Name": "log",
+      "Arguments": [
+        {
+          "Name": "v",
+          "Varidic": true,
+          "Type": "interface{}"
+        }
+      ]
+    },
+    {
+      "Name": "error",
+      "Arguments": [
+        {
+          "Name": "v",
+          "Varidic": true,
+          "Type": "interface{}"
+        }
+      ]
+    },
+    {
+      "Name": "dir",
+      "Arguments": [
+        {
+          "Name": "v",
+          "Type": "JSValue"
+        }
+      ]
+    }
+  ]
+}

@@ -4,32 +4,42 @@ package dom
 import "syscall/js"
 
 type Event struct {
-	js.Value
+	Value
 }
 
-func (e *Event) JSValue() js.Value { return e.Value }
-func (e *Event) PreventDefault() {
-	e.Call("preventDefault")
+func NewEvent(v js.Value) *Event {
+	val := Value{Value: v}
+	if val.IsNull() || val.IsUndefined() {
+		return nil
+	}
+	return val.ToEvent()
 }
-func (e *Event) StopPropagation() {
-	e.Call("stopPropagation")
-}
-func (e *Event) StopImmediatePropagation() {
-	e.Call("stopImmediatePropagation")
-}
-func (e *Event) GetCurrentTarget() js.Value {
-	val := e.Get("currentTarget")
+func (v Value) ToEvent() *Event { return &Event{Value: v} }
+func (e *Event) PreventDefault() Value {
+	val := Value{Value: e.Call("preventDefault")}
 	return val
 }
-func (e *Event) GetTarget() js.Value {
-	val := e.Get("target")
+func (e *Event) StopPropagation() Value {
+	val := Value{Value: e.Call("stopPropagation")}
+	return val
+}
+func (e *Event) StopImmediatePropagation() Value {
+	val := Value{Value: e.Call("stopImmediatePropagation")}
+	return val
+}
+func (e *Event) GetCurrentTarget() Value {
+	val := Value{Value: e.Get("currentTarget")}
+	return val
+}
+func (e *Event) GetTarget() Value {
+	val := Value{Value: e.Get("target")}
 	return val
 }
 func (e *Event) GetType() string {
-	val := e.Get("type")
+	val := Value{Value: e.Get("type")}
 	return val.String()
 }
-func (e *Event) GetSrcElement() js.Value {
-	val := e.Get("srcElement")
+func (e *Event) GetSrcElement() Value {
+	val := Value{Value: e.Get("srcElement")}
 	return val
 }

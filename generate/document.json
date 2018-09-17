@@ -1,5 +1,7 @@
 {
-  "Type": "document",
+  "Type": "Document",
+  "GlobalAPI": "document",
+  "ImportJS": true,
   "Implements": [
     "EventTargetIFace",
     "NodeIFace",

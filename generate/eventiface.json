@@ -4,12 +4,12 @@
   "Properties": [
     {
       "Name": "currentTarget",
-      "Type": "js.Value",
+      "Type": "Value",
       "ReadOnly": true
     },
     {
       "Name": "target",
-      "Type": "js.Value",
+      "Type": "Value",
       "ReadOnly": true
     },
     {
@@ -19,7 +19,7 @@
     },
     {
       "Name": "srcElement",
-      "Type": "js.Value",
+      "Type": "Value",
       "ReadOnly": true
     }
   ],

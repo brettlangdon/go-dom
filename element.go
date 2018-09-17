@@ -4,81 +4,89 @@ package dom
 import "syscall/js"
 
 type Element struct {
-	js.Value
+	Value
 }
 
-func (e *Element) JSValue() js.Value { return e.Value }
-func (e *Element) AddEventListener(t string, listener js.Callback) {
-	e.Call("addEventListener", ToJSValue(t), ToJSValue(listener))
+func NewElement(v js.Value) *Element {
+	val := Value{Value: v}
+	if val.IsNull() || val.IsUndefined() {
+		return nil
+	}
+	return val.ToElement()
+}
+func (v Value) ToElement() *Element { return &Element{Value: v} }
+func (e *Element) AddEventListener(t string, listener *Callback) Value {
+	val := Value{Value: e.Call("addEventListener", ToJSValue(t), ToJSValue(listener))}
+	return val
 }
 func (e *Element) AppendChild(aChild *Element) *Element {
-	val := e.Call("appendChild", ToJSValue(aChild))
-	return &Element{Value: val}
+	val := Value{Value: e.Call("appendChild", ToJSValue(aChild))}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetBaseURI() string {
-	val := e.Get("baseURI")
+	val := Value{Value: e.Get("baseURI")}
 	return val.String()
 }
 func (e *Element) GetFirstChild() *Element {
-	val := e.Get("firstChild")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("firstChild")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetLastChild() *Element {
-	val := e.Get("lastChild")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("lastChild")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetNextSibling() *Element {
-	val := e.Get("nextSibling")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("nextSibling")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetPreviousSibling() *Element {
-	val := e.Get("previousSibling")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("previousSibling")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetParentElement() *Element {
-	val := e.Get("parentElement")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("parentElement")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetRootElement() *Element {
-	val := e.Get("rootElement")
-	return &Element{Value: val}
+	val := Value{Value: e.Get("rootElement")}
+	return NewElement(val.JSValue())
 }
 func (e *Element) GetPrefix() string {
-	val := e.Get("prefix")
+	val := Value{Value: e.Get("prefix")}
 	return val.String()
 }
 func (e *Element) GetNodeName() string {
-	val := e.Get("nodeName")
+	val := Value{Value: e.Get("nodeName")}
 	return val.String()
 }
 func (e *Element) GetTextContent() string {
-	val := e.Get("textContent")
+	val := Value{Value: e.Get("textContent")}
 	return val.String()
 }
 func (e *Element) SetTextContent(v string) {
 	e.Set("textContent", v)
 }
 func (e *Element) QuerySelector(selector string) *Element {
-	val := e.Call("querySelector", ToJSValue(selector))
-	return &Element{Value: val}
+	val := Value{Value: e.Call("querySelector", ToJSValue(selector))}
+	return NewElement(val.JSValue())
 }
 func (e *Element) QuerySelectorAll(selector string) []*Element {
-	val := e.Call("querySelectorAll", ToJSValue(selector))
+	val := Value{Value: e.Call("querySelectorAll", ToJSValue(selector))}
 	elms := make([]*Element, 0)
 	for i := 0; i < val.Length(); i += 1 {
-		elms = append(elms, &Element{Value: val.Index(i)})
+		elms = append(elms, NewElement(val.Index(i)))
 	}
 	return elms
 }
 func (e *Element) GetClassName() string {
-	val := e.Get("className")
+	val := Value{Value: e.Get("className")}
 	return val.String()
 }
 func (e *Element) SetClassName(v string) {
 	e.Set("className", v)
 }
 func (e *Element) GetId() string {
-	val := e.Get("id")
+	val := Value{Value: e.Get("id")}
 	return val.String()
 }
 func (e *Element) SetId(v string) {

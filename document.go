@@ -3,107 +3,116 @@ package dom
 
 import "syscall/js"
 
-type document struct {
-	js.Value
+type Document struct {
+	Value
 }
 
-func (d *document) JSValue() js.Value { return d.Value }
-func (d *document) GetBody() *Element {
-	val := d.Get("body")
-	return &Element{Value: val}
+func NewDocument(v js.Value) *Document {
+	val := Value{Value: v}
+	if val.IsNull() || val.IsUndefined() {
+		return nil
+	}
+	return val.ToDocument()
 }
-func (d *document) CreateElement(tagName string) *Element {
-	val := d.Call("createElement", ToJSValue(tagName))
-	return &Element{Value: val}
+func (v Value) ToDocument() *Document { return &Document{Value: v} }
+func (d *Document) GetBody() *Element {
+	val := Value{Value: d.Get("body")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetElementById(id string) *Element {
-	val := d.Call("getElementById", ToJSValue(id))
-	return &Element{Value: val}
+func (d *Document) CreateElement(tagName string) *Element {
+	val := Value{Value: d.Call("createElement", ToJSValue(tagName))}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetElementsByName(name string) []*Element {
-	val := d.Call("getElementsByName", ToJSValue(name))
+func (d *Document) GetElementById(id string) *Element {
+	val := Value{Value: d.Call("getElementById", ToJSValue(id))}
+	return NewElement(val.JSValue())
+}
+func (d *Document) GetElementsByName(name string) []*Element {
+	val := Value{Value: d.Call("getElementsByName", ToJSValue(name))}
 	elms := make([]*Element, 0)
 	for i := 0; i < val.Length(); i += 1 {
-		elms = append(elms, &Element{Value: val.Index(i)})
+		elms = append(elms, NewElement(val.Index(i)))
 	}
 	return elms
 }
-func (d *document) Write(markup string) {
-	d.Call("write", ToJSValue(markup))
+func (d *Document) Write(markup string) Value {
+	val := Value{Value: d.Call("write", ToJSValue(markup))}
+	return val
 }
-func (d *document) AddEventListener(t string, listener js.Callback) {
-	d.Call("addEventListener", ToJSValue(t), ToJSValue(listener))
+func (d *Document) AddEventListener(t string, listener *Callback) Value {
+	val := Value{Value: d.Call("addEventListener", ToJSValue(t), ToJSValue(listener))}
+	return val
 }
-func (d *document) AppendChild(aChild *Element) *Element {
-	val := d.Call("appendChild", ToJSValue(aChild))
-	return &Element{Value: val}
+func (d *Document) AppendChild(aChild *Element) *Element {
+	val := Value{Value: d.Call("appendChild", ToJSValue(aChild))}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetBaseURI() string {
-	val := d.Get("baseURI")
+func (d *Document) GetBaseURI() string {
+	val := Value{Value: d.Get("baseURI")}
 	return val.String()
 }
-func (d *document) GetFirstChild() *Element {
-	val := d.Get("firstChild")
-	return &Element{Value: val}
+func (d *Document) GetFirstChild() *Element {
+	val := Value{Value: d.Get("firstChild")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetLastChild() *Element {
-	val := d.Get("lastChild")
-	return &Element{Value: val}
+func (d *Document) GetLastChild() *Element {
+	val := Value{Value: d.Get("lastChild")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetNextSibling() *Element {
-	val := d.Get("nextSibling")
-	return &Element{Value: val}
+func (d *Document) GetNextSibling() *Element {
+	val := Value{Value: d.Get("nextSibling")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetPreviousSibling() *Element {
-	val := d.Get("previousSibling")
-	return &Element{Value: val}
+func (d *Document) GetPreviousSibling() *Element {
+	val := Value{Value: d.Get("previousSibling")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetParentElement() *Element {
-	val := d.Get("parentElement")
-	return &Element{Value: val}
+func (d *Document) GetParentElement() *Element {
+	val := Value{Value: d.Get("parentElement")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetRootElement() *Element {
-	val := d.Get("rootElement")
-	return &Element{Value: val}
+func (d *Document) GetRootElement() *Element {
+	val := Value{Value: d.Get("rootElement")}
+	return NewElement(val.JSValue())
 }
-func (d *document) GetPrefix() string {
-	val := d.Get("prefix")
+func (d *Document) GetPrefix() string {
+	val := Value{Value: d.Get("prefix")}
 	return val.String()
 }
-func (d *document) GetNodeName() string {
-	val := d.Get("nodeName")
+func (d *Document) GetNodeName() string {
+	val := Value{Value: d.Get("nodeName")}
 	return val.String()
 }
-func (d *document) GetTextContent() string {
-	val := d.Get("textContent")
+func (d *Document) GetTextContent() string {
+	val := Value{Value: d.Get("textContent")}
 	return val.String()
 }
-func (d *document) SetTextContent(v string) {
+func (d *Document) SetTextContent(v string) {
 	d.Set("textContent", v)
 }
-func (d *document) QuerySelector(selector string) *Element {
-	val := d.Call("querySelector", ToJSValue(selector))
-	return &Element{Value: val}
+func (d *Document) QuerySelector(selector string) *Element {
+	val := Value{Value: d.Call("querySelector", ToJSValue(selector))}
+	return NewElement(val.JSValue())
 }
-func (d *document) QuerySelectorAll(selector string) []*Element {
-	val := d.Call("querySelectorAll", ToJSValue(selector))
+func (d *Document) QuerySelectorAll(selector string) []*Element {
+	val := Value{Value: d.Call("querySelectorAll", ToJSValue(selector))}
 	elms := make([]*Element, 0)
 	for i := 0; i < val.Length(); i += 1 {
-		elms = append(elms, &Element{Value: val.Index(i)})
+		elms = append(elms, NewElement(val.Index(i)))
 	}
 	return elms
 }
-func (d *document) GetClassName() string {
-	val := d.Get("className")
+func (d *Document) GetClassName() string {
+	val := Value{Value: d.Get("className")}
 	return val.String()
 }
-func (d *document) SetClassName(v string) {
+func (d *Document) SetClassName(v string) {
 	d.Set("className", v)
 }
-func (d *document) GetId() string {
-	val := d.Get("id")
+func (d *Document) GetId() string {
+	val := Value{Value: d.Get("id")}
 	return val.String()
 }
-func (d *document) SetId(v string) {
+func (d *Document) SetId(v string) {
 	d.Set("id", v)
 }

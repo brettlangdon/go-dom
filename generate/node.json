@@ -1,5 +1,6 @@
 {
   "Type": "Node",
+  "ImportJS": true,
   "Implements": [
     "EventTargetIFace",
     "NodeIFace"
