@@ -1,0 +1,37 @@
+{
+  "Type": "EventIFace",
+  "Interface": true,
+  "Properties": [
+    {
+      "Name": "currentTarget",
+      "Type": "js.Value",
+      "ReadOnly": true
+    },
+    {
+      "Name": "target",
+      "Type": "js.Value",
+      "ReadOnly": true
+    },
+    {
+      "Name": "type",
+      "Type": "string",
+      "ReadOnly": true
+    },
+    {
+      "Name": "srcElement",
+      "Type": "js.Value",
+      "ReadOnly": true
+    }
+  ],
+  "Functions": [
+    {
+      "Name": "preventDefault"
+    },
+    {
+      "Name": "stopPropagation"
+    },
+    {
+      "Name": "stopImmediatePropagation"
+    }
+  ]
+}

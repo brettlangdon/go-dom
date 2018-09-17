@@ -1,0 +1,6 @@
+{
+  "Type": "Event",
+  "Implements": [
+    "EventIFace"
+  ]
+}

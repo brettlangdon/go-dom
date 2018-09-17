@@ -13,9 +13,9 @@ import (
 )
 
 type TypeProperty struct {
-	Name   string
-	Type   string
-	Setter bool
+	Name     string
+	Type     string
+	ReadOnly bool
 }
 
 func (p TypeProperty) GetterName() string {
@@ -68,6 +68,31 @@ func (t TypeStructure) writeArguments(out *bytes.Buffer, args []FunctionArgument
 	}
 }
 
+func (t TypeStructure) writeReturnValue(out *bytes.Buffer, rt string) error {
+	switch rt {
+	case "string":
+		out.WriteString("return val.String()\r\n")
+	case "js.Value":
+		out.WriteString("return val")
+	case "NodeIFace":
+		out.WriteString("return &Node{ Value: val }\r\n")
+	case "*Element":
+		out.WriteString("return &Element{ Value: val }\r\n")
+	case "[]*Element":
+		out.WriteString("elms := make([]*Element, 0)\r\n")
+		out.WriteString("for i := 0; i < val.Length(); i += 1 {\r\n")
+		out.WriteString("\telms = append(elms, &Element{Value: val.Index(i)})\r\n")
+		out.WriteString("}\r\n")
+		out.WriteString("return elms\r\n")
+	case "":
+		// skip
+	default:
+		return fmt.Errorf("Unknown function return type %s", rt)
+	}
+
+	return nil
+}
+
 func (t TypeStructure) writeFunctions(out *bytes.Buffer, funcs []TypeFunction) error {
 	for _, f := range funcs {
 		out.WriteString(fmt.Sprintf("func (%s *%s) %s(", t.ShortName(), t.Type, f.GoName()))
@@ -85,26 +110,12 @@ func (t TypeStructure) writeFunctions(out *bytes.Buffer, funcs []TypeFunction) e
 		out.WriteString(fmt.Sprintf("%s.Call(\"%s\"", t.ShortName(), f.Name))
 		for _, arg := range f.Arguments {
 			out.WriteString(",")
-			out.WriteString(fmt.Sprintf("ToValue(%s)", arg.Name))
+			out.WriteString(fmt.Sprintf("ToJSValue(%s)", arg.Name))
 		}
 		out.WriteString(")\r\n")
 
-		switch f.ReturnType {
-		case "string":
-			out.WriteString("return val.String()\r\n")
-		case "*Element":
-			out.WriteString("return &Element{ Value: val }\r\n")
-		case "[]*Element":
-			out.WriteString("elms := make([]*Element, 0)\r\n")
-			out.WriteString("for i := 0; i < val.Length(); i += 1 {\r\n")
-			out.WriteString("\telms = append(elms, &Element{Value: val.Index(i)})\r\n")
-			out.WriteString("}\r\n")
-			out.WriteString("return elms\r\n")
-		case "":
-			// skip
-		default:
-			return fmt.Errorf("Unknown function return type %s", f.ReturnType)
-		}
+		// Return value
+		t.writeReturnValue(out, f.ReturnType)
 
 		out.WriteString("}\r\n")
 	}
@@ -114,26 +125,18 @@ func (t TypeStructure) writeFunctions(out *bytes.Buffer, funcs []TypeFunction) e
 func (t TypeStructure) writeProperties(out *bytes.Buffer, props []TypeProperty) error {
 	for _, p := range props {
 		out.WriteString(fmt.Sprintf("func (%s *%s) %s() %s {\r\n", t.ShortName(), t.Type, p.GetterName(), p.Type))
-		out.WriteString(fmt.Sprintf("\tval := %s.Get(\"%s\")\r\n", t.ShortName(), p.Name))
-		switch p.Type {
-		case "string":
-			out.WriteString("return val.String()\r\n")
-		case "*Element":
-			out.WriteString("return &Element{ Value: val }\r\n")
-		case "[]*Element":
-			out.WriteString("elms := make([]*Element, 0)\r\n")
-			out.WriteString("for i := 0; i < val.Length(); i += 1 {\r\n")
-			out.WriteString("\telms = append(elms, &Element{Value: val.Index(i)})\r\n")
-			out.WriteString("}\r\n")
-			out.WriteString("return elms\r\n")
-		case "":
-			// skip
-		default:
-			return fmt.Errorf("Unknown property return type %s", p.Type)
+		if p.Type == "" {
+			return fmt.Errorf("Property %q must have a type defined", p.Name)
+			out.WriteString("\tval := ")
 		}
+		out.WriteString(fmt.Sprintf("val := %s.Get(\"%s\")\r\n", t.ShortName(), p.Name))
+
+		// Return value
+		t.writeReturnValue(out, p.Type)
+
 		out.WriteString(fmt.Sprintf("}\r\n"))
 
-		if p.Setter {
+		if !p.ReadOnly {
 			out.WriteString(fmt.Sprintf("func (%s *%s) %s(v %s){\r\n", t.ShortName(), t.Type, p.SetterName(), p.Type))
 			out.WriteString(fmt.Sprintf("\t%s.Set(\"%s\", v)\r\n", t.ShortName(), p.Name))
 			out.WriteString("}\r\n")
@@ -164,6 +167,12 @@ func (t TypeStructure) generateStruct(out *bytes.Buffer, types map[string]TypeSt
 	}
 
 	out.WriteString("}\r\n")
+
+	// Convert to type
+	out.WriteString(fmt.Sprintf("func JSTo%s (v js.Value) *%s { return &%s{ Value: v }}", t.Type, t.Type, t.Type))
+
+	// JSValue
+	out.WriteString(fmt.Sprintf("func (%s *%s) JSValue() js.Value { return %s.Value }\r\n", t.ShortName(), t.Type, t.ShortName()))
 
 	// Properties
 	err = t.writeProperties(out, t.Properties)

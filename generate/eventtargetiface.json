@@ -1,5 +1,5 @@
 {
-  "Type": "EventTarget",
+  "Type": "EventTargetIFace",
   "ImportJS": true,
   "Interface": true,
   "Functions": [

@@ -1,0 +1,67 @@
+{
+  "Type": "NodeIFace",
+  "Interface": true,
+  "Properties": [
+    {
+      "Name": "baseURI",
+      "Type": "string",
+      "ReadOnly": true
+    },
+    {
+      "Name": "firstChild",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "lastChild",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "nextSibling",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "previousSibling",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "parentElement",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "rootElement",
+      "Type": "*Element",
+      "ReadOnly": true
+    },
+    {
+      "Name": "prefix",
+      "Type": "string",
+      "ReadOnly": true
+    },
+    {
+      "Name": "nodeName",
+      "Type": "string",
+      "ReadOnly": true
+    },
+    {
+      "Name": "textContent",
+      "Type": "string"
+    }
+  ],
+  "Functions": [
+    {
+      "Name": "appendChild",
+      "Arguments": [
+        {
+          "Name": "aChild",
+          "Type": "*Element"
+        }
+      ],
+      "ReturnType": "*Element"
+    }
+  ]
+}

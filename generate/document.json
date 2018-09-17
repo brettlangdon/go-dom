@@ -1,13 +1,15 @@
 {
   "Type": "document",
   "Implements": [
-    "EventTarget",
-    "Node"
+    "EventTargetIFace",
+    "NodeIFace",
+    "ElementIFace"
   ],
   "Properties": [
     {
       "Name": "body",
-      "Type": "*Element"
+      "Type": "*Element",
+      "ReadOnly": true
     }
   ],
   "Functions": [
@@ -30,26 +32,6 @@
         }
       ],
       "ReturnType": "*Element"
-    },
-    {
-      "Name": "querySelector",
-      "Arguments": [
-        {
-          "Name": "selector",
-          "Type": "string"
-        }
-      ],
-      "ReturnType": "*Element"
-    },
-    {
-      "Name": "querySelectorAll",
-      "Arguments": [
-        {
-          "Name": "selector",
-          "Type": "string"
-        }
-      ],
-      "ReturnType": "[]*Element"
     },
     {
       "Name": "getElementsByName",

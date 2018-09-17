@@ -1,59 +1,7 @@
 {
   "Type": "Node",
-  "Interface": true,
-  "Properties": [
-    {
-      "Name": "baseURI",
-      "Type": "string"
-    },
-    {
-      "Name": "firstChild",
-      "Type": "*Element"
-    },
-    {
-      "Name": "lastChild",
-      "Type": "*Element"
-    },
-    {
-      "Name": "nextSibling",
-      "Type": "*Element"
-    },
-    {
-      "Name": "previousSibling",
-      "Type": "*Element"
-    },
-    {
-      "Name": "parentElement",
-      "Type": "*Element"
-    },
-    {
-      "Name": "rootElement",
-      "Type": "*Element"
-    },
-    {
-      "Name": "prefix",
-      "Type": "string"
-    },
-    {
-      "Name": "nodeName",
-      "Type": "string"
-    },
-    {
-      "Name": "textContent",
-      "Type": "string",
-      "Setter": true
-    }
-  ],
-  "Functions": [
-    {
-      "Name": "appendChild",
-      "Arguments": [
-        {
-          "Name": "aChild",
-          "Type": "*Element"
-        }
-      ],
-      "ReturnType": "*Element"
-    }
+  "Implements": [
+    "EventTargetIFace",
+    "NodeIFace"
   ]
 }

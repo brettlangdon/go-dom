@@ -5,8 +5,11 @@ import "syscall/js"
 
 var (
 	Document *document
+	Window   *window
 )
 
 func init() {
-	Document = &document{Value: js.Global().Get("document")}
+	g := js.Global()
+	Document = &document{Value: g.Get("document")}
+	Window = &window{Value: g.Get("window")}
 }

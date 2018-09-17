@@ -1,17 +1,8 @@
 {
   "Type": "Element",
   "Implements": [
-    "EventTarget",
-    "Node"
-  ],
-  "Properties": [
-    {
-      "Name": "className",
-      "Type": "string"
-    },
-    {
-      "Name": "id",
-      "Type": "string"
-    }
+    "EventTargetIFace",
+    "NodeIFace",
+    "ElementIFace"
   ]
 }
