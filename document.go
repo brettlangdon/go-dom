@@ -102,6 +102,10 @@ func (d *Document) QuerySelectorAll(selector string) []*Element {
 	}
 	return elms
 }
+func (d *Document) AttachShadow(shadowRootInit ShadowRootInit) *ShadowRoot {
+	val := Value{Value: d.Call("attachShadow", ToJSValue(shadowRootInit))}
+	return NewShadowRoot(val.JSValue())
+}
 func (d *Document) GetClassName() string {
 	val := Value{Value: d.Get("className")}
 	return val.String()

@@ -35,6 +35,16 @@
         }
       ],
       "ReturnType": "[]*Element"
+    },
+    {
+      "Name": "attachShadow",
+      "Arguments": [
+        {
+          "Name": "shadowRootInit",
+          "Type": "ShadowRootInit"
+        }
+      ],
+      "ReturnType": "*ShadowRoot"
     }
   ]
 }

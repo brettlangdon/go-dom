@@ -87,6 +87,10 @@ func (t TypeStructure) writeReturnValue(out *bytes.Buffer, rt string) error {
 		out.WriteString("return val")
 	case "NodeIFace":
 		out.WriteString("return NewNode(val.JSValue())\r\n")
+	case "*ShadowRoot":
+		out.WriteString("return NewShadowRoot(val.JSValue())\r\n")
+	case "*Promise":
+		out.WriteString("return NewPromise(val.JSValue())\r\n")
 	case "*Element":
 		out.WriteString("return NewElement(val.JSValue())\r\n")
 	case "[]*Element":
@@ -167,6 +171,10 @@ func (t TypeStructure) writeAPIFunctions(out *bytes.Buffer, funcs []TypeFunction
 				rt = "dom.JSValue"
 			} else if rt == "*Callback" {
 				rt = "*dom.Callback"
+			} else if rt == "*Promise" {
+				rt = "*dom.Promise"
+			} else if rt == "ShadowRootInit" {
+				rt = "dom.ShadowRootInit"
 			}
 
 			if arg.Varidic {

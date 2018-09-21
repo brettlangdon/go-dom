@@ -69,6 +69,9 @@ func QuerySelector(selector string) *dom.Element {
 func QuerySelectorAll(selector string) []*dom.Element {
 	return d.QuerySelectorAll(selector)
 }
+func AttachShadow(shadowRootInit dom.ShadowRootInit) *dom.ShadowRoot {
+	return d.AttachShadow(shadowRootInit)
+}
 func GetClassName() string {
 	return d.GetClassName()
 }
