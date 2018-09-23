@@ -4,7 +4,7 @@ package dom
 
 import "syscall/js"
 
-type CustomElementConstructorCallback func() Value
+type CustomElementConstructorCallback func()
 type CustomElementConstructor struct {
 	Callback
 }

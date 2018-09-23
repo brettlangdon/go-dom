@@ -9,3 +9,6 @@ type EventHandler EventHandlerNonNull
 func JSValueToEventHandler(val js.Value) EventHandler {
 	return EventHandler(JSValueToEventHandlerNonNull(val))
 }
+func NewEventHandler(c EventHandlerNonNullCallback) EventHandler {
+	return EventHandler(NewEventHandlerNonNull(c))
+}

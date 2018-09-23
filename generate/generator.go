@@ -307,7 +307,7 @@ func (g *Generator) generateCallback(spec Spec) (err error) {
 		args += fmt.Sprintf("%s %s", a.Name, t)
 		params += a.Name
 	}
-	b.WriteF("type %sCallback func(%s) %s", spec.Name, args, convertIDLType(spec.IDLType))
+	b.WriteF("type %sCallback func(%s)", spec.Name, args)
 
 	b.WriteF("type %s struct {", spec.Name)
 	b.WriteString("Callback")
@@ -377,6 +377,13 @@ func (g *Generator) generateTypedef(spec Spec) (err error) {
 		b.WriteF("return %s(JSValueTo%s(val))", spec.Name, t)
 	}
 	b.WriteString("}")
+
+	p, ok := g.specs[t]
+	if ok && p.Type == "callback" {
+		b.WriteF("func New%s(c %sCallback) %s {", spec.Name, p.Name, spec.Name)
+		b.WriteF("return %s(New%s(c))", spec.Name, p.Name)
+		b.WriteString("}")
+	}
 
 	return g.writeFile(spec, b)
 }

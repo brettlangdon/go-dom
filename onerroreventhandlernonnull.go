@@ -4,7 +4,7 @@ package dom
 
 import "syscall/js"
 
-type OnErrorEventHandlerNonNullCallback func(event Value, source string, lineno int, colno int, error Value) Value
+type OnErrorEventHandlerNonNullCallback func(event Value, source string, lineno int, colno int, error Value)
 type OnErrorEventHandlerNonNull struct {
 	Callback
 }

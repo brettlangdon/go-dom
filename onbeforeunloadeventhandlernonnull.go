@@ -4,7 +4,7 @@ package dom
 
 import "syscall/js"
 
-type OnBeforeUnloadEventHandlerNonNullCallback func(event Event) string
+type OnBeforeUnloadEventHandlerNonNullCallback func(event Event)
 type OnBeforeUnloadEventHandlerNonNull struct {
 	Callback
 }

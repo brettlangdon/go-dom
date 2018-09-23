@@ -4,7 +4,7 @@ package dom
 
 import "syscall/js"
 
-type EventHandlerNonNullCallback func(event Event) Value
+type EventHandlerNonNullCallback func(event Event)
 type EventHandlerNonNull struct {
 	Callback
 }
