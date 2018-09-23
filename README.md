@@ -32,7 +32,7 @@ func main() {
 }
 ```
 
-Add a `click` handler to `document** which prints the event information.
+Add a `click` handler to `document` which prints the event information.
 
 ```go
 package main
