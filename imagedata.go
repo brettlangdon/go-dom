@@ -6,8 +6,8 @@ import "syscall/js"
 
 type ImageDataIFace interface {
 	GetData() Uint8ClampedArray
-	GetHeight() float64
-	GetWidth() float64
+	GetHeight() int
+	GetWidth() int
 }
 type ImageData struct {
 	Value
@@ -19,11 +19,11 @@ func (i ImageData) GetData() Uint8ClampedArray {
 	val := i.Get("data")
 	return JSValueToUint8ClampedArray(val.JSValue())
 }
-func (i ImageData) GetHeight() float64 {
+func (i ImageData) GetHeight() int {
 	val := i.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (i ImageData) GetWidth() float64 {
+func (i ImageData) GetWidth() int {
 	val := i.Get("width")
-	return val.Float()
+	return val.Int()
 }

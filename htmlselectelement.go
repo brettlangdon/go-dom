@@ -70,8 +70,8 @@ type HTMLSelectElementIFace interface {
 	GetLang() string
 	SetLang(string)
 	GetLastChild() Node
-	GetLength() float64
-	SetLength(float64)
+	GetLength() int
+	SetLength(int)
 	GetLocalName() string
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
@@ -105,8 +105,8 @@ type HTMLSelectElementIFace interface {
 	ReportValidity(args ...interface{}) bool
 	GetRequired() bool
 	SetRequired(bool)
-	GetSelectedIndex() float64
-	SetSelectedIndex(float64)
+	GetSelectedIndex() int
+	SetSelectedIndex(int)
 	GetSelectedOptions() HTMLCollection
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
@@ -114,8 +114,8 @@ type HTMLSelectElementIFace interface {
 	SetAttributeNodeNS(args ...interface{}) Attr
 	SetCustomValidity(args ...interface{})
 	GetShadowRoot() ShadowRoot
-	GetSize() float64
-	SetSize(float64)
+	GetSize() int
+	SetSize(int)
 	GetSlot() string
 	SetSlot(string)
 	GetSpellcheck() bool
@@ -188,11 +188,11 @@ func (h HTMLSelectElement) GetLabels() NodeList {
 	val := h.Get("labels")
 	return JSValueToNodeList(val.JSValue())
 }
-func (h HTMLSelectElement) GetLength() float64 {
+func (h HTMLSelectElement) GetLength() int {
 	val := h.Get("length")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLSelectElement) SetLength(val float64) {
+func (h HTMLSelectElement) SetLength(val int) {
 	h.Set("length", val)
 }
 func (h HTMLSelectElement) GetMultiple() bool {
@@ -234,11 +234,11 @@ func (h HTMLSelectElement) GetRequired() bool {
 func (h HTMLSelectElement) SetRequired(val bool) {
 	h.Set("required", val)
 }
-func (h HTMLSelectElement) GetSelectedIndex() float64 {
+func (h HTMLSelectElement) GetSelectedIndex() int {
 	val := h.Get("selectedIndex")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLSelectElement) SetSelectedIndex(val float64) {
+func (h HTMLSelectElement) SetSelectedIndex(val int) {
 	h.Set("selectedIndex", val)
 }
 func (h HTMLSelectElement) GetSelectedOptions() HTMLCollection {
@@ -248,11 +248,11 @@ func (h HTMLSelectElement) GetSelectedOptions() HTMLCollection {
 func (h HTMLSelectElement) SetCustomValidity(args ...interface{}) {
 	h.Call("setCustomValidity", args...)
 }
-func (h HTMLSelectElement) GetSize() float64 {
+func (h HTMLSelectElement) GetSize() int {
 	val := h.Get("size")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLSelectElement) SetSize(val float64) {
+func (h HTMLSelectElement) SetSize(val int) {
 	h.Set("size", val)
 }
 func (h HTMLSelectElement) GetType() string {

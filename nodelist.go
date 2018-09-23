@@ -6,7 +6,7 @@ import "syscall/js"
 
 type NodeListIFace interface {
 	Item(args ...interface{}) Node
-	GetLength() float64
+	GetLength() int
 }
 type NodeList struct {
 	Value
@@ -18,7 +18,7 @@ func (n NodeList) Item(args ...interface{}) Node {
 	val := n.Call("item", args...)
 	return JSValueToNode(val.JSValue())
 }
-func (n NodeList) GetLength() float64 {
+func (n NodeList) GetLength() int {
 	val := n.Get("length")
-	return val.Float()
+	return val.Int()
 }

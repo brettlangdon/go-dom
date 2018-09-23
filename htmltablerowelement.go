@@ -84,8 +84,8 @@ type HTMLTableRowElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
-	GetRowIndex() float64
-	GetSectionRowIndex() float64
+	GetRowIndex() int
+	GetSectionRowIndex() int
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -128,11 +128,11 @@ func (h HTMLTableRowElement) InsertCell(args ...interface{}) HTMLTableCellElemen
 	val := h.Call("insertCell", args...)
 	return JSValueToHTMLTableCellElement(val.JSValue())
 }
-func (h HTMLTableRowElement) GetRowIndex() float64 {
+func (h HTMLTableRowElement) GetRowIndex() int {
 	val := h.Get("rowIndex")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTableRowElement) GetSectionRowIndex() float64 {
+func (h HTMLTableRowElement) GetSectionRowIndex() int {
 	val := h.Get("sectionRowIndex")
-	return val.Float()
+	return val.Int()
 }

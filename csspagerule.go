@@ -9,7 +9,7 @@ type CSSPageRuleIFace interface {
 	GetCssText() string
 	SetCssText(string)
 	DeleteRule(args ...interface{})
-	InsertRule(args ...interface{}) float64
+	InsertRule(args ...interface{}) int
 	GetParentRule() CSSRule
 	GetParentStyleSheet() CSSStyleSheet
 	GetSelectorText() string

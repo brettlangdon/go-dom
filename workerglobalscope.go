@@ -32,8 +32,8 @@ type WorkerGlobalScopeIFace interface {
 	QueueMicrotask(args ...interface{})
 	RemoveEventListener(args ...interface{})
 	GetSelf() WorkerGlobalScope
-	SetInterval(args ...interface{}) float64
-	SetTimeout(args ...interface{}) float64
+	SetInterval(args ...interface{}) int
+	SetTimeout(args ...interface{}) int
 }
 type WorkerGlobalScope struct {
 	Value
@@ -128,11 +128,11 @@ func (w WorkerGlobalScope) GetSelf() WorkerGlobalScope {
 	val := w.Get("self")
 	return JSValueToWorkerGlobalScope(val.JSValue())
 }
-func (w WorkerGlobalScope) SetInterval(args ...interface{}) float64 {
+func (w WorkerGlobalScope) SetInterval(args ...interface{}) int {
 	val := w.Call("setInterval", args...)
-	return val.Float()
+	return val.Int()
 }
-func (w WorkerGlobalScope) SetTimeout(args ...interface{}) float64 {
+func (w WorkerGlobalScope) SetTimeout(args ...interface{}) int {
 	val := w.Call("setTimeout", args...)
-	return val.Float()
+	return val.Int()
 }

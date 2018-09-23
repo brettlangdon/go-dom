@@ -52,8 +52,8 @@ type HTMLImageElementIFace interface {
 	HasAttributeNS(args ...interface{}) bool
 	HasAttributes(args ...interface{}) bool
 	HasChildNodes(args ...interface{}) bool
-	GetHeight() float64
-	SetHeight(float64)
+	GetHeight() int
+	SetHeight(int)
 	GetHidden() bool
 	SetHidden(bool)
 	GetId() string
@@ -77,8 +77,8 @@ type HTMLImageElementIFace interface {
 	LookupPrefix(args ...interface{}) string
 	Matches(args ...interface{}) bool
 	GetNamespaceURI() string
-	GetNaturalHeight() float64
-	GetNaturalWidth() float64
+	GetNaturalHeight() int
+	GetNaturalWidth() int
 	GetNextSibling() Node
 	GetNodeName() string
 	GetNodeType() int
@@ -124,8 +124,8 @@ type HTMLImageElementIFace interface {
 	GetUseMap() string
 	SetUseMap(string)
 	WebkitMatchesSelector(args ...interface{}) bool
-	GetWidth() float64
-	SetWidth(float64)
+	GetWidth() int
+	SetWidth(int)
 }
 type HTMLImageElement struct {
 	Value
@@ -171,11 +171,11 @@ func (h HTMLImageElement) GetDecoding() string {
 func (h HTMLImageElement) SetDecoding(val string) {
 	h.Set("decoding", val)
 }
-func (h HTMLImageElement) GetHeight() float64 {
+func (h HTMLImageElement) GetHeight() int {
 	val := h.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLImageElement) SetHeight(val float64) {
+func (h HTMLImageElement) SetHeight(val int) {
 	h.Set("height", val)
 }
 func (h HTMLImageElement) GetIsMap() bool {
@@ -185,13 +185,13 @@ func (h HTMLImageElement) GetIsMap() bool {
 func (h HTMLImageElement) SetIsMap(val bool) {
 	h.Set("isMap", val)
 }
-func (h HTMLImageElement) GetNaturalHeight() float64 {
+func (h HTMLImageElement) GetNaturalHeight() int {
 	val := h.Get("naturalHeight")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLImageElement) GetNaturalWidth() float64 {
+func (h HTMLImageElement) GetNaturalWidth() int {
 	val := h.Get("naturalWidth")
-	return val.Float()
+	return val.Int()
 }
 func (h HTMLImageElement) GetReferrerPolicy() string {
 	val := h.Get("referrerPolicy")
@@ -228,10 +228,10 @@ func (h HTMLImageElement) GetUseMap() string {
 func (h HTMLImageElement) SetUseMap(val string) {
 	h.Set("useMap", val)
 }
-func (h HTMLImageElement) GetWidth() float64 {
+func (h HTMLImageElement) GetWidth() int {
 	val := h.Get("width")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLImageElement) SetWidth(val float64) {
+func (h HTMLImageElement) SetWidth(val int) {
 	h.Set("width", val)
 }

@@ -12,7 +12,7 @@ type CSSStyleDeclarationIFace interface {
 	GetPropertyPriority(args ...interface{}) string
 	GetPropertyValue(args ...interface{}) string
 	Item(args ...interface{}) string
-	GetLength() float64
+	GetLength() int
 	GetParentRule() CSSRule
 	RemoveProperty(args ...interface{}) string
 	SetProperty(args ...interface{})
@@ -51,9 +51,9 @@ func (c CSSStyleDeclaration) Item(args ...interface{}) string {
 	val := c.Call("item", args...)
 	return val.String()
 }
-func (c CSSStyleDeclaration) GetLength() float64 {
+func (c CSSStyleDeclaration) GetLength() int {
 	val := c.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (c CSSStyleDeclaration) GetParentRule() CSSRule {
 	val := c.Get("parentRule")

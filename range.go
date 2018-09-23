@@ -15,7 +15,7 @@ type RangeIFace interface {
 	DeleteContents(args ...interface{})
 	Detach(args ...interface{})
 	GetEndContainer() Node
-	GetEndOffset() float64
+	GetEndOffset() int
 	ExtractContents(args ...interface{}) DocumentFragment
 	InsertNode(args ...interface{})
 	IntersectsNode(args ...interface{}) bool
@@ -29,7 +29,7 @@ type RangeIFace interface {
 	SetStartAfter(args ...interface{})
 	SetStartBefore(args ...interface{})
 	GetStartContainer() Node
-	GetStartOffset() float64
+	GetStartOffset() int
 	SurroundContents(args ...interface{})
 }
 type Range struct {

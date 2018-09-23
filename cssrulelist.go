@@ -6,7 +6,7 @@ import "syscall/js"
 
 type CSSRuleListIFace interface {
 	Item(args ...interface{}) CSSRule
-	GetLength() float64
+	GetLength() int
 }
 type CSSRuleList struct {
 	Value
@@ -18,7 +18,7 @@ func (c CSSRuleList) Item(args ...interface{}) CSSRule {
 	val := c.Call("item", args...)
 	return JSValueToCSSRule(val.JSValue())
 }
-func (c CSSRuleList) GetLength() float64 {
+func (c CSSRuleList) GetLength() int {
 	val := c.Get("length")
-	return val.Float()
+	return val.Int()
 }

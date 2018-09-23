@@ -1,18 +1,17 @@
 package main
 
 import (
-	"github.com/brettlangdon/go-dom/v1/console"
-	"github.com/brettlangdon/go-dom/v1/document"
-	"github.com/brettlangdon/go-dom/v1/window"
+	"github.com/brettlangdon/go-dom/console"
+	"github.com/brettlangdon/go-dom/document"
+	"github.com/brettlangdon/go-dom/window"
 )
 
 func main() {
 	loc := window.GetLocation()
-	console.Dir(loc.JSValue())
+	console.Dir(loc)
 
 	nodes := document.QuerySelectorAll("div")
-	var i float64 = 0
-	for ; i < nodes.GetLength(); i++ {
-		console.Dir(nodes.Item(i).JSValue())
+	for i := 0; i < nodes.GetLength(); i++ {
+		console.Dir(nodes.Item(i))
 	}
 }

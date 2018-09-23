@@ -8,7 +8,7 @@ type WorkerNavigatorIFace interface {
 	GetAppCodeName() string
 	GetAppName() string
 	GetAppVersion() string
-	GetHardwareConcurrency() float64
+	GetHardwareConcurrency() int
 	GetLanguage() string
 	GetLanguages()
 	GetOnLine() bool
@@ -40,9 +40,9 @@ func (w WorkerNavigator) GetAppVersion() string {
 	val := w.Get("appVersion")
 	return val.String()
 }
-func (w WorkerNavigator) GetHardwareConcurrency() float64 {
+func (w WorkerNavigator) GetHardwareConcurrency() int {
 	val := w.Get("hardwareConcurrency")
-	return val.Float()
+	return val.Int()
 }
 func (w WorkerNavigator) GetLanguage() string {
 	val := w.Get("language")

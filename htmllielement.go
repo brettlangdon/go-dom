@@ -98,8 +98,8 @@ type HTMLLIElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
-	GetValue() float64
-	SetValue(float64)
+	GetValue() int
+	SetValue(int)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLLIElement struct {
@@ -114,10 +114,10 @@ func JSValueToHTMLLIElement(val js.Value) HTMLLIElement {
 	return HTMLLIElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLIElement() HTMLLIElement { return HTMLLIElement{Value: v} }
-func (h HTMLLIElement) GetValue() float64 {
+func (h HTMLLIElement) GetValue() int {
 	val := h.Get("value")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLLIElement) SetValue(val float64) {
+func (h HTMLLIElement) SetValue(val int) {
 	h.Set("value", val)
 }

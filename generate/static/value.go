@@ -16,11 +16,28 @@ func (v Value) JSValue() js.Value  { return v.Value }
 func (v Value) Get(p string) Value { return JSValueToValue(v.Value.Get(p)) }
 func (v Value) Index(i int) Value  { return JSValueToValue(v.Value.Index(i)) }
 func (v Value) Call(m string, args ...interface{}) Value {
+	for i, a := range args {
+		args[i] = GetJSValue(a)
+	}
 	return JSValueToValue(v.Value.Call(m, args...))
 }
 func (v Value) Invoke(args ...interface{}) Value {
+	for i, a := range args {
+		args[i] = GetJSValue(a)
+	}
 	return JSValueToValue(v.Value.Invoke(args...))
 }
 func (v Value) New(args ...interface{}) Value {
+	for i, a := range args {
+		args[i] = GetJSValue(a)
+	}
 	return JSValueToValue(v.Value.New(args...))
+}
+
+func GetJSValue(v interface{}) interface{} {
+	t, ok := v.(JSValue)
+	if ok {
+		return t.JSValue()
+	}
+	return v
 }

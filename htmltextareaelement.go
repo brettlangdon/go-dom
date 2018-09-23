@@ -27,8 +27,8 @@ type HTMLTextAreaElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
-	GetCols() float64
-	SetCols(float64)
+	GetCols() int
+	SetCols(int)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDefaultValue() string
@@ -78,10 +78,10 @@ type HTMLTextAreaElementIFace interface {
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	Matches(args ...interface{}) bool
-	GetMaxLength() float64
-	SetMaxLength(float64)
-	GetMinLength() float64
-	SetMinLength(float64)
+	GetMaxLength() int
+	SetMaxLength(int)
+	GetMinLength() int
+	SetMinLength(int)
 	GetName() string
 	SetName(string)
 	GetNamespaceURI() string
@@ -109,15 +109,15 @@ type HTMLTextAreaElementIFace interface {
 	ReportValidity(args ...interface{}) bool
 	GetRequired() bool
 	SetRequired(bool)
-	GetRows() float64
-	SetRows(float64)
+	GetRows() int
+	SetRows(int)
 	Select(args ...interface{})
 	GetSelectionDirection() string
 	SetSelectionDirection(string)
-	GetSelectionEnd() float64
-	SetSelectionEnd(float64)
-	GetSelectionStart() float64
-	SetSelectionStart(float64)
+	GetSelectionEnd() int
+	SetSelectionEnd(int)
+	GetSelectionStart() int
+	SetSelectionStart(int)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -134,7 +134,7 @@ type HTMLTextAreaElementIFace interface {
 	GetTagName() string
 	GetTextContent() string
 	SetTextContent(string)
-	GetTextLength() float64
+	GetTextLength() int
 	GetTitle() string
 	SetTitle(string)
 	ToggleAttribute(args ...interface{}) bool
@@ -180,11 +180,11 @@ func (h HTMLTextAreaElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()
 }
-func (h HTMLTextAreaElement) GetCols() float64 {
+func (h HTMLTextAreaElement) GetCols() int {
 	val := h.Get("cols")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetCols(val float64) {
+func (h HTMLTextAreaElement) SetCols(val int) {
 	h.Set("cols", val)
 }
 func (h HTMLTextAreaElement) GetDefaultValue() string {
@@ -216,18 +216,18 @@ func (h HTMLTextAreaElement) GetLabels() NodeList {
 	val := h.Get("labels")
 	return JSValueToNodeList(val.JSValue())
 }
-func (h HTMLTextAreaElement) GetMaxLength() float64 {
+func (h HTMLTextAreaElement) GetMaxLength() int {
 	val := h.Get("maxLength")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetMaxLength(val float64) {
+func (h HTMLTextAreaElement) SetMaxLength(val int) {
 	h.Set("maxLength", val)
 }
-func (h HTMLTextAreaElement) GetMinLength() float64 {
+func (h HTMLTextAreaElement) GetMinLength() int {
 	val := h.Get("minLength")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetMinLength(val float64) {
+func (h HTMLTextAreaElement) SetMinLength(val int) {
 	h.Set("minLength", val)
 }
 func (h HTMLTextAreaElement) GetName() string {
@@ -262,11 +262,11 @@ func (h HTMLTextAreaElement) GetRequired() bool {
 func (h HTMLTextAreaElement) SetRequired(val bool) {
 	h.Set("required", val)
 }
-func (h HTMLTextAreaElement) GetRows() float64 {
+func (h HTMLTextAreaElement) GetRows() int {
 	val := h.Get("rows")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetRows(val float64) {
+func (h HTMLTextAreaElement) SetRows(val int) {
 	h.Set("rows", val)
 }
 func (h HTMLTextAreaElement) Select(args ...interface{}) {
@@ -279,18 +279,18 @@ func (h HTMLTextAreaElement) GetSelectionDirection() string {
 func (h HTMLTextAreaElement) SetSelectionDirection(val string) {
 	h.Set("selectionDirection", val)
 }
-func (h HTMLTextAreaElement) GetSelectionEnd() float64 {
+func (h HTMLTextAreaElement) GetSelectionEnd() int {
 	val := h.Get("selectionEnd")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetSelectionEnd(val float64) {
+func (h HTMLTextAreaElement) SetSelectionEnd(val int) {
 	h.Set("selectionEnd", val)
 }
-func (h HTMLTextAreaElement) GetSelectionStart() float64 {
+func (h HTMLTextAreaElement) GetSelectionStart() int {
 	val := h.Get("selectionStart")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTextAreaElement) SetSelectionStart(val float64) {
+func (h HTMLTextAreaElement) SetSelectionStart(val int) {
 	h.Set("selectionStart", val)
 }
 func (h HTMLTextAreaElement) SetCustomValidity(args ...interface{}) {
@@ -305,9 +305,9 @@ func (h HTMLTextAreaElement) SetRangeTextWithArgs(args ...interface{}) {
 func (h HTMLTextAreaElement) SetSelectionRange(args ...interface{}) {
 	h.Call("setSelectionRange", args...)
 }
-func (h HTMLTextAreaElement) GetTextLength() float64 {
+func (h HTMLTextAreaElement) GetTextLength() int {
 	val := h.Get("textLength")
-	return val.Float()
+	return val.Int()
 }
 func (h HTMLTextAreaElement) GetType() string {
 	val := h.Get("type")

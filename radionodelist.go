@@ -6,7 +6,7 @@ import "syscall/js"
 
 type RadioNodeListIFace interface {
 	Item(args ...interface{}) Node
-	GetLength() float64
+	GetLength() int
 	GetValue() string
 	SetValue(string)
 }

@@ -17,7 +17,7 @@ type ProgressEventIFace interface {
 	InitEvent(args ...interface{})
 	GetIsTrusted() bool
 	GetLengthComputable() bool
-	GetLoaded() float64
+	GetLoaded() int
 	PreventDefault(args ...interface{})
 	GetReturnValue() bool
 	SetReturnValue(bool)
@@ -26,7 +26,7 @@ type ProgressEventIFace interface {
 	StopPropagation(args ...interface{})
 	GetTarget() EventTarget
 	GetTimeStamp() DOMHighResTimeStamp
-	GetTotal() float64
+	GetTotal() int
 	GetType() string
 }
 type ProgressEvent struct {
@@ -42,11 +42,11 @@ func (p ProgressEvent) GetLengthComputable() bool {
 	val := p.Get("lengthComputable")
 	return val.Bool()
 }
-func (p ProgressEvent) GetLoaded() float64 {
+func (p ProgressEvent) GetLoaded() int {
 	val := p.Get("loaded")
-	return val.Float()
+	return val.Int()
 }
-func (p ProgressEvent) GetTotal() float64 {
+func (p ProgressEvent) GetTotal() int {
 	val := p.Get("total")
-	return val.Float()
+	return val.Int()
 }

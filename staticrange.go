@@ -7,9 +7,9 @@ import "syscall/js"
 type StaticRangeIFace interface {
 	GetCollapsed() bool
 	GetEndContainer() Node
-	GetEndOffset() float64
+	GetEndOffset() int
 	GetStartContainer() Node
-	GetStartOffset() float64
+	GetStartOffset() int
 }
 type StaticRange struct {
 	Value

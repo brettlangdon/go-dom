@@ -8,7 +8,7 @@ type VideoTrackListIFace interface {
 	AddEventListener(args ...interface{})
 	DispatchEvent(args ...interface{}) bool
 	GetTrackById(args ...interface{}) VideoTrack
-	GetLength() float64
+	GetLength() int
 	GetOnaddtrack() EventHandler
 	SetOnaddtrack(EventHandler)
 	GetOnchange() EventHandler
@@ -16,7 +16,7 @@ type VideoTrackListIFace interface {
 	GetOnremovetrack() EventHandler
 	SetOnremovetrack(EventHandler)
 	RemoveEventListener(args ...interface{})
-	GetSelectedIndex() float64
+	GetSelectedIndex() int
 }
 type VideoTrackList struct {
 	Value
@@ -31,9 +31,9 @@ func (v VideoTrackList) GetTrackById(args ...interface{}) VideoTrack {
 	val := v.Call("getTrackById", args...)
 	return JSValueToVideoTrack(val.JSValue())
 }
-func (v VideoTrackList) GetLength() float64 {
+func (v VideoTrackList) GetLength() int {
 	val := v.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (v VideoTrackList) GetOnaddtrack() EventHandler {
 	val := v.Get("onaddtrack")
@@ -56,7 +56,7 @@ func (v VideoTrackList) GetOnremovetrack() EventHandler {
 func (v VideoTrackList) SetOnremovetrack(val EventHandler) {
 	v.Set("onremovetrack", val)
 }
-func (v VideoTrackList) GetSelectedIndex() float64 {
+func (v VideoTrackList) GetSelectedIndex() int {
 	val := v.Get("selectedIndex")
-	return val.Float()
+	return val.Int()
 }

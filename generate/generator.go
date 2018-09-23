@@ -435,7 +435,7 @@ func (g *Generator) generateNamespace(spec Spec) (err error) {
 	b.WriteString("// Code generated DO NOT EDIT")
 	b.WriteF("// %s", fname)
 	b.WriteF("package %s", d)
-	b.WriteString("import dom \"github.com/brettlangdon/go-dom/v1\"")
+	b.WriteString("import dom \"github.com/brettlangdon/go-dom\"")
 	b.WriteString("import \"syscall/js\"")
 
 	vt := "Value"

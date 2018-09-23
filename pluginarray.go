@@ -6,7 +6,7 @@ import "syscall/js"
 
 type PluginArrayIFace interface {
 	Item(args ...interface{}) Plugin
-	GetLength() float64
+	GetLength() int
 	NamedItem(args ...interface{}) Plugin
 	Refresh(args ...interface{})
 }
@@ -20,9 +20,9 @@ func (p PluginArray) Item(args ...interface{}) Plugin {
 	val := p.Call("item", args...)
 	return JSValueToPlugin(val.JSValue())
 }
-func (p PluginArray) GetLength() float64 {
+func (p PluginArray) GetLength() int {
 	val := p.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (p PluginArray) NamedItem(args ...interface{}) Plugin {
 	val := p.Call("namedItem", args...)

@@ -8,7 +8,7 @@ type TextTrackListIFace interface {
 	AddEventListener(args ...interface{})
 	DispatchEvent(args ...interface{}) bool
 	GetTrackById(args ...interface{}) TextTrack
-	GetLength() float64
+	GetLength() int
 	GetOnaddtrack() EventHandler
 	SetOnaddtrack(EventHandler)
 	GetOnchange() EventHandler
@@ -30,9 +30,9 @@ func (t TextTrackList) GetTrackById(args ...interface{}) TextTrack {
 	val := t.Call("getTrackById", args...)
 	return JSValueToTextTrack(val.JSValue())
 }
-func (t TextTrackList) GetLength() float64 {
+func (t TextTrackList) GetLength() int {
 	val := t.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (t TextTrackList) GetOnaddtrack() EventHandler {
 	val := t.Get("onaddtrack")

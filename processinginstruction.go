@@ -27,7 +27,7 @@ type ProcessingInstructionIFace interface {
 	IsEqualNode(args ...interface{}) bool
 	IsSameNode(args ...interface{}) bool
 	GetLastChild() Node
-	GetLength() float64
+	GetLength() int
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	GetNextSibling() Node

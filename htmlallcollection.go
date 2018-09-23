@@ -6,7 +6,7 @@ import "syscall/js"
 
 type HTMLAllCollectionIFace interface {
 	Item(args ...interface{})
-	GetLength() float64
+	GetLength() int
 	NamedItem(args ...interface{})
 }
 type HTMLAllCollection struct {
@@ -20,9 +20,9 @@ func (v Value) AsHTMLAllCollection() HTMLAllCollection { return HTMLAllCollectio
 func (h HTMLAllCollection) Item(args ...interface{}) {
 	h.Call("item", args...)
 }
-func (h HTMLAllCollection) GetLength() float64 {
+func (h HTMLAllCollection) GetLength() int {
 	val := h.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (h HTMLAllCollection) NamedItem(args ...interface{}) {
 	h.Call("namedItem", args...)

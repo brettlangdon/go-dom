@@ -2,7 +2,7 @@
 // window/window.go
 package window
 
-import dom "github.com/brettlangdon/go-dom/v1"
+import dom "github.com/brettlangdon/go-dom"
 import "syscall/js"
 
 var value dom.Window
@@ -78,7 +78,7 @@ func GetFrames() dom.WindowProxy {
 func GetHistory() dom.History {
 	return value.GetHistory()
 }
-func GetLength() float64 {
+func GetLength() int {
 	return value.GetLength()
 }
 func GetLocalStorage() dom.Storage {
@@ -445,9 +445,9 @@ func QueueMicrotask(args ...interface{}) {
 func RemoveEventListener(args ...interface{}) {
 	value.Call("removeEventListener", args...)
 }
-func RequestAnimationFrame(args ...interface{}) float64 {
+func RequestAnimationFrame(args ...interface{}) int {
 	val := value.Call("requestAnimationFrame", args...)
-	return val.Float()
+	return val.Int()
 }
 func GetScrollbars() dom.BarProp {
 	return value.GetScrollbars()
@@ -458,13 +458,13 @@ func GetSelf() dom.WindowProxy {
 func GetSessionStorage() dom.Storage {
 	return value.GetSessionStorage()
 }
-func SetInterval(args ...interface{}) float64 {
+func SetInterval(args ...interface{}) int {
 	val := value.Call("setInterval", args...)
-	return val.Float()
+	return val.Int()
 }
-func SetTimeout(args ...interface{}) float64 {
+func SetTimeout(args ...interface{}) int {
 	val := value.Call("setTimeout", args...)
-	return val.Float()
+	return val.Int()
 }
 func GetStatus() string {
 	return value.GetStatus()

@@ -71,7 +71,7 @@ type HTMLFormElementIFace interface {
 	GetLang() string
 	SetLang(string)
 	GetLastChild() Node
-	GetLength() float64
+	GetLength() int
 	GetLocalName() string
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
@@ -179,9 +179,9 @@ func (h HTMLFormElement) GetEnctype() string {
 func (h HTMLFormElement) SetEnctype(val string) {
 	h.Set("enctype", val)
 }
-func (h HTMLFormElement) GetLength() float64 {
+func (h HTMLFormElement) GetLength() int {
 	val := h.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (h HTMLFormElement) GetMethod() string {
 	val := h.Get("method")

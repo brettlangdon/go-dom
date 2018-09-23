@@ -44,8 +44,8 @@ type HTMLCanvasElementIFace interface {
 	HasAttributeNS(args ...interface{}) bool
 	HasAttributes(args ...interface{}) bool
 	HasChildNodes(args ...interface{}) bool
-	GetHeight() float64
-	SetHeight(float64)
+	GetHeight() int
+	SetHeight(int)
 	GetHidden() bool
 	SetHidden(bool)
 	GetId() string
@@ -105,8 +105,8 @@ type HTMLCanvasElementIFace interface {
 	GetTranslate() bool
 	SetTranslate(bool)
 	WebkitMatchesSelector(args ...interface{}) bool
-	GetWidth() float64
-	SetWidth(float64)
+	GetWidth() int
+	SetWidth(int)
 }
 type HTMLCanvasElement struct {
 	Value
@@ -124,11 +124,11 @@ func (h HTMLCanvasElement) GetContext(args ...interface{}) RenderingContext {
 	val := h.Call("getContext", args...)
 	return JSValueToRenderingContext(val.JSValue())
 }
-func (h HTMLCanvasElement) GetHeight() float64 {
+func (h HTMLCanvasElement) GetHeight() int {
 	val := h.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLCanvasElement) SetHeight(val float64) {
+func (h HTMLCanvasElement) SetHeight(val int) {
 	h.Set("height", val)
 }
 func (h HTMLCanvasElement) ToBlob(args ...interface{}) {
@@ -142,10 +142,10 @@ func (h HTMLCanvasElement) TransferControlToOffscreen(args ...interface{}) Offsc
 	val := h.Call("transferControlToOffscreen", args...)
 	return JSValueToOffscreenCanvas(val.JSValue())
 }
-func (h HTMLCanvasElement) GetWidth() float64 {
+func (h HTMLCanvasElement) GetWidth() int {
 	val := h.Get("width")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLCanvasElement) SetWidth(val float64) {
+func (h HTMLCanvasElement) SetWidth(val int) {
 	h.Set("width", val)
 }

@@ -233,8 +233,8 @@ type HTMLElementIFace interface {
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
 	GetStyle() CSSStyleDeclaration
-	GetTabIndex() float64
-	SetTabIndex(float64)
+	GetTabIndex() int
+	SetTabIndex(int)
 	GetTagName() string
 	GetTextContent() string
 	SetTextContent(string)
@@ -818,11 +818,11 @@ func (h HTMLElement) GetStyle() CSSStyleDeclaration {
 	val := h.Get("style")
 	return JSValueToCSSStyleDeclaration(val.JSValue())
 }
-func (h HTMLElement) GetTabIndex() float64 {
+func (h HTMLElement) GetTabIndex() int {
 	val := h.Get("tabIndex")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLElement) SetTabIndex(val float64) {
+func (h HTMLElement) SetTabIndex(val int) {
 	h.Set("tabIndex", val)
 }
 func (h HTMLElement) GetTitle() string {

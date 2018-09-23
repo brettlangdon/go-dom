@@ -53,8 +53,8 @@ type HTMLMarqueeElementIFace interface {
 	SetHeight(string)
 	GetHidden() bool
 	SetHidden(bool)
-	GetHspace() float64
-	SetHspace(float64)
+	GetHspace() int
+	SetHspace(int)
 	GetId() string
 	SetId(string)
 	GetInnerText() string
@@ -72,8 +72,8 @@ type HTMLMarqueeElementIFace interface {
 	GetLocalName() string
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
-	GetLoop() float64
-	SetLoop(float64)
+	GetLoop() int
+	SetLoop(int)
 	Matches(args ...interface{}) bool
 	GetNamespaceURI() string
 	GetNextSibling() Node
@@ -99,10 +99,10 @@ type HTMLMarqueeElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
-	GetScrollAmount() float64
-	SetScrollAmount(float64)
-	GetScrollDelay() float64
-	SetScrollDelay(float64)
+	GetScrollAmount() int
+	SetScrollAmount(int)
+	GetScrollDelay() int
+	SetScrollDelay(int)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -124,8 +124,8 @@ type HTMLMarqueeElementIFace interface {
 	SetTranslate(bool)
 	GetTrueSpeed() bool
 	SetTrueSpeed(bool)
-	GetVspace() float64
-	SetVspace(float64)
+	GetVspace() int
+	SetVspace(int)
 	WebkitMatchesSelector(args ...interface{}) bool
 	GetWidth() string
 	SetWidth(string)
@@ -170,18 +170,18 @@ func (h HTMLMarqueeElement) GetHeight() string {
 func (h HTMLMarqueeElement) SetHeight(val string) {
 	h.Set("height", val)
 }
-func (h HTMLMarqueeElement) GetHspace() float64 {
+func (h HTMLMarqueeElement) GetHspace() int {
 	val := h.Get("hspace")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLMarqueeElement) SetHspace(val float64) {
+func (h HTMLMarqueeElement) SetHspace(val int) {
 	h.Set("hspace", val)
 }
-func (h HTMLMarqueeElement) GetLoop() float64 {
+func (h HTMLMarqueeElement) GetLoop() int {
 	val := h.Get("loop")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLMarqueeElement) SetLoop(val float64) {
+func (h HTMLMarqueeElement) SetLoop(val int) {
 	h.Set("loop", val)
 }
 func (h HTMLMarqueeElement) GetOnbounce() EventHandler {
@@ -205,18 +205,18 @@ func (h HTMLMarqueeElement) GetOnstart() EventHandler {
 func (h HTMLMarqueeElement) SetOnstart(val EventHandler) {
 	h.Set("onstart", val)
 }
-func (h HTMLMarqueeElement) GetScrollAmount() float64 {
+func (h HTMLMarqueeElement) GetScrollAmount() int {
 	val := h.Get("scrollAmount")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLMarqueeElement) SetScrollAmount(val float64) {
+func (h HTMLMarqueeElement) SetScrollAmount(val int) {
 	h.Set("scrollAmount", val)
 }
-func (h HTMLMarqueeElement) GetScrollDelay() float64 {
+func (h HTMLMarqueeElement) GetScrollDelay() int {
 	val := h.Get("scrollDelay")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLMarqueeElement) SetScrollDelay(val float64) {
+func (h HTMLMarqueeElement) SetScrollDelay(val int) {
 	h.Set("scrollDelay", val)
 }
 func (h HTMLMarqueeElement) Start(args ...interface{}) {
@@ -232,11 +232,11 @@ func (h HTMLMarqueeElement) GetTrueSpeed() bool {
 func (h HTMLMarqueeElement) SetTrueSpeed(val bool) {
 	h.Set("trueSpeed", val)
 }
-func (h HTMLMarqueeElement) GetVspace() float64 {
+func (h HTMLMarqueeElement) GetVspace() int {
 	val := h.Get("vspace")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLMarqueeElement) SetVspace(val float64) {
+func (h HTMLMarqueeElement) SetVspace(val int) {
 	h.Set("vspace", val)
 }
 func (h HTMLMarqueeElement) GetWidth() string {

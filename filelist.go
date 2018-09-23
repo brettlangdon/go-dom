@@ -6,7 +6,7 @@ import "syscall/js"
 
 type FileListIFace interface {
 	Item(args ...interface{}) File
-	GetLength() float64
+	GetLength() int
 }
 type FileList struct {
 	Value
@@ -18,7 +18,7 @@ func (f FileList) Item(args ...interface{}) File {
 	val := f.Call("item", args...)
 	return JSValueToFile(val.JSValue())
 }
-func (f FileList) GetLength() float64 {
+func (f FileList) GetLength() int {
 	val := f.Get("length")
-	return val.Float()
+	return val.Int()
 }

@@ -4,8 +4,8 @@ package dom
 
 import "syscall/js"
 
-type DOMTimeStamp float64
+type DOMTimeStamp int
 
 func JSValueToDOMTimeStamp(val js.Value) DOMTimeStamp {
-	return DOMTimeStamp(val.Float())
+	return DOMTimeStamp(val.Int())
 }

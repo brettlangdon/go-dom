@@ -6,7 +6,7 @@ import "syscall/js"
 
 type StyleSheetListIFace interface {
 	Item(args ...interface{}) StyleSheet
-	GetLength() float64
+	GetLength() int
 }
 type StyleSheetList struct {
 	Value
@@ -20,7 +20,7 @@ func (s StyleSheetList) Item(args ...interface{}) StyleSheet {
 	val := s.Call("item", args...)
 	return JSValueToStyleSheet(val.JSValue())
 }
-func (s StyleSheetList) GetLength() float64 {
+func (s StyleSheetList) GetLength() int {
 	val := s.Get("length")
-	return val.Float()
+	return val.Int()
 }

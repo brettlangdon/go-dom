@@ -88,8 +88,8 @@ type HTMLTableColElementIFace interface {
 	GetShadowRoot() ShadowRoot
 	GetSlot() string
 	SetSlot(string)
-	GetSpan() float64
-	SetSpan(float64)
+	GetSpan() int
+	SetSpan(int)
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
 	GetTagName() string
@@ -114,10 +114,10 @@ func JSValueToHTMLTableColElement(val js.Value) HTMLTableColElement {
 	return HTMLTableColElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableColElement() HTMLTableColElement { return HTMLTableColElement{Value: v} }
-func (h HTMLTableColElement) GetSpan() float64 {
+func (h HTMLTableColElement) GetSpan() int {
 	val := h.Get("span")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTableColElement) SetSpan(val float64) {
+func (h HTMLTableColElement) SetSpan(val int) {
 	h.Set("span", val)
 }

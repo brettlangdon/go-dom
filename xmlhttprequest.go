@@ -41,8 +41,8 @@ type XMLHttpRequestIFace interface {
 	SetRequestHeader(args ...interface{})
 	GetStatus() int
 	GetStatusText() []byte
-	GetTimeout() float64
-	SetTimeout(float64)
+	GetTimeout() int
+	SetTimeout(int)
 	GetUpload() XMLHttpRequestUpload
 	GetWithCredentials() bool
 	SetWithCredentials(bool)
@@ -125,11 +125,11 @@ func (x XMLHttpRequest) GetStatusText() []byte {
 	val := x.Get("statusText")
 	return []byte(val.String())
 }
-func (x XMLHttpRequest) GetTimeout() float64 {
+func (x XMLHttpRequest) GetTimeout() int {
 	val := x.Get("timeout")
-	return val.Float()
+	return val.Int()
 }
-func (x XMLHttpRequest) SetTimeout(val float64) {
+func (x XMLHttpRequest) SetTimeout(val int) {
 	x.Set("timeout", val)
 }
 func (x XMLHttpRequest) GetUpload() XMLHttpRequestUpload {

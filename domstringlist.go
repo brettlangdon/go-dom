@@ -7,7 +7,7 @@ import "syscall/js"
 type DOMStringListIFace interface {
 	Contains(args ...interface{}) bool
 	Item(args ...interface{}) string
-	GetLength() float64
+	GetLength() int
 }
 type DOMStringList struct {
 	Value
@@ -25,7 +25,7 @@ func (d DOMStringList) Item(args ...interface{}) string {
 	val := d.Call("item", args...)
 	return val.String()
 }
-func (d DOMStringList) GetLength() float64 {
+func (d DOMStringList) GetLength() int {
 	val := d.Get("length")
-	return val.Float()
+	return val.Int()
 }

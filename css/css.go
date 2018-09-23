@@ -2,7 +2,7 @@
 // css/css.go
 package css
 
-import dom "github.com/brettlangdon/go-dom/v1"
+import dom "github.com/brettlangdon/go-dom"
 import "syscall/js"
 
 var value dom.Value

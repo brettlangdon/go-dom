@@ -17,7 +17,7 @@ type HTMLTableCellElementIFace interface {
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
-	GetCellIndex() float64
+	GetCellIndex() int
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -25,8 +25,8 @@ type HTMLTableCellElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
-	GetColSpan() float64
-	SetColSpan(float64)
+	GetColSpan() int
+	SetColSpan(int)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDir() string
@@ -88,8 +88,8 @@ type HTMLTableCellElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
-	GetRowSpan() float64
-	SetRowSpan(float64)
+	GetRowSpan() int
+	SetRowSpan(int)
 	GetScope() string
 	SetScope(string)
 	SetAttribute(args ...interface{})
@@ -130,15 +130,15 @@ func (h HTMLTableCellElement) GetAbbr() string {
 func (h HTMLTableCellElement) SetAbbr(val string) {
 	h.Set("abbr", val)
 }
-func (h HTMLTableCellElement) GetCellIndex() float64 {
+func (h HTMLTableCellElement) GetCellIndex() int {
 	val := h.Get("cellIndex")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTableCellElement) GetColSpan() float64 {
+func (h HTMLTableCellElement) GetColSpan() int {
 	val := h.Get("colSpan")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTableCellElement) SetColSpan(val float64) {
+func (h HTMLTableCellElement) SetColSpan(val int) {
 	h.Set("colSpan", val)
 }
 func (h HTMLTableCellElement) GetHeaders() string {
@@ -148,11 +148,11 @@ func (h HTMLTableCellElement) GetHeaders() string {
 func (h HTMLTableCellElement) SetHeaders(val string) {
 	h.Set("headers", val)
 }
-func (h HTMLTableCellElement) GetRowSpan() float64 {
+func (h HTMLTableCellElement) GetRowSpan() int {
 	val := h.Get("rowSpan")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLTableCellElement) SetRowSpan(val float64) {
+func (h HTMLTableCellElement) SetRowSpan(val int) {
 	h.Set("rowSpan", val)
 }
 func (h HTMLTableCellElement) GetScope() string {

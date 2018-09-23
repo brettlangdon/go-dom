@@ -2,7 +2,7 @@
 // document/document.go
 package document
 
-import dom "github.com/brettlangdon/go-dom/v1"
+import dom "github.com/brettlangdon/go-dom"
 import "syscall/js"
 
 var value dom.Document
@@ -31,7 +31,7 @@ func GetCharacterSet() string {
 func GetCharset() string {
 	return value.GetCharset()
 }
-func GetChildElementCount() float64 {
+func GetChildElementCount() int {
 	return value.GetChildElementCount()
 }
 func GetChildNodes() dom.NodeList {

@@ -92,8 +92,8 @@ type HTMLOListElementIFace interface {
 	SetSlot(string)
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
-	GetStart() float64
-	SetStart(float64)
+	GetStart() int
+	SetStart(int)
 	GetTagName() string
 	GetTextContent() string
 	SetTextContent(string)
@@ -125,11 +125,11 @@ func (h HTMLOListElement) GetReversed() bool {
 func (h HTMLOListElement) SetReversed(val bool) {
 	h.Set("reversed", val)
 }
-func (h HTMLOListElement) GetStart() float64 {
+func (h HTMLOListElement) GetStart() int {
 	val := h.Get("start")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLOListElement) SetStart(val float64) {
+func (h HTMLOListElement) SetStart(val int) {
 	h.Set("start", val)
 }
 func (h HTMLOListElement) GetType() string {

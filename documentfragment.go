@@ -9,7 +9,7 @@ type DocumentFragmentIFace interface {
 	Append(args ...interface{})
 	AppendChild(args ...interface{}) Node
 	GetBaseURI() string
-	GetChildElementCount() float64
+	GetChildElementCount() int
 	GetChildNodes() NodeList
 	GetChildren() HTMLCollection
 	CloneNode(args ...interface{}) Node
@@ -62,9 +62,9 @@ func (v Value) AsDocumentFragment() DocumentFragment { return DocumentFragment{V
 func (d DocumentFragment) Append(args ...interface{}) {
 	d.Call("append", args...)
 }
-func (d DocumentFragment) GetChildElementCount() float64 {
+func (d DocumentFragment) GetChildElementCount() int {
 	val := d.Get("childElementCount")
-	return val.Float()
+	return val.Int()
 }
 func (d DocumentFragment) GetChildren() HTMLCollection {
 	val := d.Get("children")

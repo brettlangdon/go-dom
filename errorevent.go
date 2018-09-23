@@ -9,7 +9,7 @@ type ErrorEventIFace interface {
 	GetCancelBubble() bool
 	SetCancelBubble(bool)
 	GetCancelable() bool
-	GetColno() float64
+	GetColno() int
 	GetComposed() bool
 	ComposedPath(args ...interface{})
 	GetCurrentTarget() EventTarget
@@ -19,7 +19,7 @@ type ErrorEventIFace interface {
 	GetFilename() string
 	InitEvent(args ...interface{})
 	GetIsTrusted() bool
-	GetLineno() float64
+	GetLineno() int
 	GetMessage() string
 	PreventDefault(args ...interface{})
 	GetReturnValue() bool
@@ -38,9 +38,9 @@ type ErrorEvent struct {
 
 func JSValueToErrorEvent(val js.Value) ErrorEvent { return ErrorEvent{Value: Value{Value: val}} }
 func (v Value) AsErrorEvent() ErrorEvent          { return ErrorEvent{Value: v} }
-func (e ErrorEvent) GetColno() float64 {
+func (e ErrorEvent) GetColno() int {
 	val := e.Get("colno")
-	return val.Float()
+	return val.Int()
 }
 func (e ErrorEvent) GetError() Value {
 	val := e.Get("error")
@@ -50,9 +50,9 @@ func (e ErrorEvent) GetFilename() string {
 	val := e.Get("filename")
 	return val.String()
 }
-func (e ErrorEvent) GetLineno() float64 {
+func (e ErrorEvent) GetLineno() int {
 	val := e.Get("lineno")
-	return val.Float()
+	return val.Int()
 }
 func (e ErrorEvent) GetMessage() string {
 	val := e.Get("message")

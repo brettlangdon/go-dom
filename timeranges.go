@@ -6,7 +6,7 @@ import "syscall/js"
 
 type TimeRangesIFace interface {
 	End(args ...interface{}) float64
-	GetLength() float64
+	GetLength() int
 	Start(args ...interface{}) float64
 }
 type TimeRanges struct {
@@ -19,9 +19,9 @@ func (t TimeRanges) End(args ...interface{}) float64 {
 	val := t.Call("end", args...)
 	return val.Float()
 }
-func (t TimeRanges) GetLength() float64 {
+func (t TimeRanges) GetLength() int {
 	val := t.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (t TimeRanges) Start(args ...interface{}) float64 {
 	val := t.Call("start", args...)

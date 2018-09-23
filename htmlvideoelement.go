@@ -65,8 +65,8 @@ type HTMLVideoElementIFace interface {
 	HasAttributeNS(args ...interface{}) bool
 	HasAttributes(args ...interface{}) bool
 	HasChildNodes(args ...interface{}) bool
-	GetHeight() float64
-	SetHeight(float64)
+	GetHeight() int
+	SetHeight(int)
 	GetHidden() bool
 	SetHidden(bool)
 	GetId() string
@@ -148,14 +148,14 @@ type HTMLVideoElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
-	GetVideoHeight() float64
+	GetVideoHeight() int
 	GetVideoTracks() VideoTrackList
-	GetVideoWidth() float64
+	GetVideoWidth() int
 	GetVolume() float64
 	SetVolume(float64)
 	WebkitMatchesSelector(args ...interface{}) bool
-	GetWidth() float64
-	SetWidth(float64)
+	GetWidth() int
+	SetWidth(int)
 }
 type HTMLVideoElement struct {
 	Value
@@ -170,11 +170,11 @@ func JSValueToHTMLVideoElement(val js.Value) HTMLVideoElement {
 	return HTMLVideoElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLVideoElement() HTMLVideoElement { return HTMLVideoElement{Value: v} }
-func (h HTMLVideoElement) GetHeight() float64 {
+func (h HTMLVideoElement) GetHeight() int {
 	val := h.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLVideoElement) SetHeight(val float64) {
+func (h HTMLVideoElement) SetHeight(val int) {
 	h.Set("height", val)
 }
 func (h HTMLVideoElement) GetPlaysInline() bool {
@@ -191,18 +191,18 @@ func (h HTMLVideoElement) GetPoster() string {
 func (h HTMLVideoElement) SetPoster(val string) {
 	h.Set("poster", val)
 }
-func (h HTMLVideoElement) GetVideoHeight() float64 {
+func (h HTMLVideoElement) GetVideoHeight() int {
 	val := h.Get("videoHeight")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLVideoElement) GetVideoWidth() float64 {
+func (h HTMLVideoElement) GetVideoWidth() int {
 	val := h.Get("videoWidth")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLVideoElement) GetWidth() float64 {
+func (h HTMLVideoElement) GetWidth() int {
 	val := h.Get("width")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLVideoElement) SetWidth(val float64) {
+func (h HTMLVideoElement) SetWidth(val int) {
 	h.Set("width", val)
 }

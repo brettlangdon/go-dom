@@ -12,7 +12,7 @@ type DocumentIFace interface {
 	GetBaseURI() string
 	GetCharacterSet() string
 	GetCharset() string
-	GetChildElementCount() float64
+	GetChildElementCount() int
 	GetChildNodes() NodeList
 	GetChildren() HTMLCollection
 	CloneNode(args ...interface{}) Node
@@ -231,9 +231,9 @@ func (d Document) GetCharset() string {
 	val := d.Get("charset")
 	return val.String()
 }
-func (d Document) GetChildElementCount() float64 {
+func (d Document) GetChildElementCount() int {
 	val := d.Get("childElementCount")
-	return val.Float()
+	return val.Int()
 }
 func (d Document) GetChildren() HTMLCollection {
 	val := d.Get("children")

@@ -7,9 +7,9 @@ import "syscall/js"
 type AbstractRangeIFace interface {
 	GetCollapsed() bool
 	GetEndContainer() Node
-	GetEndOffset() float64
+	GetEndOffset() int
 	GetStartContainer() Node
-	GetStartOffset() float64
+	GetStartOffset() int
 }
 type AbstractRange struct {
 	Value
@@ -27,15 +27,15 @@ func (a AbstractRange) GetEndContainer() Node {
 	val := a.Get("endContainer")
 	return JSValueToNode(val.JSValue())
 }
-func (a AbstractRange) GetEndOffset() float64 {
+func (a AbstractRange) GetEndOffset() int {
 	val := a.Get("endOffset")
-	return val.Float()
+	return val.Int()
 }
 func (a AbstractRange) GetStartContainer() Node {
 	val := a.Get("startContainer")
 	return JSValueToNode(val.JSValue())
 }
-func (a AbstractRange) GetStartOffset() float64 {
+func (a AbstractRange) GetStartOffset() int {
 	val := a.Get("startOffset")
-	return val.Float()
+	return val.Int()
 }

@@ -6,7 +6,7 @@ import "syscall/js"
 
 type TextTrackCueListIFace interface {
 	GetCueById(args ...interface{}) TextTrackCue
-	GetLength() float64
+	GetLength() int
 }
 type TextTrackCueList struct {
 	Value
@@ -20,7 +20,7 @@ func (t TextTrackCueList) GetCueById(args ...interface{}) TextTrackCue {
 	val := t.Call("getCueById", args...)
 	return JSValueToTextTrackCue(val.JSValue())
 }
-func (t TextTrackCueList) GetLength() float64 {
+func (t TextTrackCueList) GetLength() int {
 	val := t.Get("length")
-	return val.Float()
+	return val.Int()
 }

@@ -8,7 +8,7 @@ type HistoryIFace interface {
 	Back(args ...interface{})
 	Forward(args ...interface{})
 	Go(args ...interface{})
-	GetLength() float64
+	GetLength() int
 	PushState(args ...interface{})
 	ReplaceState(args ...interface{})
 	GetScrollRestoration() ScrollRestoration
@@ -30,9 +30,9 @@ func (h History) Forward(args ...interface{}) {
 func (h History) Go(args ...interface{}) {
 	h.Call("go", args...)
 }
-func (h History) GetLength() float64 {
+func (h History) GetLength() int {
 	val := h.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (h History) PushState(args ...interface{}) {
 	h.Call("pushState", args...)

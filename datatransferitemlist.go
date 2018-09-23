@@ -8,7 +8,7 @@ type DataTransferItemListIFace interface {
 	Add(args ...interface{}) DataTransferItem
 	AddWithArgs(args ...interface{}) DataTransferItem
 	Clear(args ...interface{})
-	GetLength() float64
+	GetLength() int
 	Remove(args ...interface{})
 }
 type DataTransferItemList struct {
@@ -30,9 +30,9 @@ func (d DataTransferItemList) AddWithArgs(args ...interface{}) DataTransferItem 
 func (d DataTransferItemList) Clear(args ...interface{}) {
 	d.Call("clear", args...)
 }
-func (d DataTransferItemList) GetLength() float64 {
+func (d DataTransferItemList) GetLength() int {
 	val := d.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (d DataTransferItemList) Remove(args ...interface{}) {
 	d.Call("remove", args...)

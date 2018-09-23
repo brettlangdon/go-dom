@@ -8,7 +8,7 @@ type MediaListIFace interface {
 	AppendMedium(args ...interface{})
 	DeleteMedium(args ...interface{})
 	Item(args ...interface{}) string
-	GetLength() float64
+	GetLength() int
 	GetMediaText() string
 	SetMediaText(string)
 }
@@ -28,9 +28,9 @@ func (m MediaList) Item(args ...interface{}) string {
 	val := m.Call("item", args...)
 	return val.String()
 }
-func (m MediaList) GetLength() float64 {
+func (m MediaList) GetLength() int {
 	val := m.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (m MediaList) GetMediaText() string {
 	val := m.Get("mediaText")

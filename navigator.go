@@ -9,7 +9,7 @@ type NavigatorIFace interface {
 	GetAppName() string
 	GetAppVersion() string
 	GetCookieEnabled() bool
-	GetHardwareConcurrency() float64
+	GetHardwareConcurrency() int
 	JavaEnabled(args ...interface{}) bool
 	GetLanguage() string
 	GetLanguages()
@@ -48,9 +48,9 @@ func (n Navigator) GetCookieEnabled() bool {
 	val := n.Get("cookieEnabled")
 	return val.Bool()
 }
-func (n Navigator) GetHardwareConcurrency() float64 {
+func (n Navigator) GetHardwareConcurrency() int {
 	val := n.Get("hardwareConcurrency")
-	return val.Float()
+	return val.Int()
 }
 func (n Navigator) JavaEnabled(args ...interface{}) bool {
 	val := n.Call("javaEnabled", args...)

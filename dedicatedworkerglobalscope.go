@@ -31,7 +31,7 @@ type DedicatedWorkerGlobalScopeIFace interface {
 	SetOnunhandledrejection(EventHandler)
 	PostMessage(args ...interface{})
 	RemoveEventListener(args ...interface{})
-	RequestAnimationFrame(args ...interface{}) float64
+	RequestAnimationFrame(args ...interface{}) int
 	GetSelf() WorkerGlobalScope
 }
 type DedicatedWorkerGlobalScope struct {
@@ -73,7 +73,7 @@ func (d DedicatedWorkerGlobalScope) SetOnmessageerror(val EventHandler) {
 func (d DedicatedWorkerGlobalScope) PostMessage(args ...interface{}) {
 	d.Call("postMessage", args...)
 }
-func (d DedicatedWorkerGlobalScope) RequestAnimationFrame(args ...interface{}) float64 {
+func (d DedicatedWorkerGlobalScope) RequestAnimationFrame(args ...interface{}) int {
 	val := d.Call("requestAnimationFrame", args...)
-	return val.Float()
+	return val.Int()
 }

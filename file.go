@@ -5,9 +5,9 @@ package dom
 import "syscall/js"
 
 type FileIFace interface {
-	GetLastModified() float64
+	GetLastModified() int
 	GetName() string
-	GetSize() float64
+	GetSize() int
 	Slice(args ...interface{}) Blob
 	GetType() string
 }
@@ -18,9 +18,9 @@ type File struct {
 
 func JSValueToFile(val js.Value) File { return File{Value: Value{Value: val}} }
 func (v Value) AsFile() File          { return File{Value: v} }
-func (f File) GetLastModified() float64 {
+func (f File) GetLastModified() int {
 	val := f.Get("lastModified")
-	return val.Float()
+	return val.Int()
 }
 func (f File) GetName() string {
 	val := f.Get("name")

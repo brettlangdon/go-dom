@@ -52,7 +52,7 @@ type HTMLOptionElementIFace interface {
 	SetHidden(bool)
 	GetId() string
 	SetId(string)
-	GetIndex() float64
+	GetIndex() int
 	GetInnerText() string
 	SetInnerText(string)
 	InsertAdjacentElement(args ...interface{}) Element
@@ -144,9 +144,9 @@ func (h HTMLOptionElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
 	return JSValueToHTMLFormElement(val.JSValue())
 }
-func (h HTMLOptionElement) GetIndex() float64 {
+func (h HTMLOptionElement) GetIndex() int {
 	val := h.Get("index")
-	return val.Float()
+	return val.Int()
 }
 func (h HTMLOptionElement) GetLabel() string {
 	val := h.Get("label")

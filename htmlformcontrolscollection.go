@@ -6,7 +6,7 @@ import "syscall/js"
 
 type HTMLFormControlsCollectionIFace interface {
 	Item(args ...interface{}) Element
-	GetLength() float64
+	GetLength() int
 	NamedItem(args ...interface{})
 }
 type HTMLFormControlsCollection struct {

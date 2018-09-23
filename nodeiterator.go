@@ -12,7 +12,7 @@ type NodeIteratorIFace interface {
 	PreviousNode(args ...interface{}) Node
 	GetReferenceNode() Node
 	GetRoot() Node
-	GetWhatToShow() float64
+	GetWhatToShow() int
 }
 type NodeIterator struct {
 	Value
@@ -47,7 +47,7 @@ func (n NodeIterator) GetRoot() Node {
 	val := n.Get("root")
 	return JSValueToNode(val.JSValue())
 }
-func (n NodeIterator) GetWhatToShow() float64 {
+func (n NodeIterator) GetWhatToShow() int {
 	val := n.Get("whatToShow")
-	return val.Float()
+	return val.Int()
 }

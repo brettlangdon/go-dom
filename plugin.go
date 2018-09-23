@@ -8,7 +8,7 @@ type PluginIFace interface {
 	GetDescription() string
 	GetFilename() string
 	Item(args ...interface{}) MimeType
-	GetLength() float64
+	GetLength() int
 	GetName() string
 	NamedItem(args ...interface{}) MimeType
 }
@@ -30,9 +30,9 @@ func (p Plugin) Item(args ...interface{}) MimeType {
 	val := p.Call("item", args...)
 	return JSValueToMimeType(val.JSValue())
 }
-func (p Plugin) GetLength() float64 {
+func (p Plugin) GetLength() int {
 	val := p.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (p Plugin) GetName() string {
 	val := p.Get("name")

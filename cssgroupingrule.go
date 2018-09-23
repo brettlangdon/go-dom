@@ -9,7 +9,7 @@ type CSSGroupingRuleIFace interface {
 	GetCssText() string
 	SetCssText(string)
 	DeleteRule(args ...interface{})
-	InsertRule(args ...interface{}) float64
+	InsertRule(args ...interface{}) int
 	GetParentRule() CSSRule
 	GetParentStyleSheet() CSSStyleSheet
 	GetType() int
@@ -30,7 +30,7 @@ func (c CSSGroupingRule) GetCssRules() CSSRuleList {
 func (c CSSGroupingRule) DeleteRule(args ...interface{}) {
 	c.Call("deleteRule", args...)
 }
-func (c CSSGroupingRule) InsertRule(args ...interface{}) float64 {
+func (c CSSGroupingRule) InsertRule(args ...interface{}) int {
 	val := c.Call("insertRule", args...)
-	return val.Float()
+	return val.Int()
 }

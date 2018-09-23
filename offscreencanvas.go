@@ -9,12 +9,12 @@ type OffscreenCanvasIFace interface {
 	ConvertToBlob(args ...interface{})
 	DispatchEvent(args ...interface{}) bool
 	GetContext(args ...interface{}) OffscreenRenderingContext
-	GetHeight() float64
-	SetHeight(float64)
+	GetHeight() int
+	SetHeight(int)
 	RemoveEventListener(args ...interface{})
 	TransferToImageBitmap(args ...interface{}) ImageBitmap
-	GetWidth() float64
-	SetWidth(float64)
+	GetWidth() int
+	SetWidth(int)
 }
 type OffscreenCanvas struct {
 	Value
@@ -32,21 +32,21 @@ func (o OffscreenCanvas) GetContext(args ...interface{}) OffscreenRenderingConte
 	val := o.Call("getContext", args...)
 	return JSValueToOffscreenRenderingContext(val.JSValue())
 }
-func (o OffscreenCanvas) GetHeight() float64 {
+func (o OffscreenCanvas) GetHeight() int {
 	val := o.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (o OffscreenCanvas) SetHeight(val float64) {
+func (o OffscreenCanvas) SetHeight(val int) {
 	o.Set("height", val)
 }
 func (o OffscreenCanvas) TransferToImageBitmap(args ...interface{}) ImageBitmap {
 	val := o.Call("transferToImageBitmap", args...)
 	return JSValueToImageBitmap(val.JSValue())
 }
-func (o OffscreenCanvas) GetWidth() float64 {
+func (o OffscreenCanvas) GetWidth() int {
 	val := o.Get("width")
-	return val.Float()
+	return val.Int()
 }
-func (o OffscreenCanvas) SetWidth(val float64) {
+func (o OffscreenCanvas) SetWidth(val int) {
 	o.Set("width", val)
 }

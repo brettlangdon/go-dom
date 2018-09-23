@@ -6,7 +6,7 @@ import "syscall/js"
 
 type DOMRectListIFace interface {
 	Item(args ...interface{}) DOMRect
-	GetLength() float64
+	GetLength() int
 }
 type DOMRectList struct {
 	Value
@@ -18,7 +18,7 @@ func (d DOMRectList) Item(args ...interface{}) DOMRect {
 	val := d.Call("item", args...)
 	return JSValueToDOMRect(val.JSValue())
 }
-func (d DOMRectList) GetLength() float64 {
+func (d DOMRectList) GetLength() int {
 	val := d.Get("length")
-	return val.Float()
+	return val.Int()
 }

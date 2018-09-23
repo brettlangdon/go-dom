@@ -6,8 +6,8 @@ import "syscall/js"
 
 type ImageBitmapIFace interface {
 	Close(args ...interface{})
-	GetHeight() float64
-	GetWidth() float64
+	GetHeight() int
+	GetWidth() int
 }
 type ImageBitmap struct {
 	Value
@@ -18,11 +18,11 @@ func (v Value) AsImageBitmap() ImageBitmap          { return ImageBitmap{Value: 
 func (i ImageBitmap) Close(args ...interface{}) {
 	i.Call("close", args...)
 }
-func (i ImageBitmap) GetHeight() float64 {
+func (i ImageBitmap) GetHeight() int {
 	val := i.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (i ImageBitmap) GetWidth() float64 {
+func (i ImageBitmap) GetWidth() int {
 	val := i.Get("width")
-	return val.Float()
+	return val.Int()
 }

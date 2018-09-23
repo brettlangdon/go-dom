@@ -7,12 +7,12 @@ import "syscall/js"
 type HTMLOptionsCollectionIFace interface {
 	Add(args ...interface{})
 	Item(args ...interface{}) Element
-	GetLength() float64
-	SetLength(float64)
+	GetLength() int
+	SetLength(int)
 	NamedItem(args ...interface{}) Element
 	Remove(args ...interface{})
-	GetSelectedIndex() float64
-	SetSelectedIndex(float64)
+	GetSelectedIndex() int
+	SetSelectedIndex(int)
 }
 type HTMLOptionsCollection struct {
 	Value
@@ -26,20 +26,20 @@ func (v Value) AsHTMLOptionsCollection() HTMLOptionsCollection { return HTMLOpti
 func (h HTMLOptionsCollection) Add(args ...interface{}) {
 	h.Call("add", args...)
 }
-func (h HTMLOptionsCollection) GetLength() float64 {
+func (h HTMLOptionsCollection) GetLength() int {
 	val := h.Get("length")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLOptionsCollection) SetLength(val float64) {
+func (h HTMLOptionsCollection) SetLength(val int) {
 	h.Set("length", val)
 }
 func (h HTMLOptionsCollection) Remove(args ...interface{}) {
 	h.Call("remove", args...)
 }
-func (h HTMLOptionsCollection) GetSelectedIndex() float64 {
+func (h HTMLOptionsCollection) GetSelectedIndex() int {
 	val := h.Get("selectedIndex")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLOptionsCollection) SetSelectedIndex(val float64) {
+func (h HTMLOptionsCollection) SetSelectedIndex(val int) {
 	h.Set("selectedIndex", val)
 }

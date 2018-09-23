@@ -8,7 +8,7 @@ type WebSocketIFace interface {
 	AddEventListener(args ...interface{})
 	GetBinaryType() BinaryType
 	SetBinaryType(BinaryType)
-	GetBufferedAmount() float64
+	GetBufferedAmount() int
 	Close(args ...interface{})
 	DispatchEvent(args ...interface{}) bool
 	GetExtensions() string
@@ -43,9 +43,9 @@ func (w WebSocket) GetBinaryType() BinaryType {
 func (w WebSocket) SetBinaryType(val BinaryType) {
 	w.Set("binaryType", val)
 }
-func (w WebSocket) GetBufferedAmount() float64 {
+func (w WebSocket) GetBufferedAmount() int {
 	val := w.Get("bufferedAmount")
-	return val.Float()
+	return val.Int()
 }
 func (w WebSocket) Close(args ...interface{}) {
 	w.Call("close", args...)

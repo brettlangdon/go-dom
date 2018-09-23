@@ -1,1 +1,1 @@
-module github.com/brettlangdon/go-dom/v1
+module github.com/brettlangdon/go-dom

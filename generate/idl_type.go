@@ -24,11 +24,12 @@ func convertIDLType(idlType interface{}) string {
 		switch t {
 		case "USVString", "DOMString", "CSSOMString":
 			t = "string"
-		case "unsigned long", "long", "unsigned long long",
-			"double", "unrestricted double", "long long":
-			t = "float64"
-		case "unsigned short", "short":
+		case "unsigned long", "unsigned long long",
+			"long", "long long",
+			"unsigned short", "short":
 			t = "int"
+		case "double", "unrestricted double":
+			t = "float64"
 		case "boolean":
 			t = "bool"
 		case "any", "object":

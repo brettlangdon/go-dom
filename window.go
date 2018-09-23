@@ -27,7 +27,7 @@ type WindowIFace interface {
 	GetFrameElement() Element
 	GetFrames() WindowProxy
 	GetHistory() History
-	GetLength() float64
+	GetLength() int
 	GetLocalStorage() Storage
 	GetLocation() Location
 	GetLocationbar() BarProp
@@ -202,12 +202,12 @@ type WindowIFace interface {
 	Prompt(args ...interface{}) string
 	QueueMicrotask(args ...interface{})
 	RemoveEventListener(args ...interface{})
-	RequestAnimationFrame(args ...interface{}) float64
+	RequestAnimationFrame(args ...interface{}) int
 	GetScrollbars() BarProp
 	GetSelf() WindowProxy
 	GetSessionStorage() Storage
-	SetInterval(args ...interface{}) float64
-	SetTimeout(args ...interface{}) float64
+	SetInterval(args ...interface{}) int
+	SetTimeout(args ...interface{}) int
 	GetStatus() string
 	SetStatus(string)
 	GetStatusbar() BarProp
@@ -293,9 +293,9 @@ func (w Window) GetHistory() History {
 	val := w.Get("history")
 	return JSValueToHistory(val.JSValue())
 }
-func (w Window) GetLength() float64 {
+func (w Window) GetLength() int {
 	val := w.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (w Window) GetLocalStorage() Storage {
 	val := w.Get("localStorage")
@@ -906,9 +906,9 @@ func (w Window) Prompt(args ...interface{}) string {
 func (w Window) QueueMicrotask(args ...interface{}) {
 	w.Call("queueMicrotask", args...)
 }
-func (w Window) RequestAnimationFrame(args ...interface{}) float64 {
+func (w Window) RequestAnimationFrame(args ...interface{}) int {
 	val := w.Call("requestAnimationFrame", args...)
-	return val.Float()
+	return val.Int()
 }
 func (w Window) GetScrollbars() BarProp {
 	val := w.Get("scrollbars")
@@ -922,13 +922,13 @@ func (w Window) GetSessionStorage() Storage {
 	val := w.Get("sessionStorage")
 	return JSValueToStorage(val.JSValue())
 }
-func (w Window) SetInterval(args ...interface{}) float64 {
+func (w Window) SetInterval(args ...interface{}) int {
 	val := w.Call("setInterval", args...)
-	return val.Float()
+	return val.Int()
 }
-func (w Window) SetTimeout(args ...interface{}) float64 {
+func (w Window) SetTimeout(args ...interface{}) int {
 	val := w.Call("setTimeout", args...)
-	return val.Float()
+	return val.Int()
 }
 func (w Window) GetStatus() string {
 	val := w.Get("status")

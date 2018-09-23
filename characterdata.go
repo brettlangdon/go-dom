@@ -29,7 +29,7 @@ type CharacterDataIFace interface {
 	IsEqualNode(args ...interface{}) bool
 	IsSameNode(args ...interface{}) bool
 	GetLastChild() Node
-	GetLength() float64
+	GetLength() int
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	GetNextElementSibling() Element
@@ -86,9 +86,9 @@ func (c CharacterData) DeleteData(args ...interface{}) {
 func (c CharacterData) InsertData(args ...interface{}) {
 	c.Call("insertData", args...)
 }
-func (c CharacterData) GetLength() float64 {
+func (c CharacterData) GetLength() int {
 	val := c.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (c CharacterData) GetNextElementSibling() Element {
 	val := c.Get("nextElementSibling")

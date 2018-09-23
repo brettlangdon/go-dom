@@ -8,7 +8,7 @@ type NamedNodeMapIFace interface {
 	GetNamedItem(args ...interface{}) Attr
 	GetNamedItemNS(args ...interface{}) Attr
 	Item(args ...interface{}) Attr
-	GetLength() float64
+	GetLength() int
 	RemoveNamedItem(args ...interface{}) Attr
 	RemoveNamedItemNS(args ...interface{}) Attr
 	SetNamedItem(args ...interface{}) Attr
@@ -32,9 +32,9 @@ func (n NamedNodeMap) Item(args ...interface{}) Attr {
 	val := n.Call("item", args...)
 	return JSValueToAttr(val.JSValue())
 }
-func (n NamedNodeMap) GetLength() float64 {
+func (n NamedNodeMap) GetLength() int {
 	val := n.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (n NamedNodeMap) RemoveNamedItem(args ...interface{}) Attr {
 	val := n.Call("removeNamedItem", args...)

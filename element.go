@@ -14,7 +14,7 @@ type ElementIFace interface {
 	GetAttributes() NamedNodeMap
 	GetBaseURI() string
 	Before(args ...interface{})
-	GetChildElementCount() float64
+	GetChildElementCount() int
 	GetChildNodes() NodeList
 	GetChildren() HTMLCollection
 	GetClassList() DOMTokenList
@@ -122,9 +122,9 @@ func (e Element) GetAttributes() NamedNodeMap {
 func (e Element) Before(args ...interface{}) {
 	e.Call("before", args...)
 }
-func (e Element) GetChildElementCount() float64 {
+func (e Element) GetChildElementCount() int {
 	val := e.Get("childElementCount")
-	return val.Float()
+	return val.Int()
 }
 func (e Element) GetChildren() HTMLCollection {
 	val := e.Get("children")

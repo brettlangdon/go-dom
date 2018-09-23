@@ -8,7 +8,7 @@ type StorageIFace interface {
 	Clear(args ...interface{})
 	GetItem(args ...interface{}) string
 	Key(args ...interface{}) string
-	GetLength() float64
+	GetLength() int
 	RemoveItem(args ...interface{})
 	SetItem(args ...interface{})
 }
@@ -29,9 +29,9 @@ func (s Storage) Key(args ...interface{}) string {
 	val := s.Call("key", args...)
 	return val.String()
 }
-func (s Storage) GetLength() float64 {
+func (s Storage) GetLength() int {
 	val := s.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (s Storage) RemoveItem(args ...interface{}) {
 	s.Call("removeItem", args...)

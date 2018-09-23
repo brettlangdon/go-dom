@@ -8,7 +8,7 @@ type DOMTokenListIFace interface {
 	Add(args ...interface{})
 	Contains(args ...interface{}) bool
 	Item(args ...interface{}) string
-	GetLength() float64
+	GetLength() int
 	Remove(args ...interface{})
 	Replace(args ...interface{}) bool
 	Supports(args ...interface{}) bool
@@ -33,9 +33,9 @@ func (d DOMTokenList) Item(args ...interface{}) string {
 	val := d.Call("item", args...)
 	return val.String()
 }
-func (d DOMTokenList) GetLength() float64 {
+func (d DOMTokenList) GetLength() int {
 	val := d.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (d DOMTokenList) Remove(args ...interface{}) {
 	d.Call("remove", args...)

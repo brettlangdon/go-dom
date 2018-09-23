@@ -8,7 +8,7 @@ type AudioTrackListIFace interface {
 	AddEventListener(args ...interface{})
 	DispatchEvent(args ...interface{}) bool
 	GetTrackById(args ...interface{}) AudioTrack
-	GetLength() float64
+	GetLength() int
 	GetOnaddtrack() EventHandler
 	SetOnaddtrack(EventHandler)
 	GetOnchange() EventHandler
@@ -30,9 +30,9 @@ func (a AudioTrackList) GetTrackById(args ...interface{}) AudioTrack {
 	val := a.Call("getTrackById", args...)
 	return JSValueToAudioTrack(val.JSValue())
 }
-func (a AudioTrackList) GetLength() float64 {
+func (a AudioTrackList) GetLength() int {
 	val := a.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (a AudioTrackList) GetOnaddtrack() EventHandler {
 	val := a.Get("onaddtrack")

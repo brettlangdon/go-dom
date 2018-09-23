@@ -6,7 +6,7 @@ import "syscall/js"
 
 type MimeTypeArrayIFace interface {
 	Item(args ...interface{}) MimeType
-	GetLength() float64
+	GetLength() int
 	NamedItem(args ...interface{}) MimeType
 }
 type MimeTypeArray struct {
@@ -21,9 +21,9 @@ func (m MimeTypeArray) Item(args ...interface{}) MimeType {
 	val := m.Call("item", args...)
 	return JSValueToMimeType(val.JSValue())
 }
-func (m MimeTypeArray) GetLength() float64 {
+func (m MimeTypeArray) GetLength() int {
 	val := m.Get("length")
-	return val.Float()
+	return val.Int()
 }
 func (m MimeTypeArray) NamedItem(args ...interface{}) MimeType {
 	val := m.Call("namedItem", args...)

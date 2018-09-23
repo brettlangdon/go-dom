@@ -10,7 +10,7 @@ type CSSStyleSheetIFace interface {
 	GetDisabled() bool
 	SetDisabled(bool)
 	GetHref() string
-	InsertRule(args ...interface{}) float64
+	InsertRule(args ...interface{}) int
 	GetMedia() MediaList
 	GetOwnerNode()
 	GetOwnerRule() CSSRule
@@ -34,9 +34,9 @@ func (c CSSStyleSheet) GetCssRules() CSSRuleList {
 func (c CSSStyleSheet) DeleteRule(args ...interface{}) {
 	c.Call("deleteRule", args...)
 }
-func (c CSSStyleSheet) InsertRule(args ...interface{}) float64 {
+func (c CSSStyleSheet) InsertRule(args ...interface{}) int {
 	val := c.Call("insertRule", args...)
-	return val.Float()
+	return val.Int()
 }
 func (c CSSStyleSheet) GetOwnerRule() CSSRule {
 	val := c.Get("ownerRule")

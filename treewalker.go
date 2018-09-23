@@ -16,7 +16,7 @@ type TreeWalkerIFace interface {
 	PreviousNode(args ...interface{}) Node
 	PreviousSibling(args ...interface{}) Node
 	GetRoot() Node
-	GetWhatToShow() float64
+	GetWhatToShow() int
 }
 type TreeWalker struct {
 	Value
@@ -67,7 +67,7 @@ func (t TreeWalker) GetRoot() Node {
 	val := t.Get("root")
 	return JSValueToNode(val.JSValue())
 }
-func (t TreeWalker) GetWhatToShow() float64 {
+func (t TreeWalker) GetWhatToShow() int {
 	val := t.Get("whatToShow")
-	return val.Float()
+	return val.Int()
 }

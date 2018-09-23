@@ -75,8 +75,8 @@ type HTMLInputElementIFace interface {
 	HasAttributeNS(args ...interface{}) bool
 	HasAttributes(args ...interface{}) bool
 	HasChildNodes(args ...interface{}) bool
-	GetHeight() float64
-	SetHeight(float64)
+	GetHeight() int
+	SetHeight(int)
 	GetHidden() bool
 	SetHidden(bool)
 	GetId() string
@@ -103,12 +103,12 @@ type HTMLInputElementIFace interface {
 	Matches(args ...interface{}) bool
 	GetMax() string
 	SetMax(string)
-	GetMaxLength() float64
-	SetMaxLength(float64)
+	GetMaxLength() int
+	SetMaxLength(int)
 	GetMin() string
 	SetMin(string)
-	GetMinLength() float64
-	SetMinLength(float64)
+	GetMinLength() int
+	SetMinLength(int)
 	GetMultiple() bool
 	SetMultiple(bool)
 	GetName() string
@@ -143,10 +143,10 @@ type HTMLInputElementIFace interface {
 	Select(args ...interface{})
 	GetSelectionDirection() string
 	SetSelectionDirection(string)
-	GetSelectionEnd() float64
-	SetSelectionEnd(float64)
-	GetSelectionStart() float64
-	SetSelectionStart(float64)
+	GetSelectionEnd() int
+	SetSelectionEnd(int)
+	GetSelectionStart() int
+	SetSelectionStart(int)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -156,8 +156,8 @@ type HTMLInputElementIFace interface {
 	SetRangeTextWithArgs(args ...interface{})
 	SetSelectionRange(args ...interface{})
 	GetShadowRoot() ShadowRoot
-	GetSize() float64
-	SetSize(float64)
+	GetSize() int
+	SetSize(int)
 	GetSlot() string
 	SetSlot(string)
 	GetSpellcheck() bool
@@ -187,8 +187,8 @@ type HTMLInputElementIFace interface {
 	GetValueAsNumber() float64
 	SetValueAsNumber(float64)
 	WebkitMatchesSelector(args ...interface{}) bool
-	GetWidth() float64
-	SetWidth(float64)
+	GetWidth() int
+	SetWidth(int)
 	GetWillValidate() bool
 }
 type HTMLInputElement struct {
@@ -316,11 +316,11 @@ func (h HTMLInputElement) GetFormTarget() string {
 func (h HTMLInputElement) SetFormTarget(val string) {
 	h.Set("formTarget", val)
 }
-func (h HTMLInputElement) GetHeight() float64 {
+func (h HTMLInputElement) GetHeight() int {
 	val := h.Get("height")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetHeight(val float64) {
+func (h HTMLInputElement) SetHeight(val int) {
 	h.Set("height", val)
 }
 func (h HTMLInputElement) GetIndeterminate() bool {
@@ -345,11 +345,11 @@ func (h HTMLInputElement) GetMax() string {
 func (h HTMLInputElement) SetMax(val string) {
 	h.Set("max", val)
 }
-func (h HTMLInputElement) GetMaxLength() float64 {
+func (h HTMLInputElement) GetMaxLength() int {
 	val := h.Get("maxLength")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetMaxLength(val float64) {
+func (h HTMLInputElement) SetMaxLength(val int) {
 	h.Set("maxLength", val)
 }
 func (h HTMLInputElement) GetMin() string {
@@ -359,11 +359,11 @@ func (h HTMLInputElement) GetMin() string {
 func (h HTMLInputElement) SetMin(val string) {
 	h.Set("min", val)
 }
-func (h HTMLInputElement) GetMinLength() float64 {
+func (h HTMLInputElement) GetMinLength() int {
 	val := h.Get("minLength")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetMinLength(val float64) {
+func (h HTMLInputElement) SetMinLength(val int) {
 	h.Set("minLength", val)
 }
 func (h HTMLInputElement) GetMultiple() bool {
@@ -422,18 +422,18 @@ func (h HTMLInputElement) GetSelectionDirection() string {
 func (h HTMLInputElement) SetSelectionDirection(val string) {
 	h.Set("selectionDirection", val)
 }
-func (h HTMLInputElement) GetSelectionEnd() float64 {
+func (h HTMLInputElement) GetSelectionEnd() int {
 	val := h.Get("selectionEnd")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetSelectionEnd(val float64) {
+func (h HTMLInputElement) SetSelectionEnd(val int) {
 	h.Set("selectionEnd", val)
 }
-func (h HTMLInputElement) GetSelectionStart() float64 {
+func (h HTMLInputElement) GetSelectionStart() int {
 	val := h.Get("selectionStart")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetSelectionStart(val float64) {
+func (h HTMLInputElement) SetSelectionStart(val int) {
 	h.Set("selectionStart", val)
 }
 func (h HTMLInputElement) SetCustomValidity(args ...interface{}) {
@@ -448,11 +448,11 @@ func (h HTMLInputElement) SetRangeTextWithArgs(args ...interface{}) {
 func (h HTMLInputElement) SetSelectionRange(args ...interface{}) {
 	h.Call("setSelectionRange", args...)
 }
-func (h HTMLInputElement) GetSize() float64 {
+func (h HTMLInputElement) GetSize() int {
 	val := h.Get("size")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetSize(val float64) {
+func (h HTMLInputElement) SetSize(val int) {
 	h.Set("size", val)
 }
 func (h HTMLInputElement) GetSrc() string {
@@ -511,11 +511,11 @@ func (h HTMLInputElement) GetValueAsNumber() float64 {
 func (h HTMLInputElement) SetValueAsNumber(val float64) {
 	h.Set("valueAsNumber", val)
 }
-func (h HTMLInputElement) GetWidth() float64 {
+func (h HTMLInputElement) GetWidth() int {
 	val := h.Get("width")
-	return val.Float()
+	return val.Int()
 }
-func (h HTMLInputElement) SetWidth(val float64) {
+func (h HTMLInputElement) SetWidth(val int) {
 	h.Set("width", val)
 }
 func (h HTMLInputElement) GetWillValidate() bool {
