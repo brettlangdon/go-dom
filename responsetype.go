@@ -15,6 +15,6 @@ const (
 	ResponseTypeOpaqueredirect ResponseType = "opaqueredirect"
 )
 
-func jsValueToResponseType(val js.Value) ResponseType {
+func JSValueToResponseType(val js.Value) ResponseType {
 	return ResponseType(val.String())
 }

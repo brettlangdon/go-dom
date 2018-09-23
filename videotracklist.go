@@ -23,13 +23,13 @@ type VideoTrackList struct {
 	EventTarget
 }
 
-func jsValueToVideoTrackList(val js.Value) VideoTrackList {
+func JSValueToVideoTrackList(val js.Value) VideoTrackList {
 	return VideoTrackList{Value: Value{Value: val}}
 }
 func (v Value) AsVideoTrackList() VideoTrackList { return VideoTrackList{Value: v} }
 func (v VideoTrackList) GetTrackById(args ...interface{}) VideoTrack {
 	val := v.Call("getTrackById", args...)
-	return jsValueToVideoTrack(val.JSValue())
+	return JSValueToVideoTrack(val.JSValue())
 }
 func (v VideoTrackList) GetLength() float64 {
 	val := v.Get("length")
@@ -37,21 +37,21 @@ func (v VideoTrackList) GetLength() float64 {
 }
 func (v VideoTrackList) GetOnaddtrack() EventHandler {
 	val := v.Get("onaddtrack")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (v VideoTrackList) SetOnaddtrack(val EventHandler) {
 	v.Set("onaddtrack", val)
 }
 func (v VideoTrackList) GetOnchange() EventHandler {
 	val := v.Get("onchange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (v VideoTrackList) SetOnchange(val EventHandler) {
 	v.Set("onchange", val)
 }
 func (v VideoTrackList) GetOnremovetrack() EventHandler {
 	val := v.Get("onremovetrack")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (v VideoTrackList) SetOnremovetrack(val EventHandler) {
 	v.Set("onremovetrack", val)

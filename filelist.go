@@ -12,11 +12,11 @@ type FileList struct {
 	Value
 }
 
-func jsValueToFileList(val js.Value) FileList { return FileList{Value: Value{Value: val}} }
+func JSValueToFileList(val js.Value) FileList { return FileList{Value: Value{Value: val}} }
 func (v Value) AsFileList() FileList          { return FileList{Value: v} }
 func (f FileList) Item(args ...interface{}) File {
 	val := f.Call("item", args...)
-	return jsValueToFile(val.JSValue())
+	return JSValueToFile(val.JSValue())
 }
 func (f FileList) GetLength() float64 {
 	val := f.Get("length")

@@ -35,7 +35,7 @@ type SharedWorkerGlobalScope struct {
 	EventTarget
 }
 
-func jsValueToSharedWorkerGlobalScope(val js.Value) SharedWorkerGlobalScope {
+func JSValueToSharedWorkerGlobalScope(val js.Value) SharedWorkerGlobalScope {
 	return SharedWorkerGlobalScope{Value: Value{Value: val}}
 }
 func (v Value) AsSharedWorkerGlobalScope() SharedWorkerGlobalScope {
@@ -50,7 +50,7 @@ func (s SharedWorkerGlobalScope) GetName() string {
 }
 func (s SharedWorkerGlobalScope) GetOnconnect() EventHandler {
 	val := s.Get("onconnect")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (s SharedWorkerGlobalScope) SetOnconnect(val EventHandler) {
 	s.Set("onconnect", val)

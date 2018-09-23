@@ -33,7 +33,7 @@ type Request struct {
 	Value
 }
 
-func jsValueToRequest(val js.Value) Request { return Request{Value: Value{Value: val}} }
+func JSValueToRequest(val js.Value) Request { return Request{Value: Value{Value: val}} }
 func (v Value) AsRequest() Request          { return Request{Value: v} }
 func (r Request) ArrayBuffer(args ...interface{}) {
 	r.Call("arrayBuffer", args...)
@@ -51,26 +51,26 @@ func (r Request) GetBodyUsed() bool {
 }
 func (r Request) GetCache() RequestCache {
 	val := r.Get("cache")
-	return jsValueToRequestCache(val.JSValue())
+	return JSValueToRequestCache(val.JSValue())
 }
 func (r Request) Clone(args ...interface{}) Request {
 	val := r.Call("clone", args...)
-	return jsValueToRequest(val.JSValue())
+	return JSValueToRequest(val.JSValue())
 }
 func (r Request) GetCredentials() RequestCredentials {
 	val := r.Get("credentials")
-	return jsValueToRequestCredentials(val.JSValue())
+	return JSValueToRequestCredentials(val.JSValue())
 }
 func (r Request) GetDestination() RequestDestination {
 	val := r.Get("destination")
-	return jsValueToRequestDestination(val.JSValue())
+	return JSValueToRequestDestination(val.JSValue())
 }
 func (r Request) FormData(args ...interface{}) {
 	r.Call("formData", args...)
 }
 func (r Request) GetHeaders() Headers {
 	val := r.Get("headers")
-	return jsValueToHeaders(val.JSValue())
+	return JSValueToHeaders(val.JSValue())
 }
 func (r Request) GetIntegrity() string {
 	val := r.Get("integrity")
@@ -97,11 +97,11 @@ func (r Request) GetMethod() []byte {
 }
 func (r Request) GetMode() RequestMode {
 	val := r.Get("mode")
-	return jsValueToRequestMode(val.JSValue())
+	return JSValueToRequestMode(val.JSValue())
 }
 func (r Request) GetRedirect() RequestRedirect {
 	val := r.Get("redirect")
-	return jsValueToRequestRedirect(val.JSValue())
+	return JSValueToRequestRedirect(val.JSValue())
 }
 func (r Request) GetReferrer() string {
 	val := r.Get("referrer")
@@ -109,11 +109,11 @@ func (r Request) GetReferrer() string {
 }
 func (r Request) GetReferrerPolicy() ReferrerPolicy {
 	val := r.Get("referrerPolicy")
-	return jsValueToReferrerPolicy(val.JSValue())
+	return JSValueToReferrerPolicy(val.JSValue())
 }
 func (r Request) GetSignal() AbortSignal {
 	val := r.Get("signal")
-	return jsValueToAbortSignal(val.JSValue())
+	return JSValueToAbortSignal(val.JSValue())
 }
 func (r Request) Text(args ...interface{}) {
 	r.Call("text", args...)

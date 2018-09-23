@@ -55,7 +55,7 @@ type DocumentFragment struct {
 	EventTarget
 }
 
-func jsValueToDocumentFragment(val js.Value) DocumentFragment {
+func JSValueToDocumentFragment(val js.Value) DocumentFragment {
 	return DocumentFragment{Value: Value{Value: val}}
 }
 func (v Value) AsDocumentFragment() DocumentFragment { return DocumentFragment{Value: v} }
@@ -68,28 +68,28 @@ func (d DocumentFragment) GetChildElementCount() float64 {
 }
 func (d DocumentFragment) GetChildren() HTMLCollection {
 	val := d.Get("children")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (d DocumentFragment) GetFirstElementChild() Element {
 	val := d.Get("firstElementChild")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (d DocumentFragment) GetElementById(args ...interface{}) Element {
 	val := d.Call("getElementById", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (d DocumentFragment) GetLastElementChild() Element {
 	val := d.Get("lastElementChild")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (d DocumentFragment) Prepend(args ...interface{}) {
 	d.Call("prepend", args...)
 }
 func (d DocumentFragment) QuerySelector(args ...interface{}) Element {
 	val := d.Call("querySelector", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (d DocumentFragment) QuerySelectorAll(args ...interface{}) NodeList {
 	val := d.Call("querySelectorAll", args...)
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }

@@ -132,7 +132,7 @@ type HTMLObjectElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLObjectElement(val js.Value) HTMLObjectElement {
+func JSValueToHTMLObjectElement(val js.Value) HTMLObjectElement {
 	return HTMLObjectElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLObjectElement() HTMLObjectElement { return HTMLObjectElement{Value: v} }
@@ -142,11 +142,11 @@ func (h HTMLObjectElement) CheckValidity(args ...interface{}) bool {
 }
 func (h HTMLObjectElement) GetContentDocument() Document {
 	val := h.Get("contentDocument")
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLObjectElement) GetContentWindow() WindowProxy {
 	val := h.Get("contentWindow")
-	return jsValueToWindowProxy(val.JSValue())
+	return JSValueToWindowProxy(val.JSValue())
 }
 func (h HTMLObjectElement) GetData() string {
 	val := h.Get("data")
@@ -157,11 +157,11 @@ func (h HTMLObjectElement) SetData(val string) {
 }
 func (h HTMLObjectElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLObjectElement) GetSVGDocument(args ...interface{}) Document {
 	val := h.Call("getSVGDocument", args...)
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLObjectElement) GetHeight() string {
 	val := h.Get("height")
@@ -211,7 +211,7 @@ func (h HTMLObjectElement) GetValidationMessage() string {
 }
 func (h HTMLObjectElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLObjectElement) GetWidth() string {
 	val := h.Get("width")

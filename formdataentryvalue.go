@@ -6,6 +6,6 @@ import "syscall/js"
 
 type FormDataEntryValue Value
 
-func jsValueToFormDataEntryValue(val js.Value) FormDataEntryValue {
-	return FormDataEntryValue(jsValueToValue(val))
+func JSValueToFormDataEntryValue(val js.Value) FormDataEntryValue {
+	return FormDataEntryValue(JSValueToValue(val))
 }

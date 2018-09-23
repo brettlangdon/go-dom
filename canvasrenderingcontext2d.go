@@ -102,7 +102,7 @@ type CanvasRenderingContext2D struct {
 	Value
 }
 
-func jsValueToCanvasRenderingContext2D(val js.Value) CanvasRenderingContext2D {
+func JSValueToCanvasRenderingContext2D(val js.Value) CanvasRenderingContext2D {
 	return CanvasRenderingContext2D{Value: Value{Value: val}}
 }
 func (v Value) AsCanvasRenderingContext2D() CanvasRenderingContext2D {
@@ -122,7 +122,7 @@ func (c CanvasRenderingContext2D) BezierCurveTo(args ...interface{}) {
 }
 func (c CanvasRenderingContext2D) GetCanvas() HTMLCanvasElement {
 	val := c.Get("canvas")
-	return jsValueToHTMLCanvasElement(val.JSValue())
+	return JSValueToHTMLCanvasElement(val.JSValue())
 }
 func (c CanvasRenderingContext2D) ClearRect(args ...interface{}) {
 	c.Call("clearRect", args...)
@@ -138,27 +138,27 @@ func (c CanvasRenderingContext2D) ClosePath(args ...interface{}) {
 }
 func (c CanvasRenderingContext2D) CreateImageData(args ...interface{}) ImageData {
 	val := c.Call("createImageData", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (c CanvasRenderingContext2D) CreateImageDataWithArgs(args ...interface{}) ImageData {
 	val := c.Call("createImageDataWithArgs", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (c CanvasRenderingContext2D) CreateLinearGradient(args ...interface{}) CanvasGradient {
 	val := c.Call("createLinearGradient", args...)
-	return jsValueToCanvasGradient(val.JSValue())
+	return JSValueToCanvasGradient(val.JSValue())
 }
 func (c CanvasRenderingContext2D) CreatePattern(args ...interface{}) CanvasPattern {
 	val := c.Call("createPattern", args...)
-	return jsValueToCanvasPattern(val.JSValue())
+	return JSValueToCanvasPattern(val.JSValue())
 }
 func (c CanvasRenderingContext2D) CreateRadialGradient(args ...interface{}) CanvasGradient {
 	val := c.Call("createRadialGradient", args...)
-	return jsValueToCanvasGradient(val.JSValue())
+	return JSValueToCanvasGradient(val.JSValue())
 }
 func (c CanvasRenderingContext2D) GetDirection() CanvasDirection {
 	val := c.Get("direction")
-	return jsValueToCanvasDirection(val.JSValue())
+	return JSValueToCanvasDirection(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetDirection(val CanvasDirection) {
 	c.Set("direction", val)
@@ -210,14 +210,14 @@ func (c CanvasRenderingContext2D) SetFont(val string) {
 }
 func (c CanvasRenderingContext2D) GetImageData(args ...interface{}) ImageData {
 	val := c.Call("getImageData", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (c CanvasRenderingContext2D) GetLineDash(args ...interface{}) {
 	c.Call("getLineDash", args...)
 }
 func (c CanvasRenderingContext2D) GetTransform(args ...interface{}) DOMMatrix {
 	val := c.Call("getTransform", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (c CanvasRenderingContext2D) GetGlobalAlpha() float64 {
 	val := c.Get("globalAlpha")
@@ -242,7 +242,7 @@ func (c CanvasRenderingContext2D) SetImageSmoothingEnabled(val bool) {
 }
 func (c CanvasRenderingContext2D) GetImageSmoothingQuality() ImageSmoothingQuality {
 	val := c.Get("imageSmoothingQuality")
-	return jsValueToImageSmoothingQuality(val.JSValue())
+	return JSValueToImageSmoothingQuality(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetImageSmoothingQuality(val ImageSmoothingQuality) {
 	c.Set("imageSmoothingQuality", val)
@@ -265,7 +265,7 @@ func (c CanvasRenderingContext2D) IsPointInStrokeWithArgs(args ...interface{}) b
 }
 func (c CanvasRenderingContext2D) GetLineCap() CanvasLineCap {
 	val := c.Get("lineCap")
-	return jsValueToCanvasLineCap(val.JSValue())
+	return JSValueToCanvasLineCap(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetLineCap(val CanvasLineCap) {
 	c.Set("lineCap", val)
@@ -279,7 +279,7 @@ func (c CanvasRenderingContext2D) SetLineDashOffset(val float64) {
 }
 func (c CanvasRenderingContext2D) GetLineJoin() CanvasLineJoin {
 	val := c.Get("lineJoin")
-	return jsValueToCanvasLineJoin(val.JSValue())
+	return JSValueToCanvasLineJoin(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetLineJoin(val CanvasLineJoin) {
 	c.Set("lineJoin", val)
@@ -296,7 +296,7 @@ func (c CanvasRenderingContext2D) SetLineWidth(val float64) {
 }
 func (c CanvasRenderingContext2D) MeasureText(args ...interface{}) TextMetrics {
 	val := c.Call("measureText", args...)
-	return jsValueToTextMetrics(val.JSValue())
+	return JSValueToTextMetrics(val.JSValue())
 }
 func (c CanvasRenderingContext2D) GetMiterLimit() float64 {
 	val := c.Get("miterLimit")
@@ -399,14 +399,14 @@ func (c CanvasRenderingContext2D) StrokeWithArgs(args ...interface{}) {
 }
 func (c CanvasRenderingContext2D) GetTextAlign() CanvasTextAlign {
 	val := c.Get("textAlign")
-	return jsValueToCanvasTextAlign(val.JSValue())
+	return JSValueToCanvasTextAlign(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetTextAlign(val CanvasTextAlign) {
 	c.Set("textAlign", val)
 }
 func (c CanvasRenderingContext2D) GetTextBaseline() CanvasTextBaseline {
 	val := c.Get("textBaseline")
-	return jsValueToCanvasTextBaseline(val.JSValue())
+	return JSValueToCanvasTextBaseline(val.JSValue())
 }
 func (c CanvasRenderingContext2D) SetTextBaseline(val CanvasTextBaseline) {
 	c.Set("textBaseline", val)

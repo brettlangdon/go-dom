@@ -136,7 +136,7 @@ type HTMLButtonElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLButtonElement(val js.Value) HTMLButtonElement {
+func JSValueToHTMLButtonElement(val js.Value) HTMLButtonElement {
 	return HTMLButtonElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLButtonElement() HTMLButtonElement { return HTMLButtonElement{Value: v} }
@@ -160,7 +160,7 @@ func (h HTMLButtonElement) SetDisabled(val bool) {
 }
 func (h HTMLButtonElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLButtonElement) GetFormAction() string {
 	val := h.Get("formAction")
@@ -199,7 +199,7 @@ func (h HTMLButtonElement) SetFormTarget(val string) {
 }
 func (h HTMLButtonElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLButtonElement) GetName() string {
 	val := h.Get("name")
@@ -228,7 +228,7 @@ func (h HTMLButtonElement) GetValidationMessage() string {
 }
 func (h HTMLButtonElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLButtonElement) GetValue() string {
 	val := h.Get("value")

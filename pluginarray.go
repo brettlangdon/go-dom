@@ -14,11 +14,11 @@ type PluginArray struct {
 	Value
 }
 
-func jsValueToPluginArray(val js.Value) PluginArray { return PluginArray{Value: Value{Value: val}} }
+func JSValueToPluginArray(val js.Value) PluginArray { return PluginArray{Value: Value{Value: val}} }
 func (v Value) AsPluginArray() PluginArray          { return PluginArray{Value: v} }
 func (p PluginArray) Item(args ...interface{}) Plugin {
 	val := p.Call("item", args...)
-	return jsValueToPlugin(val.JSValue())
+	return JSValueToPlugin(val.JSValue())
 }
 func (p PluginArray) GetLength() float64 {
 	val := p.Get("length")
@@ -26,7 +26,7 @@ func (p PluginArray) GetLength() float64 {
 }
 func (p PluginArray) NamedItem(args ...interface{}) Plugin {
 	val := p.Call("namedItem", args...)
-	return jsValueToPlugin(val.JSValue())
+	return JSValueToPlugin(val.JSValue())
 }
 func (p PluginArray) Refresh(args ...interface{}) {
 	p.Call("refresh", args...)

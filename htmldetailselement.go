@@ -110,7 +110,7 @@ type HTMLDetailsElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLDetailsElement(val js.Value) HTMLDetailsElement {
+func JSValueToHTMLDetailsElement(val js.Value) HTMLDetailsElement {
 	return HTMLDetailsElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLDetailsElement() HTMLDetailsElement { return HTMLDetailsElement{Value: v} }

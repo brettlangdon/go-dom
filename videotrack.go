@@ -16,7 +16,7 @@ type VideoTrack struct {
 	Value
 }
 
-func jsValueToVideoTrack(val js.Value) VideoTrack { return VideoTrack{Value: Value{Value: val}} }
+func JSValueToVideoTrack(val js.Value) VideoTrack { return VideoTrack{Value: Value{Value: val}} }
 func (v Value) AsVideoTrack() VideoTrack          { return VideoTrack{Value: v} }
 func (v VideoTrack) GetId() string {
 	val := v.Get("id")

@@ -6,6 +6,6 @@ import "syscall/js"
 
 type MessageEventSource Value
 
-func jsValueToMessageEventSource(val js.Value) MessageEventSource {
-	return MessageEventSource(jsValueToValue(val))
+func JSValueToMessageEventSource(val js.Value) MessageEventSource {
+	return MessageEventSource(JSValueToValue(val))
 }

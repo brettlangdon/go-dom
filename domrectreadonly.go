@@ -20,7 +20,7 @@ type DOMRectReadOnly struct {
 	Value
 }
 
-func jsValueToDOMRectReadOnly(val js.Value) DOMRectReadOnly {
+func JSValueToDOMRectReadOnly(val js.Value) DOMRectReadOnly {
 	return DOMRectReadOnly{Value: Value{Value: val}}
 }
 func (v Value) AsDOMRectReadOnly() DOMRectReadOnly { return DOMRectReadOnly{Value: v} }
@@ -30,7 +30,7 @@ func (d DOMRectReadOnly) GetBottom() float64 {
 }
 func (d DOMRectReadOnly) FromRect(args ...interface{}) DOMRectReadOnly {
 	val := d.Call("fromRect", args...)
-	return jsValueToDOMRectReadOnly(val.JSValue())
+	return JSValueToDOMRectReadOnly(val.JSValue())
 }
 func (d DOMRectReadOnly) GetHeight() float64 {
 	val := d.Get("height")

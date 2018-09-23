@@ -11,6 +11,6 @@ const (
 	ScrollRestorationManual ScrollRestoration = "manual"
 )
 
-func jsValueToScrollRestoration(val js.Value) ScrollRestoration {
+func JSValueToScrollRestoration(val js.Value) ScrollRestoration {
 	return ScrollRestoration(val.String())
 }

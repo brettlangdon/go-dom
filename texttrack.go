@@ -27,18 +27,18 @@ type TextTrack struct {
 	EventTarget
 }
 
-func jsValueToTextTrack(val js.Value) TextTrack { return TextTrack{Value: Value{Value: val}} }
+func JSValueToTextTrack(val js.Value) TextTrack { return TextTrack{Value: Value{Value: val}} }
 func (v Value) AsTextTrack() TextTrack          { return TextTrack{Value: v} }
 func (t TextTrack) GetActiveCues() TextTrackCueList {
 	val := t.Get("activeCues")
-	return jsValueToTextTrackCueList(val.JSValue())
+	return JSValueToTextTrackCueList(val.JSValue())
 }
 func (t TextTrack) AddCue(args ...interface{}) {
 	t.Call("addCue", args...)
 }
 func (t TextTrack) GetCues() TextTrackCueList {
 	val := t.Get("cues")
-	return jsValueToTextTrackCueList(val.JSValue())
+	return JSValueToTextTrackCueList(val.JSValue())
 }
 func (t TextTrack) GetId() string {
 	val := t.Get("id")
@@ -50,7 +50,7 @@ func (t TextTrack) GetInBandMetadataTrackDispatchType() string {
 }
 func (t TextTrack) GetKind() TextTrackKind {
 	val := t.Get("kind")
-	return jsValueToTextTrackKind(val.JSValue())
+	return JSValueToTextTrackKind(val.JSValue())
 }
 func (t TextTrack) GetLabel() string {
 	val := t.Get("label")
@@ -62,14 +62,14 @@ func (t TextTrack) GetLanguage() string {
 }
 func (t TextTrack) GetMode() TextTrackMode {
 	val := t.Get("mode")
-	return jsValueToTextTrackMode(val.JSValue())
+	return JSValueToTextTrackMode(val.JSValue())
 }
 func (t TextTrack) SetMode(val TextTrackMode) {
 	t.Set("mode", val)
 }
 func (t TextTrack) GetOncuechange() EventHandler {
 	val := t.Get("oncuechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrack) SetOncuechange(val EventHandler) {
 	t.Set("oncuechange", val)

@@ -117,13 +117,13 @@ type HTMLEmbedElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLEmbedElement(val js.Value) HTMLEmbedElement {
+func JSValueToHTMLEmbedElement(val js.Value) HTMLEmbedElement {
 	return HTMLEmbedElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLEmbedElement() HTMLEmbedElement { return HTMLEmbedElement{Value: v} }
 func (h HTMLEmbedElement) GetSVGDocument(args ...interface{}) Document {
 	val := h.Call("getSVGDocument", args...)
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLEmbedElement) GetHeight() string {
 	val := h.Get("height")

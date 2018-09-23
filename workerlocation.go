@@ -19,7 +19,7 @@ type WorkerLocation struct {
 	Value
 }
 
-func jsValueToWorkerLocation(val js.Value) WorkerLocation {
+func JSValueToWorkerLocation(val js.Value) WorkerLocation {
 	return WorkerLocation{Value: Value{Value: val}}
 }
 func (v Value) AsWorkerLocation() WorkerLocation { return WorkerLocation{Value: v} }

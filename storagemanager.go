@@ -13,7 +13,7 @@ type StorageManager struct {
 	Value
 }
 
-func jsValueToStorageManager(val js.Value) StorageManager {
+func JSValueToStorageManager(val js.Value) StorageManager {
 	return StorageManager{Value: Value{Value: val}}
 }
 func (v Value) AsStorageManager() StorageManager { return StorageManager{Value: v} }

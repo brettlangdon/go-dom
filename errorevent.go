@@ -36,7 +36,7 @@ type ErrorEvent struct {
 	Event
 }
 
-func jsValueToErrorEvent(val js.Value) ErrorEvent { return ErrorEvent{Value: Value{Value: val}} }
+func JSValueToErrorEvent(val js.Value) ErrorEvent { return ErrorEvent{Value: Value{Value: val}} }
 func (v Value) AsErrorEvent() ErrorEvent          { return ErrorEvent{Value: v} }
 func (e ErrorEvent) GetColno() float64 {
 	val := e.Get("colno")

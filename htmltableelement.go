@@ -125,32 +125,32 @@ type HTMLTableElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTableElement(val js.Value) HTMLTableElement {
+func JSValueToHTMLTableElement(val js.Value) HTMLTableElement {
 	return HTMLTableElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableElement() HTMLTableElement { return HTMLTableElement{Value: v} }
 func (h HTMLTableElement) GetCaption() HTMLTableCaptionElement {
 	val := h.Get("caption")
-	return jsValueToHTMLTableCaptionElement(val.JSValue())
+	return JSValueToHTMLTableCaptionElement(val.JSValue())
 }
 func (h HTMLTableElement) SetCaption(val HTMLTableCaptionElement) {
 	h.Set("caption", val)
 }
 func (h HTMLTableElement) CreateCaption(args ...interface{}) HTMLTableCaptionElement {
 	val := h.Call("createCaption", args...)
-	return jsValueToHTMLTableCaptionElement(val.JSValue())
+	return JSValueToHTMLTableCaptionElement(val.JSValue())
 }
 func (h HTMLTableElement) CreateTBody(args ...interface{}) HTMLTableSectionElement {
 	val := h.Call("createTBody", args...)
-	return jsValueToHTMLTableSectionElement(val.JSValue())
+	return JSValueToHTMLTableSectionElement(val.JSValue())
 }
 func (h HTMLTableElement) CreateTFoot(args ...interface{}) HTMLTableSectionElement {
 	val := h.Call("createTFoot", args...)
-	return jsValueToHTMLTableSectionElement(val.JSValue())
+	return JSValueToHTMLTableSectionElement(val.JSValue())
 }
 func (h HTMLTableElement) CreateTHead(args ...interface{}) HTMLTableSectionElement {
 	val := h.Call("createTHead", args...)
-	return jsValueToHTMLTableSectionElement(val.JSValue())
+	return JSValueToHTMLTableSectionElement(val.JSValue())
 }
 func (h HTMLTableElement) DeleteCaption(args ...interface{}) {
 	h.Call("deleteCaption", args...)
@@ -166,26 +166,26 @@ func (h HTMLTableElement) DeleteTHead(args ...interface{}) {
 }
 func (h HTMLTableElement) InsertRow(args ...interface{}) HTMLTableRowElement {
 	val := h.Call("insertRow", args...)
-	return jsValueToHTMLTableRowElement(val.JSValue())
+	return JSValueToHTMLTableRowElement(val.JSValue())
 }
 func (h HTMLTableElement) GetRows() HTMLCollection {
 	val := h.Get("rows")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLTableElement) GetTBodies() HTMLCollection {
 	val := h.Get("tBodies")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLTableElement) GetTFoot() HTMLTableSectionElement {
 	val := h.Get("tFoot")
-	return jsValueToHTMLTableSectionElement(val.JSValue())
+	return JSValueToHTMLTableSectionElement(val.JSValue())
 }
 func (h HTMLTableElement) SetTFoot(val HTMLTableSectionElement) {
 	h.Set("tFoot", val)
 }
 func (h HTMLTableElement) GetTHead() HTMLTableSectionElement {
 	val := h.Get("tHead")
-	return jsValueToHTMLTableSectionElement(val.JSValue())
+	return JSValueToHTMLTableSectionElement(val.JSValue())
 }
 func (h HTMLTableElement) SetTHead(val HTMLTableSectionElement) {
 	h.Set("tHead", val)

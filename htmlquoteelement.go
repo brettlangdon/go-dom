@@ -110,7 +110,7 @@ type HTMLQuoteElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLQuoteElement(val js.Value) HTMLQuoteElement {
+func JSValueToHTMLQuoteElement(val js.Value) HTMLQuoteElement {
 	return HTMLQuoteElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLQuoteElement() HTMLQuoteElement { return HTMLQuoteElement{Value: v} }

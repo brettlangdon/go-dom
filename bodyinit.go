@@ -6,6 +6,6 @@ import "syscall/js"
 
 type BodyInit Value
 
-func jsValueToBodyInit(val js.Value) BodyInit {
-	return BodyInit(jsValueToValue(val))
+func JSValueToBodyInit(val js.Value) BodyInit {
+	return BodyInit(JSValueToValue(val))
 }

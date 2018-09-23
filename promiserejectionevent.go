@@ -33,7 +33,7 @@ type PromiseRejectionEvent struct {
 	Event
 }
 
-func jsValueToPromiseRejectionEvent(val js.Value) PromiseRejectionEvent {
+func JSValueToPromiseRejectionEvent(val js.Value) PromiseRejectionEvent {
 	return PromiseRejectionEvent{Value: Value{Value: val}}
 }
 func (v Value) AsPromiseRejectionEvent() PromiseRejectionEvent { return PromiseRejectionEvent{Value: v} }

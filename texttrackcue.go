@@ -27,7 +27,7 @@ type TextTrackCue struct {
 	EventTarget
 }
 
-func jsValueToTextTrackCue(val js.Value) TextTrackCue { return TextTrackCue{Value: Value{Value: val}} }
+func JSValueToTextTrackCue(val js.Value) TextTrackCue { return TextTrackCue{Value: Value{Value: val}} }
 func (v Value) AsTextTrackCue() TextTrackCue          { return TextTrackCue{Value: v} }
 func (t TextTrackCue) GetEndTime() float64 {
 	val := t.Get("endTime")
@@ -45,14 +45,14 @@ func (t TextTrackCue) SetId(val string) {
 }
 func (t TextTrackCue) GetOnenter() EventHandler {
 	val := t.Get("onenter")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrackCue) SetOnenter(val EventHandler) {
 	t.Set("onenter", val)
 }
 func (t TextTrackCue) GetOnexit() EventHandler {
 	val := t.Get("onexit")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrackCue) SetOnexit(val EventHandler) {
 	t.Set("onexit", val)
@@ -73,5 +73,5 @@ func (t TextTrackCue) SetStartTime(val float64) {
 }
 func (t TextTrackCue) GetTrack() TextTrack {
 	val := t.Get("track")
-	return jsValueToTextTrack(val.JSValue())
+	return JSValueToTextTrack(val.JSValue())
 }

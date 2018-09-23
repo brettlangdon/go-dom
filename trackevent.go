@@ -32,7 +32,7 @@ type TrackEvent struct {
 	Event
 }
 
-func jsValueToTrackEvent(val js.Value) TrackEvent { return TrackEvent{Value: Value{Value: val}} }
+func JSValueToTrackEvent(val js.Value) TrackEvent { return TrackEvent{Value: Value{Value: val}} }
 func (v Value) AsTrackEvent() TrackEvent          { return TrackEvent{Value: v} }
 func (t TrackEvent) GetTrack() Value {
 	val := t.Get("track")

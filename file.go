@@ -16,7 +16,7 @@ type File struct {
 	Blob
 }
 
-func jsValueToFile(val js.Value) File { return File{Value: Value{Value: val}} }
+func JSValueToFile(val js.Value) File { return File{Value: Value{Value: val}} }
 func (v Value) AsFile() File          { return File{Value: v} }
 func (f File) GetLastModified() float64 {
 	val := f.Get("lastModified")

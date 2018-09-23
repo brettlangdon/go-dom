@@ -25,11 +25,11 @@ type DOMRect struct {
 	DOMRectReadOnly
 }
 
-func jsValueToDOMRect(val js.Value) DOMRect { return DOMRect{Value: Value{Value: val}} }
+func JSValueToDOMRect(val js.Value) DOMRect { return DOMRect{Value: Value{Value: val}} }
 func (v Value) AsDOMRect() DOMRect          { return DOMRect{Value: v} }
 func (d DOMRect) FromRect(args ...interface{}) DOMRect {
 	val := d.Call("fromRect", args...)
-	return jsValueToDOMRect(val.JSValue())
+	return JSValueToDOMRect(val.JSValue())
 }
 func (d DOMRect) GetHeight() float64 {
 	val := d.Get("height")

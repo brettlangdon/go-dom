@@ -138,7 +138,7 @@ type HTMLMarqueeElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMarqueeElement(val js.Value) HTMLMarqueeElement {
+func JSValueToHTMLMarqueeElement(val js.Value) HTMLMarqueeElement {
 	return HTMLMarqueeElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMarqueeElement() HTMLMarqueeElement { return HTMLMarqueeElement{Value: v} }
@@ -186,21 +186,21 @@ func (h HTMLMarqueeElement) SetLoop(val float64) {
 }
 func (h HTMLMarqueeElement) GetOnbounce() EventHandler {
 	val := h.Get("onbounce")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLMarqueeElement) SetOnbounce(val EventHandler) {
 	h.Set("onbounce", val)
 }
 func (h HTMLMarqueeElement) GetOnfinish() EventHandler {
 	val := h.Get("onfinish")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLMarqueeElement) SetOnfinish(val EventHandler) {
 	h.Set("onfinish", val)
 }
 func (h HTMLMarqueeElement) GetOnstart() EventHandler {
 	val := h.Get("onstart")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLMarqueeElement) SetOnstart(val EventHandler) {
 	h.Set("onstart", val)

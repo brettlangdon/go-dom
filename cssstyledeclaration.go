@@ -21,7 +21,7 @@ type CSSStyleDeclaration struct {
 	Value
 }
 
-func jsValueToCSSStyleDeclaration(val js.Value) CSSStyleDeclaration {
+func JSValueToCSSStyleDeclaration(val js.Value) CSSStyleDeclaration {
 	return CSSStyleDeclaration{Value: Value{Value: val}}
 }
 func (v Value) AsCSSStyleDeclaration() CSSStyleDeclaration { return CSSStyleDeclaration{Value: v} }
@@ -57,7 +57,7 @@ func (c CSSStyleDeclaration) GetLength() float64 {
 }
 func (c CSSStyleDeclaration) GetParentRule() CSSRule {
 	val := c.Get("parentRule")
-	return jsValueToCSSRule(val.JSValue())
+	return JSValueToCSSRule(val.JSValue())
 }
 func (c CSSStyleDeclaration) RemoveProperty(args ...interface{}) string {
 	val := c.Call("removeProperty", args...)

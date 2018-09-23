@@ -37,7 +37,7 @@ type MessageEvent struct {
 	Event
 }
 
-func jsValueToMessageEvent(val js.Value) MessageEvent { return MessageEvent{Value: Value{Value: val}} }
+func JSValueToMessageEvent(val js.Value) MessageEvent { return MessageEvent{Value: Value{Value: val}} }
 func (v Value) AsMessageEvent() MessageEvent          { return MessageEvent{Value: v} }
 func (m MessageEvent) GetData() Value {
 	val := m.Get("data")
@@ -60,5 +60,5 @@ func (m MessageEvent) GetPorts() Value {
 }
 func (m MessageEvent) GetSource() MessageEventSource {
 	val := m.Get("source")
-	return jsValueToMessageEventSource(val.JSValue())
+	return JSValueToMessageEventSource(val.JSValue())
 }

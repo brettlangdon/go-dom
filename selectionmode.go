@@ -13,6 +13,6 @@ const (
 	SelectionModePreserve SelectionMode = "preserve"
 )
 
-func jsValueToSelectionMode(val js.Value) SelectionMode {
+func JSValueToSelectionMode(val js.Value) SelectionMode {
 	return SelectionMode(val.String())
 }

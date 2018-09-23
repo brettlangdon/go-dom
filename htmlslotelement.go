@@ -112,7 +112,7 @@ type HTMLSlotElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLSlotElement(val js.Value) HTMLSlotElement {
+func JSValueToHTMLSlotElement(val js.Value) HTMLSlotElement {
 	return HTMLSlotElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLSlotElement() HTMLSlotElement { return HTMLSlotElement{Value: v} }

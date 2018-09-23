@@ -19,13 +19,13 @@ type CSSGroupingRule struct {
 	CSSRule
 }
 
-func jsValueToCSSGroupingRule(val js.Value) CSSGroupingRule {
+func JSValueToCSSGroupingRule(val js.Value) CSSGroupingRule {
 	return CSSGroupingRule{Value: Value{Value: val}}
 }
 func (v Value) AsCSSGroupingRule() CSSGroupingRule { return CSSGroupingRule{Value: v} }
 func (c CSSGroupingRule) GetCssRules() CSSRuleList {
 	val := c.Get("cssRules")
-	return jsValueToCSSRuleList(val.JSValue())
+	return JSValueToCSSRuleList(val.JSValue())
 }
 func (c CSSGroupingRule) DeleteRule(args ...interface{}) {
 	c.Call("deleteRule", args...)

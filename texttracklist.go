@@ -22,13 +22,13 @@ type TextTrackList struct {
 	EventTarget
 }
 
-func jsValueToTextTrackList(val js.Value) TextTrackList {
+func JSValueToTextTrackList(val js.Value) TextTrackList {
 	return TextTrackList{Value: Value{Value: val}}
 }
 func (v Value) AsTextTrackList() TextTrackList { return TextTrackList{Value: v} }
 func (t TextTrackList) GetTrackById(args ...interface{}) TextTrack {
 	val := t.Call("getTrackById", args...)
-	return jsValueToTextTrack(val.JSValue())
+	return JSValueToTextTrack(val.JSValue())
 }
 func (t TextTrackList) GetLength() float64 {
 	val := t.Get("length")
@@ -36,21 +36,21 @@ func (t TextTrackList) GetLength() float64 {
 }
 func (t TextTrackList) GetOnaddtrack() EventHandler {
 	val := t.Get("onaddtrack")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrackList) SetOnaddtrack(val EventHandler) {
 	t.Set("onaddtrack", val)
 }
 func (t TextTrackList) GetOnchange() EventHandler {
 	val := t.Get("onchange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrackList) SetOnchange(val EventHandler) {
 	t.Set("onchange", val)
 }
 func (t TextTrackList) GetOnremovetrack() EventHandler {
 	val := t.Get("onremovetrack")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (t TextTrackList) SetOnremovetrack(val EventHandler) {
 	t.Set("onremovetrack", val)

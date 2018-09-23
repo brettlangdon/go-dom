@@ -27,6 +27,6 @@ const (
 	RequestDestinationXslt         RequestDestination = "xslt"
 )
 
-func jsValueToRequestDestination(val js.Value) RequestDestination {
+func JSValueToRequestDestination(val js.Value) RequestDestination {
 	return RequestDestination(val.String())
 }

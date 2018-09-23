@@ -17,7 +17,7 @@ type URLSearchParams struct {
 	Value
 }
 
-func jsValueToURLSearchParams(val js.Value) URLSearchParams {
+func JSValueToURLSearchParams(val js.Value) URLSearchParams {
 	return URLSearchParams{Value: Value{Value: val}}
 }
 func (v Value) AsURLSearchParams() URLSearchParams { return URLSearchParams{Value: v} }

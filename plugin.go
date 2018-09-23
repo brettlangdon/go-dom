@@ -16,7 +16,7 @@ type Plugin struct {
 	Value
 }
 
-func jsValueToPlugin(val js.Value) Plugin { return Plugin{Value: Value{Value: val}} }
+func JSValueToPlugin(val js.Value) Plugin { return Plugin{Value: Value{Value: val}} }
 func (v Value) AsPlugin() Plugin          { return Plugin{Value: v} }
 func (p Plugin) GetDescription() string {
 	val := p.Get("description")
@@ -28,7 +28,7 @@ func (p Plugin) GetFilename() string {
 }
 func (p Plugin) Item(args ...interface{}) MimeType {
 	val := p.Call("item", args...)
-	return jsValueToMimeType(val.JSValue())
+	return JSValueToMimeType(val.JSValue())
 }
 func (p Plugin) GetLength() float64 {
 	val := p.Get("length")
@@ -40,5 +40,5 @@ func (p Plugin) GetName() string {
 }
 func (p Plugin) NamedItem(args ...interface{}) MimeType {
 	val := p.Call("namedItem", args...)
-	return jsValueToMimeType(val.JSValue())
+	return JSValueToMimeType(val.JSValue())
 }

@@ -40,7 +40,7 @@ type WorkerGlobalScope struct {
 	EventTarget
 }
 
-func jsValueToWorkerGlobalScope(val js.Value) WorkerGlobalScope {
+func JSValueToWorkerGlobalScope(val js.Value) WorkerGlobalScope {
 	return WorkerGlobalScope{Value: Value{Value: val}}
 }
 func (v Value) AsWorkerGlobalScope() WorkerGlobalScope { return WorkerGlobalScope{Value: v} }
@@ -69,50 +69,50 @@ func (w WorkerGlobalScope) ImportScripts(args ...interface{}) {
 }
 func (w WorkerGlobalScope) GetLocation() WorkerLocation {
 	val := w.Get("location")
-	return jsValueToWorkerLocation(val.JSValue())
+	return JSValueToWorkerLocation(val.JSValue())
 }
 func (w WorkerGlobalScope) GetNavigator() WorkerNavigator {
 	val := w.Get("navigator")
-	return jsValueToWorkerNavigator(val.JSValue())
+	return JSValueToWorkerNavigator(val.JSValue())
 }
 func (w WorkerGlobalScope) GetOnerror() OnErrorEventHandler {
 	val := w.Get("onerror")
-	return jsValueToOnErrorEventHandler(val.JSValue())
+	return JSValueToOnErrorEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnerror(val OnErrorEventHandler) {
 	w.Set("onerror", val)
 }
 func (w WorkerGlobalScope) GetOnlanguagechange() EventHandler {
 	val := w.Get("onlanguagechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnlanguagechange(val EventHandler) {
 	w.Set("onlanguagechange", val)
 }
 func (w WorkerGlobalScope) GetOnoffline() EventHandler {
 	val := w.Get("onoffline")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnoffline(val EventHandler) {
 	w.Set("onoffline", val)
 }
 func (w WorkerGlobalScope) GetOnonline() EventHandler {
 	val := w.Get("ononline")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnonline(val EventHandler) {
 	w.Set("ononline", val)
 }
 func (w WorkerGlobalScope) GetOnrejectionhandled() EventHandler {
 	val := w.Get("onrejectionhandled")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnrejectionhandled(val EventHandler) {
 	w.Set("onrejectionhandled", val)
 }
 func (w WorkerGlobalScope) GetOnunhandledrejection() EventHandler {
 	val := w.Get("onunhandledrejection")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WorkerGlobalScope) SetOnunhandledrejection(val EventHandler) {
 	w.Set("onunhandledrejection", val)
@@ -126,7 +126,7 @@ func (w WorkerGlobalScope) QueueMicrotask(args ...interface{}) {
 }
 func (w WorkerGlobalScope) GetSelf() WorkerGlobalScope {
 	val := w.Get("self")
-	return jsValueToWorkerGlobalScope(val.JSValue())
+	return JSValueToWorkerGlobalScope(val.JSValue())
 }
 func (w WorkerGlobalScope) SetInterval(args ...interface{}) float64 {
 	val := w.Call("setInterval", args...)

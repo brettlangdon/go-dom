@@ -13,7 +13,7 @@ type ImageBitmap struct {
 	Value
 }
 
-func jsValueToImageBitmap(val js.Value) ImageBitmap { return ImageBitmap{Value: Value{Value: val}} }
+func JSValueToImageBitmap(val js.Value) ImageBitmap { return ImageBitmap{Value: Value{Value: val}} }
 func (v Value) AsImageBitmap() ImageBitmap          { return ImageBitmap{Value: v} }
 func (i ImageBitmap) Close(args ...interface{}) {
 	i.Call("close", args...)

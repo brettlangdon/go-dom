@@ -21,7 +21,7 @@ type ValidityState struct {
 	Value
 }
 
-func jsValueToValidityState(val js.Value) ValidityState {
+func JSValueToValidityState(val js.Value) ValidityState {
 	return ValidityState{Value: Value{Value: val}}
 }
 func (v Value) AsValidityState() ValidityState { return ValidityState{Value: v} }

@@ -6,6 +6,6 @@ import "syscall/js"
 
 type OnBeforeUnloadEventHandler OnBeforeUnloadEventHandlerNonNull
 
-func jsValueToOnBeforeUnloadEventHandler(val js.Value) OnBeforeUnloadEventHandler {
-	return OnBeforeUnloadEventHandler(jsValueToOnBeforeUnloadEventHandlerNonNull(val))
+func JSValueToOnBeforeUnloadEventHandler(val js.Value) OnBeforeUnloadEventHandler {
+	return OnBeforeUnloadEventHandler(JSValueToOnBeforeUnloadEventHandlerNonNull(val))
 }

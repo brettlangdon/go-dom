@@ -129,7 +129,7 @@ type HTMLLinkElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLLinkElement(val js.Value) HTMLLinkElement {
+func JSValueToHTMLLinkElement(val js.Value) HTMLLinkElement {
 	return HTMLLinkElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLinkElement() HTMLLinkElement { return HTMLLinkElement{Value: v} }
@@ -191,15 +191,15 @@ func (h HTMLLinkElement) SetRel(val string) {
 }
 func (h HTMLLinkElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLLinkElement) GetSheet() StyleSheet {
 	val := h.Get("sheet")
-	return jsValueToStyleSheet(val.JSValue())
+	return JSValueToStyleSheet(val.JSValue())
 }
 func (h HTMLLinkElement) GetSizes() DOMTokenList {
 	val := h.Get("sizes")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLLinkElement) GetType() string {
 	val := h.Get("type")

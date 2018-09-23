@@ -57,13 +57,13 @@ type ProcessingInstruction struct {
 	EventTarget
 }
 
-func jsValueToProcessingInstruction(val js.Value) ProcessingInstruction {
+func JSValueToProcessingInstruction(val js.Value) ProcessingInstruction {
 	return ProcessingInstruction{Value: Value{Value: val}}
 }
 func (v Value) AsProcessingInstruction() ProcessingInstruction { return ProcessingInstruction{Value: v} }
 func (p ProcessingInstruction) GetSheet() StyleSheet {
 	val := p.Get("sheet")
-	return jsValueToStyleSheet(val.JSValue())
+	return JSValueToStyleSheet(val.JSValue())
 }
 func (p ProcessingInstruction) GetTarget() string {
 	val := p.Get("target")

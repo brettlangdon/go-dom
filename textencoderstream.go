@@ -13,7 +13,7 @@ type TextEncoderStream struct {
 	Value
 }
 
-func jsValueToTextEncoderStream(val js.Value) TextEncoderStream {
+func JSValueToTextEncoderStream(val js.Value) TextEncoderStream {
 	return TextEncoderStream{Value: Value{Value: val}}
 }
 func (v Value) AsTextEncoderStream() TextEncoderStream { return TextEncoderStream{Value: v} }

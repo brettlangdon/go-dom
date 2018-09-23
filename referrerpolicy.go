@@ -18,6 +18,6 @@ const (
 	ReferrerPolicyUnsafeUrl                   ReferrerPolicy = "unsafe-url"
 )
 
-func jsValueToReferrerPolicy(val js.Value) ReferrerPolicy {
+func JSValueToReferrerPolicy(val js.Value) ReferrerPolicy {
 	return ReferrerPolicy(val.String())
 }

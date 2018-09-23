@@ -111,7 +111,7 @@ type HTMLStyleElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLStyleElement(val js.Value) HTMLStyleElement {
+func JSValueToHTMLStyleElement(val js.Value) HTMLStyleElement {
 	return HTMLStyleElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLStyleElement() HTMLStyleElement { return HTMLStyleElement{Value: v} }
@@ -124,5 +124,5 @@ func (h HTMLStyleElement) SetMedia(val string) {
 }
 func (h HTMLStyleElement) GetSheet() StyleSheet {
 	val := h.Get("sheet")
-	return jsValueToStyleSheet(val.JSValue())
+	return JSValueToStyleSheet(val.JSValue())
 }

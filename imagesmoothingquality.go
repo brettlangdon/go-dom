@@ -12,6 +12,6 @@ const (
 	ImageSmoothingQualityHigh   ImageSmoothingQuality = "high"
 )
 
-func jsValueToImageSmoothingQuality(val js.Value) ImageSmoothingQuality {
+func JSValueToImageSmoothingQuality(val js.Value) ImageSmoothingQuality {
 	return ImageSmoothingQuality(val.String())
 }

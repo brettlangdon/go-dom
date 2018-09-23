@@ -113,20 +113,20 @@ type HTMLTableRowElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTableRowElement(val js.Value) HTMLTableRowElement {
+func JSValueToHTMLTableRowElement(val js.Value) HTMLTableRowElement {
 	return HTMLTableRowElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableRowElement() HTMLTableRowElement { return HTMLTableRowElement{Value: v} }
 func (h HTMLTableRowElement) GetCells() HTMLCollection {
 	val := h.Get("cells")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLTableRowElement) DeleteCell(args ...interface{}) {
 	h.Call("deleteCell", args...)
 }
 func (h HTMLTableRowElement) InsertCell(args ...interface{}) HTMLTableCellElement {
 	val := h.Call("insertCell", args...)
-	return jsValueToHTMLTableCellElement(val.JSValue())
+	return JSValueToHTMLTableCellElement(val.JSValue())
 }
 func (h HTMLTableRowElement) GetRowIndex() float64 {
 	val := h.Get("rowIndex")

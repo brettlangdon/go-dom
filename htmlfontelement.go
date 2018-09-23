@@ -114,7 +114,7 @@ type HTMLFontElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLFontElement(val js.Value) HTMLFontElement {
+func JSValueToHTMLFontElement(val js.Value) HTMLFontElement {
 	return HTMLFontElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFontElement() HTMLFontElement { return HTMLFontElement{Value: v} }

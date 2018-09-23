@@ -12,6 +12,6 @@ const (
 	DocumentReadyStateComplete    DocumentReadyState = "complete"
 )
 
-func jsValueToDocumentReadyState(val js.Value) DocumentReadyState {
+func JSValueToDocumentReadyState(val js.Value) DocumentReadyState {
 	return DocumentReadyState(val.String())
 }

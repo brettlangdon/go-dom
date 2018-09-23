@@ -21,7 +21,7 @@ type DataTransfer struct {
 	Value
 }
 
-func jsValueToDataTransfer(val js.Value) DataTransfer { return DataTransfer{Value: Value{Value: val}} }
+func JSValueToDataTransfer(val js.Value) DataTransfer { return DataTransfer{Value: Value{Value: val}} }
 func (v Value) AsDataTransfer() DataTransfer          { return DataTransfer{Value: v} }
 func (d DataTransfer) ClearData(args ...interface{}) {
 	d.Call("clearData", args...)
@@ -42,7 +42,7 @@ func (d DataTransfer) SetEffectAllowed(val string) {
 }
 func (d DataTransfer) GetFiles() FileList {
 	val := d.Get("files")
-	return jsValueToFileList(val.JSValue())
+	return JSValueToFileList(val.JSValue())
 }
 func (d DataTransfer) GetData(args ...interface{}) string {
 	val := d.Call("getData", args...)
@@ -50,7 +50,7 @@ func (d DataTransfer) GetData(args ...interface{}) string {
 }
 func (d DataTransfer) GetItems() DataTransferItemList {
 	val := d.Get("items")
-	return jsValueToDataTransferItemList(val.JSValue())
+	return JSValueToDataTransferItemList(val.JSValue())
 }
 func (d DataTransfer) SetData(args ...interface{}) {
 	d.Call("setData", args...)

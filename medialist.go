@@ -16,7 +16,7 @@ type MediaList struct {
 	Value
 }
 
-func jsValueToMediaList(val js.Value) MediaList { return MediaList{Value: Value{Value: val}} }
+func JSValueToMediaList(val js.Value) MediaList { return MediaList{Value: Value{Value: val}} }
 func (v Value) AsMediaList() MediaList          { return MediaList{Value: v} }
 func (m MediaList) AppendMedium(args ...interface{}) {
 	m.Call("appendMedium", args...)

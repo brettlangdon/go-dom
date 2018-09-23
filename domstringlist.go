@@ -13,7 +13,7 @@ type DOMStringList struct {
 	Value
 }
 
-func jsValueToDOMStringList(val js.Value) DOMStringList {
+func JSValueToDOMStringList(val js.Value) DOMStringList {
 	return DOMStringList{Value: Value{Value: val}}
 }
 func (v Value) AsDOMStringList() DOMStringList { return DOMStringList{Value: v} }

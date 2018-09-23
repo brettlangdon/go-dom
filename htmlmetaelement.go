@@ -114,7 +114,7 @@ type HTMLMetaElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMetaElement(val js.Value) HTMLMetaElement {
+func JSValueToHTMLMetaElement(val js.Value) HTMLMetaElement {
 	return HTMLMetaElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMetaElement() HTMLMetaElement { return HTMLMetaElement{Value: v} }

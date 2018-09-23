@@ -126,7 +126,7 @@ type HTMLScriptElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLScriptElement(val js.Value) HTMLScriptElement {
+func JSValueToHTMLScriptElement(val js.Value) HTMLScriptElement {
 	return HTMLScriptElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLScriptElement() HTMLScriptElement { return HTMLScriptElement{Value: v} }

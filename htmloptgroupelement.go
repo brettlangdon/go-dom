@@ -112,7 +112,7 @@ type HTMLOptGroupElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLOptGroupElement(val js.Value) HTMLOptGroupElement {
+func JSValueToHTMLOptGroupElement(val js.Value) HTMLOptGroupElement {
 	return HTMLOptGroupElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLOptGroupElement() HTMLOptGroupElement { return HTMLOptGroupElement{Value: v} }

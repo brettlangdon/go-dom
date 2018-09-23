@@ -12,7 +12,7 @@ type MediaError struct {
 	Value
 }
 
-func jsValueToMediaError(val js.Value) MediaError { return MediaError{Value: Value{Value: val}} }
+func JSValueToMediaError(val js.Value) MediaError { return MediaError{Value: Value{Value: val}} }
 func (v Value) AsMediaError() MediaError          { return MediaError{Value: v} }
 func (m MediaError) GetCode() int {
 	val := m.Get("code")

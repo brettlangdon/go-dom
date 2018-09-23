@@ -132,7 +132,7 @@ type HTMLIFrameElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLIFrameElement(val js.Value) HTMLIFrameElement {
+func JSValueToHTMLIFrameElement(val js.Value) HTMLIFrameElement {
 	return HTMLIFrameElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLIFrameElement() HTMLIFrameElement { return HTMLIFrameElement{Value: v} }
@@ -166,15 +166,15 @@ func (h HTMLIFrameElement) SetAllowUserMedia(val bool) {
 }
 func (h HTMLIFrameElement) GetContentDocument() Document {
 	val := h.Get("contentDocument")
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLIFrameElement) GetContentWindow() WindowProxy {
 	val := h.Get("contentWindow")
-	return jsValueToWindowProxy(val.JSValue())
+	return JSValueToWindowProxy(val.JSValue())
 }
 func (h HTMLIFrameElement) GetSVGDocument(args ...interface{}) Document {
 	val := h.Call("getSVGDocument", args...)
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLIFrameElement) GetHeight() string {
 	val := h.Get("height")
@@ -199,7 +199,7 @@ func (h HTMLIFrameElement) SetReferrerPolicy(val string) {
 }
 func (h HTMLIFrameElement) GetSandbox() DOMTokenList {
 	val := h.Get("sandbox")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLIFrameElement) GetSrc() string {
 	val := h.Get("src")

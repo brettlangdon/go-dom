@@ -34,7 +34,7 @@ type ProgressEvent struct {
 	Event
 }
 
-func jsValueToProgressEvent(val js.Value) ProgressEvent {
+func JSValueToProgressEvent(val js.Value) ProgressEvent {
 	return ProgressEvent{Value: Value{Value: val}}
 }
 func (v Value) AsProgressEvent() ProgressEvent { return ProgressEvent{Value: v} }

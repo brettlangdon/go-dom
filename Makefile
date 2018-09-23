@@ -4,5 +4,5 @@ all:
 
 clean:
 	rm *.go
-	rm -rf console/ css/ document/
+	rm -rf console/ css/ document/ window/
 .PHONY: clean

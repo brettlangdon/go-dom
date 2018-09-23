@@ -13,7 +13,7 @@ type HTMLAllCollection struct {
 	Value
 }
 
-func jsValueToHTMLAllCollection(val js.Value) HTMLAllCollection {
+func JSValueToHTMLAllCollection(val js.Value) HTMLAllCollection {
 	return HTMLAllCollection{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLAllCollection() HTMLAllCollection { return HTMLAllCollection{Value: v} }

@@ -158,7 +158,7 @@ type HTMLTextAreaElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTextAreaElement(val js.Value) HTMLTextAreaElement {
+func JSValueToHTMLTextAreaElement(val js.Value) HTMLTextAreaElement {
 	return HTMLTextAreaElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTextAreaElement() HTMLTextAreaElement { return HTMLTextAreaElement{Value: v} }
@@ -210,11 +210,11 @@ func (h HTMLTextAreaElement) SetDisabled(val bool) {
 }
 func (h HTMLTextAreaElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLTextAreaElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLTextAreaElement) GetMaxLength() float64 {
 	val := h.Get("maxLength")
@@ -319,7 +319,7 @@ func (h HTMLTextAreaElement) GetValidationMessage() string {
 }
 func (h HTMLTextAreaElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLTextAreaElement) GetValue() string {
 	val := h.Get("value")

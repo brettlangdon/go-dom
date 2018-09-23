@@ -14,6 +14,6 @@ const (
 	TextTrackKindMetadata     TextTrackKind = "metadata"
 )
 
-func jsValueToTextTrackKind(val js.Value) TextTrackKind {
+func JSValueToTextTrackKind(val js.Value) TextTrackKind {
 	return TextTrackKind(val.String())
 }

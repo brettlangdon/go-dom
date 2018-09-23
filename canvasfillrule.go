@@ -11,6 +11,6 @@ const (
 	CanvasFillRuleEvenodd CanvasFillRule = "evenodd"
 )
 
-func jsValueToCanvasFillRule(val js.Value) CanvasFillRule {
+func JSValueToCanvasFillRule(val js.Value) CanvasFillRule {
 	return CanvasFillRule(val.String())
 }

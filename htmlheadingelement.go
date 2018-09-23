@@ -108,7 +108,7 @@ type HTMLHeadingElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLHeadingElement(val js.Value) HTMLHeadingElement {
+func JSValueToHTMLHeadingElement(val js.Value) HTMLHeadingElement {
 	return HTMLHeadingElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLHeadingElement() HTMLHeadingElement { return HTMLHeadingElement{Value: v} }

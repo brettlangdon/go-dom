@@ -14,7 +14,7 @@ type TextDecoder struct {
 	Value
 }
 
-func jsValueToTextDecoder(val js.Value) TextDecoder { return TextDecoder{Value: Value{Value: val}} }
+func JSValueToTextDecoder(val js.Value) TextDecoder { return TextDecoder{Value: Value{Value: val}} }
 func (v Value) AsTextDecoder() TextDecoder          { return TextDecoder{Value: v} }
 func (t TextDecoder) Decode(args ...interface{}) string {
 	val := t.Call("decode", args...)

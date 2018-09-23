@@ -1,16 +1,18 @@
 package main
 
 import (
-	"syscall/js"
-
+	"github.com/brettlangdon/go-dom/v1/console"
 	"github.com/brettlangdon/go-dom/v1/document"
+	"github.com/brettlangdon/go-dom/v1/window"
 )
 
 func main() {
-	console := js.Global().Get("console")
-	nodes := document.Document.QuerySelectorAll("div")
+	loc := window.GetLocation()
+	console.Dir(loc.JSValue())
+
+	nodes := document.QuerySelectorAll("div")
 	var i float64 = 0
 	for ; i < nodes.GetLength(); i++ {
-		console.Call("dir", nodes.Item(i).JSValue())
+		console.Dir(nodes.Item(i).JSValue())
 	}
 }

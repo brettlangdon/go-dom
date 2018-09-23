@@ -53,7 +53,7 @@ type XMLHttpRequest struct {
 	EventTarget
 }
 
-func jsValueToXMLHttpRequest(val js.Value) XMLHttpRequest {
+func JSValueToXMLHttpRequest(val js.Value) XMLHttpRequest {
 	return XMLHttpRequest{Value: Value{Value: val}}
 }
 func (v Value) AsXMLHttpRequest() XMLHttpRequest { return XMLHttpRequest{Value: v} }
@@ -70,7 +70,7 @@ func (x XMLHttpRequest) GetResponseHeader(args ...interface{}) []byte {
 }
 func (x XMLHttpRequest) GetOnreadystatechange() EventHandler {
 	val := x.Get("onreadystatechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (x XMLHttpRequest) SetOnreadystatechange(val EventHandler) {
 	x.Set("onreadystatechange", val)
@@ -98,7 +98,7 @@ func (x XMLHttpRequest) GetResponseText() string {
 }
 func (x XMLHttpRequest) GetResponseType() XMLHttpRequestResponseType {
 	val := x.Get("responseType")
-	return jsValueToXMLHttpRequestResponseType(val.JSValue())
+	return JSValueToXMLHttpRequestResponseType(val.JSValue())
 }
 func (x XMLHttpRequest) SetResponseType(val XMLHttpRequestResponseType) {
 	x.Set("responseType", val)
@@ -109,7 +109,7 @@ func (x XMLHttpRequest) GetResponseURL() string {
 }
 func (x XMLHttpRequest) GetResponseXML() Document {
 	val := x.Get("responseXML")
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (x XMLHttpRequest) Send(args ...interface{}) {
 	x.Call("send", args...)
@@ -134,7 +134,7 @@ func (x XMLHttpRequest) SetTimeout(val float64) {
 }
 func (x XMLHttpRequest) GetUpload() XMLHttpRequestUpload {
 	val := x.Get("upload")
-	return jsValueToXMLHttpRequestUpload(val.JSValue())
+	return JSValueToXMLHttpRequestUpload(val.JSValue())
 }
 func (x XMLHttpRequest) GetWithCredentials() bool {
 	val := x.Get("withCredentials")

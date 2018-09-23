@@ -6,6 +6,6 @@ import "syscall/js"
 
 type ArrayBufferView Value
 
-func jsValueToArrayBufferView(val js.Value) ArrayBufferView {
-	return ArrayBufferView(jsValueToValue(val))
+func JSValueToArrayBufferView(val js.Value) ArrayBufferView {
+	return ArrayBufferView(JSValueToValue(val))
 }

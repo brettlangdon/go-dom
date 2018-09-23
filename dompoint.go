@@ -22,11 +22,11 @@ type DOMPoint struct {
 	DOMPointReadOnly
 }
 
-func jsValueToDOMPoint(val js.Value) DOMPoint { return DOMPoint{Value: Value{Value: val}} }
+func JSValueToDOMPoint(val js.Value) DOMPoint { return DOMPoint{Value: Value{Value: val}} }
 func (v Value) AsDOMPoint() DOMPoint          { return DOMPoint{Value: v} }
 func (d DOMPoint) FromPoint(args ...interface{}) DOMPoint {
 	val := d.Call("fromPoint", args...)
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMPoint) GetW() float64 {
 	val := d.Get("w")

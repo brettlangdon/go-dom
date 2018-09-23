@@ -12,6 +12,6 @@ const (
 	CanvasLineJoinMiter CanvasLineJoin = "miter"
 )
 
-func jsValueToCanvasLineJoin(val js.Value) CanvasLineJoin {
+func JSValueToCanvasLineJoin(val js.Value) CanvasLineJoin {
 	return CanvasLineJoin(val.String())
 }

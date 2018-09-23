@@ -11,7 +11,7 @@ type CanvasPattern struct {
 	Value
 }
 
-func jsValueToCanvasPattern(val js.Value) CanvasPattern {
+func JSValueToCanvasPattern(val js.Value) CanvasPattern {
 	return CanvasPattern{Value: Value{Value: val}}
 }
 func (v Value) AsCanvasPattern() CanvasPattern { return CanvasPattern{Value: v} }

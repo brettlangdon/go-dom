@@ -33,7 +33,7 @@ type URL struct {
 	Value
 }
 
-func jsValueToURL(val js.Value) URL { return URL{Value: Value{Value: val}} }
+func JSValueToURL(val js.Value) URL { return URL{Value: Value{Value: val}} }
 func (v Value) AsURL() URL          { return URL{Value: v} }
 func (u URL) GetHash() string {
 	val := u.Get("hash")
@@ -104,7 +104,7 @@ func (u URL) SetSearch(val string) {
 }
 func (u URL) GetSearchParams() URLSearchParams {
 	val := u.Get("searchParams")
-	return jsValueToURLSearchParams(val.JSValue())
+	return JSValueToURLSearchParams(val.JSValue())
 }
 func (u URL) ToJSON(args ...interface{}) string {
 	val := u.Call("toJSON", args...)

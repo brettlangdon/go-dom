@@ -34,7 +34,7 @@ type ApplicationCache struct {
 	EventTarget
 }
 
-func jsValueToApplicationCache(val js.Value) ApplicationCache {
+func JSValueToApplicationCache(val js.Value) ApplicationCache {
 	return ApplicationCache{Value: Value{Value: val}}
 }
 func (v Value) AsApplicationCache() ApplicationCache { return ApplicationCache{Value: v} }
@@ -43,56 +43,56 @@ func (a ApplicationCache) Abort(args ...interface{}) {
 }
 func (a ApplicationCache) GetOncached() EventHandler {
 	val := a.Get("oncached")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOncached(val EventHandler) {
 	a.Set("oncached", val)
 }
 func (a ApplicationCache) GetOnchecking() EventHandler {
 	val := a.Get("onchecking")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnchecking(val EventHandler) {
 	a.Set("onchecking", val)
 }
 func (a ApplicationCache) GetOndownloading() EventHandler {
 	val := a.Get("ondownloading")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOndownloading(val EventHandler) {
 	a.Set("ondownloading", val)
 }
 func (a ApplicationCache) GetOnerror() EventHandler {
 	val := a.Get("onerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnerror(val EventHandler) {
 	a.Set("onerror", val)
 }
 func (a ApplicationCache) GetOnnoupdate() EventHandler {
 	val := a.Get("onnoupdate")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnnoupdate(val EventHandler) {
 	a.Set("onnoupdate", val)
 }
 func (a ApplicationCache) GetOnobsolete() EventHandler {
 	val := a.Get("onobsolete")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnobsolete(val EventHandler) {
 	a.Set("onobsolete", val)
 }
 func (a ApplicationCache) GetOnprogress() EventHandler {
 	val := a.Get("onprogress")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnprogress(val EventHandler) {
 	a.Set("onprogress", val)
 }
 func (a ApplicationCache) GetOnupdateready() EventHandler {
 	val := a.Get("onupdateready")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (a ApplicationCache) SetOnupdateready(val EventHandler) {
 	a.Set("onupdateready", val)

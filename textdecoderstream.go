@@ -15,7 +15,7 @@ type TextDecoderStream struct {
 	Value
 }
 
-func jsValueToTextDecoderStream(val js.Value) TextDecoderStream {
+func JSValueToTextDecoderStream(val js.Value) TextDecoderStream {
 	return TextDecoderStream{Value: Value{Value: val}}
 }
 func (v Value) AsTextDecoderStream() TextDecoderStream { return TextDecoderStream{Value: v} }

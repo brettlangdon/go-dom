@@ -76,5 +76,5 @@ type XMLDocument struct {
 	EventTarget
 }
 
-func jsValueToXMLDocument(val js.Value) XMLDocument { return XMLDocument{Value: Value{Value: val}} }
+func JSValueToXMLDocument(val js.Value) XMLDocument { return XMLDocument{Value: Value{Value: val}} }
 func (v Value) AsXMLDocument() XMLDocument          { return XMLDocument{Value: v} }

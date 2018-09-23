@@ -12,6 +12,6 @@ const (
 	PremultiplyAlphaDefault     PremultiplyAlpha = "default"
 )
 
-func jsValueToPremultiplyAlpha(val js.Value) PremultiplyAlpha {
+func JSValueToPremultiplyAlpha(val js.Value) PremultiplyAlpha {
 	return PremultiplyAlpha(val.String())
 }

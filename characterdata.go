@@ -60,7 +60,7 @@ type CharacterData struct {
 	EventTarget
 }
 
-func jsValueToCharacterData(val js.Value) CharacterData {
+func JSValueToCharacterData(val js.Value) CharacterData {
 	return CharacterData{Value: Value{Value: val}}
 }
 func (v Value) AsCharacterData() CharacterData { return CharacterData{Value: v} }
@@ -92,11 +92,11 @@ func (c CharacterData) GetLength() float64 {
 }
 func (c CharacterData) GetNextElementSibling() Element {
 	val := c.Get("nextElementSibling")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (c CharacterData) GetPreviousElementSibling() Element {
 	val := c.Get("previousElementSibling")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (c CharacterData) Remove(args ...interface{}) {
 	c.Call("remove", args...)

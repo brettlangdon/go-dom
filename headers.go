@@ -15,7 +15,7 @@ type Headers struct {
 	Value
 }
 
-func jsValueToHeaders(val js.Value) Headers { return Headers{Value: Value{Value: val}} }
+func JSValueToHeaders(val js.Value) Headers { return Headers{Value: Value{Value: val}} }
 func (v Value) AsHeaders() Headers          { return Headers{Value: v} }
 func (h Headers) Append(args ...interface{}) {
 	h.Call("append", args...)

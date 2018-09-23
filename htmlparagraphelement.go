@@ -108,7 +108,7 @@ type HTMLParagraphElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLParagraphElement(val js.Value) HTMLParagraphElement {
+func JSValueToHTMLParagraphElement(val js.Value) HTMLParagraphElement {
 	return HTMLParagraphElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLParagraphElement() HTMLParagraphElement { return HTMLParagraphElement{Value: v} }

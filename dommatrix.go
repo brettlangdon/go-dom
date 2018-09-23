@@ -88,7 +88,7 @@ type DOMMatrix struct {
 	DOMMatrixReadOnly
 }
 
-func jsValueToDOMMatrix(val js.Value) DOMMatrix { return DOMMatrix{Value: Value{Value: val}} }
+func JSValueToDOMMatrix(val js.Value) DOMMatrix { return DOMMatrix{Value: Value{Value: val}} }
 func (v Value) AsDOMMatrix() DOMMatrix          { return DOMMatrix{Value: v} }
 func (d DOMMatrix) GetA() float64 {
 	val := d.Get("a")
@@ -134,19 +134,19 @@ func (d DOMMatrix) SetF(val float64) {
 }
 func (d DOMMatrix) FromFloat32Array(args ...interface{}) DOMMatrix {
 	val := d.Call("fromFloat32Array", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) FromFloat64Array(args ...interface{}) DOMMatrix {
 	val := d.Call("fromFloat64Array", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) FromMatrix(args ...interface{}) DOMMatrix {
 	val := d.Call("fromMatrix", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) InvertSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("invertSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) GetM11() float64 {
 	val := d.Get("m11")
@@ -262,45 +262,45 @@ func (d DOMMatrix) SetM44(val float64) {
 }
 func (d DOMMatrix) MultiplySelf(args ...interface{}) DOMMatrix {
 	val := d.Call("multiplySelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) PreMultiplySelf(args ...interface{}) DOMMatrix {
 	val := d.Call("preMultiplySelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) RotateAxisAngleSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("rotateAxisAngleSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) RotateFromVectorSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("rotateFromVectorSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) RotateSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("rotateSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) Scale3dSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("scale3dSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) ScaleSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("scaleSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) SetMatrixValue(args ...interface{}) DOMMatrix {
 	val := d.Call("setMatrixValue", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) SkewXSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("skewXSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) SkewYSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("skewYSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrix) TranslateSelf(args ...interface{}) DOMMatrix {
 	val := d.Call("translateSelf", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }

@@ -108,7 +108,7 @@ type HTMLHRElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLHRElement(val js.Value) HTMLHRElement {
+func JSValueToHTMLHRElement(val js.Value) HTMLHRElement {
 	return HTMLHRElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLHRElement() HTMLHRElement { return HTMLHRElement{Value: v} }

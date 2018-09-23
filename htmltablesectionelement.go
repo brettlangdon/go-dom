@@ -111,7 +111,7 @@ type HTMLTableSectionElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTableSectionElement(val js.Value) HTMLTableSectionElement {
+func JSValueToHTMLTableSectionElement(val js.Value) HTMLTableSectionElement {
 	return HTMLTableSectionElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableSectionElement() HTMLTableSectionElement {
@@ -122,9 +122,9 @@ func (h HTMLTableSectionElement) DeleteRow(args ...interface{}) {
 }
 func (h HTMLTableSectionElement) InsertRow(args ...interface{}) HTMLTableRowElement {
 	val := h.Call("insertRow", args...)
-	return jsValueToHTMLTableRowElement(val.JSValue())
+	return JSValueToHTMLTableRowElement(val.JSValue())
 }
 func (h HTMLTableSectionElement) GetRows() HTMLCollection {
 	val := h.Get("rows")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }

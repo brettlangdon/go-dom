@@ -166,7 +166,7 @@ type HTMLVideoElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLVideoElement(val js.Value) HTMLVideoElement {
+func JSValueToHTMLVideoElement(val js.Value) HTMLVideoElement {
 	return HTMLVideoElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLVideoElement() HTMLVideoElement { return HTMLVideoElement{Value: v} }

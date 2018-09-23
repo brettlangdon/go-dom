@@ -10,5 +10,5 @@ type DOMStringMap struct {
 	Value
 }
 
-func jsValueToDOMStringMap(val js.Value) DOMStringMap { return DOMStringMap{Value: Value{Value: val}} }
+func JSValueToDOMStringMap(val js.Value) DOMStringMap { return DOMStringMap{Value: Value{Value: val}} }
 func (v Value) AsDOMStringMap() DOMStringMap          { return DOMStringMap{Value: v} }

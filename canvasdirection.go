@@ -12,6 +12,6 @@ const (
 	CanvasDirectionInherit CanvasDirection = "inherit"
 )
 
-func jsValueToCanvasDirection(val js.Value) CanvasDirection {
+func JSValueToCanvasDirection(val js.Value) CanvasDirection {
 	return CanvasDirection(val.String())
 }

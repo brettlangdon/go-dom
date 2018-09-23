@@ -9,8 +9,8 @@ type FunctionStringCallback struct {
 	Callback
 }
 
-func jsValueToFunctionStringCallback(val js.Value) FunctionStringCallback {
-	return FunctionStringCallback{Callback: jsValueToCallback(val)}
+func JSValueToFunctionStringCallback(val js.Value) FunctionStringCallback {
+	return FunctionStringCallback{Callback: JSValueToCallback(val)}
 }
 func NewFunctionStringCallback(c FunctionStringCallbackCallback) FunctionStringCallback {
 	callback := js.NewCallback(func(args []js.Value) {

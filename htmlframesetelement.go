@@ -144,7 +144,7 @@ type HTMLFrameSetElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLFrameSetElement(val js.Value) HTMLFrameSetElement {
+func JSValueToHTMLFrameSetElement(val js.Value) HTMLFrameSetElement {
 	return HTMLFrameSetElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFrameSetElement() HTMLFrameSetElement { return HTMLFrameSetElement{Value: v} }
@@ -157,112 +157,112 @@ func (h HTMLFrameSetElement) SetCols(val string) {
 }
 func (h HTMLFrameSetElement) GetOnafterprint() EventHandler {
 	val := h.Get("onafterprint")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnafterprint(val EventHandler) {
 	h.Set("onafterprint", val)
 }
 func (h HTMLFrameSetElement) GetOnbeforeprint() EventHandler {
 	val := h.Get("onbeforeprint")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnbeforeprint(val EventHandler) {
 	h.Set("onbeforeprint", val)
 }
 func (h HTMLFrameSetElement) GetOnbeforeunload() OnBeforeUnloadEventHandler {
 	val := h.Get("onbeforeunload")
-	return jsValueToOnBeforeUnloadEventHandler(val.JSValue())
+	return JSValueToOnBeforeUnloadEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnbeforeunload(val OnBeforeUnloadEventHandler) {
 	h.Set("onbeforeunload", val)
 }
 func (h HTMLFrameSetElement) GetOnhashchange() EventHandler {
 	val := h.Get("onhashchange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnhashchange(val EventHandler) {
 	h.Set("onhashchange", val)
 }
 func (h HTMLFrameSetElement) GetOnlanguagechange() EventHandler {
 	val := h.Get("onlanguagechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnlanguagechange(val EventHandler) {
 	h.Set("onlanguagechange", val)
 }
 func (h HTMLFrameSetElement) GetOnmessage() EventHandler {
 	val := h.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnmessage(val EventHandler) {
 	h.Set("onmessage", val)
 }
 func (h HTMLFrameSetElement) GetOnmessageerror() EventHandler {
 	val := h.Get("onmessageerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnmessageerror(val EventHandler) {
 	h.Set("onmessageerror", val)
 }
 func (h HTMLFrameSetElement) GetOnoffline() EventHandler {
 	val := h.Get("onoffline")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnoffline(val EventHandler) {
 	h.Set("onoffline", val)
 }
 func (h HTMLFrameSetElement) GetOnonline() EventHandler {
 	val := h.Get("ononline")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnonline(val EventHandler) {
 	h.Set("ononline", val)
 }
 func (h HTMLFrameSetElement) GetOnpagehide() EventHandler {
 	val := h.Get("onpagehide")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnpagehide(val EventHandler) {
 	h.Set("onpagehide", val)
 }
 func (h HTMLFrameSetElement) GetOnpageshow() EventHandler {
 	val := h.Get("onpageshow")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnpageshow(val EventHandler) {
 	h.Set("onpageshow", val)
 }
 func (h HTMLFrameSetElement) GetOnpopstate() EventHandler {
 	val := h.Get("onpopstate")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnpopstate(val EventHandler) {
 	h.Set("onpopstate", val)
 }
 func (h HTMLFrameSetElement) GetOnrejectionhandled() EventHandler {
 	val := h.Get("onrejectionhandled")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnrejectionhandled(val EventHandler) {
 	h.Set("onrejectionhandled", val)
 }
 func (h HTMLFrameSetElement) GetOnstorage() EventHandler {
 	val := h.Get("onstorage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnstorage(val EventHandler) {
 	h.Set("onstorage", val)
 }
 func (h HTMLFrameSetElement) GetOnunhandledrejection() EventHandler {
 	val := h.Get("onunhandledrejection")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnunhandledrejection(val EventHandler) {
 	h.Set("onunhandledrejection", val)
 }
 func (h HTMLFrameSetElement) GetOnunload() EventHandler {
 	val := h.Get("onunload")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLFrameSetElement) SetOnunload(val EventHandler) {
 	h.Set("onunload", val)

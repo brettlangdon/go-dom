@@ -13,6 +13,6 @@ const (
 	ResizeQualityHigh      ResizeQuality = "high"
 )
 
-func jsValueToResizeQuality(val js.Value) ResizeQuality {
+func JSValueToResizeQuality(val js.Value) ResizeQuality {
 	return ResizeQuality(val.String())
 }

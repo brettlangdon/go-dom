@@ -6,6 +6,6 @@ import "syscall/js"
 
 type RequestInfo Value
 
-func jsValueToRequestInfo(val js.Value) RequestInfo {
-	return RequestInfo(jsValueToValue(val))
+func JSValueToRequestInfo(val js.Value) RequestInfo {
+	return RequestInfo(JSValueToValue(val))
 }

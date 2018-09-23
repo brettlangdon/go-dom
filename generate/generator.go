@@ -67,7 +67,7 @@ func (g *Generator) writeStructMember(s Spec, m Member, b *Builder) error {
 			case "Value":
 				b.WriteString("return val")
 			default:
-				b.WriteF("return jsValueTo%s(val.JSValue())", rt)
+				b.WriteF("return JSValueTo%s(val.JSValue())", rt)
 			}
 		} else {
 			b.WriteF("%s.Get(\"%s\")", s.Shortname(), m.Name)
@@ -99,7 +99,7 @@ func (g *Generator) writeStructMember(s Spec, m Member, b *Builder) error {
 			case "Value":
 				b.WriteF("return val")
 			default:
-				b.WriteF("return jsValueTo%s(val.JSValue())", rt)
+				b.WriteF("return JSValueTo%s(val.JSValue())", rt)
 			}
 		} else {
 			b.WriteF("%s.Call(\"%s\", args...)", s.Shortname(), m.Body.Name.Value)
@@ -167,7 +167,7 @@ func (g *Generator) generateInterface(spec Spec) error {
 
 	b.WriteString("}")
 
-	b.WriteF("func jsValueTo%s(val js.Value) %s { return %s{ Value: Value { Value: val }}}", spec.Name, spec.Name, spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s { return %s{ Value: Value { Value: val }}}", spec.Name, spec.Name, spec.Name)
 	b.WriteF("func (v Value) As%s() %s { return %s{Value: v} }", spec.Name, spec.Name, spec.Name)
 
 	mems, err = spec.ResolveMembers(g.specs, false)
@@ -238,8 +238,8 @@ func (g *Generator) generateCallbackInterface(spec Spec) error {
 		b.WriteString("Callback")
 		b.WriteString("}")
 
-		b.WriteF("func jsValueTo%s(val js.Value) %s {", n, n)
-		b.WriteF("return %s{ Callback: jsValueToCallback(val) }", n)
+		b.WriteF("func JSValueTo%s(val js.Value) %s {", n, n)
+		b.WriteF("return %s{ Callback: JSValueToCallback(val) }", n)
 		b.WriteString("}")
 		b.WriteF("func New%s(c %sCallback) %s {", n, n, n)
 		b.WriteF("callback := js.NewCallback(func (args []js.Value) {")
@@ -264,7 +264,7 @@ func (g *Generator) generateCallbackInterface(spec Spec) error {
 			case "int":
 				b.WriteF("%s := args[%d].Int()", a.Name, i)
 			default:
-				b.WriteF("%s := jsValueTo%s(args[%d])", a.Name, t, i)
+				b.WriteF("%s := JSValueTo%s(args[%d])", a.Name, t, i)
 			}
 		}
 		b.WriteF("c(%s)", params)
@@ -284,7 +284,7 @@ func (g *Generator) generateCallbackInterface(spec Spec) error {
 
 	b.WriteString("}")
 
-	b.WriteF("func jsValueTo%s(val js.Value) %s { return %s{ Value: Value { Value: val }}}", spec.Name, spec.Name, spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s { return %s{ Value: Value { Value: val }}}", spec.Name, spec.Name, spec.Name)
 	b.WriteF("func (v Value) As%s() %s { return %s{Value: v} }", spec.Name, spec.Name, spec.Name)
 	return g.writeFile(spec, b)
 }
@@ -313,8 +313,8 @@ func (g *Generator) generateCallback(spec Spec) (err error) {
 	b.WriteString("Callback")
 	b.WriteString("}")
 
-	b.WriteF("func jsValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
-	b.WriteF("return %s{ Callback: jsValueToCallback(val) }", spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
+	b.WriteF("return %s{ Callback: JSValueToCallback(val) }", spec.Name)
 	b.WriteString("}")
 	b.WriteF("func New%s(c %sCallback) %s {", spec.Name, spec.Name, spec.Name)
 	b.WriteF("callback := js.NewCallback(func (args []js.Value) {")
@@ -339,7 +339,7 @@ func (g *Generator) generateCallback(spec Spec) (err error) {
 		case "int":
 			b.WriteF("%s := args[%d].Int()", a.Name, i)
 		default:
-			b.WriteF("%s := jsValueTo%s(args[%d])", a.Name, t, i)
+			b.WriteF("%s := JSValueTo%s(args[%d])", a.Name, t, i)
 		}
 	}
 	b.WriteF("c(%s)", params)
@@ -361,7 +361,7 @@ func (g *Generator) generateTypedef(spec Spec) (err error) {
 	}
 	b.WriteF("type %s %s", spec.Name, t)
 
-	b.WriteF("func jsValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
 	switch t {
 	case "string":
 		b.WriteF("return %s(val.String())", spec.Name)
@@ -374,7 +374,7 @@ func (g *Generator) generateTypedef(spec Spec) (err error) {
 	case "int":
 		b.WriteF("return %s(val.Int())", spec.Name)
 	default:
-		b.WriteF("return %s(jsValueTo%s(val))", spec.Name, t)
+		b.WriteF("return %s(JSValueTo%s(val))", spec.Name, t)
 	}
 	b.WriteString("}")
 
@@ -403,7 +403,7 @@ func (g *Generator) generateEnum(spec Spec) (err error) {
 	}
 	b.WriteString(")")
 
-	b.WriteF("func jsValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s {", spec.Name, spec.Name)
 	switch t {
 	case "string":
 		b.WriteF("return %s(val.String())", spec.Name)
@@ -416,7 +416,7 @@ func (g *Generator) generateEnum(spec Spec) (err error) {
 	case "int":
 		b.WriteF("return %s(val.Int())", spec.Name)
 	default:
-		b.WriteF("return %s(jsValueTo%s(val))", spec.Name, t)
+		b.WriteF("return %s(JSValueTo%s(val))", spec.Name, t)
 	}
 	b.WriteString("}")
 
@@ -435,21 +435,113 @@ func (g *Generator) generateNamespace(spec Spec) (err error) {
 	b.WriteString("// Code generated DO NOT EDIT")
 	b.WriteF("// %s", fname)
 	b.WriteF("package %s", d)
+	b.WriteString("import dom \"github.com/brettlangdon/go-dom/v1\"")
 	b.WriteString("import \"syscall/js\"")
 
-	b.WriteString("var value Value")
-	b.WriteF("func init() { value = Value{ Value: js.Global().Get(\"%s\") } }", spec.Name)
+	vt := "Value"
+	if spec.Type == "interface" {
+		vt = spec.Name
+	}
+	b.WriteF("var value dom.%s", vt)
 
-	for _, m := range spec.Members() {
+	b.WriteF("func init() { value = dom.JSValueTo%s(js.Global().Get(\"%s\")) }", vt, strings.ToLower(spec.Name))
+
+	mems, err := spec.ResolveMembers(g.specs, true)
+	if err != nil {
+		return
+	}
+
+	for _, m := range mems {
 		switch m.Type {
+		case "attribute":
+			t := convertIDLType(m.IDLType)
+			if t == "" {
+				t = "Value"
+			}
+			rt := t
+			switch rt {
+			case "string", "[]byte", "bool", "float64", "int":
+			default:
+				rt = "dom." + rt
+			}
+
+			b.WriteF("func Get%s() %s {", m.Title(), rt)
+			if spec.Type == "interface" {
+				b.WriteF("return value.Get%s()", m.Title())
+			} else {
+				if rt != "" {
+					b.WriteF("val := value.Get(\"%s\")", m.Name)
+					switch rt {
+					case "string":
+						b.WriteF("return val.String()")
+					case "[]byte":
+						b.WriteF("return []byte(val.String())")
+					case "bool":
+						b.WriteF("return val.Bool()")
+					case "float64":
+						b.WriteF("return val.Float()")
+					case "int":
+						b.WriteF("return val.Int()")
+					case "Value":
+						b.WriteString("return val")
+					default:
+						b.WriteF("return dom.JSValueTo%s(val.JSValue())", t)
+					}
+				} else {
+					b.WriteF("value.Get(\"%s\")", m.Name)
+				}
+			}
+
+			b.WriteString("}")
+
+			if !m.IsReadOnly() {
+				if spec.Type == "interface" {
+					b.WriteF("func Set%s(val %s) { value.Set%s(val) }", m.Title(), rt, m.Title())
+				} else {
+					b.WriteF("func Set%s(val %s) { value.Set(\"%s\", val) }", m.Title(), rt, m.Name)
+				}
+			}
 		case "operation":
 			n := m.Body.Name.Value
-			rt := convertIDLType(m)
-			b.WriteF("func %s(args ...interface{}) %s { return value.Call(\"%s\", args...) }", m.Title(), rt, n)
+			t := convertIDLType(m.Body.IDLType)
+			rt := t
+			switch rt {
+			case "string", "[]byte", "bool", "float64", "int":
+			case "":
+			default:
+				rt = "dom." + rt
+			}
+
+			b.WriteF("func %s(args ...interface{}) %s {", m.Title(), rt)
+			if rt != "" {
+				b.WriteF("val := value.Call(\"%s\", args...)", n)
+				switch rt {
+				case "string":
+					b.WriteString("return val.String()")
+				case "[]byte":
+					b.WriteString("return []byte(val.String())")
+				case "bool":
+					b.WriteString("return val.Bool()")
+				case "float64":
+					b.WriteString("return val.Float()")
+				case "int":
+					b.WriteString("return val.Int()")
+				case "dom.Value":
+					b.WriteString("return val")
+				default:
+					b.WriteF("return dom.JSValueTo%s(val.JSValue())", t)
+				}
+			} else {
+				b.WriteF("value.Call(\"%s\", args...)", n)
+			}
+			b.WriteString("}")
 		}
 	}
 
 	source, err := format.Source(b.Bytes())
+	if err != nil {
+		return
+	}
 	out, err := os.OpenFile(fname, os.O_TRUNC|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		return
@@ -481,6 +573,13 @@ func (g *Generator) generateSpec(spec Spec) (err error) {
 	default:
 		err = fmt.Errorf("Unknown or unsupported spec type %q", spec.Type)
 	}
+
+	if spec.Name == "Document" || spec.Name == "Window" {
+		if err == nil {
+			err = g.generateNamespace(spec)
+		}
+	}
+
 	return
 }
 

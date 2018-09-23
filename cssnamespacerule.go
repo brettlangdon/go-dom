@@ -18,7 +18,7 @@ type CSSNamespaceRule struct {
 	CSSRule
 }
 
-func jsValueToCSSNamespaceRule(val js.Value) CSSNamespaceRule {
+func JSValueToCSSNamespaceRule(val js.Value) CSSNamespaceRule {
 	return CSSNamespaceRule{Value: Value{Value: val}}
 }
 func (v Value) AsCSSNamespaceRule() CSSNamespaceRule { return CSSNamespaceRule{Value: v} }

@@ -40,7 +40,7 @@ type DedicatedWorkerGlobalScope struct {
 	EventTarget
 }
 
-func jsValueToDedicatedWorkerGlobalScope(val js.Value) DedicatedWorkerGlobalScope {
+func JSValueToDedicatedWorkerGlobalScope(val js.Value) DedicatedWorkerGlobalScope {
 	return DedicatedWorkerGlobalScope{Value: Value{Value: val}}
 }
 func (v Value) AsDedicatedWorkerGlobalScope() DedicatedWorkerGlobalScope {
@@ -58,14 +58,14 @@ func (d DedicatedWorkerGlobalScope) GetName() string {
 }
 func (d DedicatedWorkerGlobalScope) GetOnmessage() EventHandler {
 	val := d.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (d DedicatedWorkerGlobalScope) SetOnmessage(val EventHandler) {
 	d.Set("onmessage", val)
 }
 func (d DedicatedWorkerGlobalScope) GetOnmessageerror() EventHandler {
 	val := d.Get("onmessageerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (d DedicatedWorkerGlobalScope) SetOnmessageerror(val EventHandler) {
 	d.Set("onmessageerror", val)

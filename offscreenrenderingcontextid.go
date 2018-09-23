@@ -12,6 +12,6 @@ const (
 	OffscreenRenderingContextIdWebgl2 OffscreenRenderingContextId = "webgl2"
 )
 
-func jsValueToOffscreenRenderingContextId(val js.Value) OffscreenRenderingContextId {
+func JSValueToOffscreenRenderingContextId(val js.Value) OffscreenRenderingContextId {
 	return OffscreenRenderingContextId(val.String())
 }

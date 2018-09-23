@@ -22,7 +22,7 @@ type TextMetrics struct {
 	Value
 }
 
-func jsValueToTextMetrics(val js.Value) TextMetrics { return TextMetrics{Value: Value{Value: val}} }
+func JSValueToTextMetrics(val js.Value) TextMetrics { return TextMetrics{Value: Value{Value: val}} }
 func (v Value) AsTextMetrics() TextMetrics          { return TextMetrics{Value: v} }
 func (t TextMetrics) GetActualBoundingBoxAscent() float64 {
 	val := t.Get("actualBoundingBoxAscent")

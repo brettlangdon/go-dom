@@ -15,7 +15,7 @@ type RadioNodeList struct {
 	NodeList
 }
 
-func jsValueToRadioNodeList(val js.Value) RadioNodeList {
+func JSValueToRadioNodeList(val js.Value) RadioNodeList {
 	return RadioNodeList{Value: Value{Value: val}}
 }
 func (v Value) AsRadioNodeList() RadioNodeList { return RadioNodeList{Value: v} }

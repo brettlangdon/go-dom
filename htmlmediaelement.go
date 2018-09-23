@@ -155,17 +155,17 @@ type HTMLMediaElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMediaElement(val js.Value) HTMLMediaElement {
+func JSValueToHTMLMediaElement(val js.Value) HTMLMediaElement {
 	return HTMLMediaElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMediaElement() HTMLMediaElement { return HTMLMediaElement{Value: v} }
 func (h HTMLMediaElement) AddTextTrack(args ...interface{}) TextTrack {
 	val := h.Call("addTextTrack", args...)
-	return jsValueToTextTrack(val.JSValue())
+	return JSValueToTextTrack(val.JSValue())
 }
 func (h HTMLMediaElement) GetAudioTracks() AudioTrackList {
 	val := h.Get("audioTracks")
-	return jsValueToAudioTrackList(val.JSValue())
+	return JSValueToAudioTrackList(val.JSValue())
 }
 func (h HTMLMediaElement) GetAutoplay() bool {
 	val := h.Get("autoplay")
@@ -176,11 +176,11 @@ func (h HTMLMediaElement) SetAutoplay(val bool) {
 }
 func (h HTMLMediaElement) GetBuffered() TimeRanges {
 	val := h.Get("buffered")
-	return jsValueToTimeRanges(val.JSValue())
+	return JSValueToTimeRanges(val.JSValue())
 }
 func (h HTMLMediaElement) CanPlayType(args ...interface{}) CanPlayTypeResult {
 	val := h.Call("canPlayType", args...)
-	return jsValueToCanPlayTypeResult(val.JSValue())
+	return JSValueToCanPlayTypeResult(val.JSValue())
 }
 func (h HTMLMediaElement) GetControls() bool {
 	val := h.Get("controls")
@@ -231,7 +231,7 @@ func (h HTMLMediaElement) GetEnded() bool {
 }
 func (h HTMLMediaElement) GetError() MediaError {
 	val := h.Get("error")
-	return jsValueToMediaError(val.JSValue())
+	return JSValueToMediaError(val.JSValue())
 }
 func (h HTMLMediaElement) FastSeek(args ...interface{}) {
 	h.Call("fastSeek", args...)
@@ -280,7 +280,7 @@ func (h HTMLMediaElement) SetPlaybackRate(val float64) {
 }
 func (h HTMLMediaElement) GetPlayed() TimeRanges {
 	val := h.Get("played")
-	return jsValueToTimeRanges(val.JSValue())
+	return JSValueToTimeRanges(val.JSValue())
 }
 func (h HTMLMediaElement) GetPreload() string {
 	val := h.Get("preload")
@@ -295,7 +295,7 @@ func (h HTMLMediaElement) GetReadyState() int {
 }
 func (h HTMLMediaElement) GetSeekable() TimeRanges {
 	val := h.Get("seekable")
-	return jsValueToTimeRanges(val.JSValue())
+	return JSValueToTimeRanges(val.JSValue())
 }
 func (h HTMLMediaElement) GetSeeking() bool {
 	val := h.Get("seeking")
@@ -310,18 +310,18 @@ func (h HTMLMediaElement) SetSrc(val string) {
 }
 func (h HTMLMediaElement) GetSrcObject() MediaProvider {
 	val := h.Get("srcObject")
-	return jsValueToMediaProvider(val.JSValue())
+	return JSValueToMediaProvider(val.JSValue())
 }
 func (h HTMLMediaElement) SetSrcObject(val MediaProvider) {
 	h.Set("srcObject", val)
 }
 func (h HTMLMediaElement) GetTextTracks() TextTrackList {
 	val := h.Get("textTracks")
-	return jsValueToTextTrackList(val.JSValue())
+	return JSValueToTextTrackList(val.JSValue())
 }
 func (h HTMLMediaElement) GetVideoTracks() VideoTrackList {
 	val := h.Get("videoTracks")
-	return jsValueToVideoTrackList(val.JSValue())
+	return JSValueToVideoTrackList(val.JSValue())
 }
 func (h HTMLMediaElement) GetVolume() float64 {
 	val := h.Get("volume")

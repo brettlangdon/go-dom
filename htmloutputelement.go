@@ -124,7 +124,7 @@ type HTMLOutputElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLOutputElement(val js.Value) HTMLOutputElement {
+func JSValueToHTMLOutputElement(val js.Value) HTMLOutputElement {
 	return HTMLOutputElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLOutputElement() HTMLOutputElement { return HTMLOutputElement{Value: v} }
@@ -141,15 +141,15 @@ func (h HTMLOutputElement) SetDefaultValue(val string) {
 }
 func (h HTMLOutputElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLOutputElement) GetHtmlFor() DOMTokenList {
 	val := h.Get("htmlFor")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLOutputElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLOutputElement) GetName() string {
 	val := h.Get("name")
@@ -175,7 +175,7 @@ func (h HTMLOutputElement) GetValidationMessage() string {
 }
 func (h HTMLOutputElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLOutputElement) GetValue() string {
 	val := h.Get("value")

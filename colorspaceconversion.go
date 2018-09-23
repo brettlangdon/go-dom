@@ -11,6 +11,6 @@ const (
 	ColorSpaceConversionDefault ColorSpaceConversion = "default"
 )
 
-func jsValueToColorSpaceConversion(val js.Value) ColorSpaceConversion {
+func JSValueToColorSpaceConversion(val js.Value) ColorSpaceConversion {
 	return ColorSpaceConversion(val.String())
 }

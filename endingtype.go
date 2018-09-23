@@ -11,6 +11,6 @@ const (
 	EndingTypeNative      EndingType = "native"
 )
 
-func jsValueToEndingType(val js.Value) EndingType {
+func JSValueToEndingType(val js.Value) EndingType {
 	return EndingType(val.String())
 }

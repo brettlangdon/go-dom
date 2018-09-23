@@ -17,15 +17,15 @@ type Performance struct {
 	EventTarget
 }
 
-func jsValueToPerformance(val js.Value) Performance { return Performance{Value: Value{Value: val}} }
+func JSValueToPerformance(val js.Value) Performance { return Performance{Value: Value{Value: val}} }
 func (v Value) AsPerformance() Performance          { return Performance{Value: v} }
 func (p Performance) Now(args ...interface{}) DOMHighResTimeStamp {
 	val := p.Call("now", args...)
-	return jsValueToDOMHighResTimeStamp(val.JSValue())
+	return JSValueToDOMHighResTimeStamp(val.JSValue())
 }
 func (p Performance) GetTimeOrigin() DOMHighResTimeStamp {
 	val := p.Get("timeOrigin")
-	return jsValueToDOMHighResTimeStamp(val.JSValue())
+	return JSValueToDOMHighResTimeStamp(val.JSValue())
 }
 func (p Performance) ToJSON(args ...interface{}) Value {
 	val := p.Call("toJSON", args...)

@@ -14,7 +14,7 @@ type HTMLFormControlsCollection struct {
 	HTMLCollection
 }
 
-func jsValueToHTMLFormControlsCollection(val js.Value) HTMLFormControlsCollection {
+func JSValueToHTMLFormControlsCollection(val js.Value) HTMLFormControlsCollection {
 	return HTMLFormControlsCollection{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFormControlsCollection() HTMLFormControlsCollection {

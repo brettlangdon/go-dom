@@ -34,53 +34,53 @@ type FileReader struct {
 	EventTarget
 }
 
-func jsValueToFileReader(val js.Value) FileReader { return FileReader{Value: Value{Value: val}} }
+func JSValueToFileReader(val js.Value) FileReader { return FileReader{Value: Value{Value: val}} }
 func (v Value) AsFileReader() FileReader          { return FileReader{Value: v} }
 func (f FileReader) Abort(args ...interface{}) {
 	f.Call("abort", args...)
 }
 func (f FileReader) GetError() DOMException {
 	val := f.Get("error")
-	return jsValueToDOMException(val.JSValue())
+	return JSValueToDOMException(val.JSValue())
 }
 func (f FileReader) GetOnabort() EventHandler {
 	val := f.Get("onabort")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnabort(val EventHandler) {
 	f.Set("onabort", val)
 }
 func (f FileReader) GetOnerror() EventHandler {
 	val := f.Get("onerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnerror(val EventHandler) {
 	f.Set("onerror", val)
 }
 func (f FileReader) GetOnload() EventHandler {
 	val := f.Get("onload")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnload(val EventHandler) {
 	f.Set("onload", val)
 }
 func (f FileReader) GetOnloadend() EventHandler {
 	val := f.Get("onloadend")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnloadend(val EventHandler) {
 	f.Set("onloadend", val)
 }
 func (f FileReader) GetOnloadstart() EventHandler {
 	val := f.Get("onloadstart")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnloadstart(val EventHandler) {
 	f.Set("onloadstart", val)
 }
 func (f FileReader) GetOnprogress() EventHandler {
 	val := f.Get("onprogress")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (f FileReader) SetOnprogress(val EventHandler) {
 	f.Set("onprogress", val)

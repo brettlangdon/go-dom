@@ -115,7 +115,7 @@ type HTMLDialogElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLDialogElement(val js.Value) HTMLDialogElement {
+func JSValueToHTMLDialogElement(val js.Value) HTMLDialogElement {
 	return HTMLDialogElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLDialogElement() HTMLDialogElement { return HTMLDialogElement{Value: v} }

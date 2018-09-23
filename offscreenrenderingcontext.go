@@ -6,6 +6,6 @@ import "syscall/js"
 
 type OffscreenRenderingContext Value
 
-func jsValueToOffscreenRenderingContext(val js.Value) OffscreenRenderingContext {
-	return OffscreenRenderingContext(jsValueToValue(val))
+func JSValueToOffscreenRenderingContext(val js.Value) OffscreenRenderingContext {
+	return OffscreenRenderingContext(JSValueToValue(val))
 }

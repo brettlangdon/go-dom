@@ -17,17 +17,17 @@ type DOMPointReadOnly struct {
 	Value
 }
 
-func jsValueToDOMPointReadOnly(val js.Value) DOMPointReadOnly {
+func JSValueToDOMPointReadOnly(val js.Value) DOMPointReadOnly {
 	return DOMPointReadOnly{Value: Value{Value: val}}
 }
 func (v Value) AsDOMPointReadOnly() DOMPointReadOnly { return DOMPointReadOnly{Value: v} }
 func (d DOMPointReadOnly) FromPoint(args ...interface{}) DOMPointReadOnly {
 	val := d.Call("fromPoint", args...)
-	return jsValueToDOMPointReadOnly(val.JSValue())
+	return JSValueToDOMPointReadOnly(val.JSValue())
 }
 func (d DOMPointReadOnly) MatrixTransform(args ...interface{}) DOMPoint {
 	val := d.Call("matrixTransform", args...)
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMPointReadOnly) ToJSON(args ...interface{}) Value {
 	val := d.Call("toJSON", args...)

@@ -19,7 +19,7 @@ type CSSImportRule struct {
 	CSSRule
 }
 
-func jsValueToCSSImportRule(val js.Value) CSSImportRule {
+func JSValueToCSSImportRule(val js.Value) CSSImportRule {
 	return CSSImportRule{Value: Value{Value: val}}
 }
 func (v Value) AsCSSImportRule() CSSImportRule { return CSSImportRule{Value: v} }
@@ -29,9 +29,9 @@ func (c CSSImportRule) GetHref() string {
 }
 func (c CSSImportRule) GetMedia() MediaList {
 	val := c.Get("media")
-	return jsValueToMediaList(val.JSValue())
+	return JSValueToMediaList(val.JSValue())
 }
 func (c CSSImportRule) GetStyleSheet() CSSStyleSheet {
 	val := c.Get("styleSheet")
-	return jsValueToCSSStyleSheet(val.JSValue())
+	return JSValueToCSSStyleSheet(val.JSValue())
 }

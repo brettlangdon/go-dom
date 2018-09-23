@@ -6,6 +6,6 @@ import "syscall/js"
 
 type BlobPart Value
 
-func jsValueToBlobPart(val js.Value) BlobPart {
-	return BlobPart(jsValueToValue(val))
+func JSValueToBlobPart(val js.Value) BlobPart {
+	return BlobPart(JSValueToValue(val))
 }

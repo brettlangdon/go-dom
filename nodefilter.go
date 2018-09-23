@@ -28,12 +28,12 @@ type NodeFilterAcceptNode struct {
 	Callback
 }
 
-func jsValueToNodeFilterAcceptNode(val js.Value) NodeFilterAcceptNode {
-	return NodeFilterAcceptNode{Callback: jsValueToCallback(val)}
+func JSValueToNodeFilterAcceptNode(val js.Value) NodeFilterAcceptNode {
+	return NodeFilterAcceptNode{Callback: JSValueToCallback(val)}
 }
 func NewNodeFilterAcceptNode(c NodeFilterAcceptNodeCallback) NodeFilterAcceptNode {
 	callback := js.NewCallback(func(args []js.Value) {
-		node := jsValueToNode(args[0])
+		node := JSValueToNode(args[0])
 		c(node)
 	})
 	return NodeFilterAcceptNode{Callback: Callback{Callback: callback}}
@@ -44,5 +44,5 @@ type NodeFilter struct {
 	AcceptNode NodeFilterAcceptNodeCallback
 }
 
-func jsValueToNodeFilter(val js.Value) NodeFilter { return NodeFilter{Value: Value{Value: val}} }
+func JSValueToNodeFilter(val js.Value) NodeFilter { return NodeFilter{Value: Value{Value: val}} }
 func (v Value) AsNodeFilter() NodeFilter          { return NodeFilter{Value: v} }

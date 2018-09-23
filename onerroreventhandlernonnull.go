@@ -9,16 +9,16 @@ type OnErrorEventHandlerNonNull struct {
 	Callback
 }
 
-func jsValueToOnErrorEventHandlerNonNull(val js.Value) OnErrorEventHandlerNonNull {
-	return OnErrorEventHandlerNonNull{Callback: jsValueToCallback(val)}
+func JSValueToOnErrorEventHandlerNonNull(val js.Value) OnErrorEventHandlerNonNull {
+	return OnErrorEventHandlerNonNull{Callback: JSValueToCallback(val)}
 }
 func NewOnErrorEventHandlerNonNull(c OnErrorEventHandlerNonNullCallback) OnErrorEventHandlerNonNull {
 	callback := js.NewCallback(func(args []js.Value) {
-		event := jsValueToValue(args[0])
+		event := JSValueToValue(args[0])
 		source := args[1].String()
 		lineno := args[2].Float()
 		colno := args[3].Float()
-		error := jsValueToValue(args[4])
+		error := JSValueToValue(args[4])
 		c(event, source, lineno, colno, error)
 	})
 	return OnErrorEventHandlerNonNull{Callback: Callback{Callback: callback}}

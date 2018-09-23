@@ -11,7 +11,7 @@ type CanvasGradient struct {
 	Value
 }
 
-func jsValueToCanvasGradient(val js.Value) CanvasGradient {
+func JSValueToCanvasGradient(val js.Value) CanvasGradient {
 	return CanvasGradient{Value: Value{Value: val}}
 }
 func (v Value) AsCanvasGradient() CanvasGradient { return CanvasGradient{Value: v} }

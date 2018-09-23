@@ -15,17 +15,17 @@ type DataTransferItemList struct {
 	Value
 }
 
-func jsValueToDataTransferItemList(val js.Value) DataTransferItemList {
+func JSValueToDataTransferItemList(val js.Value) DataTransferItemList {
 	return DataTransferItemList{Value: Value{Value: val}}
 }
 func (v Value) AsDataTransferItemList() DataTransferItemList { return DataTransferItemList{Value: v} }
 func (d DataTransferItemList) Add(args ...interface{}) DataTransferItem {
 	val := d.Call("add", args...)
-	return jsValueToDataTransferItem(val.JSValue())
+	return JSValueToDataTransferItem(val.JSValue())
 }
 func (d DataTransferItemList) AddWithArgs(args ...interface{}) DataTransferItem {
 	val := d.Call("addWithArgs", args...)
-	return jsValueToDataTransferItem(val.JSValue())
+	return JSValueToDataTransferItem(val.JSValue())
 }
 func (d DataTransferItemList) Clear(args ...interface{}) {
 	d.Call("clear", args...)

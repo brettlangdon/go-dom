@@ -9,12 +9,12 @@ type OnBeforeUnloadEventHandlerNonNull struct {
 	Callback
 }
 
-func jsValueToOnBeforeUnloadEventHandlerNonNull(val js.Value) OnBeforeUnloadEventHandlerNonNull {
-	return OnBeforeUnloadEventHandlerNonNull{Callback: jsValueToCallback(val)}
+func JSValueToOnBeforeUnloadEventHandlerNonNull(val js.Value) OnBeforeUnloadEventHandlerNonNull {
+	return OnBeforeUnloadEventHandlerNonNull{Callback: JSValueToCallback(val)}
 }
 func NewOnBeforeUnloadEventHandlerNonNull(c OnBeforeUnloadEventHandlerNonNullCallback) OnBeforeUnloadEventHandlerNonNull {
 	callback := js.NewCallback(func(args []js.Value) {
-		event := jsValueToEvent(args[0])
+		event := JSValueToEvent(args[0])
 		c(event)
 	})
 	return OnBeforeUnloadEventHandlerNonNull{Callback: Callback{Callback: callback}}

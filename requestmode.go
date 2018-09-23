@@ -13,6 +13,6 @@ const (
 	RequestModeCors       RequestMode = "cors"
 )
 
-func jsValueToRequestMode(val js.Value) RequestMode {
+func JSValueToRequestMode(val js.Value) RequestMode {
 	return RequestMode(val.String())
 }

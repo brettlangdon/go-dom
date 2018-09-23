@@ -19,7 +19,7 @@ type HTMLOptionsCollection struct {
 	HTMLCollection
 }
 
-func jsValueToHTMLOptionsCollection(val js.Value) HTMLOptionsCollection {
+func JSValueToHTMLOptionsCollection(val js.Value) HTMLOptionsCollection {
 	return HTMLOptionsCollection{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLOptionsCollection() HTMLOptionsCollection { return HTMLOptionsCollection{Value: v} }

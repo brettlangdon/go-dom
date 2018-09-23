@@ -34,11 +34,11 @@ type WebSocket struct {
 	EventTarget
 }
 
-func jsValueToWebSocket(val js.Value) WebSocket { return WebSocket{Value: Value{Value: val}} }
+func JSValueToWebSocket(val js.Value) WebSocket { return WebSocket{Value: Value{Value: val}} }
 func (v Value) AsWebSocket() WebSocket          { return WebSocket{Value: v} }
 func (w WebSocket) GetBinaryType() BinaryType {
 	val := w.Get("binaryType")
-	return jsValueToBinaryType(val.JSValue())
+	return JSValueToBinaryType(val.JSValue())
 }
 func (w WebSocket) SetBinaryType(val BinaryType) {
 	w.Set("binaryType", val)
@@ -56,28 +56,28 @@ func (w WebSocket) GetExtensions() string {
 }
 func (w WebSocket) GetOnclose() EventHandler {
 	val := w.Get("onclose")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WebSocket) SetOnclose(val EventHandler) {
 	w.Set("onclose", val)
 }
 func (w WebSocket) GetOnerror() EventHandler {
 	val := w.Get("onerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WebSocket) SetOnerror(val EventHandler) {
 	w.Set("onerror", val)
 }
 func (w WebSocket) GetOnmessage() EventHandler {
 	val := w.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WebSocket) SetOnmessage(val EventHandler) {
 	w.Set("onmessage", val)
 }
 func (w WebSocket) GetOnopen() EventHandler {
 	val := w.Get("onopen")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w WebSocket) SetOnopen(val EventHandler) {
 	w.Set("onopen", val)

@@ -32,7 +32,7 @@ type PageTransitionEvent struct {
 	Event
 }
 
-func jsValueToPageTransitionEvent(val js.Value) PageTransitionEvent {
+func JSValueToPageTransitionEvent(val js.Value) PageTransitionEvent {
 	return PageTransitionEvent{Value: Value{Value: val}}
 }
 func (v Value) AsPageTransitionEvent() PageTransitionEvent { return PageTransitionEvent{Value: v} }

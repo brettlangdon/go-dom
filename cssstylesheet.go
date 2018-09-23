@@ -23,13 +23,13 @@ type CSSStyleSheet struct {
 	StyleSheet
 }
 
-func jsValueToCSSStyleSheet(val js.Value) CSSStyleSheet {
+func JSValueToCSSStyleSheet(val js.Value) CSSStyleSheet {
 	return CSSStyleSheet{Value: Value{Value: val}}
 }
 func (v Value) AsCSSStyleSheet() CSSStyleSheet { return CSSStyleSheet{Value: v} }
 func (c CSSStyleSheet) GetCssRules() CSSRuleList {
 	val := c.Get("cssRules")
-	return jsValueToCSSRuleList(val.JSValue())
+	return JSValueToCSSRuleList(val.JSValue())
 }
 func (c CSSStyleSheet) DeleteRule(args ...interface{}) {
 	c.Call("deleteRule", args...)
@@ -40,5 +40,5 @@ func (c CSSStyleSheet) InsertRule(args ...interface{}) float64 {
 }
 func (c CSSStyleSheet) GetOwnerRule() CSSRule {
 	val := c.Get("ownerRule")
-	return jsValueToCSSRule(val.JSValue())
+	return JSValueToCSSRule(val.JSValue())
 }

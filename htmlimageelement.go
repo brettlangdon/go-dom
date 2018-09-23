@@ -135,7 +135,7 @@ type HTMLImageElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLImageElement(val js.Value) HTMLImageElement {
+func JSValueToHTMLImageElement(val js.Value) HTMLImageElement {
 	return HTMLImageElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLImageElement() HTMLImageElement { return HTMLImageElement{Value: v} }

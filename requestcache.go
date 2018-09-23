@@ -15,6 +15,6 @@ const (
 	RequestCacheOnlyIfCached RequestCache = "only-if-cached"
 )
 
-func jsValueToRequestCache(val js.Value) RequestCache {
+func JSValueToRequestCache(val js.Value) RequestCache {
 	return RequestCache(val.String())
 }

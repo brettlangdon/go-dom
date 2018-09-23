@@ -6,6 +6,6 @@ import "syscall/js"
 
 type RenderingContext Value
 
-func jsValueToRenderingContext(val js.Value) RenderingContext {
-	return RenderingContext(jsValueToValue(val))
+func JSValueToRenderingContext(val js.Value) RenderingContext {
+	return RenderingContext(JSValueToValue(val))
 }

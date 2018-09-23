@@ -99,7 +99,7 @@ type OffscreenCanvasRenderingContext2D struct {
 	Value
 }
 
-func jsValueToOffscreenCanvasRenderingContext2D(val js.Value) OffscreenCanvasRenderingContext2D {
+func JSValueToOffscreenCanvasRenderingContext2D(val js.Value) OffscreenCanvasRenderingContext2D {
 	return OffscreenCanvasRenderingContext2D{Value: Value{Value: val}}
 }
 func (v Value) AsOffscreenCanvasRenderingContext2D() OffscreenCanvasRenderingContext2D {
@@ -119,7 +119,7 @@ func (o OffscreenCanvasRenderingContext2D) BezierCurveTo(args ...interface{}) {
 }
 func (o OffscreenCanvasRenderingContext2D) GetCanvas() OffscreenCanvas {
 	val := o.Get("canvas")
-	return jsValueToOffscreenCanvas(val.JSValue())
+	return JSValueToOffscreenCanvas(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) ClearRect(args ...interface{}) {
 	o.Call("clearRect", args...)
@@ -138,27 +138,27 @@ func (o OffscreenCanvasRenderingContext2D) Commit(args ...interface{}) {
 }
 func (o OffscreenCanvasRenderingContext2D) CreateImageData(args ...interface{}) ImageData {
 	val := o.Call("createImageData", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) CreateImageDataWithArgs(args ...interface{}) ImageData {
 	val := o.Call("createImageDataWithArgs", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) CreateLinearGradient(args ...interface{}) CanvasGradient {
 	val := o.Call("createLinearGradient", args...)
-	return jsValueToCanvasGradient(val.JSValue())
+	return JSValueToCanvasGradient(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) CreatePattern(args ...interface{}) CanvasPattern {
 	val := o.Call("createPattern", args...)
-	return jsValueToCanvasPattern(val.JSValue())
+	return JSValueToCanvasPattern(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) CreateRadialGradient(args ...interface{}) CanvasGradient {
 	val := o.Call("createRadialGradient", args...)
-	return jsValueToCanvasGradient(val.JSValue())
+	return JSValueToCanvasGradient(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) GetDirection() CanvasDirection {
 	val := o.Get("direction")
-	return jsValueToCanvasDirection(val.JSValue())
+	return JSValueToCanvasDirection(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetDirection(val CanvasDirection) {
 	o.Set("direction", val)
@@ -204,14 +204,14 @@ func (o OffscreenCanvasRenderingContext2D) SetFont(val string) {
 }
 func (o OffscreenCanvasRenderingContext2D) GetImageData(args ...interface{}) ImageData {
 	val := o.Call("getImageData", args...)
-	return jsValueToImageData(val.JSValue())
+	return JSValueToImageData(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) GetLineDash(args ...interface{}) {
 	o.Call("getLineDash", args...)
 }
 func (o OffscreenCanvasRenderingContext2D) GetTransform(args ...interface{}) DOMMatrix {
 	val := o.Call("getTransform", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) GetGlobalAlpha() float64 {
 	val := o.Get("globalAlpha")
@@ -236,7 +236,7 @@ func (o OffscreenCanvasRenderingContext2D) SetImageSmoothingEnabled(val bool) {
 }
 func (o OffscreenCanvasRenderingContext2D) GetImageSmoothingQuality() ImageSmoothingQuality {
 	val := o.Get("imageSmoothingQuality")
-	return jsValueToImageSmoothingQuality(val.JSValue())
+	return JSValueToImageSmoothingQuality(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetImageSmoothingQuality(val ImageSmoothingQuality) {
 	o.Set("imageSmoothingQuality", val)
@@ -259,7 +259,7 @@ func (o OffscreenCanvasRenderingContext2D) IsPointInStrokeWithArgs(args ...inter
 }
 func (o OffscreenCanvasRenderingContext2D) GetLineCap() CanvasLineCap {
 	val := o.Get("lineCap")
-	return jsValueToCanvasLineCap(val.JSValue())
+	return JSValueToCanvasLineCap(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetLineCap(val CanvasLineCap) {
 	o.Set("lineCap", val)
@@ -273,7 +273,7 @@ func (o OffscreenCanvasRenderingContext2D) SetLineDashOffset(val float64) {
 }
 func (o OffscreenCanvasRenderingContext2D) GetLineJoin() CanvasLineJoin {
 	val := o.Get("lineJoin")
-	return jsValueToCanvasLineJoin(val.JSValue())
+	return JSValueToCanvasLineJoin(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetLineJoin(val CanvasLineJoin) {
 	o.Set("lineJoin", val)
@@ -290,7 +290,7 @@ func (o OffscreenCanvasRenderingContext2D) SetLineWidth(val float64) {
 }
 func (o OffscreenCanvasRenderingContext2D) MeasureText(args ...interface{}) TextMetrics {
 	val := o.Call("measureText", args...)
-	return jsValueToTextMetrics(val.JSValue())
+	return JSValueToTextMetrics(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) GetMiterLimit() float64 {
 	val := o.Get("miterLimit")
@@ -387,14 +387,14 @@ func (o OffscreenCanvasRenderingContext2D) StrokeWithArgs(args ...interface{}) {
 }
 func (o OffscreenCanvasRenderingContext2D) GetTextAlign() CanvasTextAlign {
 	val := o.Get("textAlign")
-	return jsValueToCanvasTextAlign(val.JSValue())
+	return JSValueToCanvasTextAlign(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetTextAlign(val CanvasTextAlign) {
 	o.Set("textAlign", val)
 }
 func (o OffscreenCanvasRenderingContext2D) GetTextBaseline() CanvasTextBaseline {
 	val := o.Get("textBaseline")
-	return jsValueToCanvasTextBaseline(val.JSValue())
+	return JSValueToCanvasTextBaseline(val.JSValue())
 }
 func (o OffscreenCanvasRenderingContext2D) SetTextBaseline(val CanvasTextBaseline) {
 	o.Set("textBaseline", val)

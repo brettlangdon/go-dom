@@ -12,7 +12,7 @@ type ImageBitmapRenderingContext struct {
 	Value
 }
 
-func jsValueToImageBitmapRenderingContext(val js.Value) ImageBitmapRenderingContext {
+func JSValueToImageBitmapRenderingContext(val js.Value) ImageBitmapRenderingContext {
 	return ImageBitmapRenderingContext{Value: Value{Value: val}}
 }
 func (v Value) AsImageBitmapRenderingContext() ImageBitmapRenderingContext {
@@ -20,7 +20,7 @@ func (v Value) AsImageBitmapRenderingContext() ImageBitmapRenderingContext {
 }
 func (i ImageBitmapRenderingContext) GetCanvas() HTMLCanvasElement {
 	val := i.Get("canvas")
-	return jsValueToHTMLCanvasElement(val.JSValue())
+	return JSValueToHTMLCanvasElement(val.JSValue())
 }
 func (i ImageBitmapRenderingContext) TransferFromImageBitmap(args ...interface{}) {
 	i.Call("transferFromImageBitmap", args...)

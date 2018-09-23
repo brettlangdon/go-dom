@@ -112,7 +112,7 @@ type HTMLParamElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLParamElement(val js.Value) HTMLParamElement {
+func JSValueToHTMLParamElement(val js.Value) HTMLParamElement {
 	return HTMLParamElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLParamElement() HTMLParamElement { return HTMLParamElement{Value: v} }

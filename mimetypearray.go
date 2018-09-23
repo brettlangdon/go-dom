@@ -13,13 +13,13 @@ type MimeTypeArray struct {
 	Value
 }
 
-func jsValueToMimeTypeArray(val js.Value) MimeTypeArray {
+func JSValueToMimeTypeArray(val js.Value) MimeTypeArray {
 	return MimeTypeArray{Value: Value{Value: val}}
 }
 func (v Value) AsMimeTypeArray() MimeTypeArray { return MimeTypeArray{Value: v} }
 func (m MimeTypeArray) Item(args ...interface{}) MimeType {
 	val := m.Call("item", args...)
-	return jsValueToMimeType(val.JSValue())
+	return JSValueToMimeType(val.JSValue())
 }
 func (m MimeTypeArray) GetLength() float64 {
 	val := m.Get("length")
@@ -27,5 +27,5 @@ func (m MimeTypeArray) GetLength() float64 {
 }
 func (m MimeTypeArray) NamedItem(args ...interface{}) MimeType {
 	val := m.Call("namedItem", args...)
-	return jsValueToMimeType(val.JSValue())
+	return JSValueToMimeType(val.JSValue())
 }

@@ -18,7 +18,7 @@ type StyleSheet struct {
 	Value
 }
 
-func jsValueToStyleSheet(val js.Value) StyleSheet { return StyleSheet{Value: Value{Value: val}} }
+func JSValueToStyleSheet(val js.Value) StyleSheet { return StyleSheet{Value: Value{Value: val}} }
 func (v Value) AsStyleSheet() StyleSheet          { return StyleSheet{Value: v} }
 func (s StyleSheet) GetDisabled() bool {
 	val := s.Get("disabled")
@@ -33,7 +33,7 @@ func (s StyleSheet) GetHref() string {
 }
 func (s StyleSheet) GetMedia() MediaList {
 	val := s.Get("media")
-	return jsValueToMediaList(val.JSValue())
+	return JSValueToMediaList(val.JSValue())
 }
 func (s StyleSheet) GetOwnerNode() Value {
 	val := s.Get("ownerNode")
@@ -41,7 +41,7 @@ func (s StyleSheet) GetOwnerNode() Value {
 }
 func (s StyleSheet) GetParentStyleSheet() StyleSheet {
 	val := s.Get("parentStyleSheet")
-	return jsValueToStyleSheet(val.JSValue())
+	return JSValueToStyleSheet(val.JSValue())
 }
 func (s StyleSheet) GetTitle() string {
 	val := s.Get("title")

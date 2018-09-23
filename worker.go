@@ -22,25 +22,25 @@ type Worker struct {
 	EventTarget
 }
 
-func jsValueToWorker(val js.Value) Worker { return Worker{Value: Value{Value: val}} }
+func JSValueToWorker(val js.Value) Worker { return Worker{Value: Value{Value: val}} }
 func (v Value) AsWorker() Worker          { return Worker{Value: v} }
 func (w Worker) GetOnerror() EventHandler {
 	val := w.Get("onerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w Worker) SetOnerror(val EventHandler) {
 	w.Set("onerror", val)
 }
 func (w Worker) GetOnmessage() EventHandler {
 	val := w.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w Worker) SetOnmessage(val EventHandler) {
 	w.Set("onmessage", val)
 }
 func (w Worker) GetOnmessageerror() EventHandler {
 	val := w.Get("onmessageerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (w Worker) SetOnmessageerror(val EventHandler) {
 	w.Set("onmessageerror", val)

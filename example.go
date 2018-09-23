@@ -10,5 +10,5 @@ type Example struct {
 	Value
 }
 
-func jsValueToExample(val js.Value) Example { return Example{Value: Value{Value: val}} }
+func JSValueToExample(val js.Value) Example { return Example{Value: Value{Value: val}} }
 func (v Value) AsExample() Example          { return Example{Value: v} }

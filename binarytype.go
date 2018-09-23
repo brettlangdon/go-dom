@@ -11,6 +11,6 @@ const (
 	BinaryTypeArraybuffer BinaryType = "arraybuffer"
 )
 
-func jsValueToBinaryType(val js.Value) BinaryType {
+func JSValueToBinaryType(val js.Value) BinaryType {
 	return BinaryType(val.String())
 }

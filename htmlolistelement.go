@@ -114,7 +114,7 @@ type HTMLOListElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLOListElement(val js.Value) HTMLOListElement {
+func JSValueToHTMLOListElement(val js.Value) HTMLOListElement {
 	return HTMLOListElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLOListElement() HTMLOListElement { return HTMLOListElement{Value: v} }

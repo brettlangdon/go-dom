@@ -110,7 +110,7 @@ type HTMLTableColElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTableColElement(val js.Value) HTMLTableColElement {
+func JSValueToHTMLTableColElement(val js.Value) HTMLTableColElement {
 	return HTMLTableColElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableColElement() HTMLTableColElement { return HTMLTableColElement{Value: v} }

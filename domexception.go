@@ -13,7 +13,7 @@ type DOMException struct {
 	Value
 }
 
-func jsValueToDOMException(val js.Value) DOMException { return DOMException{Value: Value{Value: val}} }
+func JSValueToDOMException(val js.Value) DOMException { return DOMException{Value: Value{Value: val}} }
 func (v Value) AsDOMException() DOMException          { return DOMException{Value: v} }
 func (d DOMException) GetCode() int {
 	val := d.Get("code")

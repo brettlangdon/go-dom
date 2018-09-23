@@ -110,7 +110,7 @@ type HTMLTimeElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTimeElement(val js.Value) HTMLTimeElement {
+func JSValueToHTMLTimeElement(val js.Value) HTMLTimeElement {
 	return HTMLTimeElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTimeElement() HTMLTimeElement { return HTMLTimeElement{Value: v} }

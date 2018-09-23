@@ -58,15 +58,15 @@ type Text struct {
 	EventTarget
 }
 
-func jsValueToText(val js.Value) Text { return Text{Value: Value{Value: val}} }
+func JSValueToText(val js.Value) Text { return Text{Value: Value{Value: val}} }
 func (v Value) AsText() Text          { return Text{Value: v} }
 func (t Text) GetAssignedSlot() HTMLSlotElement {
 	val := t.Get("assignedSlot")
-	return jsValueToHTMLSlotElement(val.JSValue())
+	return JSValueToHTMLSlotElement(val.JSValue())
 }
 func (t Text) SplitText(args ...interface{}) Text {
 	val := t.Call("splitText", args...)
-	return jsValueToText(val.JSValue())
+	return JSValueToText(val.JSValue())
 }
 func (t Text) GetWholeText() string {
 	val := t.Get("wholeText")

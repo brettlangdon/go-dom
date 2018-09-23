@@ -11,6 +11,6 @@ const (
 	WorkerTypeModule  WorkerType = "module"
 )
 
-func jsValueToWorkerType(val js.Value) WorkerType {
+func JSValueToWorkerType(val js.Value) WorkerType {
 	return WorkerType(val.String())
 }

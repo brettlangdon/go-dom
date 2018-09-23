@@ -110,7 +110,7 @@ type HTMLDirectoryElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLDirectoryElement(val js.Value) HTMLDirectoryElement {
+func JSValueToHTMLDirectoryElement(val js.Value) HTMLDirectoryElement {
 	return HTMLDirectoryElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLDirectoryElement() HTMLDirectoryElement { return HTMLDirectoryElement{Value: v} }

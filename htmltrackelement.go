@@ -120,7 +120,7 @@ type HTMLTrackElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTrackElement(val js.Value) HTMLTrackElement {
+func JSValueToHTMLTrackElement(val js.Value) HTMLTrackElement {
 	return HTMLTrackElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTrackElement() HTMLTrackElement { return HTMLTrackElement{Value: v} }
@@ -165,5 +165,5 @@ func (h HTMLTrackElement) SetSrclang(val string) {
 }
 func (h HTMLTrackElement) GetTrack() TextTrack {
 	val := h.Get("track")
-	return jsValueToTextTrack(val.JSValue())
+	return JSValueToTextTrack(val.JSValue())
 }

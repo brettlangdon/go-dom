@@ -252,7 +252,7 @@ type HTMLElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLElement(val js.Value) HTMLElement { return HTMLElement{Value: Value{Value: val}} }
+func JSValueToHTMLElement(val js.Value) HTMLElement { return HTMLElement{Value: Value{Value: val}} }
 func (v Value) AsHTMLElement() HTMLElement          { return HTMLElement{Value: v} }
 func (h HTMLElement) GetAccessKey() string {
 	val := h.Get("accessKey")
@@ -287,7 +287,7 @@ func (h HTMLElement) SetContentEditable(val string) {
 }
 func (h HTMLElement) GetDataset() DOMStringMap {
 	val := h.Get("dataset")
-	return jsValueToDOMStringMap(val.JSValue())
+	return JSValueToDOMStringMap(val.JSValue())
 }
 func (h HTMLElement) GetDir() string {
 	val := h.Get("dir")
@@ -354,455 +354,455 @@ func (h HTMLElement) SetNonce(val string) {
 }
 func (h HTMLElement) GetOnabort() EventHandler {
 	val := h.Get("onabort")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnabort(val EventHandler) {
 	h.Set("onabort", val)
 }
 func (h HTMLElement) GetOnauxclick() EventHandler {
 	val := h.Get("onauxclick")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnauxclick(val EventHandler) {
 	h.Set("onauxclick", val)
 }
 func (h HTMLElement) GetOnblur() EventHandler {
 	val := h.Get("onblur")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnblur(val EventHandler) {
 	h.Set("onblur", val)
 }
 func (h HTMLElement) GetOncancel() EventHandler {
 	val := h.Get("oncancel")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncancel(val EventHandler) {
 	h.Set("oncancel", val)
 }
 func (h HTMLElement) GetOncanplay() EventHandler {
 	val := h.Get("oncanplay")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncanplay(val EventHandler) {
 	h.Set("oncanplay", val)
 }
 func (h HTMLElement) GetOncanplaythrough() EventHandler {
 	val := h.Get("oncanplaythrough")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncanplaythrough(val EventHandler) {
 	h.Set("oncanplaythrough", val)
 }
 func (h HTMLElement) GetOnchange() EventHandler {
 	val := h.Get("onchange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnchange(val EventHandler) {
 	h.Set("onchange", val)
 }
 func (h HTMLElement) GetOnclick() EventHandler {
 	val := h.Get("onclick")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnclick(val EventHandler) {
 	h.Set("onclick", val)
 }
 func (h HTMLElement) GetOnclose() EventHandler {
 	val := h.Get("onclose")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnclose(val EventHandler) {
 	h.Set("onclose", val)
 }
 func (h HTMLElement) GetOncontextmenu() EventHandler {
 	val := h.Get("oncontextmenu")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncontextmenu(val EventHandler) {
 	h.Set("oncontextmenu", val)
 }
 func (h HTMLElement) GetOncopy() EventHandler {
 	val := h.Get("oncopy")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncopy(val EventHandler) {
 	h.Set("oncopy", val)
 }
 func (h HTMLElement) GetOncuechange() EventHandler {
 	val := h.Get("oncuechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncuechange(val EventHandler) {
 	h.Set("oncuechange", val)
 }
 func (h HTMLElement) GetOncut() EventHandler {
 	val := h.Get("oncut")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOncut(val EventHandler) {
 	h.Set("oncut", val)
 }
 func (h HTMLElement) GetOndblclick() EventHandler {
 	val := h.Get("ondblclick")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndblclick(val EventHandler) {
 	h.Set("ondblclick", val)
 }
 func (h HTMLElement) GetOndrag() EventHandler {
 	val := h.Get("ondrag")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndrag(val EventHandler) {
 	h.Set("ondrag", val)
 }
 func (h HTMLElement) GetOndragend() EventHandler {
 	val := h.Get("ondragend")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragend(val EventHandler) {
 	h.Set("ondragend", val)
 }
 func (h HTMLElement) GetOndragenter() EventHandler {
 	val := h.Get("ondragenter")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragenter(val EventHandler) {
 	h.Set("ondragenter", val)
 }
 func (h HTMLElement) GetOndragexit() EventHandler {
 	val := h.Get("ondragexit")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragexit(val EventHandler) {
 	h.Set("ondragexit", val)
 }
 func (h HTMLElement) GetOndragleave() EventHandler {
 	val := h.Get("ondragleave")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragleave(val EventHandler) {
 	h.Set("ondragleave", val)
 }
 func (h HTMLElement) GetOndragover() EventHandler {
 	val := h.Get("ondragover")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragover(val EventHandler) {
 	h.Set("ondragover", val)
 }
 func (h HTMLElement) GetOndragstart() EventHandler {
 	val := h.Get("ondragstart")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndragstart(val EventHandler) {
 	h.Set("ondragstart", val)
 }
 func (h HTMLElement) GetOndrop() EventHandler {
 	val := h.Get("ondrop")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndrop(val EventHandler) {
 	h.Set("ondrop", val)
 }
 func (h HTMLElement) GetOndurationchange() EventHandler {
 	val := h.Get("ondurationchange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOndurationchange(val EventHandler) {
 	h.Set("ondurationchange", val)
 }
 func (h HTMLElement) GetOnemptied() EventHandler {
 	val := h.Get("onemptied")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnemptied(val EventHandler) {
 	h.Set("onemptied", val)
 }
 func (h HTMLElement) GetOnended() EventHandler {
 	val := h.Get("onended")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnended(val EventHandler) {
 	h.Set("onended", val)
 }
 func (h HTMLElement) GetOnerror() OnErrorEventHandler {
 	val := h.Get("onerror")
-	return jsValueToOnErrorEventHandler(val.JSValue())
+	return JSValueToOnErrorEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnerror(val OnErrorEventHandler) {
 	h.Set("onerror", val)
 }
 func (h HTMLElement) GetOnfocus() EventHandler {
 	val := h.Get("onfocus")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnfocus(val EventHandler) {
 	h.Set("onfocus", val)
 }
 func (h HTMLElement) GetOninput() EventHandler {
 	val := h.Get("oninput")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOninput(val EventHandler) {
 	h.Set("oninput", val)
 }
 func (h HTMLElement) GetOninvalid() EventHandler {
 	val := h.Get("oninvalid")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOninvalid(val EventHandler) {
 	h.Set("oninvalid", val)
 }
 func (h HTMLElement) GetOnkeydown() EventHandler {
 	val := h.Get("onkeydown")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnkeydown(val EventHandler) {
 	h.Set("onkeydown", val)
 }
 func (h HTMLElement) GetOnkeypress() EventHandler {
 	val := h.Get("onkeypress")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnkeypress(val EventHandler) {
 	h.Set("onkeypress", val)
 }
 func (h HTMLElement) GetOnkeyup() EventHandler {
 	val := h.Get("onkeyup")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnkeyup(val EventHandler) {
 	h.Set("onkeyup", val)
 }
 func (h HTMLElement) GetOnload() EventHandler {
 	val := h.Get("onload")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnload(val EventHandler) {
 	h.Set("onload", val)
 }
 func (h HTMLElement) GetOnloadeddata() EventHandler {
 	val := h.Get("onloadeddata")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnloadeddata(val EventHandler) {
 	h.Set("onloadeddata", val)
 }
 func (h HTMLElement) GetOnloadedmetadata() EventHandler {
 	val := h.Get("onloadedmetadata")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnloadedmetadata(val EventHandler) {
 	h.Set("onloadedmetadata", val)
 }
 func (h HTMLElement) GetOnloadend() EventHandler {
 	val := h.Get("onloadend")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnloadend(val EventHandler) {
 	h.Set("onloadend", val)
 }
 func (h HTMLElement) GetOnloadstart() EventHandler {
 	val := h.Get("onloadstart")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnloadstart(val EventHandler) {
 	h.Set("onloadstart", val)
 }
 func (h HTMLElement) GetOnmousedown() EventHandler {
 	val := h.Get("onmousedown")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmousedown(val EventHandler) {
 	h.Set("onmousedown", val)
 }
 func (h HTMLElement) GetOnmouseenter() EventHandler {
 	val := h.Get("onmouseenter")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmouseenter(val EventHandler) {
 	h.Set("onmouseenter", val)
 }
 func (h HTMLElement) GetOnmouseleave() EventHandler {
 	val := h.Get("onmouseleave")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmouseleave(val EventHandler) {
 	h.Set("onmouseleave", val)
 }
 func (h HTMLElement) GetOnmousemove() EventHandler {
 	val := h.Get("onmousemove")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmousemove(val EventHandler) {
 	h.Set("onmousemove", val)
 }
 func (h HTMLElement) GetOnmouseout() EventHandler {
 	val := h.Get("onmouseout")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmouseout(val EventHandler) {
 	h.Set("onmouseout", val)
 }
 func (h HTMLElement) GetOnmouseover() EventHandler {
 	val := h.Get("onmouseover")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmouseover(val EventHandler) {
 	h.Set("onmouseover", val)
 }
 func (h HTMLElement) GetOnmouseup() EventHandler {
 	val := h.Get("onmouseup")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnmouseup(val EventHandler) {
 	h.Set("onmouseup", val)
 }
 func (h HTMLElement) GetOnpaste() EventHandler {
 	val := h.Get("onpaste")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnpaste(val EventHandler) {
 	h.Set("onpaste", val)
 }
 func (h HTMLElement) GetOnpause() EventHandler {
 	val := h.Get("onpause")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnpause(val EventHandler) {
 	h.Set("onpause", val)
 }
 func (h HTMLElement) GetOnplay() EventHandler {
 	val := h.Get("onplay")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnplay(val EventHandler) {
 	h.Set("onplay", val)
 }
 func (h HTMLElement) GetOnplaying() EventHandler {
 	val := h.Get("onplaying")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnplaying(val EventHandler) {
 	h.Set("onplaying", val)
 }
 func (h HTMLElement) GetOnprogress() EventHandler {
 	val := h.Get("onprogress")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnprogress(val EventHandler) {
 	h.Set("onprogress", val)
 }
 func (h HTMLElement) GetOnratechange() EventHandler {
 	val := h.Get("onratechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnratechange(val EventHandler) {
 	h.Set("onratechange", val)
 }
 func (h HTMLElement) GetOnreset() EventHandler {
 	val := h.Get("onreset")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnreset(val EventHandler) {
 	h.Set("onreset", val)
 }
 func (h HTMLElement) GetOnresize() EventHandler {
 	val := h.Get("onresize")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnresize(val EventHandler) {
 	h.Set("onresize", val)
 }
 func (h HTMLElement) GetOnscroll() EventHandler {
 	val := h.Get("onscroll")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnscroll(val EventHandler) {
 	h.Set("onscroll", val)
 }
 func (h HTMLElement) GetOnsecuritypolicyviolation() EventHandler {
 	val := h.Get("onsecuritypolicyviolation")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnsecuritypolicyviolation(val EventHandler) {
 	h.Set("onsecuritypolicyviolation", val)
 }
 func (h HTMLElement) GetOnseeked() EventHandler {
 	val := h.Get("onseeked")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnseeked(val EventHandler) {
 	h.Set("onseeked", val)
 }
 func (h HTMLElement) GetOnseeking() EventHandler {
 	val := h.Get("onseeking")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnseeking(val EventHandler) {
 	h.Set("onseeking", val)
 }
 func (h HTMLElement) GetOnselect() EventHandler {
 	val := h.Get("onselect")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnselect(val EventHandler) {
 	h.Set("onselect", val)
 }
 func (h HTMLElement) GetOnstalled() EventHandler {
 	val := h.Get("onstalled")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnstalled(val EventHandler) {
 	h.Set("onstalled", val)
 }
 func (h HTMLElement) GetOnsubmit() EventHandler {
 	val := h.Get("onsubmit")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnsubmit(val EventHandler) {
 	h.Set("onsubmit", val)
 }
 func (h HTMLElement) GetOnsuspend() EventHandler {
 	val := h.Get("onsuspend")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnsuspend(val EventHandler) {
 	h.Set("onsuspend", val)
 }
 func (h HTMLElement) GetOntimeupdate() EventHandler {
 	val := h.Get("ontimeupdate")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOntimeupdate(val EventHandler) {
 	h.Set("ontimeupdate", val)
 }
 func (h HTMLElement) GetOntoggle() EventHandler {
 	val := h.Get("ontoggle")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOntoggle(val EventHandler) {
 	h.Set("ontoggle", val)
 }
 func (h HTMLElement) GetOnvolumechange() EventHandler {
 	val := h.Get("onvolumechange")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnvolumechange(val EventHandler) {
 	h.Set("onvolumechange", val)
 }
 func (h HTMLElement) GetOnwaiting() EventHandler {
 	val := h.Get("onwaiting")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnwaiting(val EventHandler) {
 	h.Set("onwaiting", val)
 }
 func (h HTMLElement) GetOnwheel() EventHandler {
 	val := h.Get("onwheel")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (h HTMLElement) SetOnwheel(val EventHandler) {
 	h.Set("onwheel", val)
@@ -816,7 +816,7 @@ func (h HTMLElement) SetSpellcheck(val bool) {
 }
 func (h HTMLElement) GetStyle() CSSStyleDeclaration {
 	val := h.Get("style")
-	return jsValueToCSSStyleDeclaration(val.JSValue())
+	return JSValueToCSSStyleDeclaration(val.JSValue())
 }
 func (h HTMLElement) GetTabIndex() float64 {
 	val := h.Get("tabIndex")

@@ -53,7 +53,7 @@ type DOMMatrixReadOnly struct {
 	Value
 }
 
-func jsValueToDOMMatrixReadOnly(val js.Value) DOMMatrixReadOnly {
+func JSValueToDOMMatrixReadOnly(val js.Value) DOMMatrixReadOnly {
 	return DOMMatrixReadOnly{Value: Value{Value: val}}
 }
 func (v Value) AsDOMMatrixReadOnly() DOMMatrixReadOnly { return DOMMatrixReadOnly{Value: v} }
@@ -83,27 +83,27 @@ func (d DOMMatrixReadOnly) GetF() float64 {
 }
 func (d DOMMatrixReadOnly) FlipX(args ...interface{}) DOMMatrix {
 	val := d.Call("flipX", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) FlipY(args ...interface{}) DOMMatrix {
 	val := d.Call("flipY", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) FromFloat32Array(args ...interface{}) DOMMatrixReadOnly {
 	val := d.Call("fromFloat32Array", args...)
-	return jsValueToDOMMatrixReadOnly(val.JSValue())
+	return JSValueToDOMMatrixReadOnly(val.JSValue())
 }
 func (d DOMMatrixReadOnly) FromFloat64Array(args ...interface{}) DOMMatrixReadOnly {
 	val := d.Call("fromFloat64Array", args...)
-	return jsValueToDOMMatrixReadOnly(val.JSValue())
+	return JSValueToDOMMatrixReadOnly(val.JSValue())
 }
 func (d DOMMatrixReadOnly) FromMatrix(args ...interface{}) DOMMatrixReadOnly {
 	val := d.Call("fromMatrix", args...)
-	return jsValueToDOMMatrixReadOnly(val.JSValue())
+	return JSValueToDOMMatrixReadOnly(val.JSValue())
 }
 func (d DOMMatrixReadOnly) Inverse(args ...interface{}) DOMMatrix {
 	val := d.Call("inverse", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) GetIs2D() bool {
 	val := d.Get("is2D")
@@ -179,43 +179,43 @@ func (d DOMMatrixReadOnly) GetM44() float64 {
 }
 func (d DOMMatrixReadOnly) Multiply(args ...interface{}) DOMMatrix {
 	val := d.Call("multiply", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) Rotate(args ...interface{}) DOMMatrix {
 	val := d.Call("rotate", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) RotateAxisAngle(args ...interface{}) DOMMatrix {
 	val := d.Call("rotateAxisAngle", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) RotateFromVector(args ...interface{}) DOMMatrix {
 	val := d.Call("rotateFromVector", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) Scale(args ...interface{}) DOMMatrix {
 	val := d.Call("scale", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) Scale3d(args ...interface{}) DOMMatrix {
 	val := d.Call("scale3d", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) SkewX(args ...interface{}) DOMMatrix {
 	val := d.Call("skewX", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) SkewY(args ...interface{}) DOMMatrix {
 	val := d.Call("skewY", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }
 func (d DOMMatrixReadOnly) ToFloat32Array(args ...interface{}) Float32Array {
 	val := d.Call("toFloat32Array", args...)
-	return jsValueToFloat32Array(val.JSValue())
+	return JSValueToFloat32Array(val.JSValue())
 }
 func (d DOMMatrixReadOnly) ToFloat64Array(args ...interface{}) Float64Array {
 	val := d.Call("toFloat64Array", args...)
-	return jsValueToFloat64Array(val.JSValue())
+	return JSValueToFloat64Array(val.JSValue())
 }
 func (d DOMMatrixReadOnly) ToJSON(args ...interface{}) Value {
 	val := d.Call("toJSON", args...)
@@ -223,9 +223,9 @@ func (d DOMMatrixReadOnly) ToJSON(args ...interface{}) Value {
 }
 func (d DOMMatrixReadOnly) TransformPoint(args ...interface{}) DOMPoint {
 	val := d.Call("transformPoint", args...)
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMMatrixReadOnly) Translate(args ...interface{}) DOMMatrix {
 	val := d.Call("translate", args...)
-	return jsValueToDOMMatrix(val.JSValue())
+	return JSValueToDOMMatrix(val.JSValue())
 }

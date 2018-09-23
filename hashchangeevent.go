@@ -33,7 +33,7 @@ type HashChangeEvent struct {
 	Event
 }
 
-func jsValueToHashChangeEvent(val js.Value) HashChangeEvent {
+func JSValueToHashChangeEvent(val js.Value) HashChangeEvent {
 	return HashChangeEvent{Value: Value{Value: val}}
 }
 func (v Value) AsHashChangeEvent() HashChangeEvent { return HashChangeEvent{Value: v} }

@@ -37,22 +37,22 @@ type Range struct {
 	AbstractRange
 }
 
-func jsValueToRange(val js.Value) Range { return Range{Value: Value{Value: val}} }
+func JSValueToRange(val js.Value) Range { return Range{Value: Value{Value: val}} }
 func (v Value) AsRange() Range          { return Range{Value: v} }
 func (r Range) CloneContents(args ...interface{}) DocumentFragment {
 	val := r.Call("cloneContents", args...)
-	return jsValueToDocumentFragment(val.JSValue())
+	return JSValueToDocumentFragment(val.JSValue())
 }
 func (r Range) CloneRange(args ...interface{}) Range {
 	val := r.Call("cloneRange", args...)
-	return jsValueToRange(val.JSValue())
+	return JSValueToRange(val.JSValue())
 }
 func (r Range) Collapse(args ...interface{}) {
 	r.Call("collapse", args...)
 }
 func (r Range) GetCommonAncestorContainer() Node {
 	val := r.Get("commonAncestorContainer")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (r Range) CompareBoundaryPoints(args ...interface{}) int {
 	val := r.Call("compareBoundaryPoints", args...)
@@ -70,7 +70,7 @@ func (r Range) Detach(args ...interface{}) {
 }
 func (r Range) ExtractContents(args ...interface{}) DocumentFragment {
 	val := r.Call("extractContents", args...)
-	return jsValueToDocumentFragment(val.JSValue())
+	return JSValueToDocumentFragment(val.JSValue())
 }
 func (r Range) InsertNode(args ...interface{}) {
 	r.Call("insertNode", args...)

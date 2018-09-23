@@ -30,7 +30,7 @@ type Navigator struct {
 	Value
 }
 
-func jsValueToNavigator(val js.Value) Navigator { return Navigator{Value: Value{Value: val}} }
+func JSValueToNavigator(val js.Value) Navigator { return Navigator{Value: Value{Value: val}} }
 func (v Value) AsNavigator() Navigator          { return Navigator{Value: v} }
 func (n Navigator) GetAppCodeName() string {
 	val := n.Get("appCodeName")
@@ -66,7 +66,7 @@ func (n Navigator) GetLanguages() Value {
 }
 func (n Navigator) GetMimeTypes() MimeTypeArray {
 	val := n.Get("mimeTypes")
-	return jsValueToMimeTypeArray(val.JSValue())
+	return JSValueToMimeTypeArray(val.JSValue())
 }
 func (n Navigator) GetOnLine() bool {
 	val := n.Get("onLine")
@@ -78,7 +78,7 @@ func (n Navigator) GetPlatform() string {
 }
 func (n Navigator) GetPlugins() PluginArray {
 	val := n.Get("plugins")
-	return jsValueToPluginArray(val.JSValue())
+	return JSValueToPluginArray(val.JSValue())
 }
 func (n Navigator) GetProduct() string {
 	val := n.Get("product")
@@ -93,7 +93,7 @@ func (n Navigator) RegisterProtocolHandler(args ...interface{}) {
 }
 func (n Navigator) GetStorage() StorageManager {
 	val := n.Get("storage")
-	return jsValueToStorageManager(val.JSValue())
+	return JSValueToStorageManager(val.JSValue())
 }
 func (n Navigator) UnregisterProtocolHandler(args ...interface{}) {
 	n.Call("unregisterProtocolHandler", args...)

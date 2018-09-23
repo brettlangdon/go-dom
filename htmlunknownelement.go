@@ -108,7 +108,7 @@ type HTMLUnknownElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLUnknownElement(val js.Value) HTMLUnknownElement {
+func JSValueToHTMLUnknownElement(val js.Value) HTMLUnknownElement {
 	return HTMLUnknownElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLUnknownElement() HTMLUnknownElement { return HTMLUnknownElement{Value: v} }

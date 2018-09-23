@@ -108,7 +108,7 @@ type HTMLPreElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLPreElement(val js.Value) HTMLPreElement {
+func JSValueToHTMLPreElement(val js.Value) HTMLPreElement {
 	return HTMLPreElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLPreElement() HTMLPreElement { return HTMLPreElement{Value: v} }

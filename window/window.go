@@ -1,225 +1,125 @@
 // Code generated DO NOT EDIT
-// document/document.go
-package document
+// window/window.go
+package window
 
 import dom "github.com/brettlangdon/go-dom/v1"
 import "syscall/js"
 
-var value dom.Document
+var value dom.Window
 
-func init() { value = dom.JSValueToDocument(js.Global().Get("document")) }
+func init() { value = dom.JSValueToWindow(js.Global().Get("window")) }
 func AddEventListener(args ...interface{}) {
 	value.Call("addEventListener", args...)
 }
-func AdoptNode(args ...interface{}) dom.Node {
-	val := value.Call("adoptNode", args...)
-	return dom.JSValueToNode(val.JSValue())
+func Alert(args ...interface{}) {
+	value.Call("alert", args...)
 }
-func Append(args ...interface{}) {
-	value.Call("append", args...)
+func AlertWithArgs(args ...interface{}) {
+	value.Call("alertWithArgs", args...)
 }
-func AppendChild(args ...interface{}) dom.Node {
-	val := value.Call("appendChild", args...)
-	return dom.JSValueToNode(val.JSValue())
+func GetApplicationCache() dom.ApplicationCache {
+	return value.GetApplicationCache()
 }
-func GetBaseURI() string {
-	return value.GetBaseURI()
+func Atob(args ...interface{}) []byte {
+	val := value.Call("atob", args...)
+	return []byte(val.String())
 }
-func GetCharacterSet() string {
-	return value.GetCharacterSet()
+func Blur(args ...interface{}) {
+	value.Call("blur", args...)
 }
-func GetCharset() string {
-	return value.GetCharset()
+func Btoa(args ...interface{}) string {
+	val := value.Call("btoa", args...)
+	return val.String()
 }
-func GetChildElementCount() float64 {
-	return value.GetChildElementCount()
+func CancelAnimationFrame(args ...interface{}) {
+	value.Call("cancelAnimationFrame", args...)
 }
-func GetChildNodes() dom.NodeList {
-	return value.GetChildNodes()
+func ClearInterval(args ...interface{}) {
+	value.Call("clearInterval", args...)
 }
-func GetChildren() dom.HTMLCollection {
-	return value.GetChildren()
+func ClearTimeout(args ...interface{}) {
+	value.Call("clearTimeout", args...)
 }
-func CloneNode(args ...interface{}) dom.Node {
-	val := value.Call("cloneNode", args...)
-	return dom.JSValueToNode(val.JSValue())
+func Close(args ...interface{}) {
+	value.Call("close", args...)
 }
-func CompareDocumentPosition(args ...interface{}) int {
-	val := value.Call("compareDocumentPosition", args...)
-	return val.Int()
+func GetClosed() bool {
+	return value.GetClosed()
 }
-func GetCompatMode() string {
-	return value.GetCompatMode()
-}
-func Contains(args ...interface{}) bool {
-	val := value.Call("contains", args...)
+func Confirm(args ...interface{}) bool {
+	val := value.Call("confirm", args...)
 	return val.Bool()
 }
-func GetContentType() string {
-	return value.GetContentType()
+func CreateImageBitmap(args ...interface{}) {
+	value.Call("createImageBitmap", args...)
 }
-func CreateAttribute(args ...interface{}) dom.Attr {
-	val := value.Call("createAttribute", args...)
-	return dom.JSValueToAttr(val.JSValue())
+func CreateImageBitmapWithArgs(args ...interface{}) {
+	value.Call("createImageBitmapWithArgs", args...)
 }
-func CreateAttributeNS(args ...interface{}) dom.Attr {
-	val := value.Call("createAttributeNS", args...)
-	return dom.JSValueToAttr(val.JSValue())
-}
-func CreateCDATASection(args ...interface{}) dom.CDATASection {
-	val := value.Call("createCDATASection", args...)
-	return dom.JSValueToCDATASection(val.JSValue())
-}
-func CreateComment(args ...interface{}) dom.Comment {
-	val := value.Call("createComment", args...)
-	return dom.JSValueToComment(val.JSValue())
-}
-func CreateDocumentFragment(args ...interface{}) dom.DocumentFragment {
-	val := value.Call("createDocumentFragment", args...)
-	return dom.JSValueToDocumentFragment(val.JSValue())
-}
-func CreateElement(args ...interface{}) dom.Element {
-	val := value.Call("createElement", args...)
-	return dom.JSValueToElement(val.JSValue())
-}
-func CreateElementNS(args ...interface{}) dom.Element {
-	val := value.Call("createElementNS", args...)
-	return dom.JSValueToElement(val.JSValue())
-}
-func CreateEvent(args ...interface{}) dom.Event {
-	val := value.Call("createEvent", args...)
-	return dom.JSValueToEvent(val.JSValue())
-}
-func CreateNodeIterator(args ...interface{}) dom.NodeIterator {
-	val := value.Call("createNodeIterator", args...)
-	return dom.JSValueToNodeIterator(val.JSValue())
-}
-func CreateProcessingInstruction(args ...interface{}) dom.ProcessingInstruction {
-	val := value.Call("createProcessingInstruction", args...)
-	return dom.JSValueToProcessingInstruction(val.JSValue())
-}
-func CreateRange(args ...interface{}) dom.Range {
-	val := value.Call("createRange", args...)
-	return dom.JSValueToRange(val.JSValue())
-}
-func CreateTextNode(args ...interface{}) dom.Text {
-	val := value.Call("createTextNode", args...)
-	return dom.JSValueToText(val.JSValue())
-}
-func CreateTreeWalker(args ...interface{}) dom.TreeWalker {
-	val := value.Call("createTreeWalker", args...)
-	return dom.JSValueToTreeWalker(val.JSValue())
+func GetCustomElements() dom.CustomElementRegistry {
+	return value.GetCustomElements()
 }
 func DispatchEvent(args ...interface{}) bool {
 	val := value.Call("dispatchEvent", args...)
 	return val.Bool()
 }
-func GetDoctype() dom.DocumentType {
-	return value.GetDoctype()
+func GetDocument() dom.Document {
+	return value.GetDocument()
 }
-func GetDocumentElement() dom.Element {
-	return value.GetDocumentElement()
+func Focus(args ...interface{}) {
+	value.Call("focus", args...)
 }
-func GetDocumentURI() string {
-	return value.GetDocumentURI()
+func GetFrameElement() dom.Element {
+	return value.GetFrameElement()
 }
-func GetFirstChild() dom.Node {
-	return value.GetFirstChild()
+func GetFrames() dom.WindowProxy {
+	return value.GetFrames()
 }
-func GetFirstElementChild() dom.Element {
-	return value.GetFirstElementChild()
+func GetHistory() dom.History {
+	return value.GetHistory()
 }
-func GetElementById(args ...interface{}) dom.Element {
-	val := value.Call("getElementById", args...)
-	return dom.JSValueToElement(val.JSValue())
+func GetLength() float64 {
+	return value.GetLength()
 }
-func GetElementsByClassName(args ...interface{}) dom.HTMLCollection {
-	val := value.Call("getElementsByClassName", args...)
-	return dom.JSValueToHTMLCollection(val.JSValue())
+func GetLocalStorage() dom.Storage {
+	return value.GetLocalStorage()
 }
-func GetElementsByTagName(args ...interface{}) dom.HTMLCollection {
-	val := value.Call("getElementsByTagName", args...)
-	return dom.JSValueToHTMLCollection(val.JSValue())
+func GetLocation() dom.Location {
+	return value.GetLocation()
 }
-func GetElementsByTagNameNS(args ...interface{}) dom.HTMLCollection {
-	val := value.Call("getElementsByTagNameNS", args...)
-	return dom.JSValueToHTMLCollection(val.JSValue())
+func GetLocationbar() dom.BarProp {
+	return value.GetLocationbar()
 }
-func GetRootNode(args ...interface{}) dom.Node {
-	val := value.Call("getRootNode", args...)
-	return dom.JSValueToNode(val.JSValue())
+func GetMenubar() dom.BarProp {
+	return value.GetMenubar()
 }
-func HasChildNodes(args ...interface{}) bool {
-	val := value.Call("hasChildNodes", args...)
-	return val.Bool()
+func GetName() string {
+	return value.GetName()
 }
-func GetImplementation() dom.DOMImplementation {
-	return value.GetImplementation()
-}
-func ImportNode(args ...interface{}) dom.Node {
-	val := value.Call("importNode", args...)
-	return dom.JSValueToNode(val.JSValue())
-}
-func GetInputEncoding() string {
-	return value.GetInputEncoding()
-}
-func InsertBefore(args ...interface{}) dom.Node {
-	val := value.Call("insertBefore", args...)
-	return dom.JSValueToNode(val.JSValue())
-}
-func GetIsConnected() bool {
-	return value.GetIsConnected()
-}
-func IsDefaultNamespace(args ...interface{}) bool {
-	val := value.Call("isDefaultNamespace", args...)
-	return val.Bool()
-}
-func IsEqualNode(args ...interface{}) bool {
-	val := value.Call("isEqualNode", args...)
-	return val.Bool()
-}
-func IsSameNode(args ...interface{}) bool {
-	val := value.Call("isSameNode", args...)
-	return val.Bool()
-}
-func GetLastChild() dom.Node {
-	return value.GetLastChild()
-}
-func GetLastElementChild() dom.Element {
-	return value.GetLastElementChild()
-}
-func LookupNamespaceURI(args ...interface{}) string {
-	val := value.Call("lookupNamespaceURI", args...)
-	return val.String()
-}
-func LookupPrefix(args ...interface{}) string {
-	val := value.Call("lookupPrefix", args...)
-	return val.String()
-}
-func GetNextSibling() dom.Node {
-	return value.GetNextSibling()
-}
-func GetNodeName() string {
-	return value.GetNodeName()
-}
-func GetNodeType() int {
-	return value.GetNodeType()
-}
-func GetNodeValue() string {
-	return value.GetNodeValue()
-}
-func SetNodeValue(val string) { value.SetNodeValue(val) }
-func Normalize(args ...interface{}) {
-	value.Call("normalize", args...)
+func SetName(val string) { value.SetName(val) }
+func GetNavigator() dom.Navigator {
+	return value.GetNavigator()
 }
 func GetOnabort() dom.EventHandler {
 	return value.GetOnabort()
 }
 func SetOnabort(val dom.EventHandler) { value.SetOnabort(val) }
+func GetOnafterprint() dom.EventHandler {
+	return value.GetOnafterprint()
+}
+func SetOnafterprint(val dom.EventHandler) { value.SetOnafterprint(val) }
 func GetOnauxclick() dom.EventHandler {
 	return value.GetOnauxclick()
 }
 func SetOnauxclick(val dom.EventHandler) { value.SetOnauxclick(val) }
+func GetOnbeforeprint() dom.EventHandler {
+	return value.GetOnbeforeprint()
+}
+func SetOnbeforeprint(val dom.EventHandler) { value.SetOnbeforeprint(val) }
+func GetOnbeforeunload() dom.OnBeforeUnloadEventHandler {
+	return value.GetOnbeforeunload()
+}
+func SetOnbeforeunload(val dom.OnBeforeUnloadEventHandler) { value.SetOnbeforeunload(val) }
 func GetOnblur() dom.EventHandler {
 	return value.GetOnblur()
 }
@@ -252,18 +152,10 @@ func GetOncontextmenu() dom.EventHandler {
 	return value.GetOncontextmenu()
 }
 func SetOncontextmenu(val dom.EventHandler) { value.SetOncontextmenu(val) }
-func GetOncopy() dom.EventHandler {
-	return value.GetOncopy()
-}
-func SetOncopy(val dom.EventHandler) { value.SetOncopy(val) }
 func GetOncuechange() dom.EventHandler {
 	return value.GetOncuechange()
 }
 func SetOncuechange(val dom.EventHandler) { value.SetOncuechange(val) }
-func GetOncut() dom.EventHandler {
-	return value.GetOncut()
-}
-func SetOncut(val dom.EventHandler) { value.SetOncut(val) }
 func GetOndblclick() dom.EventHandler {
 	return value.GetOndblclick()
 }
@@ -320,6 +212,10 @@ func GetOnfocus() dom.EventHandler {
 	return value.GetOnfocus()
 }
 func SetOnfocus(val dom.EventHandler) { value.SetOnfocus(val) }
+func GetOnhashchange() dom.EventHandler {
+	return value.GetOnhashchange()
+}
+func SetOnhashchange(val dom.EventHandler) { value.SetOnhashchange(val) }
 func GetOninput() dom.EventHandler {
 	return value.GetOninput()
 }
@@ -340,6 +236,10 @@ func GetOnkeyup() dom.EventHandler {
 	return value.GetOnkeyup()
 }
 func SetOnkeyup(val dom.EventHandler) { value.SetOnkeyup(val) }
+func GetOnlanguagechange() dom.EventHandler {
+	return value.GetOnlanguagechange()
+}
+func SetOnlanguagechange(val dom.EventHandler) { value.SetOnlanguagechange(val) }
 func GetOnload() dom.EventHandler {
 	return value.GetOnload()
 }
@@ -360,6 +260,14 @@ func GetOnloadstart() dom.EventHandler {
 	return value.GetOnloadstart()
 }
 func SetOnloadstart(val dom.EventHandler) { value.SetOnloadstart(val) }
+func GetOnmessage() dom.EventHandler {
+	return value.GetOnmessage()
+}
+func SetOnmessage(val dom.EventHandler) { value.SetOnmessage(val) }
+func GetOnmessageerror() dom.EventHandler {
+	return value.GetOnmessageerror()
+}
+func SetOnmessageerror(val dom.EventHandler) { value.SetOnmessageerror(val) }
 func GetOnmousedown() dom.EventHandler {
 	return value.GetOnmousedown()
 }
@@ -388,10 +296,22 @@ func GetOnmouseup() dom.EventHandler {
 	return value.GetOnmouseup()
 }
 func SetOnmouseup(val dom.EventHandler) { value.SetOnmouseup(val) }
-func GetOnpaste() dom.EventHandler {
-	return value.GetOnpaste()
+func GetOnoffline() dom.EventHandler {
+	return value.GetOnoffline()
 }
-func SetOnpaste(val dom.EventHandler) { value.SetOnpaste(val) }
+func SetOnoffline(val dom.EventHandler) { value.SetOnoffline(val) }
+func GetOnonline() dom.EventHandler {
+	return value.GetOnonline()
+}
+func SetOnonline(val dom.EventHandler) { value.SetOnonline(val) }
+func GetOnpagehide() dom.EventHandler {
+	return value.GetOnpagehide()
+}
+func SetOnpagehide(val dom.EventHandler) { value.SetOnpagehide(val) }
+func GetOnpageshow() dom.EventHandler {
+	return value.GetOnpageshow()
+}
+func SetOnpageshow(val dom.EventHandler) { value.SetOnpageshow(val) }
 func GetOnpause() dom.EventHandler {
 	return value.GetOnpause()
 }
@@ -404,6 +324,10 @@ func GetOnplaying() dom.EventHandler {
 	return value.GetOnplaying()
 }
 func SetOnplaying(val dom.EventHandler) { value.SetOnplaying(val) }
+func GetOnpopstate() dom.EventHandler {
+	return value.GetOnpopstate()
+}
+func SetOnpopstate(val dom.EventHandler) { value.SetOnpopstate(val) }
 func GetOnprogress() dom.EventHandler {
 	return value.GetOnprogress()
 }
@@ -412,6 +336,10 @@ func GetOnratechange() dom.EventHandler {
 	return value.GetOnratechange()
 }
 func SetOnratechange(val dom.EventHandler) { value.SetOnratechange(val) }
+func GetOnrejectionhandled() dom.EventHandler {
+	return value.GetOnrejectionhandled()
+}
+func SetOnrejectionhandled(val dom.EventHandler) { value.SetOnrejectionhandled(val) }
 func GetOnreset() dom.EventHandler {
 	return value.GetOnreset()
 }
@@ -444,6 +372,10 @@ func GetOnstalled() dom.EventHandler {
 	return value.GetOnstalled()
 }
 func SetOnstalled(val dom.EventHandler) { value.SetOnstalled(val) }
+func GetOnstorage() dom.EventHandler {
+	return value.GetOnstorage()
+}
+func SetOnstorage(val dom.EventHandler) { value.SetOnstorage(val) }
 func GetOnsubmit() dom.EventHandler {
 	return value.GetOnsubmit()
 }
@@ -460,6 +392,14 @@ func GetOntoggle() dom.EventHandler {
 	return value.GetOntoggle()
 }
 func SetOntoggle(val dom.EventHandler) { value.SetOntoggle(val) }
+func GetOnunhandledrejection() dom.EventHandler {
+	return value.GetOnunhandledrejection()
+}
+func SetOnunhandledrejection(val dom.EventHandler) { value.SetOnunhandledrejection(val) }
+func GetOnunload() dom.EventHandler {
+	return value.GetOnunload()
+}
+func SetOnunload(val dom.EventHandler) { value.SetOnunload(val) }
 func GetOnvolumechange() dom.EventHandler {
 	return value.GetOnvolumechange()
 }
@@ -472,47 +412,76 @@ func GetOnwheel() dom.EventHandler {
 	return value.GetOnwheel()
 }
 func SetOnwheel(val dom.EventHandler) { value.SetOnwheel(val) }
+func Open(args ...interface{}) dom.WindowProxy {
+	val := value.Call("open", args...)
+	return dom.JSValueToWindowProxy(val.JSValue())
+}
+func GetOpener() dom.Value {
+	return value.GetOpener()
+}
+func SetOpener(val dom.Value) { value.SetOpener(val) }
 func GetOrigin() string {
 	return value.GetOrigin()
 }
-func GetOwnerDocument() dom.Document {
-	return value.GetOwnerDocument()
+func GetParent() dom.WindowProxy {
+	return value.GetParent()
 }
-func GetParentElement() dom.Element {
-	return value.GetParentElement()
+func GetPersonalbar() dom.BarProp {
+	return value.GetPersonalbar()
 }
-func GetParentNode() dom.Node {
-	return value.GetParentNode()
+func PostMessage(args ...interface{}) {
+	value.Call("postMessage", args...)
 }
-func Prepend(args ...interface{}) {
-	value.Call("prepend", args...)
+func Print(args ...interface{}) {
+	value.Call("print", args...)
 }
-func GetPreviousSibling() dom.Node {
-	return value.GetPreviousSibling()
+func Prompt(args ...interface{}) string {
+	val := value.Call("prompt", args...)
+	return val.String()
 }
-func QuerySelector(args ...interface{}) dom.Element {
-	val := value.Call("querySelector", args...)
-	return dom.JSValueToElement(val.JSValue())
-}
-func QuerySelectorAll(args ...interface{}) dom.NodeList {
-	val := value.Call("querySelectorAll", args...)
-	return dom.JSValueToNodeList(val.JSValue())
-}
-func RemoveChild(args ...interface{}) dom.Node {
-	val := value.Call("removeChild", args...)
-	return dom.JSValueToNode(val.JSValue())
+func QueueMicrotask(args ...interface{}) {
+	value.Call("queueMicrotask", args...)
 }
 func RemoveEventListener(args ...interface{}) {
 	value.Call("removeEventListener", args...)
 }
-func ReplaceChild(args ...interface{}) dom.Node {
-	val := value.Call("replaceChild", args...)
-	return dom.JSValueToNode(val.JSValue())
+func RequestAnimationFrame(args ...interface{}) float64 {
+	val := value.Call("requestAnimationFrame", args...)
+	return val.Float()
 }
-func GetTextContent() string {
-	return value.GetTextContent()
+func GetScrollbars() dom.BarProp {
+	return value.GetScrollbars()
 }
-func SetTextContent(val string) { value.SetTextContent(val) }
-func GetURL() string {
-	return value.GetURL()
+func GetSelf() dom.WindowProxy {
+	return value.GetSelf()
+}
+func GetSessionStorage() dom.Storage {
+	return value.GetSessionStorage()
+}
+func SetInterval(args ...interface{}) float64 {
+	val := value.Call("setInterval", args...)
+	return val.Float()
+}
+func SetTimeout(args ...interface{}) float64 {
+	val := value.Call("setTimeout", args...)
+	return val.Float()
+}
+func GetStatus() string {
+	return value.GetStatus()
+}
+func SetStatus(val string) { value.SetStatus(val) }
+func GetStatusbar() dom.BarProp {
+	return value.GetStatusbar()
+}
+func Stop(args ...interface{}) {
+	value.Call("stop", args...)
+}
+func GetToolbar() dom.BarProp {
+	return value.GetToolbar()
+}
+func GetTop() dom.WindowProxy {
+	return value.GetTop()
+}
+func GetWindow() dom.WindowProxy {
+	return value.GetWindow()
 }

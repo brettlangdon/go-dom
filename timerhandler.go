@@ -6,6 +6,6 @@ import "syscall/js"
 
 type TimerHandler Value
 
-func jsValueToTimerHandler(val js.Value) TimerHandler {
-	return TimerHandler(jsValueToValue(val))
+func JSValueToTimerHandler(val js.Value) TimerHandler {
+	return TimerHandler(JSValueToValue(val))
 }

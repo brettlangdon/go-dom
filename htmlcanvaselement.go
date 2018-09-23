@@ -116,13 +116,13 @@ type HTMLCanvasElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLCanvasElement(val js.Value) HTMLCanvasElement {
+func JSValueToHTMLCanvasElement(val js.Value) HTMLCanvasElement {
 	return HTMLCanvasElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLCanvasElement() HTMLCanvasElement { return HTMLCanvasElement{Value: v} }
 func (h HTMLCanvasElement) GetContext(args ...interface{}) RenderingContext {
 	val := h.Call("getContext", args...)
-	return jsValueToRenderingContext(val.JSValue())
+	return JSValueToRenderingContext(val.JSValue())
 }
 func (h HTMLCanvasElement) GetHeight() float64 {
 	val := h.Get("height")
@@ -140,7 +140,7 @@ func (h HTMLCanvasElement) ToDataURL(args ...interface{}) string {
 }
 func (h HTMLCanvasElement) TransferControlToOffscreen(args ...interface{}) OffscreenCanvas {
 	val := h.Call("transferControlToOffscreen", args...)
-	return jsValueToOffscreenCanvas(val.JSValue())
+	return JSValueToOffscreenCanvas(val.JSValue())
 }
 func (h HTMLCanvasElement) GetWidth() float64 {
 	val := h.Get("width")

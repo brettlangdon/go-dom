@@ -11,6 +11,6 @@ const (
 	ShadowRootModeClosed ShadowRootMode = "closed"
 )
 
-func jsValueToShadowRootMode(val js.Value) ShadowRootMode {
+func JSValueToShadowRootMode(val js.Value) ShadowRootMode {
 	return ShadowRootMode(val.String())
 }

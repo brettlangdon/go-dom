@@ -12,6 +12,6 @@ const (
 	CanPlayTypeResultProbably CanPlayTypeResult = "probably"
 )
 
-func jsValueToCanPlayTypeResult(val js.Value) CanPlayTypeResult {
+func JSValueToCanPlayTypeResult(val js.Value) CanPlayTypeResult {
 	return CanPlayTypeResult(val.String())
 }

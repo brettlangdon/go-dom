@@ -15,6 +15,6 @@ const (
 	CanvasTextBaselineBottom      CanvasTextBaseline = "bottom"
 )
 
-func jsValueToCanvasTextBaseline(val js.Value) CanvasTextBaseline {
+func JSValueToCanvasTextBaseline(val js.Value) CanvasTextBaseline {
 	return CanvasTextBaseline(val.String())
 }

@@ -12,13 +12,13 @@ type StyleSheetList struct {
 	Value
 }
 
-func jsValueToStyleSheetList(val js.Value) StyleSheetList {
+func JSValueToStyleSheetList(val js.Value) StyleSheetList {
 	return StyleSheetList{Value: Value{Value: val}}
 }
 func (v Value) AsStyleSheetList() StyleSheetList { return StyleSheetList{Value: v} }
 func (s StyleSheetList) Item(args ...interface{}) StyleSheet {
 	val := s.Call("item", args...)
-	return jsValueToStyleSheet(val.JSValue())
+	return JSValueToStyleSheet(val.JSValue())
 }
 func (s StyleSheetList) GetLength() float64 {
 	val := s.Get("length")

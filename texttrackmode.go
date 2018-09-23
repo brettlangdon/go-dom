@@ -12,6 +12,6 @@ const (
 	TextTrackModeShowing  TextTrackMode = "showing"
 )
 
-func jsValueToTextTrackMode(val js.Value) TextTrackMode {
+func JSValueToTextTrackMode(val js.Value) TextTrackMode {
 	return TextTrackMode(val.String())
 }

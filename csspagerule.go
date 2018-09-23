@@ -23,7 +23,7 @@ type CSSPageRule struct {
 	CSSRule
 }
 
-func jsValueToCSSPageRule(val js.Value) CSSPageRule { return CSSPageRule{Value: Value{Value: val}} }
+func JSValueToCSSPageRule(val js.Value) CSSPageRule { return CSSPageRule{Value: Value{Value: val}} }
 func (v Value) AsCSSPageRule() CSSPageRule          { return CSSPageRule{Value: v} }
 func (c CSSPageRule) GetSelectorText() string {
 	val := c.Get("selectorText")
@@ -34,5 +34,5 @@ func (c CSSPageRule) SetSelectorText(val string) {
 }
 func (c CSSPageRule) GetStyle() CSSStyleDeclaration {
 	val := c.Get("style")
-	return jsValueToCSSStyleDeclaration(val.JSValue())
+	return JSValueToCSSStyleDeclaration(val.JSValue())
 }

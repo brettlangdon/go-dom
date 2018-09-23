@@ -55,5 +55,5 @@ type Comment struct {
 	EventTarget
 }
 
-func jsValueToComment(val js.Value) Comment { return Comment{Value: Value{Value: val}} }
+func JSValueToComment(val js.Value) Comment { return Comment{Value: Value{Value: val}} }
 func (v Value) AsComment() Comment          { return Comment{Value: v} }

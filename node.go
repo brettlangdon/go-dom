@@ -45,11 +45,11 @@ type Node struct {
 	EventTarget
 }
 
-func jsValueToNode(val js.Value) Node { return Node{Value: Value{Value: val}} }
+func JSValueToNode(val js.Value) Node { return Node{Value: Value{Value: val}} }
 func (v Value) AsNode() Node          { return Node{Value: v} }
 func (n Node) AppendChild(args ...interface{}) Node {
 	val := n.Call("appendChild", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetBaseURI() string {
 	val := n.Get("baseURI")
@@ -57,11 +57,11 @@ func (n Node) GetBaseURI() string {
 }
 func (n Node) GetChildNodes() NodeList {
 	val := n.Get("childNodes")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (n Node) CloneNode(args ...interface{}) Node {
 	val := n.Call("cloneNode", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) CompareDocumentPosition(args ...interface{}) int {
 	val := n.Call("compareDocumentPosition", args...)
@@ -73,11 +73,11 @@ func (n Node) Contains(args ...interface{}) bool {
 }
 func (n Node) GetFirstChild() Node {
 	val := n.Get("firstChild")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetRootNode(args ...interface{}) Node {
 	val := n.Call("getRootNode", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) HasChildNodes(args ...interface{}) bool {
 	val := n.Call("hasChildNodes", args...)
@@ -85,7 +85,7 @@ func (n Node) HasChildNodes(args ...interface{}) bool {
 }
 func (n Node) InsertBefore(args ...interface{}) Node {
 	val := n.Call("insertBefore", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetIsConnected() bool {
 	val := n.Get("isConnected")
@@ -105,7 +105,7 @@ func (n Node) IsSameNode(args ...interface{}) bool {
 }
 func (n Node) GetLastChild() Node {
 	val := n.Get("lastChild")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) LookupNamespaceURI(args ...interface{}) string {
 	val := n.Call("lookupNamespaceURI", args...)
@@ -117,7 +117,7 @@ func (n Node) LookupPrefix(args ...interface{}) string {
 }
 func (n Node) GetNextSibling() Node {
 	val := n.Get("nextSibling")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetNodeName() string {
 	val := n.Get("nodeName")
@@ -139,27 +139,27 @@ func (n Node) Normalize(args ...interface{}) {
 }
 func (n Node) GetOwnerDocument() Document {
 	val := n.Get("ownerDocument")
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (n Node) GetParentElement() Element {
 	val := n.Get("parentElement")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (n Node) GetParentNode() Node {
 	val := n.Get("parentNode")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetPreviousSibling() Node {
 	val := n.Get("previousSibling")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) RemoveChild(args ...interface{}) Node {
 	val := n.Call("removeChild", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) ReplaceChild(args ...interface{}) Node {
 	val := n.Call("replaceChild", args...)
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (n Node) GetTextContent() string {
 	val := n.Get("textContent")

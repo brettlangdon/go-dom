@@ -21,7 +21,7 @@ type BroadcastChannel struct {
 	EventTarget
 }
 
-func jsValueToBroadcastChannel(val js.Value) BroadcastChannel {
+func JSValueToBroadcastChannel(val js.Value) BroadcastChannel {
 	return BroadcastChannel{Value: Value{Value: val}}
 }
 func (v Value) AsBroadcastChannel() BroadcastChannel { return BroadcastChannel{Value: v} }
@@ -34,14 +34,14 @@ func (b BroadcastChannel) GetName() string {
 }
 func (b BroadcastChannel) GetOnmessage() EventHandler {
 	val := b.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (b BroadcastChannel) SetOnmessage(val EventHandler) {
 	b.Set("onmessage", val)
 }
 func (b BroadcastChannel) GetOnmessageerror() EventHandler {
 	val := b.Get("onmessageerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (b BroadcastChannel) SetOnmessageerror(val EventHandler) {
 	b.Set("onmessageerror", val)

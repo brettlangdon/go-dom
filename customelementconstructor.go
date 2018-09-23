@@ -9,8 +9,8 @@ type CustomElementConstructor struct {
 	Callback
 }
 
-func jsValueToCustomElementConstructor(val js.Value) CustomElementConstructor {
-	return CustomElementConstructor{Callback: jsValueToCallback(val)}
+func JSValueToCustomElementConstructor(val js.Value) CustomElementConstructor {
+	return CustomElementConstructor{Callback: JSValueToCallback(val)}
 }
 func NewCustomElementConstructor(c CustomElementConstructorCallback) CustomElementConstructor {
 	callback := js.NewCallback(func(args []js.Value) {

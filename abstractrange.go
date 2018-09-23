@@ -15,7 +15,7 @@ type AbstractRange struct {
 	Value
 }
 
-func jsValueToAbstractRange(val js.Value) AbstractRange {
+func JSValueToAbstractRange(val js.Value) AbstractRange {
 	return AbstractRange{Value: Value{Value: val}}
 }
 func (v Value) AsAbstractRange() AbstractRange { return AbstractRange{Value: v} }
@@ -25,7 +25,7 @@ func (a AbstractRange) GetCollapsed() bool {
 }
 func (a AbstractRange) GetEndContainer() Node {
 	val := a.Get("endContainer")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (a AbstractRange) GetEndOffset() float64 {
 	val := a.Get("endOffset")
@@ -33,7 +33,7 @@ func (a AbstractRange) GetEndOffset() float64 {
 }
 func (a AbstractRange) GetStartContainer() Node {
 	val := a.Get("startContainer")
-	return jsValueToNode(val.JSValue())
+	return JSValueToNode(val.JSValue())
 }
 func (a AbstractRange) GetStartOffset() float64 {
 	val := a.Get("startOffset")

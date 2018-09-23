@@ -126,17 +126,17 @@ type HTMLFrameElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLFrameElement(val js.Value) HTMLFrameElement {
+func JSValueToHTMLFrameElement(val js.Value) HTMLFrameElement {
 	return HTMLFrameElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFrameElement() HTMLFrameElement { return HTMLFrameElement{Value: v} }
 func (h HTMLFrameElement) GetContentDocument() Document {
 	val := h.Get("contentDocument")
-	return jsValueToDocument(val.JSValue())
+	return JSValueToDocument(val.JSValue())
 }
 func (h HTMLFrameElement) GetContentWindow() WindowProxy {
 	val := h.Get("contentWindow")
-	return jsValueToWindowProxy(val.JSValue())
+	return JSValueToWindowProxy(val.JSValue())
 }
 func (h HTMLFrameElement) GetFrameBorder() string {
 	val := h.Get("frameBorder")

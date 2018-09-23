@@ -14,7 +14,7 @@ type CustomElementRegistry struct {
 	Value
 }
 
-func jsValueToCustomElementRegistry(val js.Value) CustomElementRegistry {
+func JSValueToCustomElementRegistry(val js.Value) CustomElementRegistry {
 	return CustomElementRegistry{Value: Value{Value: val}}
 }
 func (v Value) AsCustomElementRegistry() CustomElementRegistry { return CustomElementRegistry{Value: v} }

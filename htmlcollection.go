@@ -13,13 +13,13 @@ type HTMLCollection struct {
 	Value
 }
 
-func jsValueToHTMLCollection(val js.Value) HTMLCollection {
+func JSValueToHTMLCollection(val js.Value) HTMLCollection {
 	return HTMLCollection{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLCollection() HTMLCollection { return HTMLCollection{Value: v} }
 func (h HTMLCollection) Item(args ...interface{}) Element {
 	val := h.Call("item", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (h HTMLCollection) GetLength() float64 {
 	val := h.Get("length")
@@ -27,5 +27,5 @@ func (h HTMLCollection) GetLength() float64 {
 }
 func (h HTMLCollection) NamedItem(args ...interface{}) Element {
 	val := h.Call("namedItem", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }

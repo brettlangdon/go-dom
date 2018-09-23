@@ -53,7 +53,7 @@ type DocumentType struct {
 	EventTarget
 }
 
-func jsValueToDocumentType(val js.Value) DocumentType { return DocumentType{Value: Value{Value: val}} }
+func JSValueToDocumentType(val js.Value) DocumentType { return DocumentType{Value: Value{Value: val}} }
 func (v Value) AsDocumentType() DocumentType          { return DocumentType{Value: v} }
 func (d DocumentType) After(args ...interface{}) {
 	d.Call("after", args...)

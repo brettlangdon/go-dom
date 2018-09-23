@@ -12,7 +12,7 @@ type AbortController struct {
 	Value
 }
 
-func jsValueToAbortController(val js.Value) AbortController {
+func JSValueToAbortController(val js.Value) AbortController {
 	return AbortController{Value: Value{Value: val}}
 }
 func (v Value) AsAbortController() AbortController { return AbortController{Value: v} }
@@ -21,5 +21,5 @@ func (a AbortController) Abort(args ...interface{}) {
 }
 func (a AbortController) GetSignal() AbortSignal {
 	val := a.Get("signal")
-	return jsValueToAbortSignal(val.JSValue())
+	return JSValueToAbortSignal(val.JSValue())
 }

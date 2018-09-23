@@ -114,13 +114,13 @@ type HTMLProgressElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLProgressElement(val js.Value) HTMLProgressElement {
+func JSValueToHTMLProgressElement(val js.Value) HTMLProgressElement {
 	return HTMLProgressElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLProgressElement() HTMLProgressElement { return HTMLProgressElement{Value: v} }
 func (h HTMLProgressElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLProgressElement) GetMax() float64 {
 	val := h.Get("max")

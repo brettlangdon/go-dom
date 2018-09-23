@@ -24,7 +24,7 @@ type WorkerNavigator struct {
 	Value
 }
 
-func jsValueToWorkerNavigator(val js.Value) WorkerNavigator {
+func JSValueToWorkerNavigator(val js.Value) WorkerNavigator {
 	return WorkerNavigator{Value: Value{Value: val}}
 }
 func (v Value) AsWorkerNavigator() WorkerNavigator { return WorkerNavigator{Value: v} }
@@ -70,7 +70,7 @@ func (w WorkerNavigator) GetProductSub() string {
 }
 func (w WorkerNavigator) GetStorage() StorageManager {
 	val := w.Get("storage")
-	return jsValueToStorageManager(val.JSValue())
+	return JSValueToStorageManager(val.JSValue())
 }
 func (w WorkerNavigator) GetUserAgent() string {
 	val := w.Get("userAgent")

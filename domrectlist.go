@@ -12,11 +12,11 @@ type DOMRectList struct {
 	Value
 }
 
-func jsValueToDOMRectList(val js.Value) DOMRectList { return DOMRectList{Value: Value{Value: val}} }
+func JSValueToDOMRectList(val js.Value) DOMRectList { return DOMRectList{Value: Value{Value: val}} }
 func (v Value) AsDOMRectList() DOMRectList          { return DOMRectList{Value: v} }
 func (d DOMRectList) Item(args ...interface{}) DOMRect {
 	val := d.Call("item", args...)
-	return jsValueToDOMRect(val.JSValue())
+	return JSValueToDOMRect(val.JSValue())
 }
 func (d DOMRectList) GetLength() float64 {
 	val := d.Get("length")

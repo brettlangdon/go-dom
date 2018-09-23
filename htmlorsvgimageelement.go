@@ -6,6 +6,6 @@ import "syscall/js"
 
 type HTMLOrSVGImageElement Value
 
-func jsValueToHTMLOrSVGImageElement(val js.Value) HTMLOrSVGImageElement {
-	return HTMLOrSVGImageElement(jsValueToValue(val))
+func JSValueToHTMLOrSVGImageElement(val js.Value) HTMLOrSVGImageElement {
+	return HTMLOrSVGImageElement(JSValueToValue(val))
 }

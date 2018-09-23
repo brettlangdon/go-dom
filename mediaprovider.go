@@ -6,6 +6,6 @@ import "syscall/js"
 
 type MediaProvider Value
 
-func jsValueToMediaProvider(val js.Value) MediaProvider {
-	return MediaProvider(jsValueToValue(val))
+func JSValueToMediaProvider(val js.Value) MediaProvider {
+	return MediaProvider(JSValueToValue(val))
 }

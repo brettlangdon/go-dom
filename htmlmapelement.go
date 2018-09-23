@@ -111,13 +111,13 @@ type HTMLMapElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMapElement(val js.Value) HTMLMapElement {
+func JSValueToHTMLMapElement(val js.Value) HTMLMapElement {
 	return HTMLMapElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMapElement() HTMLMapElement { return HTMLMapElement{Value: v} }
 func (h HTMLMapElement) GetAreas() HTMLCollection {
 	val := h.Get("areas")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLMapElement) GetName() string {
 	val := h.Get("name")

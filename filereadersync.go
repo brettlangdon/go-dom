@@ -14,13 +14,13 @@ type FileReaderSync struct {
 	Value
 }
 
-func jsValueToFileReaderSync(val js.Value) FileReaderSync {
+func JSValueToFileReaderSync(val js.Value) FileReaderSync {
 	return FileReaderSync{Value: Value{Value: val}}
 }
 func (v Value) AsFileReaderSync() FileReaderSync { return FileReaderSync{Value: v} }
 func (f FileReaderSync) ReadAsArrayBuffer(args ...interface{}) ArrayBuffer {
 	val := f.Call("readAsArrayBuffer", args...)
-	return jsValueToArrayBuffer(val.JSValue())
+	return JSValueToArrayBuffer(val.JSValue())
 }
 func (f FileReaderSync) ReadAsBinaryString(args ...interface{}) string {
 	val := f.Call("readAsBinaryString", args...)

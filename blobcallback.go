@@ -9,12 +9,12 @@ type BlobCallback struct {
 	Callback
 }
 
-func jsValueToBlobCallback(val js.Value) BlobCallback {
-	return BlobCallback{Callback: jsValueToCallback(val)}
+func JSValueToBlobCallback(val js.Value) BlobCallback {
+	return BlobCallback{Callback: JSValueToCallback(val)}
 }
 func NewBlobCallback(c BlobCallbackCallback) BlobCallback {
 	callback := js.NewCallback(func(args []js.Value) {
-		blob := jsValueToBlob(args[0])
+		blob := JSValueToBlob(args[0])
 		c(blob)
 	})
 	return BlobCallback{Callback: Callback{Callback: callback}}

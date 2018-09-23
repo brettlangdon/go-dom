@@ -32,7 +32,7 @@ type PopStateEvent struct {
 	Event
 }
 
-func jsValueToPopStateEvent(val js.Value) PopStateEvent {
+func JSValueToPopStateEvent(val js.Value) PopStateEvent {
 	return PopStateEvent{Value: Value{Value: val}}
 }
 func (v Value) AsPopStateEvent() PopStateEvent { return PopStateEvent{Value: v} }

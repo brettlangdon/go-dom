@@ -14,6 +14,6 @@ const (
 	CanvasTextAlignCenter CanvasTextAlign = "center"
 )
 
-func jsValueToCanvasTextAlign(val js.Value) CanvasTextAlign {
+func JSValueToCanvasTextAlign(val js.Value) CanvasTextAlign {
 	return CanvasTextAlign(val.String())
 }

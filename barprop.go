@@ -11,7 +11,7 @@ type BarProp struct {
 	Value
 }
 
-func jsValueToBarProp(val js.Value) BarProp { return BarProp{Value: Value{Value: val}} }
+func JSValueToBarProp(val js.Value) BarProp { return BarProp{Value: Value{Value: val}} }
 func (v Value) AsBarProp() BarProp          { return BarProp{Value: v} }
 func (b BarProp) GetVisible() bool {
 	val := b.Get("visible")

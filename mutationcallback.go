@@ -9,13 +9,13 @@ type MutationCallback struct {
 	Callback
 }
 
-func jsValueToMutationCallback(val js.Value) MutationCallback {
-	return MutationCallback{Callback: jsValueToCallback(val)}
+func JSValueToMutationCallback(val js.Value) MutationCallback {
+	return MutationCallback{Callback: JSValueToCallback(val)}
 }
 func NewMutationCallback(c MutationCallbackCallback) MutationCallback {
 	callback := js.NewCallback(func(args []js.Value) {
-		mutations := jsValueToValue(args[0])
-		observer := jsValueToMutationObserver(args[1])
+		mutations := JSValueToValue(args[0])
+		observer := JSValueToMutationObserver(args[1])
 		c(mutations, observer)
 	})
 	return MutationCallback{Callback: Callback{Callback: callback}}

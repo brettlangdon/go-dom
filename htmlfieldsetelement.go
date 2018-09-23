@@ -121,7 +121,7 @@ type HTMLFieldSetElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLFieldSetElement(val js.Value) HTMLFieldSetElement {
+func JSValueToHTMLFieldSetElement(val js.Value) HTMLFieldSetElement {
 	return HTMLFieldSetElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFieldSetElement() HTMLFieldSetElement { return HTMLFieldSetElement{Value: v} }
@@ -138,11 +138,11 @@ func (h HTMLFieldSetElement) SetDisabled(val bool) {
 }
 func (h HTMLFieldSetElement) GetElements() HTMLCollection {
 	val := h.Get("elements")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLFieldSetElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLFieldSetElement) GetName() string {
 	val := h.Get("name")
@@ -168,7 +168,7 @@ func (h HTMLFieldSetElement) GetValidationMessage() string {
 }
 func (h HTMLFieldSetElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLFieldSetElement) GetWillValidate() bool {
 	val := h.Get("willValidate")

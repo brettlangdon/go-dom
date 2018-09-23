@@ -156,7 +156,7 @@ type HTMLAudioElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLAudioElement(val js.Value) HTMLAudioElement {
+func JSValueToHTMLAudioElement(val js.Value) HTMLAudioElement {
 	return HTMLAudioElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLAudioElement() HTMLAudioElement { return HTMLAudioElement{Value: v} }

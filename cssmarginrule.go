@@ -18,7 +18,7 @@ type CSSMarginRule struct {
 	CSSRule
 }
 
-func jsValueToCSSMarginRule(val js.Value) CSSMarginRule {
+func JSValueToCSSMarginRule(val js.Value) CSSMarginRule {
 	return CSSMarginRule{Value: Value{Value: val}}
 }
 func (v Value) AsCSSMarginRule() CSSMarginRule { return CSSMarginRule{Value: v} }
@@ -28,5 +28,5 @@ func (c CSSMarginRule) GetName() string {
 }
 func (c CSSMarginRule) GetStyle() CSSStyleDeclaration {
 	val := c.Get("style")
-	return jsValueToCSSStyleDeclaration(val.JSValue())
+	return JSValueToCSSStyleDeclaration(val.JSValue())
 }

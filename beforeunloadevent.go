@@ -31,7 +31,7 @@ type BeforeUnloadEvent struct {
 	Event
 }
 
-func jsValueToBeforeUnloadEvent(val js.Value) BeforeUnloadEvent {
+func JSValueToBeforeUnloadEvent(val js.Value) BeforeUnloadEvent {
 	return BeforeUnloadEvent{Value: Value{Value: val}}
 }
 func (v Value) AsBeforeUnloadEvent() BeforeUnloadEvent { return BeforeUnloadEvent{Value: v} }

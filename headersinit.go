@@ -6,6 +6,6 @@ import "syscall/js"
 
 type HeadersInit Value
 
-func jsValueToHeadersInit(val js.Value) HeadersInit {
-	return HeadersInit(jsValueToValue(val))
+func JSValueToHeadersInit(val js.Value) HeadersInit {
+	return HeadersInit(JSValueToValue(val))
 }

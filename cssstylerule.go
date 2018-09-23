@@ -19,7 +19,7 @@ type CSSStyleRule struct {
 	CSSRule
 }
 
-func jsValueToCSSStyleRule(val js.Value) CSSStyleRule { return CSSStyleRule{Value: Value{Value: val}} }
+func JSValueToCSSStyleRule(val js.Value) CSSStyleRule { return CSSStyleRule{Value: Value{Value: val}} }
 func (v Value) AsCSSStyleRule() CSSStyleRule          { return CSSStyleRule{Value: v} }
 func (c CSSStyleRule) GetSelectorText() string {
 	val := c.Get("selectorText")
@@ -30,5 +30,5 @@ func (c CSSStyleRule) SetSelectorText(val string) {
 }
 func (c CSSStyleRule) GetStyle() CSSStyleDeclaration {
 	val := c.Get("style")
-	return jsValueToCSSStyleDeclaration(val.JSValue())
+	return JSValueToCSSStyleDeclaration(val.JSValue())
 }

@@ -108,7 +108,7 @@ type HTMLMenuElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMenuElement(val js.Value) HTMLMenuElement {
+func JSValueToHTMLMenuElement(val js.Value) HTMLMenuElement {
 	return HTMLMenuElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMenuElement() HTMLMenuElement { return HTMLMenuElement{Value: v} }

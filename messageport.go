@@ -21,21 +21,21 @@ type MessagePort struct {
 	EventTarget
 }
 
-func jsValueToMessagePort(val js.Value) MessagePort { return MessagePort{Value: Value{Value: val}} }
+func JSValueToMessagePort(val js.Value) MessagePort { return MessagePort{Value: Value{Value: val}} }
 func (v Value) AsMessagePort() MessagePort          { return MessagePort{Value: v} }
 func (m MessagePort) Close(args ...interface{}) {
 	m.Call("close", args...)
 }
 func (m MessagePort) GetOnmessage() EventHandler {
 	val := m.Get("onmessage")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (m MessagePort) SetOnmessage(val EventHandler) {
 	m.Set("onmessage", val)
 }
 func (m MessagePort) GetOnmessageerror() EventHandler {
 	val := m.Get("onmessageerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (m MessagePort) SetOnmessageerror(val EventHandler) {
 	m.Set("onmessageerror", val)

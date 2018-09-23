@@ -108,7 +108,7 @@ type HTMLSpanElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLSpanElement(val js.Value) HTMLSpanElement {
+func JSValueToHTMLSpanElement(val js.Value) HTMLSpanElement {
 	return HTMLSpanElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLSpanElement() HTMLSpanElement { return HTMLSpanElement{Value: v} }

@@ -15,6 +15,6 @@ const (
 	XMLHttpRequestResponseTypeText        XMLHttpRequestResponseType = "text"
 )
 
-func jsValueToXMLHttpRequestResponseType(val js.Value) XMLHttpRequestResponseType {
+func JSValueToXMLHttpRequestResponseType(val js.Value) XMLHttpRequestResponseType {
 	return XMLHttpRequestResponseType(val.String())
 }

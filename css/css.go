@@ -2,9 +2,13 @@
 // css/css.go
 package css
 
+import dom "github.com/brettlangdon/go-dom/v1"
 import "syscall/js"
 
-var value Value
+var value dom.Value
 
-func init()                      { value = Value{Value: js.Global().Get("CSS")} }
-func Escape(args ...interface{}) { return value.Call("escape", args...) }
+func init() { value = dom.JSValueToValue(js.Global().Get("css")) }
+func Escape(args ...interface{}) string {
+	val := value.Call("escape", args...)
+	return val.String()
+}

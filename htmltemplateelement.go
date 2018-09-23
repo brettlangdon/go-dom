@@ -109,11 +109,11 @@ type HTMLTemplateElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTemplateElement(val js.Value) HTMLTemplateElement {
+func JSValueToHTMLTemplateElement(val js.Value) HTMLTemplateElement {
 	return HTMLTemplateElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTemplateElement() HTMLTemplateElement { return HTMLTemplateElement{Value: v} }
 func (h HTMLTemplateElement) GetContent() DocumentFragment {
 	val := h.Get("content")
-	return jsValueToDocumentFragment(val.JSValue())
+	return JSValueToDocumentFragment(val.JSValue())
 }

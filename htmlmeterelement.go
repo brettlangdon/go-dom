@@ -121,7 +121,7 @@ type HTMLMeterElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLMeterElement(val js.Value) HTMLMeterElement {
+func JSValueToHTMLMeterElement(val js.Value) HTMLMeterElement {
 	return HTMLMeterElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMeterElement() HTMLMeterElement { return HTMLMeterElement{Value: v} }
@@ -134,7 +134,7 @@ func (h HTMLMeterElement) SetHigh(val float64) {
 }
 func (h HTMLMeterElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLMeterElement) GetLow() float64 {
 	val := h.Get("low")

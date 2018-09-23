@@ -108,7 +108,7 @@ type HTMLBRElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLBRElement(val js.Value) HTMLBRElement {
+func JSValueToHTMLBRElement(val js.Value) HTMLBRElement {
 	return HTMLBRElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLBRElement() HTMLBRElement { return HTMLBRElement{Value: v} }

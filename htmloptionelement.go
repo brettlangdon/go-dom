@@ -122,7 +122,7 @@ type HTMLOptionElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLOptionElement(val js.Value) HTMLOptionElement {
+func JSValueToHTMLOptionElement(val js.Value) HTMLOptionElement {
 	return HTMLOptionElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLOptionElement() HTMLOptionElement { return HTMLOptionElement{Value: v} }
@@ -142,7 +142,7 @@ func (h HTMLOptionElement) SetDisabled(val bool) {
 }
 func (h HTMLOptionElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLOptionElement) GetIndex() float64 {
 	val := h.Get("index")

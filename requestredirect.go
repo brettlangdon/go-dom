@@ -12,6 +12,6 @@ const (
 	RequestRedirectManual RequestRedirect = "manual"
 )
 
-func jsValueToRequestRedirect(val js.Value) RequestRedirect {
+func JSValueToRequestRedirect(val js.Value) RequestRedirect {
 	return RequestRedirect(val.String())
 }

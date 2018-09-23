@@ -6,6 +6,6 @@ import "syscall/js"
 
 type DOMTimeStamp float64
 
-func jsValueToDOMTimeStamp(val js.Value) DOMTimeStamp {
+func JSValueToDOMTimeStamp(val js.Value) DOMTimeStamp {
 	return DOMTimeStamp(val.Float())
 }

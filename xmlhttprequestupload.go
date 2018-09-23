@@ -29,7 +29,7 @@ type XMLHttpRequestUpload struct {
 	EventTarget
 }
 
-func jsValueToXMLHttpRequestUpload(val js.Value) XMLHttpRequestUpload {
+func JSValueToXMLHttpRequestUpload(val js.Value) XMLHttpRequestUpload {
 	return XMLHttpRequestUpload{Value: Value{Value: val}}
 }
 func (v Value) AsXMLHttpRequestUpload() XMLHttpRequestUpload { return XMLHttpRequestUpload{Value: v} }

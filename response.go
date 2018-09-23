@@ -28,7 +28,7 @@ type Response struct {
 	Value
 }
 
-func jsValueToResponse(val js.Value) Response { return Response{Value: Value{Value: val}} }
+func JSValueToResponse(val js.Value) Response { return Response{Value: Value{Value: val}} }
 func (v Value) AsResponse() Response          { return Response{Value: v} }
 func (r Response) ArrayBuffer(args ...interface{}) {
 	r.Call("arrayBuffer", args...)
@@ -46,18 +46,18 @@ func (r Response) GetBodyUsed() bool {
 }
 func (r Response) Clone(args ...interface{}) Response {
 	val := r.Call("clone", args...)
-	return jsValueToResponse(val.JSValue())
+	return JSValueToResponse(val.JSValue())
 }
 func (r Response) Error(args ...interface{}) Response {
 	val := r.Call("error", args...)
-	return jsValueToResponse(val.JSValue())
+	return JSValueToResponse(val.JSValue())
 }
 func (r Response) FormData(args ...interface{}) {
 	r.Call("formData", args...)
 }
 func (r Response) GetHeaders() Headers {
 	val := r.Get("headers")
-	return jsValueToHeaders(val.JSValue())
+	return JSValueToHeaders(val.JSValue())
 }
 func (r Response) Json(args ...interface{}) {
 	r.Call("json", args...)
@@ -68,7 +68,7 @@ func (r Response) GetOk() bool {
 }
 func (r Response) Redirect(args ...interface{}) Response {
 	val := r.Call("redirect", args...)
-	return jsValueToResponse(val.JSValue())
+	return JSValueToResponse(val.JSValue())
 }
 func (r Response) GetRedirected() bool {
 	val := r.Get("redirected")
@@ -91,7 +91,7 @@ func (r Response) GetTrailer() Value {
 }
 func (r Response) GetType() ResponseType {
 	val := r.Get("type")
-	return jsValueToResponseType(val.JSValue())
+	return JSValueToResponseType(val.JSValue())
 }
 func (r Response) GetUrl() string {
 	val := r.Get("url")

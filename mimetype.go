@@ -14,7 +14,7 @@ type MimeType struct {
 	Value
 }
 
-func jsValueToMimeType(val js.Value) MimeType { return MimeType{Value: Value{Value: val}} }
+func JSValueToMimeType(val js.Value) MimeType { return MimeType{Value: Value{Value: val}} }
 func (v Value) AsMimeType() MimeType          { return MimeType{Value: v} }
 func (m MimeType) GetDescription() string {
 	val := m.Get("description")
@@ -22,7 +22,7 @@ func (m MimeType) GetDescription() string {
 }
 func (m MimeType) GetEnabledPlugin() Plugin {
 	val := m.Get("enabledPlugin")
-	return jsValueToPlugin(val.JSValue())
+	return JSValueToPlugin(val.JSValue())
 }
 func (m MimeType) GetSuffixes() string {
 	val := m.Get("suffixes")

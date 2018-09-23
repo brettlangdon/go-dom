@@ -99,7 +99,7 @@ type Element struct {
 	EventTarget
 }
 
-func jsValueToElement(val js.Value) Element { return Element{Value: Value{Value: val}} }
+func JSValueToElement(val js.Value) Element { return Element{Value: Value{Value: val}} }
 func (v Value) AsElement() Element          { return Element{Value: v} }
 func (e Element) After(args ...interface{}) {
 	e.Call("after", args...)
@@ -109,15 +109,15 @@ func (e Element) Append(args ...interface{}) {
 }
 func (e Element) GetAssignedSlot() HTMLSlotElement {
 	val := e.Get("assignedSlot")
-	return jsValueToHTMLSlotElement(val.JSValue())
+	return JSValueToHTMLSlotElement(val.JSValue())
 }
 func (e Element) AttachShadow(args ...interface{}) ShadowRoot {
 	val := e.Call("attachShadow", args...)
-	return jsValueToShadowRoot(val.JSValue())
+	return JSValueToShadowRoot(val.JSValue())
 }
 func (e Element) GetAttributes() NamedNodeMap {
 	val := e.Get("attributes")
-	return jsValueToNamedNodeMap(val.JSValue())
+	return JSValueToNamedNodeMap(val.JSValue())
 }
 func (e Element) Before(args ...interface{}) {
 	e.Call("before", args...)
@@ -128,11 +128,11 @@ func (e Element) GetChildElementCount() float64 {
 }
 func (e Element) GetChildren() HTMLCollection {
 	val := e.Get("children")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (e Element) GetClassList() DOMTokenList {
 	val := e.Get("classList")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (e Element) GetClassName() string {
 	val := e.Get("className")
@@ -143,11 +143,11 @@ func (e Element) SetClassName(val string) {
 }
 func (e Element) Closest(args ...interface{}) Element {
 	val := e.Call("closest", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) GetFirstElementChild() Element {
 	val := e.Get("firstElementChild")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) GetAttribute(args ...interface{}) string {
 	val := e.Call("getAttribute", args...)
@@ -162,23 +162,23 @@ func (e Element) GetAttributeNames(args ...interface{}) {
 }
 func (e Element) GetAttributeNode(args ...interface{}) Attr {
 	val := e.Call("getAttributeNode", args...)
-	return jsValueToAttr(val.JSValue())
+	return JSValueToAttr(val.JSValue())
 }
 func (e Element) GetAttributeNodeNS(args ...interface{}) Attr {
 	val := e.Call("getAttributeNodeNS", args...)
-	return jsValueToAttr(val.JSValue())
+	return JSValueToAttr(val.JSValue())
 }
 func (e Element) GetElementsByClassName(args ...interface{}) HTMLCollection {
 	val := e.Call("getElementsByClassName", args...)
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (e Element) GetElementsByTagName(args ...interface{}) HTMLCollection {
 	val := e.Call("getElementsByTagName", args...)
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (e Element) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
 	val := e.Call("getElementsByTagNameNS", args...)
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (e Element) HasAttribute(args ...interface{}) bool {
 	val := e.Call("hasAttribute", args...)
@@ -201,14 +201,14 @@ func (e Element) SetId(val string) {
 }
 func (e Element) InsertAdjacentElement(args ...interface{}) Element {
 	val := e.Call("insertAdjacentElement", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) InsertAdjacentText(args ...interface{}) {
 	e.Call("insertAdjacentText", args...)
 }
 func (e Element) GetLastElementChild() Element {
 	val := e.Get("lastElementChild")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) GetLocalName() string {
 	val := e.Get("localName")
@@ -224,7 +224,7 @@ func (e Element) GetNamespaceURI() string {
 }
 func (e Element) GetNextElementSibling() Element {
 	val := e.Get("nextElementSibling")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) GetPrefix() string {
 	val := e.Get("prefix")
@@ -235,15 +235,15 @@ func (e Element) Prepend(args ...interface{}) {
 }
 func (e Element) GetPreviousElementSibling() Element {
 	val := e.Get("previousElementSibling")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) QuerySelector(args ...interface{}) Element {
 	val := e.Call("querySelector", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (e Element) QuerySelectorAll(args ...interface{}) NodeList {
 	val := e.Call("querySelectorAll", args...)
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (e Element) Remove(args ...interface{}) {
 	e.Call("remove", args...)
@@ -256,7 +256,7 @@ func (e Element) RemoveAttributeNS(args ...interface{}) {
 }
 func (e Element) RemoveAttributeNode(args ...interface{}) Attr {
 	val := e.Call("removeAttributeNode", args...)
-	return jsValueToAttr(val.JSValue())
+	return JSValueToAttr(val.JSValue())
 }
 func (e Element) ReplaceWith(args ...interface{}) {
 	e.Call("replaceWith", args...)
@@ -269,15 +269,15 @@ func (e Element) SetAttributeNS(args ...interface{}) {
 }
 func (e Element) SetAttributeNode(args ...interface{}) Attr {
 	val := e.Call("setAttributeNode", args...)
-	return jsValueToAttr(val.JSValue())
+	return JSValueToAttr(val.JSValue())
 }
 func (e Element) SetAttributeNodeNS(args ...interface{}) Attr {
 	val := e.Call("setAttributeNodeNS", args...)
-	return jsValueToAttr(val.JSValue())
+	return JSValueToAttr(val.JSValue())
 }
 func (e Element) GetShadowRoot() ShadowRoot {
 	val := e.Get("shadowRoot")
-	return jsValueToShadowRoot(val.JSValue())
+	return JSValueToShadowRoot(val.JSValue())
 }
 func (e Element) GetSlot() string {
 	val := e.Get("slot")

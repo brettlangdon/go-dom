@@ -54,7 +54,7 @@ type Attr struct {
 	EventTarget
 }
 
-func jsValueToAttr(val js.Value) Attr { return Attr{Value: Value{Value: val}} }
+func JSValueToAttr(val js.Value) Attr { return Attr{Value: Value{Value: val}} }
 func (v Value) AsAttr() Attr          { return Attr{Value: v} }
 func (a Attr) GetLocalName() string {
 	val := a.Get("localName")
@@ -70,7 +70,7 @@ func (a Attr) GetNamespaceURI() string {
 }
 func (a Attr) GetOwnerElement() Element {
 	val := a.Get("ownerElement")
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (a Attr) GetPrefix() string {
 	val := a.Get("prefix")

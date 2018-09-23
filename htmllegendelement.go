@@ -109,11 +109,11 @@ type HTMLLegendElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLLegendElement(val js.Value) HTMLLegendElement {
+func JSValueToHTMLLegendElement(val js.Value) HTMLLegendElement {
 	return HTMLLegendElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLegendElement() HTMLLegendElement { return HTMLLegendElement{Value: v} }
 func (h HTMLLegendElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }

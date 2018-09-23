@@ -110,7 +110,7 @@ type HTMLLIElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLLIElement(val js.Value) HTMLLIElement {
+func JSValueToHTMLLIElement(val js.Value) HTMLLIElement {
 	return HTMLLIElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLIElement() HTMLLIElement { return HTMLLIElement{Value: v} }

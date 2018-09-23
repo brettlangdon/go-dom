@@ -21,7 +21,7 @@ type OffscreenCanvas struct {
 	EventTarget
 }
 
-func jsValueToOffscreenCanvas(val js.Value) OffscreenCanvas {
+func JSValueToOffscreenCanvas(val js.Value) OffscreenCanvas {
 	return OffscreenCanvas{Value: Value{Value: val}}
 }
 func (v Value) AsOffscreenCanvas() OffscreenCanvas { return OffscreenCanvas{Value: v} }
@@ -30,7 +30,7 @@ func (o OffscreenCanvas) ConvertToBlob(args ...interface{}) {
 }
 func (o OffscreenCanvas) GetContext(args ...interface{}) OffscreenRenderingContext {
 	val := o.Call("getContext", args...)
-	return jsValueToOffscreenRenderingContext(val.JSValue())
+	return JSValueToOffscreenRenderingContext(val.JSValue())
 }
 func (o OffscreenCanvas) GetHeight() float64 {
 	val := o.Get("height")
@@ -41,7 +41,7 @@ func (o OffscreenCanvas) SetHeight(val float64) {
 }
 func (o OffscreenCanvas) TransferToImageBitmap(args ...interface{}) ImageBitmap {
 	val := o.Call("transferToImageBitmap", args...)
-	return jsValueToImageBitmap(val.JSValue())
+	return JSValueToImageBitmap(val.JSValue())
 }
 func (o OffscreenCanvas) GetWidth() float64 {
 	val := o.Get("width")

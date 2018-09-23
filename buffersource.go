@@ -6,6 +6,6 @@ import "syscall/js"
 
 type BufferSource Value
 
-func jsValueToBufferSource(val js.Value) BufferSource {
-	return BufferSource(jsValueToValue(val))
+func JSValueToBufferSource(val js.Value) BufferSource {
+	return BufferSource(JSValueToValue(val))
 }

@@ -110,7 +110,7 @@ type HTMLTitleElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTitleElement(val js.Value) HTMLTitleElement {
+func JSValueToHTMLTitleElement(val js.Value) HTMLTitleElement {
 	return HTMLTitleElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTitleElement() HTMLTitleElement { return HTMLTitleElement{Value: v} }

@@ -132,7 +132,7 @@ type HTMLFormElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLFormElement(val js.Value) HTMLFormElement {
+func JSValueToHTMLFormElement(val js.Value) HTMLFormElement {
 	return HTMLFormElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLFormElement() HTMLFormElement { return HTMLFormElement{Value: v} }
@@ -163,7 +163,7 @@ func (h HTMLFormElement) CheckValidity(args ...interface{}) bool {
 }
 func (h HTMLFormElement) GetElements() HTMLFormControlsCollection {
 	val := h.Get("elements")
-	return jsValueToHTMLFormControlsCollection(val.JSValue())
+	return JSValueToHTMLFormControlsCollection(val.JSValue())
 }
 func (h HTMLFormElement) GetEncoding() string {
 	val := h.Get("encoding")

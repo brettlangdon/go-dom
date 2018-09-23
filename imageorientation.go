@@ -11,6 +11,6 @@ const (
 	ImageOrientationFlipY ImageOrientation = "flipY"
 )
 
-func jsValueToImageOrientation(val js.Value) ImageOrientation {
+func JSValueToImageOrientation(val js.Value) ImageOrientation {
 	return ImageOrientation(val.String())
 }

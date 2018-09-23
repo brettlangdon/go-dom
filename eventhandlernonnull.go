@@ -9,12 +9,12 @@ type EventHandlerNonNull struct {
 	Callback
 }
 
-func jsValueToEventHandlerNonNull(val js.Value) EventHandlerNonNull {
-	return EventHandlerNonNull{Callback: jsValueToCallback(val)}
+func JSValueToEventHandlerNonNull(val js.Value) EventHandlerNonNull {
+	return EventHandlerNonNull{Callback: JSValueToCallback(val)}
 }
 func NewEventHandlerNonNull(c EventHandlerNonNullCallback) EventHandlerNonNull {
 	callback := js.NewCallback(func(args []js.Value) {
-		event := jsValueToEvent(args[0])
+		event := JSValueToEvent(args[0])
 		c(event)
 	})
 	return EventHandlerNonNull{Callback: Callback{Callback: callback}}

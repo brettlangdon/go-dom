@@ -6,6 +6,6 @@ import "syscall/js"
 
 type OnErrorEventHandler OnErrorEventHandlerNonNull
 
-func jsValueToOnErrorEventHandler(val js.Value) OnErrorEventHandler {
-	return OnErrorEventHandler(jsValueToOnErrorEventHandlerNonNull(val))
+func JSValueToOnErrorEventHandler(val js.Value) OnErrorEventHandler {
+	return OnErrorEventHandler(JSValueToOnErrorEventHandlerNonNull(val))
 }

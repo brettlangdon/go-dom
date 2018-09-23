@@ -30,7 +30,7 @@ type Event struct {
 	Value
 }
 
-func jsValueToEvent(val js.Value) Event { return Event{Value: Value{Value: val}} }
+func JSValueToEvent(val js.Value) Event { return Event{Value: Value{Value: val}} }
 func (v Value) AsEvent() Event          { return Event{Value: v} }
 func (e Event) GetBubbles() bool {
 	val := e.Get("bubbles")
@@ -56,7 +56,7 @@ func (e Event) ComposedPath(args ...interface{}) {
 }
 func (e Event) GetCurrentTarget() EventTarget {
 	val := e.Get("currentTarget")
-	return jsValueToEventTarget(val.JSValue())
+	return JSValueToEventTarget(val.JSValue())
 }
 func (e Event) GetDefaultPrevented() bool {
 	val := e.Get("defaultPrevented")
@@ -85,7 +85,7 @@ func (e Event) SetReturnValue(val bool) {
 }
 func (e Event) GetSrcElement() EventTarget {
 	val := e.Get("srcElement")
-	return jsValueToEventTarget(val.JSValue())
+	return JSValueToEventTarget(val.JSValue())
 }
 func (e Event) StopImmediatePropagation(args ...interface{}) {
 	e.Call("stopImmediatePropagation", args...)
@@ -95,11 +95,11 @@ func (e Event) StopPropagation(args ...interface{}) {
 }
 func (e Event) GetTarget() EventTarget {
 	val := e.Get("target")
-	return jsValueToEventTarget(val.JSValue())
+	return JSValueToEventTarget(val.JSValue())
 }
 func (e Event) GetTimeStamp() DOMHighResTimeStamp {
 	val := e.Get("timeStamp")
-	return jsValueToDOMHighResTimeStamp(val.JSValue())
+	return JSValueToDOMHighResTimeStamp(val.JSValue())
 }
 func (e Event) GetType() string {
 	val := e.Get("type")

@@ -18,35 +18,35 @@ type DOMQuad struct {
 	Value
 }
 
-func jsValueToDOMQuad(val js.Value) DOMQuad { return DOMQuad{Value: Value{Value: val}} }
+func JSValueToDOMQuad(val js.Value) DOMQuad { return DOMQuad{Value: Value{Value: val}} }
 func (v Value) AsDOMQuad() DOMQuad          { return DOMQuad{Value: v} }
 func (d DOMQuad) FromQuad(args ...interface{}) DOMQuad {
 	val := d.Call("fromQuad", args...)
-	return jsValueToDOMQuad(val.JSValue())
+	return JSValueToDOMQuad(val.JSValue())
 }
 func (d DOMQuad) FromRect(args ...interface{}) DOMQuad {
 	val := d.Call("fromRect", args...)
-	return jsValueToDOMQuad(val.JSValue())
+	return JSValueToDOMQuad(val.JSValue())
 }
 func (d DOMQuad) GetBounds(args ...interface{}) DOMRect {
 	val := d.Call("getBounds", args...)
-	return jsValueToDOMRect(val.JSValue())
+	return JSValueToDOMRect(val.JSValue())
 }
 func (d DOMQuad) GetP1() DOMPoint {
 	val := d.Get("p1")
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMQuad) GetP2() DOMPoint {
 	val := d.Get("p2")
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMQuad) GetP3() DOMPoint {
 	val := d.Get("p3")
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMQuad) GetP4() DOMPoint {
 	val := d.Get("p4")
-	return jsValueToDOMPoint(val.JSValue())
+	return JSValueToDOMPoint(val.JSValue())
 }
 func (d DOMQuad) ToJSON(args ...interface{}) Value {
 	val := d.Call("toJSON", args...)

@@ -112,17 +112,17 @@ type HTMLLabelElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLLabelElement(val js.Value) HTMLLabelElement {
+func JSValueToHTMLLabelElement(val js.Value) HTMLLabelElement {
 	return HTMLLabelElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLabelElement() HTMLLabelElement { return HTMLLabelElement{Value: v} }
 func (h HTMLLabelElement) GetControl() HTMLElement {
 	val := h.Get("control")
-	return jsValueToHTMLElement(val.JSValue())
+	return JSValueToHTMLElement(val.JSValue())
 }
 func (h HTMLLabelElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLLabelElement) GetHtmlFor() string {
 	val := h.Get("htmlFor")

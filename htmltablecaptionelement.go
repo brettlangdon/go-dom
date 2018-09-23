@@ -108,7 +108,7 @@ type HTMLTableCaptionElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLTableCaptionElement(val js.Value) HTMLTableCaptionElement {
+func JSValueToHTMLTableCaptionElement(val js.Value) HTMLTableCaptionElement {
 	return HTMLTableCaptionElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableCaptionElement() HTMLTableCaptionElement {

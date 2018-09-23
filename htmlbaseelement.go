@@ -112,7 +112,7 @@ type HTMLBaseElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLBaseElement(val js.Value) HTMLBaseElement {
+func JSValueToHTMLBaseElement(val js.Value) HTMLBaseElement {
 	return HTMLBaseElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLBaseElement() HTMLBaseElement { return HTMLBaseElement{Value: v} }

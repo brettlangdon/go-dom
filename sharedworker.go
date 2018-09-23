@@ -17,16 +17,16 @@ type SharedWorker struct {
 	EventTarget
 }
 
-func jsValueToSharedWorker(val js.Value) SharedWorker { return SharedWorker{Value: Value{Value: val}} }
+func JSValueToSharedWorker(val js.Value) SharedWorker { return SharedWorker{Value: Value{Value: val}} }
 func (v Value) AsSharedWorker() SharedWorker          { return SharedWorker{Value: v} }
 func (s SharedWorker) GetOnerror() EventHandler {
 	val := s.Get("onerror")
-	return jsValueToEventHandler(val.JSValue())
+	return JSValueToEventHandler(val.JSValue())
 }
 func (s SharedWorker) SetOnerror(val EventHandler) {
 	s.Set("onerror", val)
 }
 func (s SharedWorker) GetPort() MessagePort {
 	val := s.Get("port")
-	return jsValueToMessagePort(val.JSValue())
+	return JSValueToMessagePort(val.JSValue())
 }

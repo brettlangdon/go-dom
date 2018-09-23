@@ -12,6 +12,6 @@ const (
 	RequestCredentialsInclude    RequestCredentials = "include"
 )
 
-func jsValueToRequestCredentials(val js.Value) RequestCredentials {
+func JSValueToRequestCredentials(val js.Value) RequestCredentials {
 	return RequestCredentials(val.String())
 }

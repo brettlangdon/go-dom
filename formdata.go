@@ -18,7 +18,7 @@ type FormData struct {
 	Value
 }
 
-func jsValueToFormData(val js.Value) FormData { return FormData{Value: Value{Value: val}} }
+func JSValueToFormData(val js.Value) FormData { return FormData{Value: Value{Value: val}} }
 func (v Value) AsFormData() FormData          { return FormData{Value: v} }
 func (f FormData) Append(args ...interface{}) {
 	f.Call("append", args...)
@@ -31,7 +31,7 @@ func (f FormData) Delete(args ...interface{}) {
 }
 func (f FormData) Get(args ...interface{}) FormDataEntryValue {
 	val := f.Call("get", args...)
-	return jsValueToFormDataEntryValue(val.JSValue())
+	return JSValueToFormDataEntryValue(val.JSValue())
 }
 func (f FormData) GetAll(args ...interface{}) {
 	f.Call("getAll", args...)

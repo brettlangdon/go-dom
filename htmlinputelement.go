@@ -199,7 +199,7 @@ type HTMLInputElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLInputElement(val js.Value) HTMLInputElement {
+func JSValueToHTMLInputElement(val js.Value) HTMLInputElement {
 	return HTMLInputElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLInputElement() HTMLInputElement { return HTMLInputElement{Value: v} }
@@ -272,14 +272,14 @@ func (h HTMLInputElement) SetDisabled(val bool) {
 }
 func (h HTMLInputElement) GetFiles() FileList {
 	val := h.Get("files")
-	return jsValueToFileList(val.JSValue())
+	return JSValueToFileList(val.JSValue())
 }
 func (h HTMLInputElement) SetFiles(val FileList) {
 	h.Set("files", val)
 }
 func (h HTMLInputElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLInputElement) GetFormAction() string {
 	val := h.Get("formAction")
@@ -332,11 +332,11 @@ func (h HTMLInputElement) SetIndeterminate(val bool) {
 }
 func (h HTMLInputElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLInputElement) GetList() HTMLElement {
 	val := h.Get("list")
-	return jsValueToHTMLElement(val.JSValue())
+	return JSValueToHTMLElement(val.JSValue())
 }
 func (h HTMLInputElement) GetMax() string {
 	val := h.Get("max")
@@ -488,7 +488,7 @@ func (h HTMLInputElement) GetValidationMessage() string {
 }
 func (h HTMLInputElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLInputElement) GetValue() string {
 	val := h.Get("value")

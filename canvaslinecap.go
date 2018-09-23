@@ -12,6 +12,6 @@ const (
 	CanvasLineCapSquare CanvasLineCap = "square"
 )
 
-func jsValueToCanvasLineCap(val js.Value) CanvasLineCap {
+func JSValueToCanvasLineCap(val js.Value) CanvasLineCap {
 	return CanvasLineCap(val.String())
 }

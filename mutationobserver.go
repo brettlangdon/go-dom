@@ -13,7 +13,7 @@ type MutationObserver struct {
 	Value
 }
 
-func jsValueToMutationObserver(val js.Value) MutationObserver {
+func JSValueToMutationObserver(val js.Value) MutationObserver {
 	return MutationObserver{Value: Value{Value: val}}
 }
 func (v Value) AsMutationObserver() MutationObserver { return MutationObserver{Value: v} }

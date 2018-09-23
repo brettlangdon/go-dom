@@ -146,7 +146,7 @@ type HTMLAnchorElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLAnchorElement(val js.Value) HTMLAnchorElement {
+func JSValueToHTMLAnchorElement(val js.Value) HTMLAnchorElement {
 	return HTMLAnchorElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLAnchorElement() HTMLAnchorElement { return HTMLAnchorElement{Value: v} }
@@ -247,7 +247,7 @@ func (h HTMLAnchorElement) SetRel(val string) {
 }
 func (h HTMLAnchorElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLAnchorElement) GetSearch() string {
 	val := h.Get("search")

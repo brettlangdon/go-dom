@@ -112,7 +112,7 @@ type HTMLModElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLModElement(val js.Value) HTMLModElement {
+func JSValueToHTMLModElement(val js.Value) HTMLModElement {
 	return HTMLModElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLModElement() HTMLModElement { return HTMLModElement{Value: v} }

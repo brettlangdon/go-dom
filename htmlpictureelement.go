@@ -108,7 +108,7 @@ type HTMLPictureElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLPictureElement(val js.Value) HTMLPictureElement {
+func JSValueToHTMLPictureElement(val js.Value) HTMLPictureElement {
 	return HTMLPictureElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLPictureElement() HTMLPictureElement { return HTMLPictureElement{Value: v} }

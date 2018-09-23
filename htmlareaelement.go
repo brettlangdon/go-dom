@@ -146,7 +146,7 @@ type HTMLAreaElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLAreaElement(val js.Value) HTMLAreaElement {
+func JSValueToHTMLAreaElement(val js.Value) HTMLAreaElement {
 	return HTMLAreaElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLAreaElement() HTMLAreaElement { return HTMLAreaElement{Value: v} }
@@ -254,7 +254,7 @@ func (h HTMLAreaElement) SetRel(val string) {
 }
 func (h HTMLAreaElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
-	return jsValueToDOMTokenList(val.JSValue())
+	return JSValueToDOMTokenList(val.JSValue())
 }
 func (h HTMLAreaElement) GetSearch() string {
 	val := h.Get("search")

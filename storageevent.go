@@ -36,7 +36,7 @@ type StorageEvent struct {
 	Event
 }
 
-func jsValueToStorageEvent(val js.Value) StorageEvent { return StorageEvent{Value: Value{Value: val}} }
+func JSValueToStorageEvent(val js.Value) StorageEvent { return StorageEvent{Value: Value{Value: val}} }
 func (v Value) AsStorageEvent() StorageEvent          { return StorageEvent{Value: v} }
 func (s StorageEvent) GetKey() string {
 	val := s.Get("key")
@@ -52,7 +52,7 @@ func (s StorageEvent) GetOldValue() string {
 }
 func (s StorageEvent) GetStorageArea() Storage {
 	val := s.Get("storageArea")
-	return jsValueToStorage(val.JSValue())
+	return JSValueToStorage(val.JSValue())
 }
 func (s StorageEvent) GetUrl() string {
 	val := s.Get("url")

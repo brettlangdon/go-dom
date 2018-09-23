@@ -16,7 +16,7 @@ type Storage struct {
 	Value
 }
 
-func jsValueToStorage(val js.Value) Storage { return Storage{Value: Value{Value: val}} }
+func JSValueToStorage(val js.Value) Storage { return Storage{Value: Value{Value: val}} }
 func (v Value) AsStorage() Storage          { return Storage{Value: v} }
 func (s Storage) Clear(args ...interface{}) {
 	s.Call("clear", args...)

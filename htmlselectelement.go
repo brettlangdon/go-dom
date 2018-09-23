@@ -144,7 +144,7 @@ type HTMLSelectElement struct {
 	EventTarget
 }
 
-func jsValueToHTMLSelectElement(val js.Value) HTMLSelectElement {
+func JSValueToHTMLSelectElement(val js.Value) HTMLSelectElement {
 	return HTMLSelectElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLSelectElement() HTMLSelectElement { return HTMLSelectElement{Value: v} }
@@ -178,15 +178,15 @@ func (h HTMLSelectElement) SetDisabled(val bool) {
 }
 func (h HTMLSelectElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
-	return jsValueToHTMLFormElement(val.JSValue())
+	return JSValueToHTMLFormElement(val.JSValue())
 }
 func (h HTMLSelectElement) Item(args ...interface{}) Element {
 	val := h.Call("item", args...)
-	return jsValueToElement(val.JSValue())
+	return JSValueToElement(val.JSValue())
 }
 func (h HTMLSelectElement) GetLabels() NodeList {
 	val := h.Get("labels")
-	return jsValueToNodeList(val.JSValue())
+	return JSValueToNodeList(val.JSValue())
 }
 func (h HTMLSelectElement) GetLength() float64 {
 	val := h.Get("length")
@@ -211,11 +211,11 @@ func (h HTMLSelectElement) SetName(val string) {
 }
 func (h HTMLSelectElement) NamedItem(args ...interface{}) HTMLOptionElement {
 	val := h.Call("namedItem", args...)
-	return jsValueToHTMLOptionElement(val.JSValue())
+	return JSValueToHTMLOptionElement(val.JSValue())
 }
 func (h HTMLSelectElement) GetOptions() HTMLOptionsCollection {
 	val := h.Get("options")
-	return jsValueToHTMLOptionsCollection(val.JSValue())
+	return JSValueToHTMLOptionsCollection(val.JSValue())
 }
 func (h HTMLSelectElement) Remove(args ...interface{}) {
 	h.Call("remove", args...)
@@ -243,7 +243,7 @@ func (h HTMLSelectElement) SetSelectedIndex(val float64) {
 }
 func (h HTMLSelectElement) GetSelectedOptions() HTMLCollection {
 	val := h.Get("selectedOptions")
-	return jsValueToHTMLCollection(val.JSValue())
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (h HTMLSelectElement) SetCustomValidity(args ...interface{}) {
 	h.Call("setCustomValidity", args...)
@@ -265,7 +265,7 @@ func (h HTMLSelectElement) GetValidationMessage() string {
 }
 func (h HTMLSelectElement) GetValidity() ValidityState {
 	val := h.Get("validity")
-	return jsValueToValidityState(val.JSValue())
+	return JSValueToValidityState(val.JSValue())
 }
 func (h HTMLSelectElement) GetValue() string {
 	val := h.Get("value")
