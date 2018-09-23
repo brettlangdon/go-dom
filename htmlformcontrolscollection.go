@@ -1,0 +1,25 @@
+// Code generated DO NOT EDIT
+// htmlformcontrolscollection.go
+package dom
+
+import "syscall/js"
+
+type HTMLFormControlsCollectionIFace interface {
+	Item(args ...interface{}) Element
+	GetLength() float64
+	NamedItem(args ...interface{})
+}
+type HTMLFormControlsCollection struct {
+	Value
+	HTMLCollection
+}
+
+func jsValueToHTMLFormControlsCollection(val js.Value) HTMLFormControlsCollection {
+	return HTMLFormControlsCollection{Value: Value{Value: val}}
+}
+func (v Value) AsHTMLFormControlsCollection() HTMLFormControlsCollection {
+	return HTMLFormControlsCollection{Value: v}
+}
+func (h HTMLFormControlsCollection) NamedItem(args ...interface{}) {
+	h.Call("namedItem", args...)
+}

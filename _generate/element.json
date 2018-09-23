@@ -1,9 +1,0 @@
-{
-  "Type": "Element",
-  "ImportJS": true,
-  "Implements": [
-    "EventTargetIFace",
-    "NodeIFace",
-    "ElementIFace"
-  ]
-}

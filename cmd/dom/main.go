@@ -1,13 +1,16 @@
 package main
 
 import (
-	dom "github.com/brettlangdon/go-dom/v1"
-	"github.com/brettlangdon/go-dom/v1/console"
+	"syscall/js"
+
 	"github.com/brettlangdon/go-dom/v1/document"
 )
 
 func main() {
-	app := document.GetElementById("app")
-	shadow := app.AttachShadow(dom.ShadowRootInit{Mode: "open"})
-	console.Dir(shadow)
+	console := js.Global().Get("console")
+	nodes := document.Document.QuerySelectorAll("div")
+	var i float64 = 0
+	for ; i < nodes.GetLength(); i++ {
+		console.Call("dir", nodes.Item(i).JSValue())
+	}
 }
