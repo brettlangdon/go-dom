@@ -119,9 +119,12 @@ type HTMLSourceElement struct {
 }
 
 func JSValueToHTMLSourceElement(val js.Value) HTMLSourceElement {
-	return HTMLSourceElement{Value: Value{Value: val}}
+	return HTMLSourceElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLSourceElement() HTMLSourceElement { return HTMLSourceElement{Value: v} }
+func NewHTMLSourceElement(args ...interface{}) HTMLSourceElement {
+	return HTMLSourceElement{Value: JSValueToValue(js.Global().Get("HTMLSourceElement").New(args...))}
+}
 func (h HTMLSourceElement) GetMedia() string {
 	val := h.Get("media")
 	return val.String()

@@ -16,8 +16,11 @@ type AudioTrack struct {
 	Value
 }
 
-func JSValueToAudioTrack(val js.Value) AudioTrack { return AudioTrack{Value: Value{Value: val}} }
+func JSValueToAudioTrack(val js.Value) AudioTrack { return AudioTrack{Value: JSValueToValue(val)} }
 func (v Value) AsAudioTrack() AudioTrack          { return AudioTrack{Value: v} }
+func NewAudioTrack(args ...interface{}) AudioTrack {
+	return AudioTrack{Value: JSValueToValue(js.Global().Get("AudioTrack").New(args...))}
+}
 func (a AudioTrack) GetEnabled() bool {
 	val := a.Get("enabled")
 	return val.Bool()

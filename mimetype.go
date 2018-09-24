@@ -14,8 +14,11 @@ type MimeType struct {
 	Value
 }
 
-func JSValueToMimeType(val js.Value) MimeType { return MimeType{Value: Value{Value: val}} }
+func JSValueToMimeType(val js.Value) MimeType { return MimeType{Value: JSValueToValue(val)} }
 func (v Value) AsMimeType() MimeType          { return MimeType{Value: v} }
+func NewMimeType(args ...interface{}) MimeType {
+	return MimeType{Value: JSValueToValue(js.Global().Get("MimeType").New(args...))}
+}
 func (m MimeType) GetDescription() string {
 	val := m.Get("description")
 	return val.String()

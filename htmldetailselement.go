@@ -111,9 +111,12 @@ type HTMLDetailsElement struct {
 }
 
 func JSValueToHTMLDetailsElement(val js.Value) HTMLDetailsElement {
-	return HTMLDetailsElement{Value: Value{Value: val}}
+	return HTMLDetailsElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDetailsElement() HTMLDetailsElement { return HTMLDetailsElement{Value: v} }
+func NewHTMLDetailsElement(args ...interface{}) HTMLDetailsElement {
+	return HTMLDetailsElement{Value: JSValueToValue(js.Global().Get("HTMLDetailsElement").New(args...))}
+}
 func (h HTMLDetailsElement) GetOpen() bool {
 	val := h.Get("open")
 	return val.Bool()

@@ -113,9 +113,12 @@ type HTMLBaseElement struct {
 }
 
 func JSValueToHTMLBaseElement(val js.Value) HTMLBaseElement {
-	return HTMLBaseElement{Value: Value{Value: val}}
+	return HTMLBaseElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLBaseElement() HTMLBaseElement { return HTMLBaseElement{Value: v} }
+func NewHTMLBaseElement(args ...interface{}) HTMLBaseElement {
+	return HTMLBaseElement{Value: JSValueToValue(js.Global().Get("HTMLBaseElement").New(args...))}
+}
 func (h HTMLBaseElement) GetHref() string {
 	val := h.Get("href")
 	return val.String()

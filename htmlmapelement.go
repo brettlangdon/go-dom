@@ -112,9 +112,12 @@ type HTMLMapElement struct {
 }
 
 func JSValueToHTMLMapElement(val js.Value) HTMLMapElement {
-	return HTMLMapElement{Value: Value{Value: val}}
+	return HTMLMapElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMapElement() HTMLMapElement { return HTMLMapElement{Value: v} }
+func NewHTMLMapElement(args ...interface{}) HTMLMapElement {
+	return HTMLMapElement{Value: JSValueToValue(js.Global().Get("HTMLMapElement").New(args...))}
+}
 func (h HTMLMapElement) GetAreas() HTMLCollection {
 	val := h.Get("areas")
 	return JSValueToHTMLCollection(val.JSValue())

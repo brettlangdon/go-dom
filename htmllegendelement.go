@@ -112,9 +112,12 @@ type HTMLLegendElement struct {
 }
 
 func JSValueToHTMLLegendElement(val js.Value) HTMLLegendElement {
-	return HTMLLegendElement{Value: Value{Value: val}}
+	return HTMLLegendElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLLegendElement() HTMLLegendElement { return HTMLLegendElement{Value: v} }
+func NewHTMLLegendElement(args ...interface{}) HTMLLegendElement {
+	return HTMLLegendElement{Value: JSValueToValue(js.Global().Get("HTMLLegendElement").New(args...))}
+}
 func (h HTMLLegendElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

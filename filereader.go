@@ -34,8 +34,11 @@ type FileReader struct {
 	EventTarget
 }
 
-func JSValueToFileReader(val js.Value) FileReader { return FileReader{Value: Value{Value: val}} }
+func JSValueToFileReader(val js.Value) FileReader { return FileReader{Value: JSValueToValue(val)} }
 func (v Value) AsFileReader() FileReader          { return FileReader{Value: v} }
+func NewFileReader(args ...interface{}) FileReader {
+	return FileReader{Value: JSValueToValue(js.Global().Get("FileReader").New(args...))}
+}
 func (f FileReader) Abort(args ...interface{}) {
 	f.Call("abort", args...)
 }

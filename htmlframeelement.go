@@ -127,9 +127,12 @@ type HTMLFrameElement struct {
 }
 
 func JSValueToHTMLFrameElement(val js.Value) HTMLFrameElement {
-	return HTMLFrameElement{Value: Value{Value: val}}
+	return HTMLFrameElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLFrameElement() HTMLFrameElement { return HTMLFrameElement{Value: v} }
+func NewHTMLFrameElement(args ...interface{}) HTMLFrameElement {
+	return HTMLFrameElement{Value: JSValueToValue(js.Global().Get("HTMLFrameElement").New(args...))}
+}
 func (h HTMLFrameElement) GetContentDocument() Document {
 	val := h.Get("contentDocument")
 	return JSValueToDocument(val.JSValue())

@@ -115,9 +115,12 @@ type HTMLFontElement struct {
 }
 
 func JSValueToHTMLFontElement(val js.Value) HTMLFontElement {
-	return HTMLFontElement{Value: Value{Value: val}}
+	return HTMLFontElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLFontElement() HTMLFontElement { return HTMLFontElement{Value: v} }
+func NewHTMLFontElement(args ...interface{}) HTMLFontElement {
+	return HTMLFontElement{Value: JSValueToValue(js.Global().Get("HTMLFontElement").New(args...))}
+}
 func (h HTMLFontElement) GetColor() string {
 	val := h.Get("color")
 	return val.String()

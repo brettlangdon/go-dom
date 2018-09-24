@@ -32,9 +32,12 @@ type BeforeUnloadEvent struct {
 }
 
 func JSValueToBeforeUnloadEvent(val js.Value) BeforeUnloadEvent {
-	return BeforeUnloadEvent{Value: Value{Value: val}}
+	return BeforeUnloadEvent{Value: JSValueToValue(val)}
 }
 func (v Value) AsBeforeUnloadEvent() BeforeUnloadEvent { return BeforeUnloadEvent{Value: v} }
+func NewBeforeUnloadEvent(args ...interface{}) BeforeUnloadEvent {
+	return BeforeUnloadEvent{Value: JSValueToValue(js.Global().Get("BeforeUnloadEvent").New(args...))}
+}
 func (b BeforeUnloadEvent) GetReturnValue() string {
 	val := b.Get("returnValue")
 	return val.String()

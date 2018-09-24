@@ -103,10 +103,13 @@ type CanvasRenderingContext2D struct {
 }
 
 func JSValueToCanvasRenderingContext2D(val js.Value) CanvasRenderingContext2D {
-	return CanvasRenderingContext2D{Value: Value{Value: val}}
+	return CanvasRenderingContext2D{Value: JSValueToValue(val)}
 }
 func (v Value) AsCanvasRenderingContext2D() CanvasRenderingContext2D {
 	return CanvasRenderingContext2D{Value: v}
+}
+func NewCanvasRenderingContext2D(args ...interface{}) CanvasRenderingContext2D {
+	return CanvasRenderingContext2D{Value: JSValueToValue(js.Global().Get("CanvasRenderingContext2D").New(args...))}
 }
 func (c CanvasRenderingContext2D) Arc(args ...interface{}) {
 	c.Call("arc", args...)

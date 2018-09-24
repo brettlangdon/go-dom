@@ -28,9 +28,12 @@ type CSSStyleDeclaration struct {
 }
 
 func JSValueToCSSStyleDeclaration(val js.Value) CSSStyleDeclaration {
-	return CSSStyleDeclaration{Value: Value{Value: val}}
+	return CSSStyleDeclaration{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSStyleDeclaration() CSSStyleDeclaration { return CSSStyleDeclaration{Value: v} }
+func NewCSSStyleDeclaration(args ...interface{}) CSSStyleDeclaration {
+	return CSSStyleDeclaration{Value: JSValueToValue(js.Global().Get("CSSStyleDeclaration").New(args...))}
+}
 func (c CSSStyleDeclaration) GetCamel_cased_attribute() string {
 	val := c.Get("camel_cased_attribute")
 	return val.String()

@@ -36,8 +36,11 @@ type ErrorEvent struct {
 	Event
 }
 
-func JSValueToErrorEvent(val js.Value) ErrorEvent { return ErrorEvent{Value: Value{Value: val}} }
+func JSValueToErrorEvent(val js.Value) ErrorEvent { return ErrorEvent{Value: JSValueToValue(val)} }
 func (v Value) AsErrorEvent() ErrorEvent          { return ErrorEvent{Value: v} }
+func NewErrorEvent(args ...interface{}) ErrorEvent {
+	return ErrorEvent{Value: JSValueToValue(js.Global().Get("ErrorEvent").New(args...))}
+}
 func (e ErrorEvent) GetColno() int {
 	val := e.Get("colno")
 	return val.Int()

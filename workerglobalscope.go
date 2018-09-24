@@ -41,9 +41,12 @@ type WorkerGlobalScope struct {
 }
 
 func JSValueToWorkerGlobalScope(val js.Value) WorkerGlobalScope {
-	return WorkerGlobalScope{Value: Value{Value: val}}
+	return WorkerGlobalScope{Value: JSValueToValue(val)}
 }
 func (v Value) AsWorkerGlobalScope() WorkerGlobalScope { return WorkerGlobalScope{Value: v} }
+func NewWorkerGlobalScope(args ...interface{}) WorkerGlobalScope {
+	return WorkerGlobalScope{Value: JSValueToValue(js.Global().Get("WorkerGlobalScope").New(args...))}
+}
 func (w WorkerGlobalScope) Atob(args ...interface{}) []byte {
 	val := w.Call("atob", args...)
 	return []byte(val.String())

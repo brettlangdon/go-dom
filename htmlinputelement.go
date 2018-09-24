@@ -204,9 +204,12 @@ type HTMLInputElement struct {
 }
 
 func JSValueToHTMLInputElement(val js.Value) HTMLInputElement {
-	return HTMLInputElement{Value: Value{Value: val}}
+	return HTMLInputElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLInputElement() HTMLInputElement { return HTMLInputElement{Value: v} }
+func NewHTMLInputElement(args ...interface{}) HTMLInputElement {
+	return HTMLInputElement{Value: JSValueToValue(js.Global().Get("HTMLInputElement").New(args...))}
+}
 func (h HTMLInputElement) GetAccept() string {
 	val := h.Get("accept")
 	return val.String()

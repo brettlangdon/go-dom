@@ -111,9 +111,12 @@ type HTMLBRElement struct {
 }
 
 func JSValueToHTMLBRElement(val js.Value) HTMLBRElement {
-	return HTMLBRElement{Value: Value{Value: val}}
+	return HTMLBRElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLBRElement() HTMLBRElement { return HTMLBRElement{Value: v} }
+func NewHTMLBRElement(args ...interface{}) HTMLBRElement {
+	return HTMLBRElement{Value: JSValueToValue(js.Global().Get("HTMLBRElement").New(args...))}
+}
 func (h HTMLBRElement) GetClear() string {
 	val := h.Get("clear")
 	return val.String()

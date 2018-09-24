@@ -109,6 +109,9 @@ type HTMLPictureElement struct {
 }
 
 func JSValueToHTMLPictureElement(val js.Value) HTMLPictureElement {
-	return HTMLPictureElement{Value: Value{Value: val}}
+	return HTMLPictureElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLPictureElement() HTMLPictureElement { return HTMLPictureElement{Value: v} }
+func NewHTMLPictureElement(args ...interface{}) HTMLPictureElement {
+	return HTMLPictureElement{Value: JSValueToValue(js.Global().Get("HTMLPictureElement").New(args...))}
+}

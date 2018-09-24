@@ -145,9 +145,12 @@ type HTMLIFrameElement struct {
 }
 
 func JSValueToHTMLIFrameElement(val js.Value) HTMLIFrameElement {
-	return HTMLIFrameElement{Value: Value{Value: val}}
+	return HTMLIFrameElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLIFrameElement() HTMLIFrameElement { return HTMLIFrameElement{Value: v} }
+func NewHTMLIFrameElement(args ...interface{}) HTMLIFrameElement {
+	return HTMLIFrameElement{Value: JSValueToValue(js.Global().Get("HTMLIFrameElement").New(args...))}
+}
 func (h HTMLIFrameElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

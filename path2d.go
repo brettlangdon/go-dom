@@ -20,8 +20,11 @@ type Path2D struct {
 	Value
 }
 
-func JSValueToPath2D(val js.Value) Path2D { return Path2D{Value: Value{Value: val}} }
+func JSValueToPath2D(val js.Value) Path2D { return Path2D{Value: JSValueToValue(val)} }
 func (v Value) AsPath2D() Path2D          { return Path2D{Value: v} }
+func NewPath2D(args ...interface{}) Path2D {
+	return Path2D{Value: JSValueToValue(js.Global().Get("Path2D").New(args...))}
+}
 func (p Path2D) AddPath(args ...interface{}) {
 	p.Call("addPath", args...)
 }

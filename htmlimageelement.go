@@ -150,9 +150,12 @@ type HTMLImageElement struct {
 }
 
 func JSValueToHTMLImageElement(val js.Value) HTMLImageElement {
-	return HTMLImageElement{Value: Value{Value: val}}
+	return HTMLImageElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLImageElement() HTMLImageElement { return HTMLImageElement{Value: v} }
+func NewHTMLImageElement(args ...interface{}) HTMLImageElement {
+	return HTMLImageElement{Value: JSValueToValue(js.Global().Get("HTMLImageElement").New(args...))}
+}
 func (h HTMLImageElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

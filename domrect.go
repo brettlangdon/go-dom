@@ -25,8 +25,11 @@ type DOMRect struct {
 	DOMRectReadOnly
 }
 
-func JSValueToDOMRect(val js.Value) DOMRect { return DOMRect{Value: Value{Value: val}} }
+func JSValueToDOMRect(val js.Value) DOMRect { return DOMRect{Value: JSValueToValue(val)} }
 func (v Value) AsDOMRect() DOMRect          { return DOMRect{Value: v} }
+func NewDOMRect(args ...interface{}) DOMRect {
+	return DOMRect{Value: JSValueToValue(js.Global().Get("DOMRect").New(args...))}
+}
 func (d DOMRect) FromRect(args ...interface{}) DOMRect {
 	val := d.Call("fromRect", args...)
 	return JSValueToDOMRect(val.JSValue())

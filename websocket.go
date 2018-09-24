@@ -34,8 +34,11 @@ type WebSocket struct {
 	EventTarget
 }
 
-func JSValueToWebSocket(val js.Value) WebSocket { return WebSocket{Value: Value{Value: val}} }
+func JSValueToWebSocket(val js.Value) WebSocket { return WebSocket{Value: JSValueToValue(val)} }
 func (v Value) AsWebSocket() WebSocket          { return WebSocket{Value: v} }
+func NewWebSocket(args ...interface{}) WebSocket {
+	return WebSocket{Value: JSValueToValue(js.Global().Get("WebSocket").New(args...))}
+}
 func (w WebSocket) GetBinaryType() BinaryType {
 	val := w.Get("binaryType")
 	return JSValueToBinaryType(val.JSValue())

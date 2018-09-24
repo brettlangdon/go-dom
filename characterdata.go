@@ -61,9 +61,12 @@ type CharacterData struct {
 }
 
 func JSValueToCharacterData(val js.Value) CharacterData {
-	return CharacterData{Value: Value{Value: val}}
+	return CharacterData{Value: JSValueToValue(val)}
 }
 func (v Value) AsCharacterData() CharacterData { return CharacterData{Value: v} }
+func NewCharacterData(args ...interface{}) CharacterData {
+	return CharacterData{Value: JSValueToValue(js.Global().Get("CharacterData").New(args...))}
+}
 func (c CharacterData) After(args ...interface{}) {
 	c.Call("after", args...)
 }

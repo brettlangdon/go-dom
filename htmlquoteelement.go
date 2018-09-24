@@ -111,9 +111,12 @@ type HTMLQuoteElement struct {
 }
 
 func JSValueToHTMLQuoteElement(val js.Value) HTMLQuoteElement {
-	return HTMLQuoteElement{Value: Value{Value: val}}
+	return HTMLQuoteElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLQuoteElement() HTMLQuoteElement { return HTMLQuoteElement{Value: v} }
+func NewHTMLQuoteElement(args ...interface{}) HTMLQuoteElement {
+	return HTMLQuoteElement{Value: JSValueToValue(js.Global().Get("HTMLQuoteElement").New(args...))}
+}
 func (h HTMLQuoteElement) GetCite() string {
 	val := h.Get("cite")
 	return val.String()

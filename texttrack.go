@@ -27,8 +27,11 @@ type TextTrack struct {
 	EventTarget
 }
 
-func JSValueToTextTrack(val js.Value) TextTrack { return TextTrack{Value: Value{Value: val}} }
+func JSValueToTextTrack(val js.Value) TextTrack { return TextTrack{Value: JSValueToValue(val)} }
 func (v Value) AsTextTrack() TextTrack          { return TextTrack{Value: v} }
+func NewTextTrack(args ...interface{}) TextTrack {
+	return TextTrack{Value: JSValueToValue(js.Global().Get("TextTrack").New(args...))}
+}
 func (t TextTrack) GetActiveCues() TextTrackCueList {
 	val := t.Get("activeCues")
 	return JSValueToTextTrackCueList(val.JSValue())

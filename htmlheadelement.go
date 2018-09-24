@@ -109,6 +109,9 @@ type HTMLHeadElement struct {
 }
 
 func JSValueToHTMLHeadElement(val js.Value) HTMLHeadElement {
-	return HTMLHeadElement{Value: Value{Value: val}}
+	return HTMLHeadElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLHeadElement() HTMLHeadElement { return HTMLHeadElement{Value: v} }
+func NewHTMLHeadElement(args ...interface{}) HTMLHeadElement {
+	return HTMLHeadElement{Value: JSValueToValue(js.Global().Get("HTMLHeadElement").New(args...))}
+}

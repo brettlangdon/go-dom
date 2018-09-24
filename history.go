@@ -19,8 +19,11 @@ type History struct {
 	Value
 }
 
-func JSValueToHistory(val js.Value) History { return History{Value: Value{Value: val}} }
+func JSValueToHistory(val js.Value) History { return History{Value: JSValueToValue(val)} }
 func (v Value) AsHistory() History          { return History{Value: v} }
+func NewHistory(args ...interface{}) History {
+	return History{Value: JSValueToValue(js.Global().Get("History").New(args...))}
+}
 func (h History) Back(args ...interface{}) {
 	h.Call("back", args...)
 }

@@ -111,10 +111,13 @@ type HTMLTableCaptionElement struct {
 }
 
 func JSValueToHTMLTableCaptionElement(val js.Value) HTMLTableCaptionElement {
-	return HTMLTableCaptionElement{Value: Value{Value: val}}
+	return HTMLTableCaptionElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTableCaptionElement() HTMLTableCaptionElement {
 	return HTMLTableCaptionElement{Value: v}
+}
+func NewHTMLTableCaptionElement(args ...interface{}) HTMLTableCaptionElement {
+	return HTMLTableCaptionElement{Value: JSValueToValue(js.Global().Get("HTMLTableCaptionElement").New(args...))}
 }
 func (h HTMLTableCaptionElement) GetAlign() string {
 	val := h.Get("align")

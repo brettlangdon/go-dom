@@ -16,5 +16,8 @@ type StaticRange struct {
 	AbstractRange
 }
 
-func JSValueToStaticRange(val js.Value) StaticRange { return StaticRange{Value: Value{Value: val}} }
+func JSValueToStaticRange(val js.Value) StaticRange { return StaticRange{Value: JSValueToValue(val)} }
 func (v Value) AsStaticRange() StaticRange          { return StaticRange{Value: v} }
+func NewStaticRange(args ...interface{}) StaticRange {
+	return StaticRange{Value: JSValueToValue(js.Global().Get("StaticRange").New(args...))}
+}

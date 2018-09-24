@@ -33,8 +33,11 @@ type Request struct {
 	Value
 }
 
-func JSValueToRequest(val js.Value) Request { return Request{Value: Value{Value: val}} }
+func JSValueToRequest(val js.Value) Request { return Request{Value: JSValueToValue(val)} }
 func (v Value) AsRequest() Request          { return Request{Value: v} }
+func NewRequest(args ...interface{}) Request {
+	return Request{Value: JSValueToValue(js.Global().Get("Request").New(args...))}
+}
 func (r Request) ArrayBuffer(args ...interface{}) {
 	r.Call("arrayBuffer", args...)
 }

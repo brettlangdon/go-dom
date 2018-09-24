@@ -38,8 +38,11 @@ type Range struct {
 	AbstractRange
 }
 
-func JSValueToRange(val js.Value) Range { return Range{Value: Value{Value: val}} }
+func JSValueToRange(val js.Value) Range { return Range{Value: JSValueToValue(val)} }
 func (v Value) AsRange() Range          { return Range{Value: v} }
+func NewRange(args ...interface{}) Range {
+	return Range{Value: JSValueToValue(js.Global().Get("Range").New(args...))}
+}
 func (r Range) CloneContents(args ...interface{}) DocumentFragment {
 	val := r.Call("cloneContents", args...)
 	return JSValueToDocumentFragment(val.JSValue())

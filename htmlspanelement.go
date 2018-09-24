@@ -109,6 +109,9 @@ type HTMLSpanElement struct {
 }
 
 func JSValueToHTMLSpanElement(val js.Value) HTMLSpanElement {
-	return HTMLSpanElement{Value: Value{Value: val}}
+	return HTMLSpanElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLSpanElement() HTMLSpanElement { return HTMLSpanElement{Value: v} }
+func NewHTMLSpanElement(args ...interface{}) HTMLSpanElement {
+	return HTMLSpanElement{Value: JSValueToValue(js.Global().Get("HTMLSpanElement").New(args...))}
+}

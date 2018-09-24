@@ -30,6 +30,9 @@ type XMLHttpRequestUpload struct {
 }
 
 func JSValueToXMLHttpRequestUpload(val js.Value) XMLHttpRequestUpload {
-	return XMLHttpRequestUpload{Value: Value{Value: val}}
+	return XMLHttpRequestUpload{Value: JSValueToValue(val)}
 }
 func (v Value) AsXMLHttpRequestUpload() XMLHttpRequestUpload { return XMLHttpRequestUpload{Value: v} }
+func NewXMLHttpRequestUpload(args ...interface{}) XMLHttpRequestUpload {
+	return XMLHttpRequestUpload{Value: JSValueToValue(js.Global().Get("XMLHttpRequestUpload").New(args...))}
+}

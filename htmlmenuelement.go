@@ -111,9 +111,12 @@ type HTMLMenuElement struct {
 }
 
 func JSValueToHTMLMenuElement(val js.Value) HTMLMenuElement {
-	return HTMLMenuElement{Value: Value{Value: val}}
+	return HTMLMenuElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMenuElement() HTMLMenuElement { return HTMLMenuElement{Value: v} }
+func NewHTMLMenuElement(args ...interface{}) HTMLMenuElement {
+	return HTMLMenuElement{Value: JSValueToValue(js.Global().Get("HTMLMenuElement").New(args...))}
+}
 func (h HTMLMenuElement) GetCompact() bool {
 	val := h.Get("compact")
 	return val.Bool()

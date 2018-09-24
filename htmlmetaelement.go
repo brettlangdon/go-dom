@@ -117,9 +117,12 @@ type HTMLMetaElement struct {
 }
 
 func JSValueToHTMLMetaElement(val js.Value) HTMLMetaElement {
-	return HTMLMetaElement{Value: Value{Value: val}}
+	return HTMLMetaElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMetaElement() HTMLMetaElement { return HTMLMetaElement{Value: v} }
+func NewHTMLMetaElement(args ...interface{}) HTMLMetaElement {
+	return HTMLMetaElement{Value: JSValueToValue(js.Global().Get("HTMLMetaElement").New(args...))}
+}
 func (h HTMLMetaElement) GetContent() string {
 	val := h.Get("content")
 	return val.String()

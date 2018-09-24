@@ -36,8 +36,11 @@ type StorageEvent struct {
 	Event
 }
 
-func JSValueToStorageEvent(val js.Value) StorageEvent { return StorageEvent{Value: Value{Value: val}} }
+func JSValueToStorageEvent(val js.Value) StorageEvent { return StorageEvent{Value: JSValueToValue(val)} }
 func (v Value) AsStorageEvent() StorageEvent          { return StorageEvent{Value: v} }
+func NewStorageEvent(args ...interface{}) StorageEvent {
+	return StorageEvent{Value: JSValueToValue(js.Global().Get("StorageEvent").New(args...))}
+}
 func (s StorageEvent) GetKey() string {
 	val := s.Get("key")
 	return val.String()

@@ -117,9 +117,12 @@ type HTMLParamElement struct {
 }
 
 func JSValueToHTMLParamElement(val js.Value) HTMLParamElement {
-	return HTMLParamElement{Value: Value{Value: val}}
+	return HTMLParamElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLParamElement() HTMLParamElement { return HTMLParamElement{Value: v} }
+func NewHTMLParamElement(args ...interface{}) HTMLParamElement {
+	return HTMLParamElement{Value: JSValueToValue(js.Global().Get("HTMLParamElement").New(args...))}
+}
 func (h HTMLParamElement) GetName() string {
 	val := h.Get("name")
 	return val.String()

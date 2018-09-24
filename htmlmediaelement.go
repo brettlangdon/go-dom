@@ -156,9 +156,12 @@ type HTMLMediaElement struct {
 }
 
 func JSValueToHTMLMediaElement(val js.Value) HTMLMediaElement {
-	return HTMLMediaElement{Value: Value{Value: val}}
+	return HTMLMediaElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMediaElement() HTMLMediaElement { return HTMLMediaElement{Value: v} }
+func NewHTMLMediaElement(args ...interface{}) HTMLMediaElement {
+	return HTMLMediaElement{Value: JSValueToValue(js.Global().Get("HTMLMediaElement").New(args...))}
+}
 func (h HTMLMediaElement) AddTextTrack(args ...interface{}) TextTrack {
 	val := h.Call("addTextTrack", args...)
 	return JSValueToTextTrack(val.JSValue())

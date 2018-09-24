@@ -22,9 +22,12 @@ type BroadcastChannel struct {
 }
 
 func JSValueToBroadcastChannel(val js.Value) BroadcastChannel {
-	return BroadcastChannel{Value: Value{Value: val}}
+	return BroadcastChannel{Value: JSValueToValue(val)}
 }
 func (v Value) AsBroadcastChannel() BroadcastChannel { return BroadcastChannel{Value: v} }
+func NewBroadcastChannel(args ...interface{}) BroadcastChannel {
+	return BroadcastChannel{Value: JSValueToValue(js.Global().Get("BroadcastChannel").New(args...))}
+}
 func (b BroadcastChannel) Close(args ...interface{}) {
 	b.Call("close", args...)
 }

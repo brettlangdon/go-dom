@@ -32,8 +32,11 @@ type TrackEvent struct {
 	Event
 }
 
-func JSValueToTrackEvent(val js.Value) TrackEvent { return TrackEvent{Value: Value{Value: val}} }
+func JSValueToTrackEvent(val js.Value) TrackEvent { return TrackEvent{Value: JSValueToValue(val)} }
 func (v Value) AsTrackEvent() TrackEvent          { return TrackEvent{Value: v} }
+func NewTrackEvent(args ...interface{}) TrackEvent {
+	return TrackEvent{Value: JSValueToValue(js.Global().Get("TrackEvent").New(args...))}
+}
 func (t TrackEvent) GetTrack() Value {
 	val := t.Get("track")
 	return val

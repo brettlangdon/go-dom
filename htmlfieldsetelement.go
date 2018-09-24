@@ -122,9 +122,12 @@ type HTMLFieldSetElement struct {
 }
 
 func JSValueToHTMLFieldSetElement(val js.Value) HTMLFieldSetElement {
-	return HTMLFieldSetElement{Value: Value{Value: val}}
+	return HTMLFieldSetElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLFieldSetElement() HTMLFieldSetElement { return HTMLFieldSetElement{Value: v} }
+func NewHTMLFieldSetElement(args ...interface{}) HTMLFieldSetElement {
+	return HTMLFieldSetElement{Value: JSValueToValue(js.Global().Get("HTMLFieldSetElement").New(args...))}
+}
 func (h HTMLFieldSetElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()

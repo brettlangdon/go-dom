@@ -111,9 +111,12 @@ type HTMLPreElement struct {
 }
 
 func JSValueToHTMLPreElement(val js.Value) HTMLPreElement {
-	return HTMLPreElement{Value: Value{Value: val}}
+	return HTMLPreElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLPreElement() HTMLPreElement { return HTMLPreElement{Value: v} }
+func NewHTMLPreElement(args ...interface{}) HTMLPreElement {
+	return HTMLPreElement{Value: JSValueToValue(js.Global().Get("HTMLPreElement").New(args...))}
+}
 func (h HTMLPreElement) GetWidth() int {
 	val := h.Get("width")
 	return val.Int()

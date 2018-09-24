@@ -16,9 +16,12 @@ type TextDecoderStream struct {
 }
 
 func JSValueToTextDecoderStream(val js.Value) TextDecoderStream {
-	return TextDecoderStream{Value: Value{Value: val}}
+	return TextDecoderStream{Value: JSValueToValue(val)}
 }
 func (v Value) AsTextDecoderStream() TextDecoderStream { return TextDecoderStream{Value: v} }
+func NewTextDecoderStream(args ...interface{}) TextDecoderStream {
+	return TextDecoderStream{Value: JSValueToValue(js.Global().Get("TextDecoderStream").New(args...))}
+}
 func (t TextDecoderStream) GetEncoding() string {
 	val := t.Get("encoding")
 	return val.String()

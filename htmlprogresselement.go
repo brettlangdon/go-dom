@@ -115,9 +115,12 @@ type HTMLProgressElement struct {
 }
 
 func JSValueToHTMLProgressElement(val js.Value) HTMLProgressElement {
-	return HTMLProgressElement{Value: Value{Value: val}}
+	return HTMLProgressElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLProgressElement() HTMLProgressElement { return HTMLProgressElement{Value: v} }
+func NewHTMLProgressElement(args ...interface{}) HTMLProgressElement {
+	return HTMLProgressElement{Value: JSValueToValue(js.Global().Get("HTMLProgressElement").New(args...))}
+}
 func (h HTMLProgressElement) GetLabels() NodeList {
 	val := h.Get("labels")
 	return JSValueToNodeList(val.JSValue())

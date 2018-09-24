@@ -123,9 +123,12 @@ type HTMLOptionElement struct {
 }
 
 func JSValueToHTMLOptionElement(val js.Value) HTMLOptionElement {
-	return HTMLOptionElement{Value: Value{Value: val}}
+	return HTMLOptionElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLOptionElement() HTMLOptionElement { return HTMLOptionElement{Value: v} }
+func NewHTMLOptionElement(args ...interface{}) HTMLOptionElement {
+	return HTMLOptionElement{Value: JSValueToValue(js.Global().Get("HTMLOptionElement").New(args...))}
+}
 func (h HTMLOptionElement) GetDefaultSelected() bool {
 	val := h.Get("defaultSelected")
 	return val.Bool()

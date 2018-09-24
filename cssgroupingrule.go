@@ -20,9 +20,12 @@ type CSSGroupingRule struct {
 }
 
 func JSValueToCSSGroupingRule(val js.Value) CSSGroupingRule {
-	return CSSGroupingRule{Value: Value{Value: val}}
+	return CSSGroupingRule{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSGroupingRule() CSSGroupingRule { return CSSGroupingRule{Value: v} }
+func NewCSSGroupingRule(args ...interface{}) CSSGroupingRule {
+	return CSSGroupingRule{Value: JSValueToValue(js.Global().Get("CSSGroupingRule").New(args...))}
+}
 func (c CSSGroupingRule) GetCssRules() CSSRuleList {
 	val := c.Get("cssRules")
 	return JSValueToCSSRuleList(val.JSValue())

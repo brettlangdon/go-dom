@@ -20,9 +20,12 @@ type MutationRecord struct {
 }
 
 func JSValueToMutationRecord(val js.Value) MutationRecord {
-	return MutationRecord{Value: Value{Value: val}}
+	return MutationRecord{Value: JSValueToValue(val)}
 }
 func (v Value) AsMutationRecord() MutationRecord { return MutationRecord{Value: v} }
+func NewMutationRecord(args ...interface{}) MutationRecord {
+	return MutationRecord{Value: JSValueToValue(js.Global().Get("MutationRecord").New(args...))}
+}
 func (m MutationRecord) GetAddedNodes() NodeList {
 	val := m.Get("addedNodes")
 	return JSValueToNodeList(val.JSValue())

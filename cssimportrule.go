@@ -20,9 +20,12 @@ type CSSImportRule struct {
 }
 
 func JSValueToCSSImportRule(val js.Value) CSSImportRule {
-	return CSSImportRule{Value: Value{Value: val}}
+	return CSSImportRule{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSImportRule() CSSImportRule { return CSSImportRule{Value: v} }
+func NewCSSImportRule(args ...interface{}) CSSImportRule {
+	return CSSImportRule{Value: JSValueToValue(js.Global().Get("CSSImportRule").New(args...))}
+}
 func (c CSSImportRule) GetHref() string {
 	val := c.Get("href")
 	return val.String()

@@ -58,5 +58,8 @@ type CDATASection struct {
 	EventTarget
 }
 
-func JSValueToCDATASection(val js.Value) CDATASection { return CDATASection{Value: Value{Value: val}} }
+func JSValueToCDATASection(val js.Value) CDATASection { return CDATASection{Value: JSValueToValue(val)} }
 func (v Value) AsCDATASection() CDATASection          { return CDATASection{Value: v} }
+func NewCDATASection(args ...interface{}) CDATASection {
+	return CDATASection{Value: JSValueToValue(js.Global().Get("CDATASection").New(args...))}
+}

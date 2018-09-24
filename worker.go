@@ -22,8 +22,11 @@ type Worker struct {
 	EventTarget
 }
 
-func JSValueToWorker(val js.Value) Worker { return Worker{Value: Value{Value: val}} }
+func JSValueToWorker(val js.Value) Worker { return Worker{Value: JSValueToValue(val)} }
 func (v Value) AsWorker() Worker          { return Worker{Value: v} }
+func NewWorker(args ...interface{}) Worker {
+	return Worker{Value: JSValueToValue(js.Global().Get("Worker").New(args...))}
+}
 func (w Worker) GetOnerror() EventHandler {
 	val := w.Get("onerror")
 	return JSValueToEventHandler(val.JSValue())

@@ -41,10 +41,13 @@ type DedicatedWorkerGlobalScope struct {
 }
 
 func JSValueToDedicatedWorkerGlobalScope(val js.Value) DedicatedWorkerGlobalScope {
-	return DedicatedWorkerGlobalScope{Value: Value{Value: val}}
+	return DedicatedWorkerGlobalScope{Value: JSValueToValue(val)}
 }
 func (v Value) AsDedicatedWorkerGlobalScope() DedicatedWorkerGlobalScope {
 	return DedicatedWorkerGlobalScope{Value: v}
+}
+func NewDedicatedWorkerGlobalScope(args ...interface{}) DedicatedWorkerGlobalScope {
+	return DedicatedWorkerGlobalScope{Value: JSValueToValue(js.Global().Get("DedicatedWorkerGlobalScope").New(args...))}
 }
 func (d DedicatedWorkerGlobalScope) CancelAnimationFrame(args ...interface{}) {
 	d.Call("cancelAnimationFrame", args...)

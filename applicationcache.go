@@ -35,9 +35,12 @@ type ApplicationCache struct {
 }
 
 func JSValueToApplicationCache(val js.Value) ApplicationCache {
-	return ApplicationCache{Value: Value{Value: val}}
+	return ApplicationCache{Value: JSValueToValue(val)}
 }
 func (v Value) AsApplicationCache() ApplicationCache { return ApplicationCache{Value: v} }
+func NewApplicationCache(args ...interface{}) ApplicationCache {
+	return ApplicationCache{Value: JSValueToValue(js.Global().Get("ApplicationCache").New(args...))}
+}
 func (a ApplicationCache) Abort(args ...interface{}) {
 	a.Call("abort", args...)
 }

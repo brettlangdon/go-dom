@@ -22,8 +22,11 @@ type DOMPoint struct {
 	DOMPointReadOnly
 }
 
-func JSValueToDOMPoint(val js.Value) DOMPoint { return DOMPoint{Value: Value{Value: val}} }
+func JSValueToDOMPoint(val js.Value) DOMPoint { return DOMPoint{Value: JSValueToValue(val)} }
 func (v Value) AsDOMPoint() DOMPoint          { return DOMPoint{Value: v} }
+func NewDOMPoint(args ...interface{}) DOMPoint {
+	return DOMPoint{Value: JSValueToValue(js.Global().Get("DOMPoint").New(args...))}
+}
 func (d DOMPoint) FromPoint(args ...interface{}) DOMPoint {
 	val := d.Call("fromPoint", args...)
 	return JSValueToDOMPoint(val.JSValue())

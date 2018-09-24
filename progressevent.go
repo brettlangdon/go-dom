@@ -35,9 +35,12 @@ type ProgressEvent struct {
 }
 
 func JSValueToProgressEvent(val js.Value) ProgressEvent {
-	return ProgressEvent{Value: Value{Value: val}}
+	return ProgressEvent{Value: JSValueToValue(val)}
 }
 func (v Value) AsProgressEvent() ProgressEvent { return ProgressEvent{Value: v} }
+func NewProgressEvent(args ...interface{}) ProgressEvent {
+	return ProgressEvent{Value: JSValueToValue(js.Global().Get("ProgressEvent").New(args...))}
+}
 func (p ProgressEvent) GetLengthComputable() bool {
 	val := p.Get("lengthComputable")
 	return val.Bool()

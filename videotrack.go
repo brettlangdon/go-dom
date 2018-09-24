@@ -16,8 +16,11 @@ type VideoTrack struct {
 	Value
 }
 
-func JSValueToVideoTrack(val js.Value) VideoTrack { return VideoTrack{Value: Value{Value: val}} }
+func JSValueToVideoTrack(val js.Value) VideoTrack { return VideoTrack{Value: JSValueToValue(val)} }
 func (v Value) AsVideoTrack() VideoTrack          { return VideoTrack{Value: v} }
+func NewVideoTrack(args ...interface{}) VideoTrack {
+	return VideoTrack{Value: JSValueToValue(js.Global().Get("VideoTrack").New(args...))}
+}
 func (v VideoTrack) GetId() string {
 	val := v.Get("id")
 	return val.String()

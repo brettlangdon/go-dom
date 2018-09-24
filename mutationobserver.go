@@ -14,9 +14,12 @@ type MutationObserver struct {
 }
 
 func JSValueToMutationObserver(val js.Value) MutationObserver {
-	return MutationObserver{Value: Value{Value: val}}
+	return MutationObserver{Value: JSValueToValue(val)}
 }
 func (v Value) AsMutationObserver() MutationObserver { return MutationObserver{Value: v} }
+func NewMutationObserver(args ...interface{}) MutationObserver {
+	return MutationObserver{Value: JSValueToValue(js.Global().Get("MutationObserver").New(args...))}
+}
 func (m MutationObserver) Disconnect(args ...interface{}) {
 	m.Call("disconnect", args...)
 }

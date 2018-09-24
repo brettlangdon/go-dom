@@ -34,8 +34,11 @@ type CloseEvent struct {
 	Event
 }
 
-func JSValueToCloseEvent(val js.Value) CloseEvent { return CloseEvent{Value: Value{Value: val}} }
+func JSValueToCloseEvent(val js.Value) CloseEvent { return CloseEvent{Value: JSValueToValue(val)} }
 func (v Value) AsCloseEvent() CloseEvent          { return CloseEvent{Value: v} }
+func NewCloseEvent(args ...interface{}) CloseEvent {
+	return CloseEvent{Value: JSValueToValue(js.Global().Get("CloseEvent").New(args...))}
+}
 func (c CloseEvent) GetCode() int {
 	val := c.Get("code")
 	return val.Int()

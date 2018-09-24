@@ -18,8 +18,11 @@ type FormData struct {
 	Value
 }
 
-func JSValueToFormData(val js.Value) FormData { return FormData{Value: Value{Value: val}} }
+func JSValueToFormData(val js.Value) FormData { return FormData{Value: JSValueToValue(val)} }
 func (v Value) AsFormData() FormData          { return FormData{Value: v} }
+func NewFormData(args ...interface{}) FormData {
+	return FormData{Value: JSValueToValue(js.Global().Get("FormData").New(args...))}
+}
 func (f FormData) Append(args ...interface{}) {
 	f.Call("append", args...)
 }

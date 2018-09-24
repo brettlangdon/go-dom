@@ -138,9 +138,12 @@ type HTMLTableCellElement struct {
 }
 
 func JSValueToHTMLTableCellElement(val js.Value) HTMLTableCellElement {
-	return HTMLTableCellElement{Value: Value{Value: val}}
+	return HTMLTableCellElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTableCellElement() HTMLTableCellElement { return HTMLTableCellElement{Value: v} }
+func NewHTMLTableCellElement(args ...interface{}) HTMLTableCellElement {
+	return HTMLTableCellElement{Value: JSValueToValue(js.Global().Get("HTMLTableCellElement").New(args...))}
+}
 func (h HTMLTableCellElement) GetAbbr() string {
 	val := h.Get("abbr")
 	return val.String()

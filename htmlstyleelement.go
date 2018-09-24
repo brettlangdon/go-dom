@@ -114,9 +114,12 @@ type HTMLStyleElement struct {
 }
 
 func JSValueToHTMLStyleElement(val js.Value) HTMLStyleElement {
-	return HTMLStyleElement{Value: Value{Value: val}}
+	return HTMLStyleElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLStyleElement() HTMLStyleElement { return HTMLStyleElement{Value: v} }
+func NewHTMLStyleElement(args ...interface{}) HTMLStyleElement {
+	return HTMLStyleElement{Value: JSValueToValue(js.Global().Get("HTMLStyleElement").New(args...))}
+}
 func (h HTMLStyleElement) GetMedia() string {
 	val := h.Get("media")
 	return val.String()

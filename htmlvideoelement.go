@@ -167,9 +167,12 @@ type HTMLVideoElement struct {
 }
 
 func JSValueToHTMLVideoElement(val js.Value) HTMLVideoElement {
-	return HTMLVideoElement{Value: Value{Value: val}}
+	return HTMLVideoElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLVideoElement() HTMLVideoElement { return HTMLVideoElement{Value: v} }
+func NewHTMLVideoElement(args ...interface{}) HTMLVideoElement {
+	return HTMLVideoElement{Value: JSValueToValue(js.Global().Get("HTMLVideoElement").New(args...))}
+}
 func (h HTMLVideoElement) GetHeight() int {
 	val := h.Get("height")
 	return val.Int()

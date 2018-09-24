@@ -111,9 +111,12 @@ type HTMLTitleElement struct {
 }
 
 func JSValueToHTMLTitleElement(val js.Value) HTMLTitleElement {
-	return HTMLTitleElement{Value: Value{Value: val}}
+	return HTMLTitleElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTitleElement() HTMLTitleElement { return HTMLTitleElement{Value: v} }
+func NewHTMLTitleElement(args ...interface{}) HTMLTitleElement {
+	return HTMLTitleElement{Value: JSValueToValue(js.Global().Get("HTMLTitleElement").New(args...))}
+}
 func (h HTMLTitleElement) GetText() string {
 	val := h.Get("text")
 	return val.String()

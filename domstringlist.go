@@ -14,9 +14,12 @@ type DOMStringList struct {
 }
 
 func JSValueToDOMStringList(val js.Value) DOMStringList {
-	return DOMStringList{Value: Value{Value: val}}
+	return DOMStringList{Value: JSValueToValue(val)}
 }
 func (v Value) AsDOMStringList() DOMStringList { return DOMStringList{Value: v} }
+func NewDOMStringList(args ...interface{}) DOMStringList {
+	return DOMStringList{Value: JSValueToValue(js.Global().Get("DOMStringList").New(args...))}
+}
 func (d DOMStringList) Contains(args ...interface{}) bool {
 	val := d.Call("contains", args...)
 	return val.Bool()

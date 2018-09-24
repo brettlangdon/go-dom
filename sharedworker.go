@@ -17,8 +17,11 @@ type SharedWorker struct {
 	EventTarget
 }
 
-func JSValueToSharedWorker(val js.Value) SharedWorker { return SharedWorker{Value: Value{Value: val}} }
+func JSValueToSharedWorker(val js.Value) SharedWorker { return SharedWorker{Value: JSValueToValue(val)} }
 func (v Value) AsSharedWorker() SharedWorker          { return SharedWorker{Value: v} }
+func NewSharedWorker(args ...interface{}) SharedWorker {
+	return SharedWorker{Value: JSValueToValue(js.Global().Get("SharedWorker").New(args...))}
+}
 func (s SharedWorker) GetOnerror() EventHandler {
 	val := s.Get("onerror")
 	return JSValueToEventHandler(val.JSValue())

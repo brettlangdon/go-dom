@@ -167,8 +167,9 @@ func (g *Generator) generateInterface(spec Spec) error {
 
 	b.WriteString("}")
 
-	b.WriteF("func JSValueTo%s(val js.Value) %s { return %s{ Value: Value { Value: val }}}", spec.Name, spec.Name, spec.Name)
+	b.WriteF("func JSValueTo%s(val js.Value) %s { return %s{ Value: JSValueToValue(val) } }", spec.Name, spec.Name, spec.Name)
 	b.WriteF("func (v Value) As%s() %s { return %s{Value: v} }", spec.Name, spec.Name, spec.Name)
+	b.WriteF("func New%s(args ...interface{}) %s { return %s{ Value: JSValueToValue(js.Global().Get(\"%s\").New(args...)) } }", spec.Name, spec.Name, spec.Name, spec.Name)
 
 	mems, err = spec.ResolveMembers(g.specs, false)
 	if err != nil {

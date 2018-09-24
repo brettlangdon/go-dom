@@ -54,9 +54,12 @@ type DOMMatrixReadOnly struct {
 }
 
 func JSValueToDOMMatrixReadOnly(val js.Value) DOMMatrixReadOnly {
-	return DOMMatrixReadOnly{Value: Value{Value: val}}
+	return DOMMatrixReadOnly{Value: JSValueToValue(val)}
 }
 func (v Value) AsDOMMatrixReadOnly() DOMMatrixReadOnly { return DOMMatrixReadOnly{Value: v} }
+func NewDOMMatrixReadOnly(args ...interface{}) DOMMatrixReadOnly {
+	return DOMMatrixReadOnly{Value: JSValueToValue(js.Global().Get("DOMMatrixReadOnly").New(args...))}
+}
 func (d DOMMatrixReadOnly) GetA() float64 {
 	val := d.Get("a")
 	return val.Float()

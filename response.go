@@ -28,8 +28,11 @@ type Response struct {
 	Value
 }
 
-func JSValueToResponse(val js.Value) Response { return Response{Value: Value{Value: val}} }
+func JSValueToResponse(val js.Value) Response { return Response{Value: JSValueToValue(val)} }
 func (v Value) AsResponse() Response          { return Response{Value: v} }
+func NewResponse(args ...interface{}) Response {
+	return Response{Value: JSValueToValue(js.Global().Get("Response").New(args...))}
+}
 func (r Response) ArrayBuffer(args ...interface{}) {
 	r.Call("arrayBuffer", args...)
 }

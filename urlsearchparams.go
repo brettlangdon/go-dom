@@ -18,9 +18,12 @@ type URLSearchParams struct {
 }
 
 func JSValueToURLSearchParams(val js.Value) URLSearchParams {
-	return URLSearchParams{Value: Value{Value: val}}
+	return URLSearchParams{Value: JSValueToValue(val)}
 }
 func (v Value) AsURLSearchParams() URLSearchParams { return URLSearchParams{Value: v} }
+func NewURLSearchParams(args ...interface{}) URLSearchParams {
+	return URLSearchParams{Value: JSValueToValue(js.Global().Get("URLSearchParams").New(args...))}
+}
 func (u URLSearchParams) Append(args ...interface{}) {
 	u.Call("append", args...)
 }

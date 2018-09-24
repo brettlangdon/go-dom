@@ -136,9 +136,12 @@ type HTMLLinkElement struct {
 }
 
 func JSValueToHTMLLinkElement(val js.Value) HTMLLinkElement {
-	return HTMLLinkElement{Value: Value{Value: val}}
+	return HTMLLinkElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLLinkElement() HTMLLinkElement { return HTMLLinkElement{Value: v} }
+func NewHTMLLinkElement(args ...interface{}) HTMLLinkElement {
+	return HTMLLinkElement{Value: JSValueToValue(js.Global().Get("HTMLLinkElement").New(args...))}
+}
 func (h HTMLLinkElement) GetAs() string {
 	val := h.Get("as")
 	return val.String()

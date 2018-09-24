@@ -14,9 +14,12 @@ type StorageManager struct {
 }
 
 func JSValueToStorageManager(val js.Value) StorageManager {
-	return StorageManager{Value: Value{Value: val}}
+	return StorageManager{Value: JSValueToValue(val)}
 }
 func (v Value) AsStorageManager() StorageManager { return StorageManager{Value: v} }
+func NewStorageManager(args ...interface{}) StorageManager {
+	return StorageManager{Value: JSValueToValue(js.Global().Get("StorageManager").New(args...))}
+}
 func (s StorageManager) Estimate(args ...interface{}) {
 	s.Call("estimate", args...)
 }

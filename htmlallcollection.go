@@ -14,9 +14,12 @@ type HTMLAllCollection struct {
 }
 
 func JSValueToHTMLAllCollection(val js.Value) HTMLAllCollection {
-	return HTMLAllCollection{Value: Value{Value: val}}
+	return HTMLAllCollection{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLAllCollection() HTMLAllCollection { return HTMLAllCollection{Value: v} }
+func NewHTMLAllCollection(args ...interface{}) HTMLAllCollection {
+	return HTMLAllCollection{Value: JSValueToValue(js.Global().Get("HTMLAllCollection").New(args...))}
+}
 func (h HTMLAllCollection) Item(args ...interface{}) {
 	h.Call("item", args...)
 }

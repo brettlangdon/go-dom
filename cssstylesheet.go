@@ -24,9 +24,12 @@ type CSSStyleSheet struct {
 }
 
 func JSValueToCSSStyleSheet(val js.Value) CSSStyleSheet {
-	return CSSStyleSheet{Value: Value{Value: val}}
+	return CSSStyleSheet{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSStyleSheet() CSSStyleSheet { return CSSStyleSheet{Value: v} }
+func NewCSSStyleSheet(args ...interface{}) CSSStyleSheet {
+	return CSSStyleSheet{Value: JSValueToValue(js.Global().Get("CSSStyleSheet").New(args...))}
+}
 func (c CSSStyleSheet) GetCssRules() CSSRuleList {
 	val := c.Get("cssRules")
 	return JSValueToCSSRuleList(val.JSValue())

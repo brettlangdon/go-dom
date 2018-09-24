@@ -159,9 +159,12 @@ type HTMLTextAreaElement struct {
 }
 
 func JSValueToHTMLTextAreaElement(val js.Value) HTMLTextAreaElement {
-	return HTMLTextAreaElement{Value: Value{Value: val}}
+	return HTMLTextAreaElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTextAreaElement() HTMLTextAreaElement { return HTMLTextAreaElement{Value: v} }
+func NewHTMLTextAreaElement(args ...interface{}) HTMLTextAreaElement {
+	return HTMLTextAreaElement{Value: JSValueToValue(js.Global().Get("HTMLTextAreaElement").New(args...))}
+}
 func (h HTMLTextAreaElement) GetAutocomplete() string {
 	val := h.Get("autocomplete")
 	return val.String()

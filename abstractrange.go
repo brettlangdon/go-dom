@@ -16,9 +16,12 @@ type AbstractRange struct {
 }
 
 func JSValueToAbstractRange(val js.Value) AbstractRange {
-	return AbstractRange{Value: Value{Value: val}}
+	return AbstractRange{Value: JSValueToValue(val)}
 }
 func (v Value) AsAbstractRange() AbstractRange { return AbstractRange{Value: v} }
+func NewAbstractRange(args ...interface{}) AbstractRange {
+	return AbstractRange{Value: JSValueToValue(js.Global().Get("AbstractRange").New(args...))}
+}
 func (a AbstractRange) GetCollapsed() bool {
 	val := a.Get("collapsed")
 	return val.Bool()

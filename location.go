@@ -31,8 +31,11 @@ type Location struct {
 	Value
 }
 
-func JSValueToLocation(val js.Value) Location { return Location{Value: Value{Value: val}} }
+func JSValueToLocation(val js.Value) Location { return Location{Value: JSValueToValue(val)} }
 func (v Value) AsLocation() Location          { return Location{Value: v} }
+func NewLocation(args ...interface{}) Location {
+	return Location{Value: JSValueToValue(js.Global().Get("Location").New(args...))}
+}
 func (l Location) GetAncestorOrigins() DOMStringList {
 	val := l.Get("ancestorOrigins")
 	return JSValueToDOMStringList(val.JSValue())

@@ -113,9 +113,12 @@ type HTMLLIElement struct {
 }
 
 func JSValueToHTMLLIElement(val js.Value) HTMLLIElement {
-	return HTMLLIElement{Value: Value{Value: val}}
+	return HTMLLIElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLLIElement() HTMLLIElement { return HTMLLIElement{Value: v} }
+func NewHTMLLIElement(args ...interface{}) HTMLLIElement {
+	return HTMLLIElement{Value: JSValueToValue(js.Global().Get("HTMLLIElement").New(args...))}
+}
 func (h HTMLLIElement) GetType() string {
 	val := h.Get("type")
 	return val.String()

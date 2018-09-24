@@ -23,9 +23,12 @@ type TextTrackList struct {
 }
 
 func JSValueToTextTrackList(val js.Value) TextTrackList {
-	return TextTrackList{Value: Value{Value: val}}
+	return TextTrackList{Value: JSValueToValue(val)}
 }
 func (v Value) AsTextTrackList() TextTrackList { return TextTrackList{Value: v} }
+func NewTextTrackList(args ...interface{}) TextTrackList {
+	return TextTrackList{Value: JSValueToValue(js.Global().Get("TextTrackList").New(args...))}
+}
 func (t TextTrackList) GetTrackById(args ...interface{}) TextTrack {
 	val := t.Call("getTrackById", args...)
 	return JSValueToTextTrack(val.JSValue())

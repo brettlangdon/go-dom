@@ -22,8 +22,11 @@ type TreeWalker struct {
 	Value
 }
 
-func JSValueToTreeWalker(val js.Value) TreeWalker { return TreeWalker{Value: Value{Value: val}} }
+func JSValueToTreeWalker(val js.Value) TreeWalker { return TreeWalker{Value: JSValueToValue(val)} }
 func (v Value) AsTreeWalker() TreeWalker          { return TreeWalker{Value: v} }
+func NewTreeWalker(args ...interface{}) TreeWalker {
+	return TreeWalker{Value: JSValueToValue(js.Global().Get("TreeWalker").New(args...))}
+}
 func (t TreeWalker) GetCurrentNode() Node {
 	val := t.Get("currentNode")
 	return JSValueToNode(val.JSValue())

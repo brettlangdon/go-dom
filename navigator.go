@@ -30,8 +30,11 @@ type Navigator struct {
 	Value
 }
 
-func JSValueToNavigator(val js.Value) Navigator { return Navigator{Value: Value{Value: val}} }
+func JSValueToNavigator(val js.Value) Navigator { return Navigator{Value: JSValueToValue(val)} }
 func (v Value) AsNavigator() Navigator          { return Navigator{Value: v} }
+func NewNavigator(args ...interface{}) Navigator {
+	return Navigator{Value: JSValueToValue(js.Global().Get("Navigator").New(args...))}
+}
 func (n Navigator) GetAppCodeName() string {
 	val := n.Get("appCodeName")
 	return val.String()

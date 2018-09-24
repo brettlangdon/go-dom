@@ -56,9 +56,12 @@ type DocumentFragment struct {
 }
 
 func JSValueToDocumentFragment(val js.Value) DocumentFragment {
-	return DocumentFragment{Value: Value{Value: val}}
+	return DocumentFragment{Value: JSValueToValue(val)}
 }
 func (v Value) AsDocumentFragment() DocumentFragment { return DocumentFragment{Value: v} }
+func NewDocumentFragment(args ...interface{}) DocumentFragment {
+	return DocumentFragment{Value: JSValueToValue(js.Global().Get("DocumentFragment").New(args...))}
+}
 func (d DocumentFragment) Append(args ...interface{}) {
 	d.Call("append", args...)
 }

@@ -157,9 +157,12 @@ type HTMLAnchorElement struct {
 }
 
 func JSValueToHTMLAnchorElement(val js.Value) HTMLAnchorElement {
-	return HTMLAnchorElement{Value: Value{Value: val}}
+	return HTMLAnchorElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLAnchorElement() HTMLAnchorElement { return HTMLAnchorElement{Value: v} }
+func NewHTMLAnchorElement(args ...interface{}) HTMLAnchorElement {
+	return HTMLAnchorElement{Value: JSValueToValue(js.Global().Get("HTMLAnchorElement").New(args...))}
+}
 func (h HTMLAnchorElement) GetCharset() string {
 	val := h.Get("charset")
 	return val.String()

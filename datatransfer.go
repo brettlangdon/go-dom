@@ -21,8 +21,11 @@ type DataTransfer struct {
 	Value
 }
 
-func JSValueToDataTransfer(val js.Value) DataTransfer { return DataTransfer{Value: Value{Value: val}} }
+func JSValueToDataTransfer(val js.Value) DataTransfer { return DataTransfer{Value: JSValueToValue(val)} }
 func (v Value) AsDataTransfer() DataTransfer          { return DataTransfer{Value: v} }
+func NewDataTransfer(args ...interface{}) DataTransfer {
+	return DataTransfer{Value: JSValueToValue(js.Global().Get("DataTransfer").New(args...))}
+}
 func (d DataTransfer) ClearData(args ...interface{}) {
 	d.Call("clearData", args...)
 }

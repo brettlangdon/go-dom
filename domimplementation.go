@@ -15,9 +15,12 @@ type DOMImplementation struct {
 }
 
 func JSValueToDOMImplementation(val js.Value) DOMImplementation {
-	return DOMImplementation{Value: Value{Value: val}}
+	return DOMImplementation{Value: JSValueToValue(val)}
 }
 func (v Value) AsDOMImplementation() DOMImplementation { return DOMImplementation{Value: v} }
+func NewDOMImplementation(args ...interface{}) DOMImplementation {
+	return DOMImplementation{Value: JSValueToValue(js.Global().Get("DOMImplementation").New(args...))}
+}
 func (d DOMImplementation) CreateDocument(args ...interface{}) XMLDocument {
 	val := d.Call("createDocument", args...)
 	return JSValueToXMLDocument(val.JSValue())

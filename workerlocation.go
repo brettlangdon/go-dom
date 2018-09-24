@@ -20,9 +20,12 @@ type WorkerLocation struct {
 }
 
 func JSValueToWorkerLocation(val js.Value) WorkerLocation {
-	return WorkerLocation{Value: Value{Value: val}}
+	return WorkerLocation{Value: JSValueToValue(val)}
 }
 func (v Value) AsWorkerLocation() WorkerLocation { return WorkerLocation{Value: v} }
+func NewWorkerLocation(args ...interface{}) WorkerLocation {
+	return WorkerLocation{Value: JSValueToValue(js.Global().Get("WorkerLocation").New(args...))}
+}
 func (w WorkerLocation) GetHash() string {
 	val := w.Get("hash")
 	return val.String()

@@ -15,8 +15,11 @@ type CSSRule struct {
 	Value
 }
 
-func JSValueToCSSRule(val js.Value) CSSRule { return CSSRule{Value: Value{Value: val}} }
+func JSValueToCSSRule(val js.Value) CSSRule { return CSSRule{Value: JSValueToValue(val)} }
 func (v Value) AsCSSRule() CSSRule          { return CSSRule{Value: v} }
+func NewCSSRule(args ...interface{}) CSSRule {
+	return CSSRule{Value: JSValueToValue(js.Global().Get("CSSRule").New(args...))}
+}
 func (c CSSRule) GetCssText() string {
 	val := c.Get("cssText")
 	return val.String()

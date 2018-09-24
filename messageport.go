@@ -21,8 +21,11 @@ type MessagePort struct {
 	EventTarget
 }
 
-func JSValueToMessagePort(val js.Value) MessagePort { return MessagePort{Value: Value{Value: val}} }
+func JSValueToMessagePort(val js.Value) MessagePort { return MessagePort{Value: JSValueToValue(val)} }
 func (v Value) AsMessagePort() MessagePort          { return MessagePort{Value: v} }
+func NewMessagePort(args ...interface{}) MessagePort {
+	return MessagePort{Value: JSValueToValue(js.Global().Get("MessagePort").New(args...))}
+}
 func (m MessagePort) Close(args ...interface{}) {
 	m.Call("close", args...)
 }

@@ -24,8 +24,11 @@ type EventSource struct {
 	EventTarget
 }
 
-func JSValueToEventSource(val js.Value) EventSource { return EventSource{Value: Value{Value: val}} }
+func JSValueToEventSource(val js.Value) EventSource { return EventSource{Value: JSValueToValue(val)} }
 func (v Value) AsEventSource() EventSource          { return EventSource{Value: v} }
+func NewEventSource(args ...interface{}) EventSource {
+	return EventSource{Value: JSValueToValue(js.Global().Get("EventSource").New(args...))}
+}
 func (e EventSource) Close(args ...interface{}) {
 	e.Call("close", args...)
 }

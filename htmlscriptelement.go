@@ -133,9 +133,12 @@ type HTMLScriptElement struct {
 }
 
 func JSValueToHTMLScriptElement(val js.Value) HTMLScriptElement {
-	return HTMLScriptElement{Value: Value{Value: val}}
+	return HTMLScriptElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLScriptElement() HTMLScriptElement { return HTMLScriptElement{Value: v} }
+func NewHTMLScriptElement(args ...interface{}) HTMLScriptElement {
+	return HTMLScriptElement{Value: JSValueToValue(js.Global().Get("HTMLScriptElement").New(args...))}
+}
 func (h HTMLScriptElement) GetAsync() bool {
 	val := h.Get("async")
 	return val.Bool()

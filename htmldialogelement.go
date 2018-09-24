@@ -116,9 +116,12 @@ type HTMLDialogElement struct {
 }
 
 func JSValueToHTMLDialogElement(val js.Value) HTMLDialogElement {
-	return HTMLDialogElement{Value: Value{Value: val}}
+	return HTMLDialogElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDialogElement() HTMLDialogElement { return HTMLDialogElement{Value: v} }
+func NewHTMLDialogElement(args ...interface{}) HTMLDialogElement {
+	return HTMLDialogElement{Value: JSValueToValue(js.Global().Get("HTMLDialogElement").New(args...))}
+}
 func (h HTMLDialogElement) Close(args ...interface{}) {
 	h.Call("close", args...)
 }

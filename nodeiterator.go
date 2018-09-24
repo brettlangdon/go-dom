@@ -18,8 +18,11 @@ type NodeIterator struct {
 	Value
 }
 
-func JSValueToNodeIterator(val js.Value) NodeIterator { return NodeIterator{Value: Value{Value: val}} }
+func JSValueToNodeIterator(val js.Value) NodeIterator { return NodeIterator{Value: JSValueToValue(val)} }
 func (v Value) AsNodeIterator() NodeIterator          { return NodeIterator{Value: v} }
+func NewNodeIterator(args ...interface{}) NodeIterator {
+	return NodeIterator{Value: JSValueToValue(js.Global().Get("NodeIterator").New(args...))}
+}
 func (n NodeIterator) Detach(args ...interface{}) {
 	n.Call("detach", args...)
 }

@@ -22,9 +22,12 @@ type ValidityState struct {
 }
 
 func JSValueToValidityState(val js.Value) ValidityState {
-	return ValidityState{Value: Value{Value: val}}
+	return ValidityState{Value: JSValueToValue(val)}
 }
 func (v Value) AsValidityState() ValidityState { return ValidityState{Value: v} }
+func NewValidityState(args ...interface{}) ValidityState {
+	return ValidityState{Value: JSValueToValue(js.Global().Get("ValidityState").New(args...))}
+}
 func (v ValidityState) GetBadInput() bool {
 	val := v.Get("badInput")
 	return val.Bool()

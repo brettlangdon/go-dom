@@ -30,8 +30,11 @@ type Event struct {
 	Value
 }
 
-func JSValueToEvent(val js.Value) Event { return Event{Value: Value{Value: val}} }
+func JSValueToEvent(val js.Value) Event { return Event{Value: JSValueToValue(val)} }
 func (v Value) AsEvent() Event          { return Event{Value: v} }
+func NewEvent(args ...interface{}) Event {
+	return Event{Value: JSValueToValue(js.Global().Get("Event").New(args...))}
+}
 func (e Event) GetBubbles() bool {
 	val := e.Get("bubbles")
 	return val.Bool()

@@ -144,9 +144,12 @@ type HTMLTableElement struct {
 }
 
 func JSValueToHTMLTableElement(val js.Value) HTMLTableElement {
-	return HTMLTableElement{Value: Value{Value: val}}
+	return HTMLTableElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTableElement() HTMLTableElement { return HTMLTableElement{Value: v} }
+func NewHTMLTableElement(args ...interface{}) HTMLTableElement {
+	return HTMLTableElement{Value: JSValueToValue(js.Global().Get("HTMLTableElement").New(args...))}
+}
 func (h HTMLTableElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

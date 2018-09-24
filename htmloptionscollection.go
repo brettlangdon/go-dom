@@ -20,9 +20,12 @@ type HTMLOptionsCollection struct {
 }
 
 func JSValueToHTMLOptionsCollection(val js.Value) HTMLOptionsCollection {
-	return HTMLOptionsCollection{Value: Value{Value: val}}
+	return HTMLOptionsCollection{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLOptionsCollection() HTMLOptionsCollection { return HTMLOptionsCollection{Value: v} }
+func NewHTMLOptionsCollection(args ...interface{}) HTMLOptionsCollection {
+	return HTMLOptionsCollection{Value: JSValueToValue(js.Global().Get("HTMLOptionsCollection").New(args...))}
+}
 func (h HTMLOptionsCollection) Add(args ...interface{}) {
 	h.Call("add", args...)
 }

@@ -13,9 +13,12 @@ type AbortController struct {
 }
 
 func JSValueToAbortController(val js.Value) AbortController {
-	return AbortController{Value: Value{Value: val}}
+	return AbortController{Value: JSValueToValue(val)}
 }
 func (v Value) AsAbortController() AbortController { return AbortController{Value: v} }
+func NewAbortController(args ...interface{}) AbortController {
+	return AbortController{Value: JSValueToValue(js.Global().Get("AbortController").New(args...))}
+}
 func (a AbortController) Abort(args ...interface{}) {
 	a.Call("abort", args...)
 }

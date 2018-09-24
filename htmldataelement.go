@@ -111,9 +111,12 @@ type HTMLDataElement struct {
 }
 
 func JSValueToHTMLDataElement(val js.Value) HTMLDataElement {
-	return HTMLDataElement{Value: Value{Value: val}}
+	return HTMLDataElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDataElement() HTMLDataElement { return HTMLDataElement{Value: v} }
+func NewHTMLDataElement(args ...interface{}) HTMLDataElement {
+	return HTMLDataElement{Value: JSValueToValue(js.Global().Get("HTMLDataElement").New(args...))}
+}
 func (h HTMLDataElement) GetValue() string {
 	val := h.Get("value")
 	return val.String()

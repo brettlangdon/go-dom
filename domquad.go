@@ -18,8 +18,11 @@ type DOMQuad struct {
 	Value
 }
 
-func JSValueToDOMQuad(val js.Value) DOMQuad { return DOMQuad{Value: Value{Value: val}} }
+func JSValueToDOMQuad(val js.Value) DOMQuad { return DOMQuad{Value: JSValueToValue(val)} }
 func (v Value) AsDOMQuad() DOMQuad          { return DOMQuad{Value: v} }
+func NewDOMQuad(args ...interface{}) DOMQuad {
+	return DOMQuad{Value: JSValueToValue(js.Global().Get("DOMQuad").New(args...))}
+}
 func (d DOMQuad) FromQuad(args ...interface{}) DOMQuad {
 	val := d.Call("fromQuad", args...)
 	return JSValueToDOMQuad(val.JSValue())

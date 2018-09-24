@@ -54,9 +54,12 @@ type XMLHttpRequest struct {
 }
 
 func JSValueToXMLHttpRequest(val js.Value) XMLHttpRequest {
-	return XMLHttpRequest{Value: Value{Value: val}}
+	return XMLHttpRequest{Value: JSValueToValue(val)}
 }
 func (v Value) AsXMLHttpRequest() XMLHttpRequest { return XMLHttpRequest{Value: v} }
+func NewXMLHttpRequest(args ...interface{}) XMLHttpRequest {
+	return XMLHttpRequest{Value: JSValueToValue(js.Global().Get("XMLHttpRequest").New(args...))}
+}
 func (x XMLHttpRequest) Abort(args ...interface{}) {
 	x.Call("abort", args...)
 }

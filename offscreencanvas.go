@@ -22,9 +22,12 @@ type OffscreenCanvas struct {
 }
 
 func JSValueToOffscreenCanvas(val js.Value) OffscreenCanvas {
-	return OffscreenCanvas{Value: Value{Value: val}}
+	return OffscreenCanvas{Value: JSValueToValue(val)}
 }
 func (v Value) AsOffscreenCanvas() OffscreenCanvas { return OffscreenCanvas{Value: v} }
+func NewOffscreenCanvas(args ...interface{}) OffscreenCanvas {
+	return OffscreenCanvas{Value: JSValueToValue(js.Global().Get("OffscreenCanvas").New(args...))}
+}
 func (o OffscreenCanvas) ConvertToBlob(args ...interface{}) {
 	o.Call("convertToBlob", args...)
 }

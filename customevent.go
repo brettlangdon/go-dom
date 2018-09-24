@@ -33,8 +33,11 @@ type CustomEvent struct {
 	Event
 }
 
-func JSValueToCustomEvent(val js.Value) CustomEvent { return CustomEvent{Value: Value{Value: val}} }
+func JSValueToCustomEvent(val js.Value) CustomEvent { return CustomEvent{Value: JSValueToValue(val)} }
 func (v Value) AsCustomEvent() CustomEvent          { return CustomEvent{Value: v} }
+func NewCustomEvent(args ...interface{}) CustomEvent {
+	return CustomEvent{Value: JSValueToValue(js.Global().Get("CustomEvent").New(args...))}
+}
 func (c CustomEvent) GetDetail() Value {
 	val := c.Get("detail")
 	return val

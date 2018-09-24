@@ -111,9 +111,12 @@ type HTMLParagraphElement struct {
 }
 
 func JSValueToHTMLParagraphElement(val js.Value) HTMLParagraphElement {
-	return HTMLParagraphElement{Value: Value{Value: val}}
+	return HTMLParagraphElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLParagraphElement() HTMLParagraphElement { return HTMLParagraphElement{Value: v} }
+func NewHTMLParagraphElement(args ...interface{}) HTMLParagraphElement {
+	return HTMLParagraphElement{Value: JSValueToValue(js.Global().Get("HTMLParagraphElement").New(args...))}
+}
 func (h HTMLParagraphElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

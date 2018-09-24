@@ -113,9 +113,12 @@ type HTMLLabelElement struct {
 }
 
 func JSValueToHTMLLabelElement(val js.Value) HTMLLabelElement {
-	return HTMLLabelElement{Value: Value{Value: val}}
+	return HTMLLabelElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLLabelElement() HTMLLabelElement { return HTMLLabelElement{Value: v} }
+func NewHTMLLabelElement(args ...interface{}) HTMLLabelElement {
+	return HTMLLabelElement{Value: JSValueToValue(js.Global().Get("HTMLLabelElement").New(args...))}
+}
 func (h HTMLLabelElement) GetControl() HTMLElement {
 	val := h.Get("control")
 	return JSValueToHTMLElement(val.JSValue())

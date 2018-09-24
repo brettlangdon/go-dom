@@ -120,10 +120,13 @@ type HTMLTableSectionElement struct {
 }
 
 func JSValueToHTMLTableSectionElement(val js.Value) HTMLTableSectionElement {
-	return HTMLTableSectionElement{Value: Value{Value: val}}
+	return HTMLTableSectionElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTableSectionElement() HTMLTableSectionElement {
 	return HTMLTableSectionElement{Value: v}
+}
+func NewHTMLTableSectionElement(args ...interface{}) HTMLTableSectionElement {
+	return HTMLTableSectionElement{Value: JSValueToValue(js.Global().Get("HTMLTableSectionElement").New(args...))}
 }
 func (h HTMLTableSectionElement) GetAlign() string {
 	val := h.Get("align")

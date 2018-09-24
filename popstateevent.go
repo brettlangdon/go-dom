@@ -33,9 +33,12 @@ type PopStateEvent struct {
 }
 
 func JSValueToPopStateEvent(val js.Value) PopStateEvent {
-	return PopStateEvent{Value: Value{Value: val}}
+	return PopStateEvent{Value: JSValueToValue(val)}
 }
 func (v Value) AsPopStateEvent() PopStateEvent { return PopStateEvent{Value: v} }
+func NewPopStateEvent(args ...interface{}) PopStateEvent {
+	return PopStateEvent{Value: JSValueToValue(js.Global().Get("PopStateEvent").New(args...))}
+}
 func (p PopStateEvent) GetState() Value {
 	val := p.Get("state")
 	return val

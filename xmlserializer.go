@@ -12,9 +12,12 @@ type XMLSerializer struct {
 }
 
 func JSValueToXMLSerializer(val js.Value) XMLSerializer {
-	return XMLSerializer{Value: Value{Value: val}}
+	return XMLSerializer{Value: JSValueToValue(val)}
 }
 func (v Value) AsXMLSerializer() XMLSerializer { return XMLSerializer{Value: v} }
+func NewXMLSerializer(args ...interface{}) XMLSerializer {
+	return XMLSerializer{Value: JSValueToValue(js.Global().Get("XMLSerializer").New(args...))}
+}
 func (x XMLSerializer) SerializeToString(args ...interface{}) string {
 	val := x.Call("serializeToString", args...)
 	return val.String()

@@ -58,9 +58,12 @@ type ProcessingInstruction struct {
 }
 
 func JSValueToProcessingInstruction(val js.Value) ProcessingInstruction {
-	return ProcessingInstruction{Value: Value{Value: val}}
+	return ProcessingInstruction{Value: JSValueToValue(val)}
 }
 func (v Value) AsProcessingInstruction() ProcessingInstruction { return ProcessingInstruction{Value: v} }
+func NewProcessingInstruction(args ...interface{}) ProcessingInstruction {
+	return ProcessingInstruction{Value: JSValueToValue(js.Global().Get("ProcessingInstruction").New(args...))}
+}
 func (p ProcessingInstruction) GetSheet() StyleSheet {
 	val := p.Get("sheet")
 	return JSValueToStyleSheet(val.JSValue())

@@ -122,9 +122,12 @@ type HTMLMeterElement struct {
 }
 
 func JSValueToHTMLMeterElement(val js.Value) HTMLMeterElement {
-	return HTMLMeterElement{Value: Value{Value: val}}
+	return HTMLMeterElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMeterElement() HTMLMeterElement { return HTMLMeterElement{Value: v} }
+func NewHTMLMeterElement(args ...interface{}) HTMLMeterElement {
+	return HTMLMeterElement{Value: JSValueToValue(js.Global().Get("HTMLMeterElement").New(args...))}
+}
 func (h HTMLMeterElement) GetHigh() float64 {
 	val := h.Get("high")
 	return val.Float()

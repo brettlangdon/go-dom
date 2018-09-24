@@ -21,9 +21,12 @@ type DOMRectReadOnly struct {
 }
 
 func JSValueToDOMRectReadOnly(val js.Value) DOMRectReadOnly {
-	return DOMRectReadOnly{Value: Value{Value: val}}
+	return DOMRectReadOnly{Value: JSValueToValue(val)}
 }
 func (v Value) AsDOMRectReadOnly() DOMRectReadOnly { return DOMRectReadOnly{Value: v} }
+func NewDOMRectReadOnly(args ...interface{}) DOMRectReadOnly {
+	return DOMRectReadOnly{Value: JSValueToValue(js.Global().Get("DOMRectReadOnly").New(args...))}
+}
 func (d DOMRectReadOnly) GetBottom() float64 {
 	val := d.Get("bottom")
 	return val.Float()

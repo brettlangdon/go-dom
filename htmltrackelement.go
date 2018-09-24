@@ -121,9 +121,12 @@ type HTMLTrackElement struct {
 }
 
 func JSValueToHTMLTrackElement(val js.Value) HTMLTrackElement {
-	return HTMLTrackElement{Value: Value{Value: val}}
+	return HTMLTrackElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTrackElement() HTMLTrackElement { return HTMLTrackElement{Value: v} }
+func NewHTMLTrackElement(args ...interface{}) HTMLTrackElement {
+	return HTMLTrackElement{Value: JSValueToValue(js.Global().Get("HTMLTrackElement").New(args...))}
+}
 func (h HTMLTrackElement) GetDefault() bool {
 	val := h.Get("default")
 	return val.Bool()

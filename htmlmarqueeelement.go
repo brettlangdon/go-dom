@@ -139,9 +139,12 @@ type HTMLMarqueeElement struct {
 }
 
 func JSValueToHTMLMarqueeElement(val js.Value) HTMLMarqueeElement {
-	return HTMLMarqueeElement{Value: Value{Value: val}}
+	return HTMLMarqueeElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLMarqueeElement() HTMLMarqueeElement { return HTMLMarqueeElement{Value: v} }
+func NewHTMLMarqueeElement(args ...interface{}) HTMLMarqueeElement {
+	return HTMLMarqueeElement{Value: JSValueToValue(js.Global().Get("HTMLMarqueeElement").New(args...))}
+}
 func (h HTMLMarqueeElement) GetBehavior() string {
 	val := h.Get("behavior")
 	return val.String()

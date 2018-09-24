@@ -54,8 +54,11 @@ type Attr struct {
 	EventTarget
 }
 
-func JSValueToAttr(val js.Value) Attr { return Attr{Value: Value{Value: val}} }
+func JSValueToAttr(val js.Value) Attr { return Attr{Value: JSValueToValue(val)} }
 func (v Value) AsAttr() Attr          { return Attr{Value: v} }
+func NewAttr(args ...interface{}) Attr {
+	return Attr{Value: JSValueToValue(js.Global().Get("Attr").New(args...))}
+}
 func (a Attr) GetLocalName() string {
 	val := a.Get("localName")
 	return val.String()

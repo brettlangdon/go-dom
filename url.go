@@ -35,8 +35,11 @@ type URL struct {
 	Value
 }
 
-func JSValueToURL(val js.Value) URL { return URL{Value: Value{Value: val}} }
+func JSValueToURL(val js.Value) URL { return URL{Value: JSValueToValue(val)} }
 func (v Value) AsURL() URL          { return URL{Value: v} }
+func NewURL(args ...interface{}) URL {
+	return URL{Value: JSValueToValue(js.Global().Get("URL").New(args...))}
+}
 func (u URL) CreateObjectURL(args ...interface{}) string {
 	val := u.Call("createObjectURL", args...)
 	return val.String()

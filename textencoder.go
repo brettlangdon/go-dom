@@ -12,8 +12,11 @@ type TextEncoder struct {
 	Value
 }
 
-func JSValueToTextEncoder(val js.Value) TextEncoder { return TextEncoder{Value: Value{Value: val}} }
+func JSValueToTextEncoder(val js.Value) TextEncoder { return TextEncoder{Value: JSValueToValue(val)} }
 func (v Value) AsTextEncoder() TextEncoder          { return TextEncoder{Value: v} }
+func NewTextEncoder(args ...interface{}) TextEncoder {
+	return TextEncoder{Value: JSValueToValue(js.Global().Get("TextEncoder").New(args...))}
+}
 func (t TextEncoder) Encode(args ...interface{}) Uint8Array {
 	val := t.Call("encode", args...)
 	return JSValueToUint8Array(val.JSValue())

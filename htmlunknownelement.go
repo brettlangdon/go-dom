@@ -109,6 +109,9 @@ type HTMLUnknownElement struct {
 }
 
 func JSValueToHTMLUnknownElement(val js.Value) HTMLUnknownElement {
-	return HTMLUnknownElement{Value: Value{Value: val}}
+	return HTMLUnknownElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLUnknownElement() HTMLUnknownElement { return HTMLUnknownElement{Value: v} }
+func NewHTMLUnknownElement(args ...interface{}) HTMLUnknownElement {
+	return HTMLUnknownElement{Value: JSValueToValue(js.Global().Get("HTMLUnknownElement").New(args...))}
+}

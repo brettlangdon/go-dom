@@ -15,9 +15,12 @@ type FileReaderSync struct {
 }
 
 func JSValueToFileReaderSync(val js.Value) FileReaderSync {
-	return FileReaderSync{Value: Value{Value: val}}
+	return FileReaderSync{Value: JSValueToValue(val)}
 }
 func (v Value) AsFileReaderSync() FileReaderSync { return FileReaderSync{Value: v} }
+func NewFileReaderSync(args ...interface{}) FileReaderSync {
+	return FileReaderSync{Value: JSValueToValue(js.Global().Get("FileReaderSync").New(args...))}
+}
 func (f FileReaderSync) ReadAsArrayBuffer(args ...interface{}) ArrayBuffer {
 	val := f.Call("readAsArrayBuffer", args...)
 	return JSValueToArrayBuffer(val.JSValue())

@@ -16,9 +16,12 @@ type DataTransferItemList struct {
 }
 
 func JSValueToDataTransferItemList(val js.Value) DataTransferItemList {
-	return DataTransferItemList{Value: Value{Value: val}}
+	return DataTransferItemList{Value: JSValueToValue(val)}
 }
 func (v Value) AsDataTransferItemList() DataTransferItemList { return DataTransferItemList{Value: v} }
+func NewDataTransferItemList(args ...interface{}) DataTransferItemList {
+	return DataTransferItemList{Value: JSValueToValue(js.Global().Get("DataTransferItemList").New(args...))}
+}
 func (d DataTransferItemList) Add(args ...interface{}) DataTransferItem {
 	val := d.Call("add", args...)
 	return JSValueToDataTransferItem(val.JSValue())

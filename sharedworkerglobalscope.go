@@ -36,10 +36,13 @@ type SharedWorkerGlobalScope struct {
 }
 
 func JSValueToSharedWorkerGlobalScope(val js.Value) SharedWorkerGlobalScope {
-	return SharedWorkerGlobalScope{Value: Value{Value: val}}
+	return SharedWorkerGlobalScope{Value: JSValueToValue(val)}
 }
 func (v Value) AsSharedWorkerGlobalScope() SharedWorkerGlobalScope {
 	return SharedWorkerGlobalScope{Value: v}
+}
+func NewSharedWorkerGlobalScope(args ...interface{}) SharedWorkerGlobalScope {
+	return SharedWorkerGlobalScope{Value: JSValueToValue(js.Global().Get("SharedWorkerGlobalScope").New(args...))}
 }
 func (s SharedWorkerGlobalScope) Close(args ...interface{}) {
 	s.Call("close", args...)

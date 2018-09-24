@@ -13,8 +13,11 @@ type TimeRanges struct {
 	Value
 }
 
-func JSValueToTimeRanges(val js.Value) TimeRanges { return TimeRanges{Value: Value{Value: val}} }
+func JSValueToTimeRanges(val js.Value) TimeRanges { return TimeRanges{Value: JSValueToValue(val)} }
 func (v Value) AsTimeRanges() TimeRanges          { return TimeRanges{Value: v} }
+func NewTimeRanges(args ...interface{}) TimeRanges {
+	return TimeRanges{Value: JSValueToValue(js.Global().Get("TimeRanges").New(args...))}
+}
 func (t TimeRanges) End(args ...interface{}) float64 {
 	val := t.Call("end", args...)
 	return val.Float()

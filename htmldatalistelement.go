@@ -110,9 +110,12 @@ type HTMLDataListElement struct {
 }
 
 func JSValueToHTMLDataListElement(val js.Value) HTMLDataListElement {
-	return HTMLDataListElement{Value: Value{Value: val}}
+	return HTMLDataListElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDataListElement() HTMLDataListElement { return HTMLDataListElement{Value: v} }
+func NewHTMLDataListElement(args ...interface{}) HTMLDataListElement {
+	return HTMLDataListElement{Value: JSValueToValue(js.Global().Get("HTMLDataListElement").New(args...))}
+}
 func (h HTMLDataListElement) GetOptions() HTMLCollection {
 	val := h.Get("options")
 	return JSValueToHTMLCollection(val.JSValue())

@@ -88,8 +88,11 @@ type DOMMatrix struct {
 	DOMMatrixReadOnly
 }
 
-func JSValueToDOMMatrix(val js.Value) DOMMatrix { return DOMMatrix{Value: Value{Value: val}} }
+func JSValueToDOMMatrix(val js.Value) DOMMatrix { return DOMMatrix{Value: JSValueToValue(val)} }
 func (v Value) AsDOMMatrix() DOMMatrix          { return DOMMatrix{Value: v} }
+func NewDOMMatrix(args ...interface{}) DOMMatrix {
+	return DOMMatrix{Value: JSValueToValue(js.Global().Get("DOMMatrix").New(args...))}
+}
 func (d DOMMatrix) GetA() float64 {
 	val := d.Get("a")
 	return val.Float()

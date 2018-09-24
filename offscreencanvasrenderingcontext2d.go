@@ -100,10 +100,13 @@ type OffscreenCanvasRenderingContext2D struct {
 }
 
 func JSValueToOffscreenCanvasRenderingContext2D(val js.Value) OffscreenCanvasRenderingContext2D {
-	return OffscreenCanvasRenderingContext2D{Value: Value{Value: val}}
+	return OffscreenCanvasRenderingContext2D{Value: JSValueToValue(val)}
 }
 func (v Value) AsOffscreenCanvasRenderingContext2D() OffscreenCanvasRenderingContext2D {
 	return OffscreenCanvasRenderingContext2D{Value: v}
+}
+func NewOffscreenCanvasRenderingContext2D(args ...interface{}) OffscreenCanvasRenderingContext2D {
+	return OffscreenCanvasRenderingContext2D{Value: JSValueToValue(js.Global().Get("OffscreenCanvasRenderingContext2D").New(args...))}
 }
 func (o OffscreenCanvasRenderingContext2D) Arc(args ...interface{}) {
 	o.Call("arc", args...)

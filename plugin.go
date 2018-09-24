@@ -16,8 +16,11 @@ type Plugin struct {
 	Value
 }
 
-func JSValueToPlugin(val js.Value) Plugin { return Plugin{Value: Value{Value: val}} }
+func JSValueToPlugin(val js.Value) Plugin { return Plugin{Value: JSValueToValue(val)} }
 func (v Value) AsPlugin() Plugin          { return Plugin{Value: v} }
+func NewPlugin(args ...interface{}) Plugin {
+	return Plugin{Value: JSValueToValue(js.Global().Get("Plugin").New(args...))}
+}
 func (p Plugin) GetDescription() string {
 	val := p.Get("description")
 	return val.String()

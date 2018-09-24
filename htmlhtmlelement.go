@@ -111,9 +111,12 @@ type HTMLHtmlElement struct {
 }
 
 func JSValueToHTMLHtmlElement(val js.Value) HTMLHtmlElement {
-	return HTMLHtmlElement{Value: Value{Value: val}}
+	return HTMLHtmlElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLHtmlElement() HTMLHtmlElement { return HTMLHtmlElement{Value: v} }
+func NewHTMLHtmlElement(args ...interface{}) HTMLHtmlElement {
+	return HTMLHtmlElement{Value: JSValueToValue(js.Global().Get("HTMLHtmlElement").New(args...))}
+}
 func (h HTMLHtmlElement) GetVersion() string {
 	val := h.Get("version")
 	return val.String()

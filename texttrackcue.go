@@ -27,8 +27,11 @@ type TextTrackCue struct {
 	EventTarget
 }
 
-func JSValueToTextTrackCue(val js.Value) TextTrackCue { return TextTrackCue{Value: Value{Value: val}} }
+func JSValueToTextTrackCue(val js.Value) TextTrackCue { return TextTrackCue{Value: JSValueToValue(val)} }
 func (v Value) AsTextTrackCue() TextTrackCue          { return TextTrackCue{Value: v} }
+func NewTextTrackCue(args ...interface{}) TextTrackCue {
+	return TextTrackCue{Value: JSValueToValue(js.Global().Get("TextTrackCue").New(args...))}
+}
 func (t TextTrackCue) GetEndTime() float64 {
 	val := t.Get("endTime")
 	return val.Float()

@@ -153,9 +153,12 @@ type HTMLBodyElement struct {
 }
 
 func JSValueToHTMLBodyElement(val js.Value) HTMLBodyElement {
-	return HTMLBodyElement{Value: Value{Value: val}}
+	return HTMLBodyElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLBodyElement() HTMLBodyElement { return HTMLBodyElement{Value: v} }
+func NewHTMLBodyElement(args ...interface{}) HTMLBodyElement {
+	return HTMLBodyElement{Value: JSValueToValue(js.Global().Get("HTMLBodyElement").New(args...))}
+}
 func (h HTMLBodyElement) GetALink() string {
 	val := h.Get("aLink")
 	return val.String()

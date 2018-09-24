@@ -24,9 +24,12 @@ type VideoTrackList struct {
 }
 
 func JSValueToVideoTrackList(val js.Value) VideoTrackList {
-	return VideoTrackList{Value: Value{Value: val}}
+	return VideoTrackList{Value: JSValueToValue(val)}
 }
 func (v Value) AsVideoTrackList() VideoTrackList { return VideoTrackList{Value: v} }
+func NewVideoTrackList(args ...interface{}) VideoTrackList {
+	return VideoTrackList{Value: JSValueToValue(js.Global().Get("VideoTrackList").New(args...))}
+}
 func (v VideoTrackList) GetTrackById(args ...interface{}) VideoTrack {
 	val := v.Call("getTrackById", args...)
 	return JSValueToVideoTrack(val.JSValue())

@@ -122,9 +122,12 @@ type HTMLEmbedElement struct {
 }
 
 func JSValueToHTMLEmbedElement(val js.Value) HTMLEmbedElement {
-	return HTMLEmbedElement{Value: Value{Value: val}}
+	return HTMLEmbedElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLEmbedElement() HTMLEmbedElement { return HTMLEmbedElement{Value: v} }
+func NewHTMLEmbedElement(args ...interface{}) HTMLEmbedElement {
+	return HTMLEmbedElement{Value: JSValueToValue(js.Global().Get("HTMLEmbedElement").New(args...))}
+}
 func (h HTMLEmbedElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

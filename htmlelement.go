@@ -252,8 +252,11 @@ type HTMLElement struct {
 	EventTarget
 }
 
-func JSValueToHTMLElement(val js.Value) HTMLElement { return HTMLElement{Value: Value{Value: val}} }
+func JSValueToHTMLElement(val js.Value) HTMLElement { return HTMLElement{Value: JSValueToValue(val)} }
 func (v Value) AsHTMLElement() HTMLElement          { return HTMLElement{Value: v} }
+func NewHTMLElement(args ...interface{}) HTMLElement {
+	return HTMLElement{Value: JSValueToValue(js.Global().Get("HTMLElement").New(args...))}
+}
 func (h HTMLElement) GetAccessKey() string {
 	val := h.Get("accessKey")
 	return val.String()

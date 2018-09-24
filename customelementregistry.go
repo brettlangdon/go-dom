@@ -15,9 +15,12 @@ type CustomElementRegistry struct {
 }
 
 func JSValueToCustomElementRegistry(val js.Value) CustomElementRegistry {
-	return CustomElementRegistry{Value: Value{Value: val}}
+	return CustomElementRegistry{Value: JSValueToValue(val)}
 }
 func (v Value) AsCustomElementRegistry() CustomElementRegistry { return CustomElementRegistry{Value: v} }
+func NewCustomElementRegistry(args ...interface{}) CustomElementRegistry {
+	return CustomElementRegistry{Value: JSValueToValue(js.Global().Get("CustomElementRegistry").New(args...))}
+}
 func (c CustomElementRegistry) Define(args ...interface{}) {
 	c.Call("define", args...)
 }

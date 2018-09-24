@@ -15,9 +15,12 @@ type DataTransferItem struct {
 }
 
 func JSValueToDataTransferItem(val js.Value) DataTransferItem {
-	return DataTransferItem{Value: Value{Value: val}}
+	return DataTransferItem{Value: JSValueToValue(val)}
 }
 func (v Value) AsDataTransferItem() DataTransferItem { return DataTransferItem{Value: v} }
+func NewDataTransferItem(args ...interface{}) DataTransferItem {
+	return DataTransferItem{Value: JSValueToValue(js.Global().Get("DataTransferItem").New(args...))}
+}
 func (d DataTransferItem) GetAsFile(args ...interface{}) File {
 	val := d.Call("getAsFile", args...)
 	return JSValueToFile(val.JSValue())

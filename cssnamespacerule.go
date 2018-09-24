@@ -19,9 +19,12 @@ type CSSNamespaceRule struct {
 }
 
 func JSValueToCSSNamespaceRule(val js.Value) CSSNamespaceRule {
-	return CSSNamespaceRule{Value: Value{Value: val}}
+	return CSSNamespaceRule{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSNamespaceRule() CSSNamespaceRule { return CSSNamespaceRule{Value: v} }
+func NewCSSNamespaceRule(args ...interface{}) CSSNamespaceRule {
+	return CSSNamespaceRule{Value: JSValueToValue(js.Global().Get("CSSNamespaceRule").New(args...))}
+}
 func (c CSSNamespaceRule) GetNamespaceURI() string {
 	val := c.Get("namespaceURI")
 	return val.String()

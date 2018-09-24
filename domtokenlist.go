@@ -20,8 +20,11 @@ type DOMTokenList struct {
 	Value
 }
 
-func JSValueToDOMTokenList(val js.Value) DOMTokenList { return DOMTokenList{Value: Value{Value: val}} }
+func JSValueToDOMTokenList(val js.Value) DOMTokenList { return DOMTokenList{Value: JSValueToValue(val)} }
 func (v Value) AsDOMTokenList() DOMTokenList          { return DOMTokenList{Value: v} }
+func NewDOMTokenList(args ...interface{}) DOMTokenList {
+	return DOMTokenList{Value: JSValueToValue(js.Global().Get("DOMTokenList").New(args...))}
+}
 func (d DOMTokenList) Add(args ...interface{}) {
 	d.Call("add", args...)
 }

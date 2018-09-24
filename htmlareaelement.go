@@ -149,9 +149,12 @@ type HTMLAreaElement struct {
 }
 
 func JSValueToHTMLAreaElement(val js.Value) HTMLAreaElement {
-	return HTMLAreaElement{Value: Value{Value: val}}
+	return HTMLAreaElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLAreaElement() HTMLAreaElement { return HTMLAreaElement{Value: v} }
+func NewHTMLAreaElement(args ...interface{}) HTMLAreaElement {
+	return HTMLAreaElement{Value: JSValueToValue(js.Global().Get("HTMLAreaElement").New(args...))}
+}
 func (h HTMLAreaElement) GetAlt() string {
 	val := h.Get("alt")
 	return val.String()

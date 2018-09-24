@@ -34,9 +34,12 @@ type HashChangeEvent struct {
 }
 
 func JSValueToHashChangeEvent(val js.Value) HashChangeEvent {
-	return HashChangeEvent{Value: Value{Value: val}}
+	return HashChangeEvent{Value: JSValueToValue(val)}
 }
 func (v Value) AsHashChangeEvent() HashChangeEvent { return HashChangeEvent{Value: v} }
+func NewHashChangeEvent(args ...interface{}) HashChangeEvent {
+	return HashChangeEvent{Value: JSValueToValue(js.Global().Get("HashChangeEvent").New(args...))}
+}
 func (h HashChangeEvent) GetNewURL() string {
 	val := h.Get("newURL")
 	return val.String()

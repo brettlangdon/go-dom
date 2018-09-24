@@ -13,8 +13,11 @@ type EventTarget struct {
 	Value
 }
 
-func JSValueToEventTarget(val js.Value) EventTarget { return EventTarget{Value: Value{Value: val}} }
+func JSValueToEventTarget(val js.Value) EventTarget { return EventTarget{Value: JSValueToValue(val)} }
 func (v Value) AsEventTarget() EventTarget          { return EventTarget{Value: v} }
+func NewEventTarget(args ...interface{}) EventTarget {
+	return EventTarget{Value: JSValueToValue(js.Global().Get("EventTarget").New(args...))}
+}
 func (e EventTarget) AddEventListener(args ...interface{}) {
 	e.Call("addEventListener", args...)
 }

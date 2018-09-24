@@ -23,8 +23,11 @@ type CSSPageRule struct {
 	CSSRule
 }
 
-func JSValueToCSSPageRule(val js.Value) CSSPageRule { return CSSPageRule{Value: Value{Value: val}} }
+func JSValueToCSSPageRule(val js.Value) CSSPageRule { return CSSPageRule{Value: JSValueToValue(val)} }
 func (v Value) AsCSSPageRule() CSSPageRule          { return CSSPageRule{Value: v} }
+func NewCSSPageRule(args ...interface{}) CSSPageRule {
+	return CSSPageRule{Value: JSValueToValue(js.Global().Get("CSSPageRule").New(args...))}
+}
 func (c CSSPageRule) GetSelectorText() string {
 	val := c.Get("selectorText")
 	return val.String()

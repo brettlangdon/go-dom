@@ -157,6 +157,9 @@ type HTMLAudioElement struct {
 }
 
 func JSValueToHTMLAudioElement(val js.Value) HTMLAudioElement {
-	return HTMLAudioElement{Value: Value{Value: val}}
+	return HTMLAudioElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLAudioElement() HTMLAudioElement { return HTMLAudioElement{Value: v} }
+func NewHTMLAudioElement(args ...interface{}) HTMLAudioElement {
+	return HTMLAudioElement{Value: JSValueToValue(js.Global().Get("HTMLAudioElement").New(args...))}
+}

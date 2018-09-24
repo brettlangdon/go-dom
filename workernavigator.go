@@ -25,9 +25,12 @@ type WorkerNavigator struct {
 }
 
 func JSValueToWorkerNavigator(val js.Value) WorkerNavigator {
-	return WorkerNavigator{Value: Value{Value: val}}
+	return WorkerNavigator{Value: JSValueToValue(val)}
 }
 func (v Value) AsWorkerNavigator() WorkerNavigator { return WorkerNavigator{Value: v} }
+func NewWorkerNavigator(args ...interface{}) WorkerNavigator {
+	return WorkerNavigator{Value: JSValueToValue(js.Global().Get("WorkerNavigator").New(args...))}
+}
 func (w WorkerNavigator) GetAppCodeName() string {
 	val := w.Get("appCodeName")
 	return val.String()

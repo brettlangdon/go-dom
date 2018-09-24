@@ -121,9 +121,12 @@ type HTMLTableColElement struct {
 }
 
 func JSValueToHTMLTableColElement(val js.Value) HTMLTableColElement {
-	return HTMLTableColElement{Value: Value{Value: val}}
+	return HTMLTableColElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTableColElement() HTMLTableColElement { return HTMLTableColElement{Value: v} }
+func NewHTMLTableColElement(args ...interface{}) HTMLTableColElement {
+	return HTMLTableColElement{Value: JSValueToValue(js.Global().Get("HTMLTableColElement").New(args...))}
+}
 func (h HTMLTableColElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

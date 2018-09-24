@@ -104,8 +104,11 @@ type Element struct {
 	EventTarget
 }
 
-func JSValueToElement(val js.Value) Element { return Element{Value: Value{Value: val}} }
+func JSValueToElement(val js.Value) Element { return Element{Value: JSValueToValue(val)} }
 func (v Value) AsElement() Element          { return Element{Value: v} }
+func NewElement(args ...interface{}) Element {
+	return Element{Value: JSValueToValue(js.Global().Get("Element").New(args...))}
+}
 func (e Element) After(args ...interface{}) {
 	e.Call("after", args...)
 }

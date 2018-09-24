@@ -29,10 +29,13 @@ type XMLHttpRequestEventTarget struct {
 }
 
 func JSValueToXMLHttpRequestEventTarget(val js.Value) XMLHttpRequestEventTarget {
-	return XMLHttpRequestEventTarget{Value: Value{Value: val}}
+	return XMLHttpRequestEventTarget{Value: JSValueToValue(val)}
 }
 func (v Value) AsXMLHttpRequestEventTarget() XMLHttpRequestEventTarget {
 	return XMLHttpRequestEventTarget{Value: v}
+}
+func NewXMLHttpRequestEventTarget(args ...interface{}) XMLHttpRequestEventTarget {
+	return XMLHttpRequestEventTarget{Value: JSValueToValue(js.Global().Get("XMLHttpRequestEventTarget").New(args...))}
 }
 func (x XMLHttpRequestEventTarget) GetOnabort() EventHandler {
 	val := x.Get("onabort")

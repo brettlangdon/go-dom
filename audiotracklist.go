@@ -23,9 +23,12 @@ type AudioTrackList struct {
 }
 
 func JSValueToAudioTrackList(val js.Value) AudioTrackList {
-	return AudioTrackList{Value: Value{Value: val}}
+	return AudioTrackList{Value: JSValueToValue(val)}
 }
 func (v Value) AsAudioTrackList() AudioTrackList { return AudioTrackList{Value: v} }
+func NewAudioTrackList(args ...interface{}) AudioTrackList {
+	return AudioTrackList{Value: JSValueToValue(js.Global().Get("AudioTrackList").New(args...))}
+}
 func (a AudioTrackList) GetTrackById(args ...interface{}) AudioTrack {
 	val := a.Call("getTrackById", args...)
 	return JSValueToAudioTrack(val.JSValue())

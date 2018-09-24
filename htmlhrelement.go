@@ -119,9 +119,12 @@ type HTMLHRElement struct {
 }
 
 func JSValueToHTMLHRElement(val js.Value) HTMLHRElement {
-	return HTMLHRElement{Value: Value{Value: val}}
+	return HTMLHRElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLHRElement() HTMLHRElement { return HTMLHRElement{Value: v} }
+func NewHTMLHRElement(args ...interface{}) HTMLHRElement {
+	return HTMLHRElement{Value: JSValueToValue(js.Global().Get("HTMLHRElement").New(args...))}
+}
 func (h HTMLHRElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

@@ -110,9 +110,12 @@ type HTMLTemplateElement struct {
 }
 
 func JSValueToHTMLTemplateElement(val js.Value) HTMLTemplateElement {
-	return HTMLTemplateElement{Value: Value{Value: val}}
+	return HTMLTemplateElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTemplateElement() HTMLTemplateElement { return HTMLTemplateElement{Value: v} }
+func NewHTMLTemplateElement(args ...interface{}) HTMLTemplateElement {
+	return HTMLTemplateElement{Value: JSValueToValue(js.Global().Get("HTMLTemplateElement").New(args...))}
+}
 func (h HTMLTemplateElement) GetContent() DocumentFragment {
 	val := h.Get("content")
 	return JSValueToDocumentFragment(val.JSValue())

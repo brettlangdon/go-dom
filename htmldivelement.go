@@ -111,9 +111,12 @@ type HTMLDivElement struct {
 }
 
 func JSValueToHTMLDivElement(val js.Value) HTMLDivElement {
-	return HTMLDivElement{Value: Value{Value: val}}
+	return HTMLDivElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDivElement() HTMLDivElement { return HTMLDivElement{Value: v} }
+func NewHTMLDivElement(args ...interface{}) HTMLDivElement {
+	return HTMLDivElement{Value: JSValueToValue(js.Global().Get("HTMLDivElement").New(args...))}
+}
 func (h HTMLDivElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

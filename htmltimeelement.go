@@ -111,9 +111,12 @@ type HTMLTimeElement struct {
 }
 
 func JSValueToHTMLTimeElement(val js.Value) HTMLTimeElement {
-	return HTMLTimeElement{Value: Value{Value: val}}
+	return HTMLTimeElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLTimeElement() HTMLTimeElement { return HTMLTimeElement{Value: v} }
+func NewHTMLTimeElement(args ...interface{}) HTMLTimeElement {
+	return HTMLTimeElement{Value: JSValueToValue(js.Global().Get("HTMLTimeElement").New(args...))}
+}
 func (h HTMLTimeElement) GetDateTime() string {
 	val := h.Get("dateTime")
 	return val.String()

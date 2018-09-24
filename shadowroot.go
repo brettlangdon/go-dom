@@ -49,8 +49,11 @@ type ShadowRoot struct {
 	EventTarget
 }
 
-func JSValueToShadowRoot(val js.Value) ShadowRoot { return ShadowRoot{Value: Value{Value: val}} }
+func JSValueToShadowRoot(val js.Value) ShadowRoot { return ShadowRoot{Value: JSValueToValue(val)} }
 func (v Value) AsShadowRoot() ShadowRoot          { return ShadowRoot{Value: v} }
+func NewShadowRoot(args ...interface{}) ShadowRoot {
+	return ShadowRoot{Value: JSValueToValue(js.Global().Get("ShadowRoot").New(args...))}
+}
 func (s ShadowRoot) GetHost() Element {
 	val := s.Get("host")
 	return JSValueToElement(val.JSValue())

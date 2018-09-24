@@ -58,8 +58,11 @@ type Text struct {
 	EventTarget
 }
 
-func JSValueToText(val js.Value) Text { return Text{Value: Value{Value: val}} }
+func JSValueToText(val js.Value) Text { return Text{Value: JSValueToValue(val)} }
 func (v Value) AsText() Text          { return Text{Value: v} }
+func NewText(args ...interface{}) Text {
+	return Text{Value: JSValueToValue(js.Global().Get("Text").New(args...))}
+}
 func (t Text) GetAssignedSlot() HTMLSlotElement {
 	val := t.Get("assignedSlot")
 	return JSValueToHTMLSlotElement(val.JSValue())

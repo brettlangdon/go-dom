@@ -18,8 +18,11 @@ type StyleSheet struct {
 	Value
 }
 
-func JSValueToStyleSheet(val js.Value) StyleSheet { return StyleSheet{Value: Value{Value: val}} }
+func JSValueToStyleSheet(val js.Value) StyleSheet { return StyleSheet{Value: JSValueToValue(val)} }
 func (v Value) AsStyleSheet() StyleSheet          { return StyleSheet{Value: v} }
+func NewStyleSheet(args ...interface{}) StyleSheet {
+	return StyleSheet{Value: JSValueToValue(js.Global().Get("StyleSheet").New(args...))}
+}
 func (s StyleSheet) GetDisabled() bool {
 	val := s.Get("disabled")
 	return val.Bool()

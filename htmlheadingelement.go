@@ -111,9 +111,12 @@ type HTMLHeadingElement struct {
 }
 
 func JSValueToHTMLHeadingElement(val js.Value) HTMLHeadingElement {
-	return HTMLHeadingElement{Value: Value{Value: val}}
+	return HTMLHeadingElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLHeadingElement() HTMLHeadingElement { return HTMLHeadingElement{Value: v} }
+func NewHTMLHeadingElement(args ...interface{}) HTMLHeadingElement {
+	return HTMLHeadingElement{Value: JSValueToValue(js.Global().Get("HTMLHeadingElement").New(args...))}
+}
 func (h HTMLHeadingElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()

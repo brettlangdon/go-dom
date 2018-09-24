@@ -113,9 +113,12 @@ type HTMLOptGroupElement struct {
 }
 
 func JSValueToHTMLOptGroupElement(val js.Value) HTMLOptGroupElement {
-	return HTMLOptGroupElement{Value: Value{Value: val}}
+	return HTMLOptGroupElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLOptGroupElement() HTMLOptGroupElement { return HTMLOptGroupElement{Value: v} }
+func NewHTMLOptGroupElement(args ...interface{}) HTMLOptGroupElement {
+	return HTMLOptGroupElement{Value: JSValueToValue(js.Global().Get("HTMLOptGroupElement").New(args...))}
+}
 func (h HTMLOptGroupElement) GetDisabled() bool {
 	val := h.Get("disabled")
 	return val.Bool()

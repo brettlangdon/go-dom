@@ -18,9 +18,12 @@ type DOMPointReadOnly struct {
 }
 
 func JSValueToDOMPointReadOnly(val js.Value) DOMPointReadOnly {
-	return DOMPointReadOnly{Value: Value{Value: val}}
+	return DOMPointReadOnly{Value: JSValueToValue(val)}
 }
 func (v Value) AsDOMPointReadOnly() DOMPointReadOnly { return DOMPointReadOnly{Value: v} }
+func NewDOMPointReadOnly(args ...interface{}) DOMPointReadOnly {
+	return DOMPointReadOnly{Value: JSValueToValue(js.Global().Get("DOMPointReadOnly").New(args...))}
+}
 func (d DOMPointReadOnly) FromPoint(args ...interface{}) DOMPointReadOnly {
 	val := d.Call("fromPoint", args...)
 	return JSValueToDOMPointReadOnly(val.JSValue())

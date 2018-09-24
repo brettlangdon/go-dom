@@ -17,8 +17,11 @@ type AbortSignal struct {
 	EventTarget
 }
 
-func JSValueToAbortSignal(val js.Value) AbortSignal { return AbortSignal{Value: Value{Value: val}} }
+func JSValueToAbortSignal(val js.Value) AbortSignal { return AbortSignal{Value: JSValueToValue(val)} }
 func (v Value) AsAbortSignal() AbortSignal          { return AbortSignal{Value: v} }
+func NewAbortSignal(args ...interface{}) AbortSignal {
+	return AbortSignal{Value: JSValueToValue(js.Global().Get("AbortSignal").New(args...))}
+}
 func (a AbortSignal) GetAborted() bool {
 	val := a.Get("aborted")
 	return val.Bool()

@@ -117,9 +117,12 @@ type HTMLCanvasElement struct {
 }
 
 func JSValueToHTMLCanvasElement(val js.Value) HTMLCanvasElement {
-	return HTMLCanvasElement{Value: Value{Value: val}}
+	return HTMLCanvasElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLCanvasElement() HTMLCanvasElement { return HTMLCanvasElement{Value: v} }
+func NewHTMLCanvasElement(args ...interface{}) HTMLCanvasElement {
+	return HTMLCanvasElement{Value: JSValueToValue(js.Global().Get("HTMLCanvasElement").New(args...))}
+}
 func (h HTMLCanvasElement) GetContext(args ...interface{}) RenderingContext {
 	val := h.Call("getContext", args...)
 	return JSValueToRenderingContext(val.JSValue())

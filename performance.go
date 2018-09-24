@@ -17,8 +17,11 @@ type Performance struct {
 	EventTarget
 }
 
-func JSValueToPerformance(val js.Value) Performance { return Performance{Value: Value{Value: val}} }
+func JSValueToPerformance(val js.Value) Performance { return Performance{Value: JSValueToValue(val)} }
 func (v Value) AsPerformance() Performance          { return Performance{Value: v} }
+func NewPerformance(args ...interface{}) Performance {
+	return Performance{Value: JSValueToValue(js.Global().Get("Performance").New(args...))}
+}
 func (p Performance) Now(args ...interface{}) DOMHighResTimeStamp {
 	val := p.Call("now", args...)
 	return JSValueToDOMHighResTimeStamp(val.JSValue())

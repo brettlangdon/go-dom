@@ -125,9 +125,12 @@ type HTMLOutputElement struct {
 }
 
 func JSValueToHTMLOutputElement(val js.Value) HTMLOutputElement {
-	return HTMLOutputElement{Value: Value{Value: val}}
+	return HTMLOutputElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLOutputElement() HTMLOutputElement { return HTMLOutputElement{Value: v} }
+func NewHTMLOutputElement(args ...interface{}) HTMLOutputElement {
+	return HTMLOutputElement{Value: JSValueToValue(js.Global().Get("HTMLOutputElement").New(args...))}
+}
 func (h HTMLOutputElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()

@@ -18,8 +18,11 @@ type NamedNodeMap struct {
 	Value
 }
 
-func JSValueToNamedNodeMap(val js.Value) NamedNodeMap { return NamedNodeMap{Value: Value{Value: val}} }
+func JSValueToNamedNodeMap(val js.Value) NamedNodeMap { return NamedNodeMap{Value: JSValueToValue(val)} }
 func (v Value) AsNamedNodeMap() NamedNodeMap          { return NamedNodeMap{Value: v} }
+func NewNamedNodeMap(args ...interface{}) NamedNodeMap {
+	return NamedNodeMap{Value: JSValueToValue(js.Global().Get("NamedNodeMap").New(args...))}
+}
 func (n NamedNodeMap) GetNamedItem(args ...interface{}) Attr {
 	val := n.Call("getNamedItem", args...)
 	return JSValueToAttr(val.JSValue())

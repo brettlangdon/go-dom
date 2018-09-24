@@ -145,9 +145,12 @@ type HTMLFrameSetElement struct {
 }
 
 func JSValueToHTMLFrameSetElement(val js.Value) HTMLFrameSetElement {
-	return HTMLFrameSetElement{Value: Value{Value: val}}
+	return HTMLFrameSetElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLFrameSetElement() HTMLFrameSetElement { return HTMLFrameSetElement{Value: v} }
+func NewHTMLFrameSetElement(args ...interface{}) HTMLFrameSetElement {
+	return HTMLFrameSetElement{Value: JSValueToValue(js.Global().Get("HTMLFrameSetElement").New(args...))}
+}
 func (h HTMLFrameSetElement) GetCols() string {
 	val := h.Get("cols")
 	return val.String()

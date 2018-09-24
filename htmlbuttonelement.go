@@ -137,9 +137,12 @@ type HTMLButtonElement struct {
 }
 
 func JSValueToHTMLButtonElement(val js.Value) HTMLButtonElement {
-	return HTMLButtonElement{Value: Value{Value: val}}
+	return HTMLButtonElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLButtonElement() HTMLButtonElement { return HTMLButtonElement{Value: v} }
+func NewHTMLButtonElement(args ...interface{}) HTMLButtonElement {
+	return HTMLButtonElement{Value: JSValueToValue(js.Global().Get("HTMLButtonElement").New(args...))}
+}
 func (h HTMLButtonElement) GetAutofocus() bool {
 	val := h.Get("autofocus")
 	return val.Bool()

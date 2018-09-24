@@ -226,8 +226,11 @@ type Window struct {
 	EventTarget
 }
 
-func JSValueToWindow(val js.Value) Window { return Window{Value: Value{Value: val}} }
+func JSValueToWindow(val js.Value) Window { return Window{Value: JSValueToValue(val)} }
 func (v Value) AsWindow() Window          { return Window{Value: v} }
+func NewWindow(args ...interface{}) Window {
+	return Window{Value: JSValueToValue(js.Global().Get("Window").New(args...))}
+}
 func (w Window) Alert(args ...interface{}) {
 	w.Call("alert", args...)
 }

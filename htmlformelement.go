@@ -133,9 +133,12 @@ type HTMLFormElement struct {
 }
 
 func JSValueToHTMLFormElement(val js.Value) HTMLFormElement {
-	return HTMLFormElement{Value: Value{Value: val}}
+	return HTMLFormElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLFormElement() HTMLFormElement { return HTMLFormElement{Value: v} }
+func NewHTMLFormElement(args ...interface{}) HTMLFormElement {
+	return HTMLFormElement{Value: JSValueToValue(js.Global().Get("HTMLFormElement").New(args...))}
+}
 func (h HTMLFormElement) GetAcceptCharset() string {
 	val := h.Get("acceptCharset")
 	return val.String()

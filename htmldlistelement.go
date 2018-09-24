@@ -111,9 +111,12 @@ type HTMLDListElement struct {
 }
 
 func JSValueToHTMLDListElement(val js.Value) HTMLDListElement {
-	return HTMLDListElement{Value: Value{Value: val}}
+	return HTMLDListElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDListElement() HTMLDListElement { return HTMLDListElement{Value: v} }
+func NewHTMLDListElement(args ...interface{}) HTMLDListElement {
+	return HTMLDListElement{Value: JSValueToValue(js.Global().Get("HTMLDListElement").New(args...))}
+}
 func (h HTMLDListElement) GetCompact() bool {
 	val := h.Get("compact")
 	return val.Bool()

@@ -37,8 +37,11 @@ type MessageEvent struct {
 	Event
 }
 
-func JSValueToMessageEvent(val js.Value) MessageEvent { return MessageEvent{Value: Value{Value: val}} }
+func JSValueToMessageEvent(val js.Value) MessageEvent { return MessageEvent{Value: JSValueToValue(val)} }
 func (v Value) AsMessageEvent() MessageEvent          { return MessageEvent{Value: v} }
+func NewMessageEvent(args ...interface{}) MessageEvent {
+	return MessageEvent{Value: JSValueToValue(js.Global().Get("MessageEvent").New(args...))}
+}
 func (m MessageEvent) GetData() Value {
 	val := m.Get("data")
 	return val

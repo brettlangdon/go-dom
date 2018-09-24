@@ -145,9 +145,12 @@ type HTMLSelectElement struct {
 }
 
 func JSValueToHTMLSelectElement(val js.Value) HTMLSelectElement {
-	return HTMLSelectElement{Value: Value{Value: val}}
+	return HTMLSelectElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLSelectElement() HTMLSelectElement { return HTMLSelectElement{Value: v} }
+func NewHTMLSelectElement(args ...interface{}) HTMLSelectElement {
+	return HTMLSelectElement{Value: JSValueToValue(js.Global().Get("HTMLSelectElement").New(args...))}
+}
 func (h HTMLSelectElement) Add(args ...interface{}) {
 	h.Call("add", args...)
 }

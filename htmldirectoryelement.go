@@ -111,9 +111,12 @@ type HTMLDirectoryElement struct {
 }
 
 func JSValueToHTMLDirectoryElement(val js.Value) HTMLDirectoryElement {
-	return HTMLDirectoryElement{Value: Value{Value: val}}
+	return HTMLDirectoryElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLDirectoryElement() HTMLDirectoryElement { return HTMLDirectoryElement{Value: v} }
+func NewHTMLDirectoryElement(args ...interface{}) HTMLDirectoryElement {
+	return HTMLDirectoryElement{Value: JSValueToValue(js.Global().Get("HTMLDirectoryElement").New(args...))}
+}
 func (h HTMLDirectoryElement) GetCompact() bool {
 	val := h.Get("compact")
 	return val.Bool()

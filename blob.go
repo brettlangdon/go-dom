@@ -13,8 +13,11 @@ type Blob struct {
 	Value
 }
 
-func JSValueToBlob(val js.Value) Blob { return Blob{Value: Value{Value: val}} }
+func JSValueToBlob(val js.Value) Blob { return Blob{Value: JSValueToValue(val)} }
 func (v Value) AsBlob() Blob          { return Blob{Value: v} }
+func NewBlob(args ...interface{}) Blob {
+	return Blob{Value: JSValueToValue(js.Global().Get("Blob").New(args...))}
+}
 func (b Blob) GetSize() int {
 	val := b.Get("size")
 	return val.Int()

@@ -19,9 +19,12 @@ type CSSMarginRule struct {
 }
 
 func JSValueToCSSMarginRule(val js.Value) CSSMarginRule {
-	return CSSMarginRule{Value: Value{Value: val}}
+	return CSSMarginRule{Value: JSValueToValue(val)}
 }
 func (v Value) AsCSSMarginRule() CSSMarginRule { return CSSMarginRule{Value: v} }
+func NewCSSMarginRule(args ...interface{}) CSSMarginRule {
+	return CSSMarginRule{Value: JSValueToValue(js.Global().Get("CSSMarginRule").New(args...))}
+}
 func (c CSSMarginRule) GetName() string {
 	val := c.Get("name")
 	return val.String()

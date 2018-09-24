@@ -12,8 +12,11 @@ type CSSRuleList struct {
 	Value
 }
 
-func JSValueToCSSRuleList(val js.Value) CSSRuleList { return CSSRuleList{Value: Value{Value: val}} }
+func JSValueToCSSRuleList(val js.Value) CSSRuleList { return CSSRuleList{Value: JSValueToValue(val)} }
 func (v Value) AsCSSRuleList() CSSRuleList          { return CSSRuleList{Value: v} }
+func NewCSSRuleList(args ...interface{}) CSSRuleList {
+	return CSSRuleList{Value: JSValueToValue(js.Global().Get("CSSRuleList").New(args...))}
+}
 func (c CSSRuleList) Item(args ...interface{}) CSSRule {
 	val := c.Call("item", args...)
 	return JSValueToCSSRule(val.JSValue())

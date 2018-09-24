@@ -272,8 +272,11 @@ type Document struct {
 	EventTarget
 }
 
-func JSValueToDocument(val js.Value) Document { return Document{Value: Value{Value: val}} }
+func JSValueToDocument(val js.Value) Document { return Document{Value: JSValueToValue(val)} }
 func (v Value) AsDocument() Document          { return Document{Value: v} }
+func NewDocument(args ...interface{}) Document {
+	return Document{Value: JSValueToValue(js.Global().Get("Document").New(args...))}
+}
 func (d Document) GetActiveElement() Element {
 	val := d.Get("activeElement")
 	return JSValueToElement(val.JSValue())

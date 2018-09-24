@@ -13,8 +13,11 @@ type ImageData struct {
 	Value
 }
 
-func JSValueToImageData(val js.Value) ImageData { return ImageData{Value: Value{Value: val}} }
+func JSValueToImageData(val js.Value) ImageData { return ImageData{Value: JSValueToValue(val)} }
 func (v Value) AsImageData() ImageData          { return ImageData{Value: v} }
+func NewImageData(args ...interface{}) ImageData {
+	return ImageData{Value: JSValueToValue(js.Global().Get("ImageData").New(args...))}
+}
 func (i ImageData) GetData() Uint8ClampedArray {
 	val := i.Get("data")
 	return JSValueToUint8ClampedArray(val.JSValue())

@@ -45,8 +45,11 @@ type Node struct {
 	EventTarget
 }
 
-func JSValueToNode(val js.Value) Node { return Node{Value: Value{Value: val}} }
+func JSValueToNode(val js.Value) Node { return Node{Value: JSValueToValue(val)} }
 func (v Value) AsNode() Node          { return Node{Value: v} }
+func NewNode(args ...interface{}) Node {
+	return Node{Value: JSValueToValue(js.Global().Get("Node").New(args...))}
+}
 func (n Node) AppendChild(args ...interface{}) Node {
 	val := n.Call("appendChild", args...)
 	return JSValueToNode(val.JSValue())

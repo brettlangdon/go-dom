@@ -113,9 +113,12 @@ type HTMLModElement struct {
 }
 
 func JSValueToHTMLModElement(val js.Value) HTMLModElement {
-	return HTMLModElement{Value: Value{Value: val}}
+	return HTMLModElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLModElement() HTMLModElement { return HTMLModElement{Value: v} }
+func NewHTMLModElement(args ...interface{}) HTMLModElement {
+	return HTMLModElement{Value: JSValueToValue(js.Global().Get("HTMLModElement").New(args...))}
+}
 func (h HTMLModElement) GetCite() string {
 	val := h.Get("cite")
 	return val.String()

@@ -113,9 +113,12 @@ type HTMLSlotElement struct {
 }
 
 func JSValueToHTMLSlotElement(val js.Value) HTMLSlotElement {
-	return HTMLSlotElement{Value: Value{Value: val}}
+	return HTMLSlotElement{Value: JSValueToValue(val)}
 }
 func (v Value) AsHTMLSlotElement() HTMLSlotElement { return HTMLSlotElement{Value: v} }
+func NewHTMLSlotElement(args ...interface{}) HTMLSlotElement {
+	return HTMLSlotElement{Value: JSValueToValue(js.Global().Get("HTMLSlotElement").New(args...))}
+}
 func (h HTMLSlotElement) AssignedElements(args ...interface{}) {
 	h.Call("assignedElements", args...)
 }

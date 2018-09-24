@@ -33,9 +33,12 @@ type PageTransitionEvent struct {
 }
 
 func JSValueToPageTransitionEvent(val js.Value) PageTransitionEvent {
-	return PageTransitionEvent{Value: Value{Value: val}}
+	return PageTransitionEvent{Value: JSValueToValue(val)}
 }
 func (v Value) AsPageTransitionEvent() PageTransitionEvent { return PageTransitionEvent{Value: v} }
+func NewPageTransitionEvent(args ...interface{}) PageTransitionEvent {
+	return PageTransitionEvent{Value: JSValueToValue(js.Global().Get("PageTransitionEvent").New(args...))}
+}
 func (p PageTransitionEvent) GetPersisted() bool {
 	val := p.Get("persisted")
 	return val.Bool()
