@@ -41,3 +41,13 @@ func GetJSValue(v interface{}) interface{} {
 	}
 	return v
 }
+
+func (v Value) IsUndefined() bool       { return v.Type() == js.TypeUndefined }
+func (v Value) IsNull() bool            { return v.Type() == js.TypeNull }
+func (v Value) IsNullOrUndefined() bool { return v.IsNull() || v.IsUndefined() }
+func (v Value) IsBoolean() bool         { return v.Type() == js.TypeBoolean }
+func (v Value) IsNumber() bool          { return v.Type() == js.TypeNumber }
+func (v Value) IsString() bool          { return v.Type() == js.TypeString }
+func (v Value) IsSymbol() bool          { return v.Type() == js.TypeSymbol }
+func (v Value) IsObject() bool          { return v.Type() == js.TypeObject }
+func (v Value) IsFunction() bool        { return v.Type() == js.TypeFunction }
