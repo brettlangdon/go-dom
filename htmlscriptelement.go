@@ -17,6 +17,8 @@ type HTMLScriptElementIFace interface {
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetCharset() string
+	SetCharset(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -35,6 +37,8 @@ type HTMLScriptElementIFace interface {
 	DispatchEvent(args ...interface{}) bool
 	GetDraggable() bool
 	SetDraggable(bool)
+	GetEvent() string
+	SetEvent(string)
 	GetFirstChild() Node
 	GetAttribute(args ...interface{}) string
 	GetAttributeNS(args ...interface{}) string
@@ -51,6 +55,8 @@ type HTMLScriptElementIFace interface {
 	HasChildNodes(args ...interface{}) bool
 	GetHidden() bool
 	SetHidden(bool)
+	GetHtmlFor() string
+	SetHtmlFor(string)
 	GetId() string
 	SetId(string)
 	GetInnerText() string
@@ -137,6 +143,13 @@ func (h HTMLScriptElement) GetAsync() bool {
 func (h HTMLScriptElement) SetAsync(val bool) {
 	h.Set("async", val)
 }
+func (h HTMLScriptElement) GetCharset() string {
+	val := h.Get("charset")
+	return val.String()
+}
+func (h HTMLScriptElement) SetCharset(val string) {
+	h.Set("charset", val)
+}
 func (h HTMLScriptElement) GetCrossOrigin() string {
 	val := h.Get("crossOrigin")
 	return val.String()
@@ -150,6 +163,20 @@ func (h HTMLScriptElement) GetDefer() bool {
 }
 func (h HTMLScriptElement) SetDefer(val bool) {
 	h.Set("defer", val)
+}
+func (h HTMLScriptElement) GetEvent() string {
+	val := h.Get("event")
+	return val.String()
+}
+func (h HTMLScriptElement) SetEvent(val string) {
+	h.Set("event", val)
+}
+func (h HTMLScriptElement) GetHtmlFor() string {
+	val := h.Get("htmlFor")
+	return val.String()
+}
+func (h HTMLScriptElement) SetHtmlFor(val string) {
+	h.Set("htmlFor", val)
 }
 func (h HTMLScriptElement) GetIntegrity() string {
 	val := h.Get("integrity")

@@ -9,12 +9,18 @@ type HTMLTableSectionElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetCh() string
+	SetCh(string)
+	GetChOff() string
+	SetChOff(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -101,6 +107,8 @@ type HTMLTableSectionElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetVAlign() string
+	SetVAlign(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLTableSectionElement struct {
@@ -117,6 +125,27 @@ func JSValueToHTMLTableSectionElement(val js.Value) HTMLTableSectionElement {
 func (v Value) AsHTMLTableSectionElement() HTMLTableSectionElement {
 	return HTMLTableSectionElement{Value: v}
 }
+func (h HTMLTableSectionElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLTableSectionElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLTableSectionElement) GetCh() string {
+	val := h.Get("ch")
+	return val.String()
+}
+func (h HTMLTableSectionElement) SetCh(val string) {
+	h.Set("ch", val)
+}
+func (h HTMLTableSectionElement) GetChOff() string {
+	val := h.Get("chOff")
+	return val.String()
+}
+func (h HTMLTableSectionElement) SetChOff(val string) {
+	h.Set("chOff", val)
+}
 func (h HTMLTableSectionElement) DeleteRow(args ...interface{}) {
 	h.Call("deleteRow", args...)
 }
@@ -127,4 +156,11 @@ func (h HTMLTableSectionElement) InsertRow(args ...interface{}) HTMLTableRowElem
 func (h HTMLTableSectionElement) GetRows() HTMLCollection {
 	val := h.Get("rows")
 	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLTableSectionElement) GetVAlign() string {
+	val := h.Get("vAlign")
+	return val.String()
+}
+func (h HTMLTableSectionElement) SetVAlign(val string) {
+	h.Set("vAlign", val)
 }

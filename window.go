@@ -13,6 +13,7 @@ type WindowIFace interface {
 	Blur(args ...interface{})
 	Btoa(args ...interface{}) string
 	CancelAnimationFrame(args ...interface{})
+	CaptureEvents(args ...interface{})
 	ClearInterval(args ...interface{})
 	ClearTimeout(args ...interface{})
 	Close(args ...interface{})
@@ -23,9 +24,12 @@ type WindowIFace interface {
 	GetCustomElements() CustomElementRegistry
 	DispatchEvent(args ...interface{}) bool
 	GetDocument() Document
+	GetEvent() Value
+	GetExternal() External
 	Focus(args ...interface{})
 	GetFrameElement() Element
 	GetFrames() WindowProxy
+	GetComputedStyle(args ...interface{}) CSSStyleDeclaration
 	GetHistory() History
 	GetLength() int
 	GetLocalStorage() Storage
@@ -201,6 +205,7 @@ type WindowIFace interface {
 	Print(args ...interface{})
 	Prompt(args ...interface{}) string
 	QueueMicrotask(args ...interface{})
+	ReleaseEvents(args ...interface{})
 	RemoveEventListener(args ...interface{})
 	RequestAnimationFrame(args ...interface{}) int
 	GetScrollbars() BarProp
@@ -247,6 +252,9 @@ func (w Window) Btoa(args ...interface{}) string {
 func (w Window) CancelAnimationFrame(args ...interface{}) {
 	w.Call("cancelAnimationFrame", args...)
 }
+func (w Window) CaptureEvents(args ...interface{}) {
+	w.Call("captureEvents", args...)
+}
 func (w Window) ClearInterval(args ...interface{}) {
 	w.Call("clearInterval", args...)
 }
@@ -278,6 +286,14 @@ func (w Window) GetDocument() Document {
 	val := w.Get("document")
 	return JSValueToDocument(val.JSValue())
 }
+func (w Window) GetEvent() Value {
+	val := w.Get("event")
+	return val
+}
+func (w Window) GetExternal() External {
+	val := w.Get("external")
+	return JSValueToExternal(val.JSValue())
+}
 func (w Window) Focus(args ...interface{}) {
 	w.Call("focus", args...)
 }
@@ -288,6 +304,10 @@ func (w Window) GetFrameElement() Element {
 func (w Window) GetFrames() WindowProxy {
 	val := w.Get("frames")
 	return JSValueToWindowProxy(val.JSValue())
+}
+func (w Window) GetComputedStyle(args ...interface{}) CSSStyleDeclaration {
+	val := w.Call("getComputedStyle", args...)
+	return JSValueToCSSStyleDeclaration(val.JSValue())
 }
 func (w Window) GetHistory() History {
 	val := w.Get("history")
@@ -905,6 +925,9 @@ func (w Window) Prompt(args ...interface{}) string {
 }
 func (w Window) QueueMicrotask(args ...interface{}) {
 	w.Call("queueMicrotask", args...)
+}
+func (w Window) ReleaseEvents(args ...interface{}) {
+	w.Call("releaseEvents", args...)
 }
 func (w Window) RequestAnimationFrame(args ...interface{}) int {
 	val := w.Call("requestAnimationFrame", args...)

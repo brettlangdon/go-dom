@@ -19,6 +19,8 @@ type HTMLBRElementIFace interface {
 	GetClassList() DOMTokenList
 	GetClassName() string
 	SetClassName(string)
+	GetClear() string
+	SetClear(string)
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
@@ -112,3 +114,10 @@ func JSValueToHTMLBRElement(val js.Value) HTMLBRElement {
 	return HTMLBRElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLBRElement() HTMLBRElement { return HTMLBRElement{Value: v} }
+func (h HTMLBRElement) GetClear() string {
+	val := h.Get("clear")
+	return val.String()
+}
+func (h HTMLBRElement) SetClear(val string) {
+	h.Set("clear", val)
+}

@@ -100,8 +100,12 @@ type HTMLParamElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetType() string
+	SetType(string)
 	GetValue() string
 	SetValue(string)
+	GetValueType() string
+	SetValueType(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLParamElement struct {
@@ -123,10 +127,24 @@ func (h HTMLParamElement) GetName() string {
 func (h HTMLParamElement) SetName(val string) {
 	h.Set("name", val)
 }
+func (h HTMLParamElement) GetType() string {
+	val := h.Get("type")
+	return val.String()
+}
+func (h HTMLParamElement) SetType(val string) {
+	h.Set("type", val)
+}
 func (h HTMLParamElement) GetValue() string {
 	val := h.Get("value")
 	return val.String()
 }
 func (h HTMLParamElement) SetValue(val string) {
 	h.Set("value", val)
+}
+func (h HTMLParamElement) GetValueType() string {
+	val := h.Get("valueType")
+	return val.String()
+}
+func (h HTMLParamElement) SetValueType(val string) {
+	h.Set("valueType", val)
 }

@@ -9,6 +9,8 @@ type HTMLHeadingElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -112,3 +114,10 @@ func JSValueToHTMLHeadingElement(val js.Value) HTMLHeadingElement {
 	return HTMLHeadingElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLHeadingElement() HTMLHeadingElement { return HTMLHeadingElement{Value: v} }
+func (h HTMLHeadingElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLHeadingElement) SetAlign(val string) {
+	h.Set("align", val)
+}

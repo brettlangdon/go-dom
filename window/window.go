@@ -34,6 +34,9 @@ func Btoa(args ...interface{}) string {
 func CancelAnimationFrame(args ...interface{}) {
 	value.Call("cancelAnimationFrame", args...)
 }
+func CaptureEvents(args ...interface{}) {
+	value.Call("captureEvents", args...)
+}
 func ClearInterval(args ...interface{}) {
 	value.Call("clearInterval", args...)
 }
@@ -66,6 +69,12 @@ func DispatchEvent(args ...interface{}) bool {
 func GetDocument() dom.Document {
 	return value.GetDocument()
 }
+func GetEvent() dom.Value {
+	return value.GetEvent()
+}
+func GetExternal() dom.External {
+	return value.GetExternal()
+}
 func Focus(args ...interface{}) {
 	value.Call("focus", args...)
 }
@@ -74,6 +83,10 @@ func GetFrameElement() dom.Element {
 }
 func GetFrames() dom.WindowProxy {
 	return value.GetFrames()
+}
+func GetComputedStyle(args ...interface{}) dom.CSSStyleDeclaration {
+	val := value.Call("getComputedStyle", args...)
+	return dom.JSValueToCSSStyleDeclaration(val.JSValue())
 }
 func GetHistory() dom.History {
 	return value.GetHistory()
@@ -441,6 +454,9 @@ func Prompt(args ...interface{}) string {
 }
 func QueueMicrotask(args ...interface{}) {
 	value.Call("queueMicrotask", args...)
+}
+func ReleaseEvents(args ...interface{}) {
+	value.Call("releaseEvents", args...)
 }
 func RemoveEventListener(args ...interface{}) {
 	value.Call("removeEventListener", args...)

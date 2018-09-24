@@ -9,6 +9,8 @@ type HTMLEmbedElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -66,6 +68,8 @@ type HTMLEmbedElementIFace interface {
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	Matches(args ...interface{}) bool
+	GetName() string
+	SetName(string)
 	GetNamespaceURI() string
 	GetNextSibling() Node
 	GetNodeName() string
@@ -121,6 +125,13 @@ func JSValueToHTMLEmbedElement(val js.Value) HTMLEmbedElement {
 	return HTMLEmbedElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLEmbedElement() HTMLEmbedElement { return HTMLEmbedElement{Value: v} }
+func (h HTMLEmbedElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLEmbedElement) SetAlign(val string) {
+	h.Set("align", val)
+}
 func (h HTMLEmbedElement) GetSVGDocument(args ...interface{}) Document {
 	val := h.Call("getSVGDocument", args...)
 	return JSValueToDocument(val.JSValue())
@@ -131,6 +142,13 @@ func (h HTMLEmbedElement) GetHeight() string {
 }
 func (h HTMLEmbedElement) SetHeight(val string) {
 	h.Set("height", val)
+}
+func (h HTMLEmbedElement) GetName() string {
+	val := h.Get("name")
+	return val.String()
+}
+func (h HTMLEmbedElement) SetName(val string) {
+	h.Set("name", val)
 }
 func (h HTMLEmbedElement) GetSrc() string {
 	val := h.Get("src")

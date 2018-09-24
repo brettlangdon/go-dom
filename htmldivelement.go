@@ -9,6 +9,8 @@ type HTMLDivElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -112,3 +114,10 @@ func JSValueToHTMLDivElement(val js.Value) HTMLDivElement {
 	return HTMLDivElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLDivElement() HTMLDivElement { return HTMLDivElement{Value: v} }
+func (h HTMLDivElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLDivElement) SetAlign(val string) {
+	h.Set("align", val)
+}

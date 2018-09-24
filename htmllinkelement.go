@@ -17,6 +17,8 @@ type HTMLLinkElementIFace interface {
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetCharset() string
+	SetCharset(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -98,6 +100,8 @@ type HTMLLinkElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
+	GetRev() string
+	SetRev(string)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -110,6 +114,8 @@ type HTMLLinkElementIFace interface {
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
 	GetTagName() string
+	GetTarget() string
+	SetTarget(string)
 	GetTextContent() string
 	SetTextContent(string)
 	GetTitle() string
@@ -139,6 +145,13 @@ func (h HTMLLinkElement) GetAs() string {
 }
 func (h HTMLLinkElement) SetAs(val string) {
 	h.Set("as", val)
+}
+func (h HTMLLinkElement) GetCharset() string {
+	val := h.Get("charset")
+	return val.String()
+}
+func (h HTMLLinkElement) SetCharset(val string) {
+	h.Set("charset", val)
 }
 func (h HTMLLinkElement) GetCrossOrigin() string {
 	val := h.Get("crossOrigin")
@@ -193,6 +206,13 @@ func (h HTMLLinkElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
 	return JSValueToDOMTokenList(val.JSValue())
 }
+func (h HTMLLinkElement) GetRev() string {
+	val := h.Get("rev")
+	return val.String()
+}
+func (h HTMLLinkElement) SetRev(val string) {
+	h.Set("rev", val)
+}
 func (h HTMLLinkElement) GetSheet() StyleSheet {
 	val := h.Get("sheet")
 	return JSValueToStyleSheet(val.JSValue())
@@ -200,6 +220,13 @@ func (h HTMLLinkElement) GetSheet() StyleSheet {
 func (h HTMLLinkElement) GetSizes() DOMTokenList {
 	val := h.Get("sizes")
 	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLLinkElement) GetTarget() string {
+	val := h.Get("target")
+	return val.String()
+}
+func (h HTMLLinkElement) SetTarget(val string) {
+	h.Set("target", val)
 }
 func (h HTMLLinkElement) GetType() string {
 	val := h.Get("type")

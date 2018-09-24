@@ -11,6 +11,8 @@ type HTMLInputElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	GetAlt() string
 	SetAlt(string)
 	AppendChild(args ...interface{}) Node
@@ -178,6 +180,8 @@ type HTMLInputElementIFace interface {
 	SetTranslate(bool)
 	GetType() string
 	SetType(string)
+	GetUseMap() string
+	SetUseMap(string)
 	GetValidationMessage() string
 	GetValidity() ValidityState
 	GetValue() string
@@ -209,6 +213,13 @@ func (h HTMLInputElement) GetAccept() string {
 }
 func (h HTMLInputElement) SetAccept(val string) {
 	h.Set("accept", val)
+}
+func (h HTMLInputElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLInputElement) SetAlign(val string) {
+	h.Set("align", val)
 }
 func (h HTMLInputElement) GetAlt() string {
 	val := h.Get("alt")
@@ -481,6 +492,13 @@ func (h HTMLInputElement) GetType() string {
 }
 func (h HTMLInputElement) SetType(val string) {
 	h.Set("type", val)
+}
+func (h HTMLInputElement) GetUseMap() string {
+	val := h.Get("useMap")
+	return val.String()
+}
+func (h HTMLInputElement) SetUseMap(val string) {
+	h.Set("useMap", val)
 }
 func (h HTMLInputElement) GetValidationMessage() string {
 	val := h.Get("validationMessage")

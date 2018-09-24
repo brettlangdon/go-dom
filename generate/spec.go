@@ -130,6 +130,12 @@ func (s Spec) ResolveMembers(specs SpecMap, includeParents bool) (mems []Member,
 		}
 	}
 
+	for _, p := range s.Partials {
+		for _, m := range p.Members() {
+			memMap[m.Title()] = m
+		}
+	}
+
 	for _, m := range s.Members() {
 		memMap[m.Title()] = m
 	}

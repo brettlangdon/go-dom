@@ -22,6 +22,8 @@ type HTMLUListElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
+	GetCompact() bool
+	SetCompact(bool)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDir() string
@@ -98,6 +100,8 @@ type HTMLUListElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetType() string
+	SetType(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLUListElement struct {
@@ -112,3 +116,17 @@ func JSValueToHTMLUListElement(val js.Value) HTMLUListElement {
 	return HTMLUListElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLUListElement() HTMLUListElement { return HTMLUListElement{Value: v} }
+func (h HTMLUListElement) GetCompact() bool {
+	val := h.Get("compact")
+	return val.Bool()
+}
+func (h HTMLUListElement) SetCompact(val bool) {
+	h.Set("compact", val)
+}
+func (h HTMLUListElement) GetType() string {
+	val := h.Get("type")
+	return val.String()
+}
+func (h HTMLUListElement) SetType(val string) {
+	h.Set("type", val)
+}

@@ -8,12 +8,25 @@ import "syscall/js"
 var value dom.Document
 
 func init() { value = dom.JSValueToDocument(js.Global().Get("document")) }
+func GetActiveElement() dom.Element {
+	return value.GetActiveElement()
+}
 func AddEventListener(args ...interface{}) {
 	value.Call("addEventListener", args...)
 }
 func AdoptNode(args ...interface{}) dom.Node {
 	val := value.Call("adoptNode", args...)
 	return dom.JSValueToNode(val.JSValue())
+}
+func GetAlinkColor() string {
+	return value.GetAlinkColor()
+}
+func SetAlinkColor(val string) { value.SetAlinkColor(val) }
+func GetAll() dom.HTMLAllCollection {
+	return value.GetAll()
+}
+func GetAnchors() dom.HTMLCollection {
+	return value.GetAnchors()
 }
 func Append(args ...interface{}) {
 	value.Call("append", args...)
@@ -22,8 +35,22 @@ func AppendChild(args ...interface{}) dom.Node {
 	val := value.Call("appendChild", args...)
 	return dom.JSValueToNode(val.JSValue())
 }
+func GetApplets() dom.HTMLCollection {
+	return value.GetApplets()
+}
 func GetBaseURI() string {
 	return value.GetBaseURI()
+}
+func GetBgColor() string {
+	return value.GetBgColor()
+}
+func SetBgColor(val string) { value.SetBgColor(val) }
+func GetBody() dom.HTMLElement {
+	return value.GetBody()
+}
+func SetBody(val dom.HTMLElement) { value.SetBody(val) }
+func CaptureEvents(args ...interface{}) {
+	value.Call("captureEvents", args...)
 }
 func GetCharacterSet() string {
 	return value.GetCharacterSet()
@@ -40,9 +67,15 @@ func GetChildNodes() dom.NodeList {
 func GetChildren() dom.HTMLCollection {
 	return value.GetChildren()
 }
+func Clear(args ...interface{}) {
+	value.Call("clear", args...)
+}
 func CloneNode(args ...interface{}) dom.Node {
 	val := value.Call("cloneNode", args...)
 	return dom.JSValueToNode(val.JSValue())
+}
+func Close(args ...interface{}) {
+	value.Call("close", args...)
 }
 func CompareDocumentPosition(args ...interface{}) int {
 	val := value.Call("compareDocumentPosition", args...)
@@ -58,6 +91,10 @@ func Contains(args ...interface{}) bool {
 func GetContentType() string {
 	return value.GetContentType()
 }
+func GetCookie() string {
+	return value.GetCookie()
+}
+func SetCookie(val string) { value.SetCookie(val) }
 func CreateAttribute(args ...interface{}) dom.Attr {
 	val := value.Call("createAttribute", args...)
 	return dom.JSValueToAttr(val.JSValue())
@@ -110,6 +147,20 @@ func CreateTreeWalker(args ...interface{}) dom.TreeWalker {
 	val := value.Call("createTreeWalker", args...)
 	return dom.JSValueToTreeWalker(val.JSValue())
 }
+func GetCurrentScript() dom.HTMLOrSVGScriptElement {
+	return value.GetCurrentScript()
+}
+func GetDefaultView() dom.WindowProxy {
+	return value.GetDefaultView()
+}
+func GetDesignMode() string {
+	return value.GetDesignMode()
+}
+func SetDesignMode(val string) { value.SetDesignMode(val) }
+func GetDir() string {
+	return value.GetDir()
+}
+func SetDir(val string) { value.SetDir(val) }
 func DispatchEvent(args ...interface{}) bool {
 	val := value.Call("dispatchEvent", args...)
 	return val.Bool()
@@ -123,11 +174,29 @@ func GetDocumentElement() dom.Element {
 func GetDocumentURI() string {
 	return value.GetDocumentURI()
 }
+func GetDomain() string {
+	return value.GetDomain()
+}
+func SetDomain(val string) { value.SetDomain(val) }
+func GetEmbeds() dom.HTMLCollection {
+	return value.GetEmbeds()
+}
+func ExecCommand(args ...interface{}) bool {
+	val := value.Call("execCommand", args...)
+	return val.Bool()
+}
+func GetFgColor() string {
+	return value.GetFgColor()
+}
+func SetFgColor(val string) { value.SetFgColor(val) }
 func GetFirstChild() dom.Node {
 	return value.GetFirstChild()
 }
 func GetFirstElementChild() dom.Element {
 	return value.GetFirstElementChild()
+}
+func GetForms() dom.HTMLCollection {
+	return value.GetForms()
 }
 func GetElementById(args ...interface{}) dom.Element {
 	val := value.Call("getElementById", args...)
@@ -136,6 +205,10 @@ func GetElementById(args ...interface{}) dom.Element {
 func GetElementsByClassName(args ...interface{}) dom.HTMLCollection {
 	val := value.Call("getElementsByClassName", args...)
 	return dom.JSValueToHTMLCollection(val.JSValue())
+}
+func GetElementsByName(args ...interface{}) dom.NodeList {
+	val := value.Call("getElementsByName", args...)
+	return dom.JSValueToNodeList(val.JSValue())
 }
 func GetElementsByTagName(args ...interface{}) dom.HTMLCollection {
 	val := value.Call("getElementsByTagName", args...)
@@ -152,6 +225,16 @@ func GetRootNode(args ...interface{}) dom.Node {
 func HasChildNodes(args ...interface{}) bool {
 	val := value.Call("hasChildNodes", args...)
 	return val.Bool()
+}
+func HasFocus(args ...interface{}) bool {
+	val := value.Call("hasFocus", args...)
+	return val.Bool()
+}
+func GetHead() dom.HTMLHeadElement {
+	return value.GetHead()
+}
+func GetImages() dom.HTMLCollection {
+	return value.GetImages()
 }
 func GetImplementation() dom.DOMImplementation {
 	return value.GetImplementation()
@@ -187,6 +270,19 @@ func GetLastChild() dom.Node {
 }
 func GetLastElementChild() dom.Element {
 	return value.GetLastElementChild()
+}
+func GetLastModified() string {
+	return value.GetLastModified()
+}
+func GetLinkColor() string {
+	return value.GetLinkColor()
+}
+func SetLinkColor(val string) { value.SetLinkColor(val) }
+func GetLinks() dom.HTMLCollection {
+	return value.GetLinks()
+}
+func GetLocation() dom.Location {
+	return value.GetLocation()
 }
 func LookupNamespaceURI(args ...interface{}) string {
 	val := value.Call("lookupNamespaceURI", args...)
@@ -412,6 +508,10 @@ func GetOnratechange() dom.EventHandler {
 	return value.GetOnratechange()
 }
 func SetOnratechange(val dom.EventHandler) { value.SetOnratechange(val) }
+func GetOnreadystatechange() dom.EventHandler {
+	return value.GetOnreadystatechange()
+}
+func SetOnreadystatechange(val dom.EventHandler) { value.SetOnreadystatechange(val) }
 func GetOnreset() dom.EventHandler {
 	return value.GetOnreset()
 }
@@ -472,6 +572,14 @@ func GetOnwheel() dom.EventHandler {
 	return value.GetOnwheel()
 }
 func SetOnwheel(val dom.EventHandler) { value.SetOnwheel(val) }
+func Open(args ...interface{}) dom.Document {
+	val := value.Call("open", args...)
+	return dom.JSValueToDocument(val.JSValue())
+}
+func OpenWithArgs(args ...interface{}) dom.WindowProxy {
+	val := value.Call("openWithArgs", args...)
+	return dom.JSValueToWindowProxy(val.JSValue())
+}
 func GetOrigin() string {
 	return value.GetOrigin()
 }
@@ -484,11 +592,34 @@ func GetParentElement() dom.Element {
 func GetParentNode() dom.Node {
 	return value.GetParentNode()
 }
+func GetPlugins() dom.HTMLCollection {
+	return value.GetPlugins()
+}
 func Prepend(args ...interface{}) {
 	value.Call("prepend", args...)
 }
 func GetPreviousSibling() dom.Node {
 	return value.GetPreviousSibling()
+}
+func QueryCommandEnabled(args ...interface{}) bool {
+	val := value.Call("queryCommandEnabled", args...)
+	return val.Bool()
+}
+func QueryCommandIndeterm(args ...interface{}) bool {
+	val := value.Call("queryCommandIndeterm", args...)
+	return val.Bool()
+}
+func QueryCommandState(args ...interface{}) bool {
+	val := value.Call("queryCommandState", args...)
+	return val.Bool()
+}
+func QueryCommandSupported(args ...interface{}) bool {
+	val := value.Call("queryCommandSupported", args...)
+	return val.Bool()
+}
+func QueryCommandValue(args ...interface{}) string {
+	val := value.Call("queryCommandValue", args...)
+	return val.String()
 }
 func QuerySelector(args ...interface{}) dom.Element {
 	val := value.Call("querySelector", args...)
@@ -497,6 +628,15 @@ func QuerySelector(args ...interface{}) dom.Element {
 func QuerySelectorAll(args ...interface{}) dom.NodeList {
 	val := value.Call("querySelectorAll", args...)
 	return dom.JSValueToNodeList(val.JSValue())
+}
+func GetReadyState() dom.DocumentReadyState {
+	return value.GetReadyState()
+}
+func GetReferrer() string {
+	return value.GetReferrer()
+}
+func ReleaseEvents(args ...interface{}) {
+	value.Call("releaseEvents", args...)
 }
 func RemoveChild(args ...interface{}) dom.Node {
 	val := value.Call("removeChild", args...)
@@ -509,10 +649,30 @@ func ReplaceChild(args ...interface{}) dom.Node {
 	val := value.Call("replaceChild", args...)
 	return dom.JSValueToNode(val.JSValue())
 }
+func GetScripts() dom.HTMLCollection {
+	return value.GetScripts()
+}
+func GetStyleSheets() dom.StyleSheetList {
+	return value.GetStyleSheets()
+}
 func GetTextContent() string {
 	return value.GetTextContent()
 }
 func SetTextContent(val string) { value.SetTextContent(val) }
+func GetTitle() string {
+	return value.GetTitle()
+}
+func SetTitle(val string) { value.SetTitle(val) }
 func GetURL() string {
 	return value.GetURL()
+}
+func GetVlinkColor() string {
+	return value.GetVlinkColor()
+}
+func SetVlinkColor(val string) { value.SetVlinkColor(val) }
+func Write(args ...interface{}) {
+	value.Call("write", args...)
+}
+func Writeln(args ...interface{}) {
+	value.Call("writeln", args...)
 }

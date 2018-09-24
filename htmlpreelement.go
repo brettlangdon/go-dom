@@ -99,6 +99,8 @@ type HTMLPreElementIFace interface {
 	GetTranslate() bool
 	SetTranslate(bool)
 	WebkitMatchesSelector(args ...interface{}) bool
+	GetWidth() int
+	SetWidth(int)
 }
 type HTMLPreElement struct {
 	Value
@@ -112,3 +114,10 @@ func JSValueToHTMLPreElement(val js.Value) HTMLPreElement {
 	return HTMLPreElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLPreElement() HTMLPreElement { return HTMLPreElement{Value: v} }
+func (h HTMLPreElement) GetWidth() int {
+	val := h.Get("width")
+	return val.Int()
+}
+func (h HTMLPreElement) SetWidth(val int) {
+	h.Set("width", val)
+}

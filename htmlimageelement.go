@@ -9,6 +9,8 @@ type HTMLImageElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	GetAlt() string
 	SetAlt(string)
 	AppendChild(args ...interface{}) Node
@@ -17,6 +19,8 @@ type HTMLImageElementIFace interface {
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetBorder() string
+	SetBorder(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -56,6 +60,8 @@ type HTMLImageElementIFace interface {
 	SetHeight(int)
 	GetHidden() bool
 	SetHidden(bool)
+	GetHspace() int
+	SetHspace(int)
 	GetId() string
 	SetId(string)
 	GetInnerText() string
@@ -73,9 +79,15 @@ type HTMLImageElementIFace interface {
 	SetLang(string)
 	GetLastChild() Node
 	GetLocalName() string
+	GetLongDesc() string
+	SetLongDesc(string)
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
+	GetLowsrc() string
+	SetLowsrc(string)
 	Matches(args ...interface{}) bool
+	GetName() string
+	SetName(string)
 	GetNamespaceURI() string
 	GetNaturalHeight() int
 	GetNaturalWidth() int
@@ -123,6 +135,8 @@ type HTMLImageElementIFace interface {
 	SetTranslate(bool)
 	GetUseMap() string
 	SetUseMap(string)
+	GetVspace() int
+	SetVspace(int)
 	WebkitMatchesSelector(args ...interface{}) bool
 	GetWidth() int
 	SetWidth(int)
@@ -139,12 +153,26 @@ func JSValueToHTMLImageElement(val js.Value) HTMLImageElement {
 	return HTMLImageElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLImageElement() HTMLImageElement { return HTMLImageElement{Value: v} }
+func (h HTMLImageElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLImageElement) SetAlign(val string) {
+	h.Set("align", val)
+}
 func (h HTMLImageElement) GetAlt() string {
 	val := h.Get("alt")
 	return val.String()
 }
 func (h HTMLImageElement) SetAlt(val string) {
 	h.Set("alt", val)
+}
+func (h HTMLImageElement) GetBorder() string {
+	val := h.Get("border")
+	return val.String()
+}
+func (h HTMLImageElement) SetBorder(val string) {
+	h.Set("border", val)
 }
 func (h HTMLImageElement) GetComplete() bool {
 	val := h.Get("complete")
@@ -178,12 +206,40 @@ func (h HTMLImageElement) GetHeight() int {
 func (h HTMLImageElement) SetHeight(val int) {
 	h.Set("height", val)
 }
+func (h HTMLImageElement) GetHspace() int {
+	val := h.Get("hspace")
+	return val.Int()
+}
+func (h HTMLImageElement) SetHspace(val int) {
+	h.Set("hspace", val)
+}
 func (h HTMLImageElement) GetIsMap() bool {
 	val := h.Get("isMap")
 	return val.Bool()
 }
 func (h HTMLImageElement) SetIsMap(val bool) {
 	h.Set("isMap", val)
+}
+func (h HTMLImageElement) GetLongDesc() string {
+	val := h.Get("longDesc")
+	return val.String()
+}
+func (h HTMLImageElement) SetLongDesc(val string) {
+	h.Set("longDesc", val)
+}
+func (h HTMLImageElement) GetLowsrc() string {
+	val := h.Get("lowsrc")
+	return val.String()
+}
+func (h HTMLImageElement) SetLowsrc(val string) {
+	h.Set("lowsrc", val)
+}
+func (h HTMLImageElement) GetName() string {
+	val := h.Get("name")
+	return val.String()
+}
+func (h HTMLImageElement) SetName(val string) {
+	h.Set("name", val)
 }
 func (h HTMLImageElement) GetNaturalHeight() int {
 	val := h.Get("naturalHeight")
@@ -227,6 +283,13 @@ func (h HTMLImageElement) GetUseMap() string {
 }
 func (h HTMLImageElement) SetUseMap(val string) {
 	h.Set("useMap", val)
+}
+func (h HTMLImageElement) GetVspace() int {
+	val := h.Get("vspace")
+	return val.Int()
+}
+func (h HTMLImageElement) SetVspace(val int) {
+	h.Set("vspace", val)
 }
 func (h HTMLImageElement) GetWidth() int {
 	val := h.Get("width")

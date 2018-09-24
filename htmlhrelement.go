@@ -9,6 +9,8 @@ type HTMLHRElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -22,6 +24,8 @@ type HTMLHRElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
+	GetColor() string
+	SetColor(string)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDir() string
@@ -65,6 +69,8 @@ type HTMLHRElementIFace interface {
 	Matches(args ...interface{}) bool
 	GetNamespaceURI() string
 	GetNextSibling() Node
+	GetNoShade() bool
+	SetNoShade(bool)
 	GetNodeName() string
 	GetNodeType() int
 	GetNodeValue() string
@@ -86,6 +92,8 @@ type HTMLHRElementIFace interface {
 	SetAttributeNode(args ...interface{}) Attr
 	SetAttributeNodeNS(args ...interface{}) Attr
 	GetShadowRoot() ShadowRoot
+	GetSize() string
+	SetSize(string)
 	GetSlot() string
 	SetSlot(string)
 	GetSpellcheck() bool
@@ -99,6 +107,8 @@ type HTMLHRElementIFace interface {
 	GetTranslate() bool
 	SetTranslate(bool)
 	WebkitMatchesSelector(args ...interface{}) bool
+	GetWidth() string
+	SetWidth(string)
 }
 type HTMLHRElement struct {
 	Value
@@ -112,3 +122,38 @@ func JSValueToHTMLHRElement(val js.Value) HTMLHRElement {
 	return HTMLHRElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLHRElement() HTMLHRElement { return HTMLHRElement{Value: v} }
+func (h HTMLHRElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLHRElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLHRElement) GetColor() string {
+	val := h.Get("color")
+	return val.String()
+}
+func (h HTMLHRElement) SetColor(val string) {
+	h.Set("color", val)
+}
+func (h HTMLHRElement) GetNoShade() bool {
+	val := h.Get("noShade")
+	return val.Bool()
+}
+func (h HTMLHRElement) SetNoShade(val bool) {
+	h.Set("noShade", val)
+}
+func (h HTMLHRElement) GetSize() string {
+	val := h.Get("size")
+	return val.String()
+}
+func (h HTMLHRElement) SetSize(val string) {
+	h.Set("size", val)
+}
+func (h HTMLHRElement) GetWidth() string {
+	val := h.Get("width")
+	return val.String()
+}
+func (h HTMLHRElement) SetWidth(val string) {
+	h.Set("width", val)
+}

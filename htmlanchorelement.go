@@ -15,6 +15,8 @@ type HTMLAnchorElementIFace interface {
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetCharset() string
+	SetCharset(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -24,6 +26,8 @@ type HTMLAnchorElementIFace interface {
 	Closest(args ...interface{}) Element
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
+	GetCoords() string
+	SetCoords(string)
 	GetDir() string
 	SetDir(string)
 	DispatchEvent(args ...interface{}) bool
@@ -75,6 +79,8 @@ type HTMLAnchorElementIFace interface {
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	Matches(args ...interface{}) bool
+	GetName() string
+	SetName(string)
 	GetNamespaceURI() string
 	GetNextSibling() Node
 	GetNodeName() string
@@ -109,6 +115,8 @@ type HTMLAnchorElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
+	GetRev() string
+	SetRev(string)
 	GetSearch() string
 	SetSearch(string)
 	SetAttribute(args ...interface{})
@@ -116,6 +124,8 @@ type HTMLAnchorElementIFace interface {
 	SetAttributeNode(args ...interface{}) Attr
 	SetAttributeNodeNS(args ...interface{}) Attr
 	GetShadowRoot() ShadowRoot
+	GetShape() string
+	SetShape(string)
 	GetSlot() string
 	SetSlot(string)
 	GetSpellcheck() bool
@@ -150,6 +160,20 @@ func JSValueToHTMLAnchorElement(val js.Value) HTMLAnchorElement {
 	return HTMLAnchorElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLAnchorElement() HTMLAnchorElement { return HTMLAnchorElement{Value: v} }
+func (h HTMLAnchorElement) GetCharset() string {
+	val := h.Get("charset")
+	return val.String()
+}
+func (h HTMLAnchorElement) SetCharset(val string) {
+	h.Set("charset", val)
+}
+func (h HTMLAnchorElement) GetCoords() string {
+	val := h.Get("coords")
+	return val.String()
+}
+func (h HTMLAnchorElement) SetCoords(val string) {
+	h.Set("coords", val)
+}
 func (h HTMLAnchorElement) GetDownload() string {
 	val := h.Get("download")
 	return val.String()
@@ -191,6 +215,13 @@ func (h HTMLAnchorElement) GetHreflang() string {
 }
 func (h HTMLAnchorElement) SetHreflang(val string) {
 	h.Set("hreflang", val)
+}
+func (h HTMLAnchorElement) GetName() string {
+	val := h.Get("name")
+	return val.String()
+}
+func (h HTMLAnchorElement) SetName(val string) {
+	h.Set("name", val)
 }
 func (h HTMLAnchorElement) GetOrigin() string {
 	val := h.Get("origin")
@@ -249,12 +280,26 @@ func (h HTMLAnchorElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
 	return JSValueToDOMTokenList(val.JSValue())
 }
+func (h HTMLAnchorElement) GetRev() string {
+	val := h.Get("rev")
+	return val.String()
+}
+func (h HTMLAnchorElement) SetRev(val string) {
+	h.Set("rev", val)
+}
 func (h HTMLAnchorElement) GetSearch() string {
 	val := h.Get("search")
 	return val.String()
 }
 func (h HTMLAnchorElement) SetSearch(val string) {
 	h.Set("search", val)
+}
+func (h HTMLAnchorElement) GetShape() string {
+	val := h.Get("shape")
+	return val.String()
+}
+func (h HTMLAnchorElement) SetShape(val string) {
+	h.Set("shape", val)
 }
 func (h HTMLAnchorElement) GetTarget() string {
 	val := h.Get("target")

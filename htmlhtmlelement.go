@@ -98,6 +98,8 @@ type HTMLHtmlElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetVersion() string
+	SetVersion(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLHtmlElement struct {
@@ -112,3 +114,10 @@ func JSValueToHTMLHtmlElement(val js.Value) HTMLHtmlElement {
 	return HTMLHtmlElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLHtmlElement() HTMLHtmlElement { return HTMLHtmlElement{Value: v} }
+func (h HTMLHtmlElement) GetVersion() string {
+	val := h.Get("version")
+	return val.String()
+}
+func (h HTMLHtmlElement) SetVersion(val string) {
+	h.Set("version", val)
+}

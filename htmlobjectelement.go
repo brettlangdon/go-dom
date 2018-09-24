@@ -9,12 +9,18 @@ type HTMLObjectElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
+	GetArchive() string
+	SetArchive(string)
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetBorder() string
+	SetBorder(string)
 	CheckValidity(args ...interface{}) bool
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
@@ -23,12 +29,20 @@ type HTMLObjectElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
+	GetCode() string
+	SetCode(string)
+	GetCodeBase() string
+	SetCodeBase(string)
+	GetCodeType() string
+	SetCodeType(string)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetContentDocument() Document
 	GetContentWindow() WindowProxy
 	GetData() string
 	SetData(string)
+	GetDeclare() bool
+	SetDeclare(bool)
 	GetDir() string
 	SetDir(string)
 	DispatchEvent(args ...interface{}) bool
@@ -54,6 +68,8 @@ type HTMLObjectElementIFace interface {
 	SetHeight(string)
 	GetHidden() bool
 	SetHidden(bool)
+	GetHspace() int
+	SetHspace(int)
 	GetId() string
 	SetId(string)
 	GetInnerText() string
@@ -103,6 +119,8 @@ type HTMLObjectElementIFace interface {
 	SetSlot(string)
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
+	GetStandby() string
+	SetStandby(string)
 	GetTagName() string
 	GetTextContent() string
 	SetTextContent(string)
@@ -119,6 +137,8 @@ type HTMLObjectElementIFace interface {
 	SetUseMap(string)
 	GetValidationMessage() string
 	GetValidity() ValidityState
+	GetVspace() int
+	SetVspace(int)
 	WebkitMatchesSelector(args ...interface{}) bool
 	GetWidth() string
 	SetWidth(string)
@@ -136,9 +156,51 @@ func JSValueToHTMLObjectElement(val js.Value) HTMLObjectElement {
 	return HTMLObjectElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLObjectElement() HTMLObjectElement { return HTMLObjectElement{Value: v} }
+func (h HTMLObjectElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLObjectElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLObjectElement) GetArchive() string {
+	val := h.Get("archive")
+	return val.String()
+}
+func (h HTMLObjectElement) SetArchive(val string) {
+	h.Set("archive", val)
+}
+func (h HTMLObjectElement) GetBorder() string {
+	val := h.Get("border")
+	return val.String()
+}
+func (h HTMLObjectElement) SetBorder(val string) {
+	h.Set("border", val)
+}
 func (h HTMLObjectElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()
+}
+func (h HTMLObjectElement) GetCode() string {
+	val := h.Get("code")
+	return val.String()
+}
+func (h HTMLObjectElement) SetCode(val string) {
+	h.Set("code", val)
+}
+func (h HTMLObjectElement) GetCodeBase() string {
+	val := h.Get("codeBase")
+	return val.String()
+}
+func (h HTMLObjectElement) SetCodeBase(val string) {
+	h.Set("codeBase", val)
+}
+func (h HTMLObjectElement) GetCodeType() string {
+	val := h.Get("codeType")
+	return val.String()
+}
+func (h HTMLObjectElement) SetCodeType(val string) {
+	h.Set("codeType", val)
 }
 func (h HTMLObjectElement) GetContentDocument() Document {
 	val := h.Get("contentDocument")
@@ -155,6 +217,13 @@ func (h HTMLObjectElement) GetData() string {
 func (h HTMLObjectElement) SetData(val string) {
 	h.Set("data", val)
 }
+func (h HTMLObjectElement) GetDeclare() bool {
+	val := h.Get("declare")
+	return val.Bool()
+}
+func (h HTMLObjectElement) SetDeclare(val bool) {
+	h.Set("declare", val)
+}
 func (h HTMLObjectElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
 	return JSValueToHTMLFormElement(val.JSValue())
@@ -170,6 +239,13 @@ func (h HTMLObjectElement) GetHeight() string {
 func (h HTMLObjectElement) SetHeight(val string) {
 	h.Set("height", val)
 }
+func (h HTMLObjectElement) GetHspace() int {
+	val := h.Get("hspace")
+	return val.Int()
+}
+func (h HTMLObjectElement) SetHspace(val int) {
+	h.Set("hspace", val)
+}
 func (h HTMLObjectElement) GetName() string {
 	val := h.Get("name")
 	return val.String()
@@ -183,6 +259,13 @@ func (h HTMLObjectElement) ReportValidity(args ...interface{}) bool {
 }
 func (h HTMLObjectElement) SetCustomValidity(args ...interface{}) {
 	h.Call("setCustomValidity", args...)
+}
+func (h HTMLObjectElement) GetStandby() string {
+	val := h.Get("standby")
+	return val.String()
+}
+func (h HTMLObjectElement) SetStandby(val string) {
+	h.Set("standby", val)
 }
 func (h HTMLObjectElement) GetType() string {
 	val := h.Get("type")
@@ -212,6 +295,13 @@ func (h HTMLObjectElement) GetValidationMessage() string {
 func (h HTMLObjectElement) GetValidity() ValidityState {
 	val := h.Get("validity")
 	return JSValueToValidityState(val.JSValue())
+}
+func (h HTMLObjectElement) GetVspace() int {
+	val := h.Get("vspace")
+	return val.Int()
+}
+func (h HTMLObjectElement) SetVspace(val int) {
+	h.Set("vspace", val)
 }
 func (h HTMLObjectElement) GetWidth() string {
 	val := h.Get("width")

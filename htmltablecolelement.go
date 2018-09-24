@@ -9,12 +9,18 @@ type HTMLTableColElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetCh() string
+	SetCh(string)
+	GetChOff() string
+	SetChOff(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -100,7 +106,11 @@ type HTMLTableColElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetVAlign() string
+	SetVAlign(string)
 	WebkitMatchesSelector(args ...interface{}) bool
+	GetWidth() string
+	SetWidth(string)
 }
 type HTMLTableColElement struct {
 	Value
@@ -114,10 +124,45 @@ func JSValueToHTMLTableColElement(val js.Value) HTMLTableColElement {
 	return HTMLTableColElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableColElement() HTMLTableColElement { return HTMLTableColElement{Value: v} }
+func (h HTMLTableColElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLTableColElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLTableColElement) GetCh() string {
+	val := h.Get("ch")
+	return val.String()
+}
+func (h HTMLTableColElement) SetCh(val string) {
+	h.Set("ch", val)
+}
+func (h HTMLTableColElement) GetChOff() string {
+	val := h.Get("chOff")
+	return val.String()
+}
+func (h HTMLTableColElement) SetChOff(val string) {
+	h.Set("chOff", val)
+}
 func (h HTMLTableColElement) GetSpan() int {
 	val := h.Get("span")
 	return val.Int()
 }
 func (h HTMLTableColElement) SetSpan(val int) {
 	h.Set("span", val)
+}
+func (h HTMLTableColElement) GetVAlign() string {
+	val := h.Get("vAlign")
+	return val.String()
+}
+func (h HTMLTableColElement) SetVAlign(val string) {
+	h.Set("vAlign", val)
+}
+func (h HTMLTableColElement) GetWidth() string {
+	val := h.Get("width")
+	return val.String()
+}
+func (h HTMLTableColElement) SetWidth(val string) {
+	h.Set("width", val)
 }

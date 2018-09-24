@@ -42,7 +42,10 @@ type ElementIFace interface {
 	HasChildNodes(args ...interface{}) bool
 	GetId() string
 	SetId(string)
+	GetInnerHTML() string
+	SetInnerHTML(string)
 	InsertAdjacentElement(args ...interface{}) Element
+	InsertAdjacentHTML(args ...interface{})
 	InsertAdjacentText(args ...interface{})
 	InsertBefore(args ...interface{}) Node
 	GetIsConnected() bool
@@ -63,6 +66,8 @@ type ElementIFace interface {
 	GetNodeValue() string
 	SetNodeValue(string)
 	Normalize(args ...interface{})
+	GetOuterHTML() string
+	SetOuterHTML(string)
 	GetOwnerDocument() Document
 	GetParentElement() Element
 	GetParentNode() Node
@@ -199,9 +204,19 @@ func (e Element) GetId() string {
 func (e Element) SetId(val string) {
 	e.Set("id", val)
 }
+func (e Element) GetInnerHTML() string {
+	val := e.Get("innerHTML")
+	return val.String()
+}
+func (e Element) SetInnerHTML(val string) {
+	e.Set("innerHTML", val)
+}
 func (e Element) InsertAdjacentElement(args ...interface{}) Element {
 	val := e.Call("insertAdjacentElement", args...)
 	return JSValueToElement(val.JSValue())
+}
+func (e Element) InsertAdjacentHTML(args ...interface{}) {
+	e.Call("insertAdjacentHTML", args...)
 }
 func (e Element) InsertAdjacentText(args ...interface{}) {
 	e.Call("insertAdjacentText", args...)
@@ -225,6 +240,13 @@ func (e Element) GetNamespaceURI() string {
 func (e Element) GetNextElementSibling() Element {
 	val := e.Get("nextElementSibling")
 	return JSValueToElement(val.JSValue())
+}
+func (e Element) GetOuterHTML() string {
+	val := e.Get("outerHTML")
+	return val.String()
+}
+func (e Element) SetOuterHTML(val string) {
+	e.Set("outerHTML", val)
 }
 func (e Element) GetPrefix() string {
 	val := e.Get("prefix")

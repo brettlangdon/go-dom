@@ -9,6 +9,8 @@ type HTMLIFrameElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	GetAllow() string
 	SetAllow(string)
 	GetAllowFullscreen() bool
@@ -40,6 +42,8 @@ type HTMLIFrameElementIFace interface {
 	GetDraggable() bool
 	SetDraggable(bool)
 	GetFirstChild() Node
+	GetFrameBorder() string
+	SetFrameBorder(string)
 	GetAttribute(args ...interface{}) string
 	GetAttributeNS(args ...interface{}) string
 	GetAttributeNames(args ...interface{})
@@ -73,8 +77,14 @@ type HTMLIFrameElementIFace interface {
 	SetLang(string)
 	GetLastChild() Node
 	GetLocalName() string
+	GetLongDesc() string
+	SetLongDesc(string)
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
+	GetMarginHeight() string
+	SetMarginHeight(string)
+	GetMarginWidth() string
+	SetMarginWidth(string)
 	Matches(args ...interface{}) bool
 	GetName() string
 	SetName(string)
@@ -99,6 +109,8 @@ type HTMLIFrameElementIFace interface {
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
 	GetSandbox() DOMTokenList
+	GetScrolling() string
+	SetScrolling(string)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -136,6 +148,13 @@ func JSValueToHTMLIFrameElement(val js.Value) HTMLIFrameElement {
 	return HTMLIFrameElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLIFrameElement() HTMLIFrameElement { return HTMLIFrameElement{Value: v} }
+func (h HTMLIFrameElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetAlign(val string) {
+	h.Set("align", val)
+}
 func (h HTMLIFrameElement) GetAllow() string {
 	val := h.Get("allow")
 	return val.String()
@@ -172,6 +191,13 @@ func (h HTMLIFrameElement) GetContentWindow() WindowProxy {
 	val := h.Get("contentWindow")
 	return JSValueToWindowProxy(val.JSValue())
 }
+func (h HTMLIFrameElement) GetFrameBorder() string {
+	val := h.Get("frameBorder")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetFrameBorder(val string) {
+	h.Set("frameBorder", val)
+}
 func (h HTMLIFrameElement) GetSVGDocument(args ...interface{}) Document {
 	val := h.Call("getSVGDocument", args...)
 	return JSValueToDocument(val.JSValue())
@@ -182,6 +208,27 @@ func (h HTMLIFrameElement) GetHeight() string {
 }
 func (h HTMLIFrameElement) SetHeight(val string) {
 	h.Set("height", val)
+}
+func (h HTMLIFrameElement) GetLongDesc() string {
+	val := h.Get("longDesc")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetLongDesc(val string) {
+	h.Set("longDesc", val)
+}
+func (h HTMLIFrameElement) GetMarginHeight() string {
+	val := h.Get("marginHeight")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetMarginHeight(val string) {
+	h.Set("marginHeight", val)
+}
+func (h HTMLIFrameElement) GetMarginWidth() string {
+	val := h.Get("marginWidth")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetMarginWidth(val string) {
+	h.Set("marginWidth", val)
 }
 func (h HTMLIFrameElement) GetName() string {
 	val := h.Get("name")
@@ -200,6 +247,13 @@ func (h HTMLIFrameElement) SetReferrerPolicy(val string) {
 func (h HTMLIFrameElement) GetSandbox() DOMTokenList {
 	val := h.Get("sandbox")
 	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLIFrameElement) GetScrolling() string {
+	val := h.Get("scrolling")
+	return val.String()
+}
+func (h HTMLIFrameElement) SetScrolling(val string) {
+	h.Set("scrolling", val)
 }
 func (h HTMLIFrameElement) GetSrc() string {
 	val := h.Get("src")

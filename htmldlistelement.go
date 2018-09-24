@@ -22,6 +22,8 @@ type HTMLDListElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
+	GetCompact() bool
+	SetCompact(bool)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDir() string
@@ -112,3 +114,10 @@ func JSValueToHTMLDListElement(val js.Value) HTMLDListElement {
 	return HTMLDListElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLDListElement() HTMLDListElement { return HTMLDListElement{Value: v} }
+func (h HTMLDListElement) GetCompact() bool {
+	val := h.Get("compact")
+	return val.Bool()
+}
+func (h HTMLDListElement) SetCompact(val bool) {
+	h.Set("compact", val)
+}

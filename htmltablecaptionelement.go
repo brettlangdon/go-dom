@@ -9,6 +9,8 @@ type HTMLTableCaptionElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -113,4 +115,11 @@ func JSValueToHTMLTableCaptionElement(val js.Value) HTMLTableCaptionElement {
 }
 func (v Value) AsHTMLTableCaptionElement() HTMLTableCaptionElement {
 	return HTMLTableCaptionElement{Value: v}
+}
+func (h HTMLTableCaptionElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLTableCaptionElement) SetAlign(val string) {
+	h.Set("align", val)
 }

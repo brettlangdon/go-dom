@@ -22,6 +22,8 @@ type HTMLMenuElementIFace interface {
 	Click(args ...interface{})
 	CloneNode(args ...interface{}) Node
 	Closest(args ...interface{}) Element
+	GetCompact() bool
+	SetCompact(bool)
 	CompareDocumentPosition(args ...interface{}) int
 	Contains(args ...interface{}) bool
 	GetDir() string
@@ -112,3 +114,10 @@ func JSValueToHTMLMenuElement(val js.Value) HTMLMenuElement {
 	return HTMLMenuElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLMenuElement() HTMLMenuElement { return HTMLMenuElement{Value: v} }
+func (h HTMLMenuElement) GetCompact() bool {
+	val := h.Get("compact")
+	return val.Bool()
+}
+func (h HTMLMenuElement) SetCompact(val bool) {
+	h.Set("compact", val)
+}

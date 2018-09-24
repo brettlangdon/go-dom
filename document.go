@@ -5,21 +5,36 @@ package dom
 import "syscall/js"
 
 type DocumentIFace interface {
+	GetActiveElement() Element
 	AddEventListener(args ...interface{})
 	AdoptNode(args ...interface{}) Node
+	GetAlinkColor() string
+	SetAlinkColor(string)
+	GetAll() HTMLAllCollection
+	GetAnchors() HTMLCollection
 	Append(args ...interface{})
 	AppendChild(args ...interface{}) Node
+	GetApplets() HTMLCollection
 	GetBaseURI() string
+	GetBgColor() string
+	SetBgColor(string)
+	GetBody() HTMLElement
+	SetBody(HTMLElement)
+	CaptureEvents(args ...interface{})
 	GetCharacterSet() string
 	GetCharset() string
 	GetChildElementCount() int
 	GetChildNodes() NodeList
 	GetChildren() HTMLCollection
+	Clear(args ...interface{})
 	CloneNode(args ...interface{}) Node
+	Close(args ...interface{})
 	CompareDocumentPosition(args ...interface{}) int
 	GetCompatMode() string
 	Contains(args ...interface{}) bool
 	GetContentType() string
+	GetCookie() string
+	SetCookie(string)
 	CreateAttribute(args ...interface{}) Attr
 	CreateAttributeNS(args ...interface{}) Attr
 	CreateCDATASection(args ...interface{}) CDATASection
@@ -33,18 +48,35 @@ type DocumentIFace interface {
 	CreateRange(args ...interface{}) Range
 	CreateTextNode(args ...interface{}) Text
 	CreateTreeWalker(args ...interface{}) TreeWalker
+	GetCurrentScript() HTMLOrSVGScriptElement
+	GetDefaultView() WindowProxy
+	GetDesignMode() string
+	SetDesignMode(string)
+	GetDir() string
+	SetDir(string)
 	DispatchEvent(args ...interface{}) bool
 	GetDoctype() DocumentType
 	GetDocumentElement() Element
 	GetDocumentURI() string
+	GetDomain() string
+	SetDomain(string)
+	GetEmbeds() HTMLCollection
+	ExecCommand(args ...interface{}) bool
+	GetFgColor() string
+	SetFgColor(string)
 	GetFirstChild() Node
 	GetFirstElementChild() Element
+	GetForms() HTMLCollection
 	GetElementById(args ...interface{}) Element
 	GetElementsByClassName(args ...interface{}) HTMLCollection
+	GetElementsByName(args ...interface{}) NodeList
 	GetElementsByTagName(args ...interface{}) HTMLCollection
 	GetElementsByTagNameNS(args ...interface{}) HTMLCollection
 	GetRootNode(args ...interface{}) Node
 	HasChildNodes(args ...interface{}) bool
+	HasFocus(args ...interface{}) bool
+	GetHead() HTMLHeadElement
+	GetImages() HTMLCollection
 	GetImplementation() DOMImplementation
 	ImportNode(args ...interface{}) Node
 	GetInputEncoding() string
@@ -55,6 +87,11 @@ type DocumentIFace interface {
 	IsSameNode(args ...interface{}) bool
 	GetLastChild() Node
 	GetLastElementChild() Element
+	GetLastModified() string
+	GetLinkColor() string
+	SetLinkColor(string)
+	GetLinks() HTMLCollection
+	GetLocation() Location
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
 	GetNextSibling() Node
@@ -163,6 +200,8 @@ type DocumentIFace interface {
 	SetOnprogress(EventHandler)
 	GetOnratechange() EventHandler
 	SetOnratechange(EventHandler)
+	GetOnreadystatechange() EventHandler
+	SetOnreadystatechange(EventHandler)
 	GetOnreset() EventHandler
 	SetOnreset(EventHandler)
 	GetOnresize() EventHandler
@@ -193,20 +232,39 @@ type DocumentIFace interface {
 	SetOnwaiting(EventHandler)
 	GetOnwheel() EventHandler
 	SetOnwheel(EventHandler)
+	Open(args ...interface{}) Document
+	OpenWithArgs(args ...interface{}) WindowProxy
 	GetOrigin() string
 	GetOwnerDocument() Document
 	GetParentElement() Element
 	GetParentNode() Node
+	GetPlugins() HTMLCollection
 	Prepend(args ...interface{})
 	GetPreviousSibling() Node
+	QueryCommandEnabled(args ...interface{}) bool
+	QueryCommandIndeterm(args ...interface{}) bool
+	QueryCommandState(args ...interface{}) bool
+	QueryCommandSupported(args ...interface{}) bool
+	QueryCommandValue(args ...interface{}) string
 	QuerySelector(args ...interface{}) Element
 	QuerySelectorAll(args ...interface{}) NodeList
+	GetReadyState() DocumentReadyState
+	GetReferrer() string
+	ReleaseEvents(args ...interface{})
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
+	GetScripts() HTMLCollection
+	GetStyleSheets() StyleSheetList
 	GetTextContent() string
 	SetTextContent(string)
+	GetTitle() string
+	SetTitle(string)
 	GetURL() string
+	GetVlinkColor() string
+	SetVlinkColor(string)
+	Write(args ...interface{})
+	Writeln(args ...interface{})
 }
 type Document struct {
 	Value
@@ -216,12 +274,52 @@ type Document struct {
 
 func JSValueToDocument(val js.Value) Document { return Document{Value: Value{Value: val}} }
 func (v Value) AsDocument() Document          { return Document{Value: v} }
+func (d Document) GetActiveElement() Element {
+	val := d.Get("activeElement")
+	return JSValueToElement(val.JSValue())
+}
 func (d Document) AdoptNode(args ...interface{}) Node {
 	val := d.Call("adoptNode", args...)
 	return JSValueToNode(val.JSValue())
 }
+func (d Document) GetAlinkColor() string {
+	val := d.Get("alinkColor")
+	return val.String()
+}
+func (d Document) SetAlinkColor(val string) {
+	d.Set("alinkColor", val)
+}
+func (d Document) GetAll() HTMLAllCollection {
+	val := d.Get("all")
+	return JSValueToHTMLAllCollection(val.JSValue())
+}
+func (d Document) GetAnchors() HTMLCollection {
+	val := d.Get("anchors")
+	return JSValueToHTMLCollection(val.JSValue())
+}
 func (d Document) Append(args ...interface{}) {
 	d.Call("append", args...)
+}
+func (d Document) GetApplets() HTMLCollection {
+	val := d.Get("applets")
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) GetBgColor() string {
+	val := d.Get("bgColor")
+	return val.String()
+}
+func (d Document) SetBgColor(val string) {
+	d.Set("bgColor", val)
+}
+func (d Document) GetBody() HTMLElement {
+	val := d.Get("body")
+	return JSValueToHTMLElement(val.JSValue())
+}
+func (d Document) SetBody(val HTMLElement) {
+	d.Set("body", val)
+}
+func (d Document) CaptureEvents(args ...interface{}) {
+	d.Call("captureEvents", args...)
 }
 func (d Document) GetCharacterSet() string {
 	val := d.Get("characterSet")
@@ -239,6 +337,12 @@ func (d Document) GetChildren() HTMLCollection {
 	val := d.Get("children")
 	return JSValueToHTMLCollection(val.JSValue())
 }
+func (d Document) Clear(args ...interface{}) {
+	d.Call("clear", args...)
+}
+func (d Document) Close(args ...interface{}) {
+	d.Call("close", args...)
+}
 func (d Document) GetCompatMode() string {
 	val := d.Get("compatMode")
 	return val.String()
@@ -246,6 +350,13 @@ func (d Document) GetCompatMode() string {
 func (d Document) GetContentType() string {
 	val := d.Get("contentType")
 	return val.String()
+}
+func (d Document) GetCookie() string {
+	val := d.Get("cookie")
+	return val.String()
+}
+func (d Document) SetCookie(val string) {
+	d.Set("cookie", val)
 }
 func (d Document) CreateAttribute(args ...interface{}) Attr {
 	val := d.Call("createAttribute", args...)
@@ -299,6 +410,28 @@ func (d Document) CreateTreeWalker(args ...interface{}) TreeWalker {
 	val := d.Call("createTreeWalker", args...)
 	return JSValueToTreeWalker(val.JSValue())
 }
+func (d Document) GetCurrentScript() HTMLOrSVGScriptElement {
+	val := d.Get("currentScript")
+	return JSValueToHTMLOrSVGScriptElement(val.JSValue())
+}
+func (d Document) GetDefaultView() WindowProxy {
+	val := d.Get("defaultView")
+	return JSValueToWindowProxy(val.JSValue())
+}
+func (d Document) GetDesignMode() string {
+	val := d.Get("designMode")
+	return val.String()
+}
+func (d Document) SetDesignMode(val string) {
+	d.Set("designMode", val)
+}
+func (d Document) GetDir() string {
+	val := d.Get("dir")
+	return val.String()
+}
+func (d Document) SetDir(val string) {
+	d.Set("dir", val)
+}
 func (d Document) GetDoctype() DocumentType {
 	val := d.Get("doctype")
 	return JSValueToDocumentType(val.JSValue())
@@ -311,9 +444,35 @@ func (d Document) GetDocumentURI() string {
 	val := d.Get("documentURI")
 	return val.String()
 }
+func (d Document) GetDomain() string {
+	val := d.Get("domain")
+	return val.String()
+}
+func (d Document) SetDomain(val string) {
+	d.Set("domain", val)
+}
+func (d Document) GetEmbeds() HTMLCollection {
+	val := d.Get("embeds")
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) ExecCommand(args ...interface{}) bool {
+	val := d.Call("execCommand", args...)
+	return val.Bool()
+}
+func (d Document) GetFgColor() string {
+	val := d.Get("fgColor")
+	return val.String()
+}
+func (d Document) SetFgColor(val string) {
+	d.Set("fgColor", val)
+}
 func (d Document) GetFirstElementChild() Element {
 	val := d.Get("firstElementChild")
 	return JSValueToElement(val.JSValue())
+}
+func (d Document) GetForms() HTMLCollection {
+	val := d.Get("forms")
+	return JSValueToHTMLCollection(val.JSValue())
 }
 func (d Document) GetElementById(args ...interface{}) Element {
 	val := d.Call("getElementById", args...)
@@ -323,12 +482,28 @@ func (d Document) GetElementsByClassName(args ...interface{}) HTMLCollection {
 	val := d.Call("getElementsByClassName", args...)
 	return JSValueToHTMLCollection(val.JSValue())
 }
+func (d Document) GetElementsByName(args ...interface{}) NodeList {
+	val := d.Call("getElementsByName", args...)
+	return JSValueToNodeList(val.JSValue())
+}
 func (d Document) GetElementsByTagName(args ...interface{}) HTMLCollection {
 	val := d.Call("getElementsByTagName", args...)
 	return JSValueToHTMLCollection(val.JSValue())
 }
 func (d Document) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
 	val := d.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) HasFocus(args ...interface{}) bool {
+	val := d.Call("hasFocus", args...)
+	return val.Bool()
+}
+func (d Document) GetHead() HTMLHeadElement {
+	val := d.Get("head")
+	return JSValueToHTMLHeadElement(val.JSValue())
+}
+func (d Document) GetImages() HTMLCollection {
+	val := d.Get("images")
 	return JSValueToHTMLCollection(val.JSValue())
 }
 func (d Document) GetImplementation() DOMImplementation {
@@ -346,6 +521,25 @@ func (d Document) GetInputEncoding() string {
 func (d Document) GetLastElementChild() Element {
 	val := d.Get("lastElementChild")
 	return JSValueToElement(val.JSValue())
+}
+func (d Document) GetLastModified() string {
+	val := d.Get("lastModified")
+	return val.String()
+}
+func (d Document) GetLinkColor() string {
+	val := d.Get("linkColor")
+	return val.String()
+}
+func (d Document) SetLinkColor(val string) {
+	d.Set("linkColor", val)
+}
+func (d Document) GetLinks() HTMLCollection {
+	val := d.Get("links")
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) GetLocation() Location {
+	val := d.Get("location")
+	return JSValueToLocation(val.JSValue())
 }
 func (d Document) GetOnabort() EventHandler {
 	val := d.Get("onabort")
@@ -697,6 +891,13 @@ func (d Document) GetOnratechange() EventHandler {
 func (d Document) SetOnratechange(val EventHandler) {
 	d.Set("onratechange", val)
 }
+func (d Document) GetOnreadystatechange() EventHandler {
+	val := d.Get("onreadystatechange")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (d Document) SetOnreadystatechange(val EventHandler) {
+	d.Set("onreadystatechange", val)
+}
 func (d Document) GetOnreset() EventHandler {
 	val := d.Get("onreset")
 	return JSValueToEventHandler(val.JSValue())
@@ -802,12 +1003,44 @@ func (d Document) GetOnwheel() EventHandler {
 func (d Document) SetOnwheel(val EventHandler) {
 	d.Set("onwheel", val)
 }
+func (d Document) Open(args ...interface{}) Document {
+	val := d.Call("open", args...)
+	return JSValueToDocument(val.JSValue())
+}
+func (d Document) OpenWithArgs(args ...interface{}) WindowProxy {
+	val := d.Call("openWithArgs", args...)
+	return JSValueToWindowProxy(val.JSValue())
+}
 func (d Document) GetOrigin() string {
 	val := d.Get("origin")
 	return val.String()
 }
+func (d Document) GetPlugins() HTMLCollection {
+	val := d.Get("plugins")
+	return JSValueToHTMLCollection(val.JSValue())
+}
 func (d Document) Prepend(args ...interface{}) {
 	d.Call("prepend", args...)
+}
+func (d Document) QueryCommandEnabled(args ...interface{}) bool {
+	val := d.Call("queryCommandEnabled", args...)
+	return val.Bool()
+}
+func (d Document) QueryCommandIndeterm(args ...interface{}) bool {
+	val := d.Call("queryCommandIndeterm", args...)
+	return val.Bool()
+}
+func (d Document) QueryCommandState(args ...interface{}) bool {
+	val := d.Call("queryCommandState", args...)
+	return val.Bool()
+}
+func (d Document) QueryCommandSupported(args ...interface{}) bool {
+	val := d.Call("queryCommandSupported", args...)
+	return val.Bool()
+}
+func (d Document) QueryCommandValue(args ...interface{}) string {
+	val := d.Call("queryCommandValue", args...)
+	return val.String()
 }
 func (d Document) QuerySelector(args ...interface{}) Element {
 	val := d.Call("querySelector", args...)
@@ -817,7 +1050,46 @@ func (d Document) QuerySelectorAll(args ...interface{}) NodeList {
 	val := d.Call("querySelectorAll", args...)
 	return JSValueToNodeList(val.JSValue())
 }
+func (d Document) GetReadyState() DocumentReadyState {
+	val := d.Get("readyState")
+	return JSValueToDocumentReadyState(val.JSValue())
+}
+func (d Document) GetReferrer() string {
+	val := d.Get("referrer")
+	return val.String()
+}
+func (d Document) ReleaseEvents(args ...interface{}) {
+	d.Call("releaseEvents", args...)
+}
+func (d Document) GetScripts() HTMLCollection {
+	val := d.Get("scripts")
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) GetStyleSheets() StyleSheetList {
+	val := d.Get("styleSheets")
+	return JSValueToStyleSheetList(val.JSValue())
+}
+func (d Document) GetTitle() string {
+	val := d.Get("title")
+	return val.String()
+}
+func (d Document) SetTitle(val string) {
+	d.Set("title", val)
+}
 func (d Document) GetURL() string {
 	val := d.Get("URL")
 	return val.String()
+}
+func (d Document) GetVlinkColor() string {
+	val := d.Get("vlinkColor")
+	return val.String()
+}
+func (d Document) SetVlinkColor(val string) {
+	d.Set("vlinkColor", val)
+}
+func (d Document) Write(args ...interface{}) {
+	d.Call("write", args...)
+}
+func (d Document) Writeln(args ...interface{}) {
+	d.Call("writeln", args...)
 }

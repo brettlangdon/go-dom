@@ -5,6 +5,7 @@ package dom
 import "syscall/js"
 
 type URLIFace interface {
+	CreateObjectURL(args ...interface{}) string
 	GetHash() string
 	SetHash(string)
 	GetHost() string
@@ -22,6 +23,7 @@ type URLIFace interface {
 	SetPort(string)
 	GetProtocol() string
 	SetProtocol(string)
+	RevokeObjectURL(args ...interface{})
 	GetSearch() string
 	SetSearch(string)
 	GetSearchParams() URLSearchParams
@@ -35,6 +37,10 @@ type URL struct {
 
 func JSValueToURL(val js.Value) URL { return URL{Value: Value{Value: val}} }
 func (v Value) AsURL() URL          { return URL{Value: v} }
+func (u URL) CreateObjectURL(args ...interface{}) string {
+	val := u.Call("createObjectURL", args...)
+	return val.String()
+}
 func (u URL) GetHash() string {
 	val := u.Get("hash")
 	return val.String()
@@ -94,6 +100,9 @@ func (u URL) GetProtocol() string {
 }
 func (u URL) SetProtocol(val string) {
 	u.Set("protocol", val)
+}
+func (u URL) RevokeObjectURL(args ...interface{}) {
+	u.Call("revokeObjectURL", args...)
 }
 func (u URL) GetSearch() string {
 	val := u.Get("search")

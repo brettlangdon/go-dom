@@ -98,6 +98,8 @@ type HTMLLIElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetType() string
+	SetType(string)
 	GetValue() int
 	SetValue(int)
 	WebkitMatchesSelector(args ...interface{}) bool
@@ -114,6 +116,13 @@ func JSValueToHTMLLIElement(val js.Value) HTMLLIElement {
 	return HTMLLIElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLIElement() HTMLLIElement { return HTMLLIElement{Value: v} }
+func (h HTMLLIElement) GetType() string {
+	val := h.Get("type")
+	return val.String()
+}
+func (h HTMLLIElement) SetType(val string) {
+	h.Set("type", val)
+}
 func (h HTMLLIElement) GetValue() int {
 	val := h.Get("value")
 	return val.Int()

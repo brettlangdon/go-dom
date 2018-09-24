@@ -9,6 +9,8 @@ type HTMLParagraphElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -112,3 +114,10 @@ func JSValueToHTMLParagraphElement(val js.Value) HTMLParagraphElement {
 	return HTMLParagraphElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLParagraphElement() HTMLParagraphElement { return HTMLParagraphElement{Value: v} }
+func (h HTMLParagraphElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLParagraphElement) SetAlign(val string) {
+	h.Set("align", val)
+}

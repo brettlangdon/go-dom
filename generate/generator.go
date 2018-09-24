@@ -406,6 +406,8 @@ func (g *Generator) generateEnum(spec Spec) (err error) {
 		}
 		n := fmt.Sprintf("%s%s", spec.Name, strings.Title(v.Value))
 		n = strings.Replace(n, "-", "", -1)
+		n = strings.Replace(n, "/", "", -1)
+		n = strings.Replace(n, "+", "", -1)
 		b.WriteF("%s %s = %q", n, spec.Name, v.Value)
 	}
 	b.WriteString(")")

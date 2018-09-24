@@ -12,6 +12,7 @@ type RangeIFace interface {
 	GetCommonAncestorContainer() Node
 	CompareBoundaryPoints(args ...interface{}) int
 	ComparePoint(args ...interface{}) int
+	CreateContextualFragment(args ...interface{}) DocumentFragment
 	DeleteContents(args ...interface{})
 	Detach(args ...interface{})
 	GetEndContainer() Node
@@ -61,6 +62,10 @@ func (r Range) CompareBoundaryPoints(args ...interface{}) int {
 func (r Range) ComparePoint(args ...interface{}) int {
 	val := r.Call("comparePoint", args...)
 	return val.Int()
+}
+func (r Range) CreateContextualFragment(args ...interface{}) DocumentFragment {
+	val := r.Call("createContextualFragment", args...)
+	return JSValueToDocumentFragment(val.JSValue())
 }
 func (r Range) DeleteContents(args ...interface{}) {
 	r.Call("deleteContents", args...)

@@ -9,14 +9,24 @@ type HTMLTableElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetBgColor() string
+	SetBgColor(string)
+	GetBorder() string
+	SetBorder(string)
 	GetCaption() HTMLTableCaptionElement
 	SetCaption(HTMLTableCaptionElement)
+	GetCellPadding() string
+	SetCellPadding(string)
+	GetCellSpacing() string
+	SetCellSpacing(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -40,6 +50,8 @@ type HTMLTableElementIFace interface {
 	GetDraggable() bool
 	SetDraggable(bool)
 	GetFirstChild() Node
+	GetFrame() string
+	SetFrame(string)
 	GetAttribute(args ...interface{}) string
 	GetAttributeNS(args ...interface{}) string
 	GetAttributeNames(args ...interface{})
@@ -93,6 +105,8 @@ type HTMLTableElementIFace interface {
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
 	GetRows() HTMLCollection
+	GetRules() string
+	SetRules(string)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -102,6 +116,8 @@ type HTMLTableElementIFace interface {
 	SetSlot(string)
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
+	GetSummary() string
+	SetSummary(string)
 	GetTBodies() HTMLCollection
 	GetTFoot() HTMLTableSectionElement
 	SetTFoot(HTMLTableSectionElement)
@@ -116,6 +132,8 @@ type HTMLTableElementIFace interface {
 	GetTranslate() bool
 	SetTranslate(bool)
 	WebkitMatchesSelector(args ...interface{}) bool
+	GetWidth() string
+	SetWidth(string)
 }
 type HTMLTableElement struct {
 	Value
@@ -129,12 +147,47 @@ func JSValueToHTMLTableElement(val js.Value) HTMLTableElement {
 	return HTMLTableElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableElement() HTMLTableElement { return HTMLTableElement{Value: v} }
+func (h HTMLTableElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLTableElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLTableElement) GetBgColor() string {
+	val := h.Get("bgColor")
+	return val.String()
+}
+func (h HTMLTableElement) SetBgColor(val string) {
+	h.Set("bgColor", val)
+}
+func (h HTMLTableElement) GetBorder() string {
+	val := h.Get("border")
+	return val.String()
+}
+func (h HTMLTableElement) SetBorder(val string) {
+	h.Set("border", val)
+}
 func (h HTMLTableElement) GetCaption() HTMLTableCaptionElement {
 	val := h.Get("caption")
 	return JSValueToHTMLTableCaptionElement(val.JSValue())
 }
 func (h HTMLTableElement) SetCaption(val HTMLTableCaptionElement) {
 	h.Set("caption", val)
+}
+func (h HTMLTableElement) GetCellPadding() string {
+	val := h.Get("cellPadding")
+	return val.String()
+}
+func (h HTMLTableElement) SetCellPadding(val string) {
+	h.Set("cellPadding", val)
+}
+func (h HTMLTableElement) GetCellSpacing() string {
+	val := h.Get("cellSpacing")
+	return val.String()
+}
+func (h HTMLTableElement) SetCellSpacing(val string) {
+	h.Set("cellSpacing", val)
 }
 func (h HTMLTableElement) CreateCaption(args ...interface{}) HTMLTableCaptionElement {
 	val := h.Call("createCaption", args...)
@@ -164,6 +217,13 @@ func (h HTMLTableElement) DeleteTFoot(args ...interface{}) {
 func (h HTMLTableElement) DeleteTHead(args ...interface{}) {
 	h.Call("deleteTHead", args...)
 }
+func (h HTMLTableElement) GetFrame() string {
+	val := h.Get("frame")
+	return val.String()
+}
+func (h HTMLTableElement) SetFrame(val string) {
+	h.Set("frame", val)
+}
 func (h HTMLTableElement) InsertRow(args ...interface{}) HTMLTableRowElement {
 	val := h.Call("insertRow", args...)
 	return JSValueToHTMLTableRowElement(val.JSValue())
@@ -171,6 +231,20 @@ func (h HTMLTableElement) InsertRow(args ...interface{}) HTMLTableRowElement {
 func (h HTMLTableElement) GetRows() HTMLCollection {
 	val := h.Get("rows")
 	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLTableElement) GetRules() string {
+	val := h.Get("rules")
+	return val.String()
+}
+func (h HTMLTableElement) SetRules(val string) {
+	h.Set("rules", val)
+}
+func (h HTMLTableElement) GetSummary() string {
+	val := h.Get("summary")
+	return val.String()
+}
+func (h HTMLTableElement) SetSummary(val string) {
+	h.Set("summary", val)
 }
 func (h HTMLTableElement) GetTBodies() HTMLCollection {
 	val := h.Get("tBodies")
@@ -189,4 +263,11 @@ func (h HTMLTableElement) GetTHead() HTMLTableSectionElement {
 }
 func (h HTMLTableElement) SetTHead(val HTMLTableSectionElement) {
 	h.Set("tHead", val)
+}
+func (h HTMLTableElement) GetWidth() string {
+	val := h.Get("width")
+	return val.String()
+}
+func (h HTMLTableElement) SetWidth(val string) {
+	h.Set("width", val)
 }

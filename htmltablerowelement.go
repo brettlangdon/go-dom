@@ -9,13 +9,21 @@ type HTMLTableRowElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
 	GetBaseURI() string
+	GetBgColor() string
+	SetBgColor(string)
 	GetCells() HTMLCollection
+	GetCh() string
+	SetCh(string)
+	GetChOff() string
+	SetChOff(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -103,6 +111,8 @@ type HTMLTableRowElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetVAlign() string
+	SetVAlign(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLTableRowElement struct {
@@ -117,9 +127,37 @@ func JSValueToHTMLTableRowElement(val js.Value) HTMLTableRowElement {
 	return HTMLTableRowElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLTableRowElement() HTMLTableRowElement { return HTMLTableRowElement{Value: v} }
+func (h HTMLTableRowElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLTableRowElement) SetAlign(val string) {
+	h.Set("align", val)
+}
+func (h HTMLTableRowElement) GetBgColor() string {
+	val := h.Get("bgColor")
+	return val.String()
+}
+func (h HTMLTableRowElement) SetBgColor(val string) {
+	h.Set("bgColor", val)
+}
 func (h HTMLTableRowElement) GetCells() HTMLCollection {
 	val := h.Get("cells")
 	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLTableRowElement) GetCh() string {
+	val := h.Get("ch")
+	return val.String()
+}
+func (h HTMLTableRowElement) SetCh(val string) {
+	h.Set("ch", val)
+}
+func (h HTMLTableRowElement) GetChOff() string {
+	val := h.Get("chOff")
+	return val.String()
+}
+func (h HTMLTableRowElement) SetChOff(val string) {
+	h.Set("chOff", val)
 }
 func (h HTMLTableRowElement) DeleteCell(args ...interface{}) {
 	h.Call("deleteCell", args...)
@@ -135,4 +173,11 @@ func (h HTMLTableRowElement) GetRowIndex() int {
 func (h HTMLTableRowElement) GetSectionRowIndex() int {
 	val := h.Get("sectionRowIndex")
 	return val.Int()
+}
+func (h HTMLTableRowElement) GetVAlign() string {
+	val := h.Get("vAlign")
+	return val.String()
+}
+func (h HTMLTableRowElement) SetVAlign(val string) {
+	h.Set("vAlign", val)
 }

@@ -5,6 +5,8 @@ package dom
 import "syscall/js"
 
 type HTMLBodyElementIFace interface {
+	GetALink() string
+	SetALink(string)
 	GetAccessKey() string
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
@@ -14,7 +16,11 @@ type HTMLBodyElementIFace interface {
 	GetAttributes() NamedNodeMap
 	GetAutocapitalize() string
 	SetAutocapitalize(string)
+	GetBackground() string
+	SetBackground(string)
 	GetBaseURI() string
+	GetBgColor() string
+	SetBgColor(string)
 	GetChildNodes() NodeList
 	GetClassList() DOMTokenList
 	GetClassName() string
@@ -59,6 +65,8 @@ type HTMLBodyElementIFace interface {
 	GetLang() string
 	SetLang(string)
 	GetLastChild() Node
+	GetLink() string
+	SetLink(string)
 	GetLocalName() string
 	LookupNamespaceURI(args ...interface{}) string
 	LookupPrefix(args ...interface{}) string
@@ -123,6 +131,8 @@ type HTMLBodyElementIFace interface {
 	GetSpellcheck() bool
 	SetSpellcheck(bool)
 	GetTagName() string
+	GetText() string
+	SetText(string)
 	GetTextContent() string
 	SetTextContent(string)
 	GetTitle() string
@@ -130,6 +140,8 @@ type HTMLBodyElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetVLink() string
+	SetVLink(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLBodyElement struct {
@@ -144,6 +156,34 @@ func JSValueToHTMLBodyElement(val js.Value) HTMLBodyElement {
 	return HTMLBodyElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLBodyElement() HTMLBodyElement { return HTMLBodyElement{Value: v} }
+func (h HTMLBodyElement) GetALink() string {
+	val := h.Get("aLink")
+	return val.String()
+}
+func (h HTMLBodyElement) SetALink(val string) {
+	h.Set("aLink", val)
+}
+func (h HTMLBodyElement) GetBackground() string {
+	val := h.Get("background")
+	return val.String()
+}
+func (h HTMLBodyElement) SetBackground(val string) {
+	h.Set("background", val)
+}
+func (h HTMLBodyElement) GetBgColor() string {
+	val := h.Get("bgColor")
+	return val.String()
+}
+func (h HTMLBodyElement) SetBgColor(val string) {
+	h.Set("bgColor", val)
+}
+func (h HTMLBodyElement) GetLink() string {
+	val := h.Get("link")
+	return val.String()
+}
+func (h HTMLBodyElement) SetLink(val string) {
+	h.Set("link", val)
+}
 func (h HTMLBodyElement) GetOnafterprint() EventHandler {
 	val := h.Get("onafterprint")
 	return JSValueToEventHandler(val.JSValue())
@@ -255,4 +295,18 @@ func (h HTMLBodyElement) GetOnunload() EventHandler {
 }
 func (h HTMLBodyElement) SetOnunload(val EventHandler) {
 	h.Set("onunload", val)
+}
+func (h HTMLBodyElement) GetText() string {
+	val := h.Get("text")
+	return val.String()
+}
+func (h HTMLBodyElement) SetText(val string) {
+	h.Set("text", val)
+}
+func (h HTMLBodyElement) GetVLink() string {
+	val := h.Get("vLink")
+	return val.String()
+}
+func (h HTMLBodyElement) SetVLink(val string) {
+	h.Set("vLink", val)
 }

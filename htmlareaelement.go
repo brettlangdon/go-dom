@@ -79,6 +79,8 @@ type HTMLAreaElementIFace interface {
 	Matches(args ...interface{}) bool
 	GetNamespaceURI() string
 	GetNextSibling() Node
+	GetNoHref() bool
+	SetNoHref(bool)
 	GetNodeName() string
 	GetNodeType() int
 	GetNodeValue() string
@@ -198,6 +200,13 @@ func (h HTMLAreaElement) GetHref() string {
 }
 func (h HTMLAreaElement) SetHref(val string) {
 	h.Set("href", val)
+}
+func (h HTMLAreaElement) GetNoHref() bool {
+	val := h.Get("noHref")
+	return val.Bool()
+}
+func (h HTMLAreaElement) SetNoHref(val bool) {
+	h.Set("noHref", val)
 }
 func (h HTMLAreaElement) GetOrigin() string {
 	val := h.Get("origin")

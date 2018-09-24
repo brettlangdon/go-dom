@@ -101,6 +101,8 @@ type HTMLStyleElementIFace interface {
 	ToggleAttribute(args ...interface{}) bool
 	GetTranslate() bool
 	SetTranslate(bool)
+	GetType() string
+	SetType(string)
 	WebkitMatchesSelector(args ...interface{}) bool
 }
 type HTMLStyleElement struct {
@@ -125,4 +127,11 @@ func (h HTMLStyleElement) SetMedia(val string) {
 func (h HTMLStyleElement) GetSheet() StyleSheet {
 	val := h.Get("sheet")
 	return JSValueToStyleSheet(val.JSValue())
+}
+func (h HTMLStyleElement) GetType() string {
+	val := h.Get("type")
+	return val.String()
+}
+func (h HTMLStyleElement) SetType(val string) {
+	h.Set("type", val)
 }

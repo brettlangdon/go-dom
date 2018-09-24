@@ -9,6 +9,8 @@ type HTMLLegendElementIFace interface {
 	SetAccessKey(string)
 	GetAccessKeyLabel() string
 	AddEventListener(args ...interface{})
+	GetAlign() string
+	SetAlign(string)
 	AppendChild(args ...interface{}) Node
 	AttachShadow(args ...interface{}) ShadowRoot
 	GetAttributes() NamedNodeMap
@@ -113,6 +115,13 @@ func JSValueToHTMLLegendElement(val js.Value) HTMLLegendElement {
 	return HTMLLegendElement{Value: Value{Value: val}}
 }
 func (v Value) AsHTMLLegendElement() HTMLLegendElement { return HTMLLegendElement{Value: v} }
+func (h HTMLLegendElement) GetAlign() string {
+	val := h.Get("align")
+	return val.String()
+}
+func (h HTMLLegendElement) SetAlign(val string) {
+	h.Set("align", val)
+}
 func (h HTMLLegendElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
 	return JSValueToHTMLFormElement(val.JSValue())

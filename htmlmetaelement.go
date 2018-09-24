@@ -87,6 +87,8 @@ type HTMLMetaElementIFace interface {
 	RemoveChild(args ...interface{}) Node
 	RemoveEventListener(args ...interface{})
 	ReplaceChild(args ...interface{}) Node
+	GetScheme() string
+	SetScheme(string)
 	SetAttribute(args ...interface{})
 	SetAttributeNS(args ...interface{})
 	SetAttributeNode(args ...interface{}) Attr
@@ -138,4 +140,11 @@ func (h HTMLMetaElement) GetName() string {
 }
 func (h HTMLMetaElement) SetName(val string) {
 	h.Set("name", val)
+}
+func (h HTMLMetaElement) GetScheme() string {
+	val := h.Get("scheme")
+	return val.String()
+}
+func (h HTMLMetaElement) SetScheme(val string) {
+	h.Set("scheme", val)
 }
