@@ -11,7 +11,6 @@ type HTMLFormControlsCollectionIFace interface {
 }
 type HTMLFormControlsCollection struct {
 	Value
-	HTMLCollection
 }
 
 func JSValueToHTMLFormControlsCollection(val js.Value) HTMLFormControlsCollection {
@@ -22,6 +21,14 @@ func (v Value) AsHTMLFormControlsCollection() HTMLFormControlsCollection {
 }
 func NewHTMLFormControlsCollection(args ...interface{}) HTMLFormControlsCollection {
 	return HTMLFormControlsCollection{Value: JSValueToValue(js.Global().Get("HTMLFormControlsCollection").New(args...))}
+}
+func (h HTMLFormControlsCollection) Item(args ...interface{}) Element {
+	val := h.Call("item", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLFormControlsCollection) GetLength() int {
+	val := h.Get("length")
+	return val.Int()
 }
 func (h HTMLFormControlsCollection) NamedItem(args ...interface{}) {
 	h.Call("namedItem", args...)

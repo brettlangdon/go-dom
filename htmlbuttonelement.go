@@ -130,10 +130,6 @@ type HTMLButtonElementIFace interface {
 }
 type HTMLButtonElement struct {
 	Value
-	HTMLElement
-	Element
-	Node
-	EventTarget
 }
 
 func JSValueToHTMLButtonElement(val js.Value) HTMLButtonElement {
@@ -143,6 +139,39 @@ func (v Value) AsHTMLButtonElement() HTMLButtonElement { return HTMLButtonElemen
 func NewHTMLButtonElement(args ...interface{}) HTMLButtonElement {
 	return HTMLButtonElement{Value: JSValueToValue(js.Global().Get("HTMLButtonElement").New(args...))}
 }
+func (h HTMLButtonElement) GetAccessKey() string {
+	val := h.Get("accessKey")
+	return val.String()
+}
+func (h HTMLButtonElement) SetAccessKey(val string) {
+	h.Set("accessKey", val)
+}
+func (h HTMLButtonElement) GetAccessKeyLabel() string {
+	val := h.Get("accessKeyLabel")
+	return val.String()
+}
+func (h HTMLButtonElement) AddEventListener(args ...interface{}) {
+	h.Call("addEventListener", args...)
+}
+func (h HTMLButtonElement) AppendChild(args ...interface{}) Node {
+	val := h.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) AttachShadow(args ...interface{}) ShadowRoot {
+	val := h.Call("attachShadow", args...)
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLButtonElement) GetAttributes() NamedNodeMap {
+	val := h.Get("attributes")
+	return JSValueToNamedNodeMap(val.JSValue())
+}
+func (h HTMLButtonElement) GetAutocapitalize() string {
+	val := h.Get("autocapitalize")
+	return val.String()
+}
+func (h HTMLButtonElement) SetAutocapitalize(val string) {
+	h.Set("autocapitalize", val)
+}
 func (h HTMLButtonElement) GetAutofocus() bool {
 	val := h.Get("autofocus")
 	return val.Bool()
@@ -150,9 +179,54 @@ func (h HTMLButtonElement) GetAutofocus() bool {
 func (h HTMLButtonElement) SetAutofocus(val bool) {
 	h.Set("autofocus", val)
 }
+func (h HTMLButtonElement) GetBaseURI() string {
+	val := h.Get("baseURI")
+	return val.String()
+}
 func (h HTMLButtonElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()
+}
+func (h HTMLButtonElement) GetChildNodes() NodeList {
+	val := h.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLButtonElement) GetClassList() DOMTokenList {
+	val := h.Get("classList")
+	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLButtonElement) GetClassName() string {
+	val := h.Get("className")
+	return val.String()
+}
+func (h HTMLButtonElement) SetClassName(val string) {
+	h.Set("className", val)
+}
+func (h HTMLButtonElement) Click(args ...interface{}) {
+	h.Call("click", args...)
+}
+func (h HTMLButtonElement) CloneNode(args ...interface{}) Node {
+	val := h.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) Closest(args ...interface{}) Element {
+	val := h.Call("closest", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLButtonElement) CompareDocumentPosition(args ...interface{}) int {
+	val := h.Call("compareDocumentPosition", args...)
+	return val.Int()
+}
+func (h HTMLButtonElement) Contains(args ...interface{}) bool {
+	val := h.Call("contains", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) GetDir() string {
+	val := h.Get("dir")
+	return val.String()
+}
+func (h HTMLButtonElement) SetDir(val string) {
+	h.Set("dir", val)
 }
 func (h HTMLButtonElement) GetDisabled() bool {
 	val := h.Get("disabled")
@@ -160,6 +234,21 @@ func (h HTMLButtonElement) GetDisabled() bool {
 }
 func (h HTMLButtonElement) SetDisabled(val bool) {
 	h.Set("disabled", val)
+}
+func (h HTMLButtonElement) DispatchEvent(args ...interface{}) bool {
+	val := h.Call("dispatchEvent", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) GetDraggable() bool {
+	val := h.Get("draggable")
+	return val.Bool()
+}
+func (h HTMLButtonElement) SetDraggable(val bool) {
+	h.Set("draggable", val)
+}
+func (h HTMLButtonElement) GetFirstChild() Node {
+	val := h.Get("firstChild")
+	return JSValueToNode(val.JSValue())
 }
 func (h HTMLButtonElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
@@ -200,9 +289,135 @@ func (h HTMLButtonElement) GetFormTarget() string {
 func (h HTMLButtonElement) SetFormTarget(val string) {
 	h.Set("formTarget", val)
 }
+func (h HTMLButtonElement) GetAttribute(args ...interface{}) string {
+	val := h.Call("getAttribute", args...)
+	return val.String()
+}
+func (h HTMLButtonElement) GetAttributeNS(args ...interface{}) string {
+	val := h.Call("getAttributeNS", args...)
+	return val.String()
+}
+func (h HTMLButtonElement) GetAttributeNames(args ...interface{}) {
+	h.Call("getAttributeNames", args...)
+}
+func (h HTMLButtonElement) GetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("getAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLButtonElement) GetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("getAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLButtonElement) GetElementsByClassName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByClassName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLButtonElement) GetElementsByTagName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLButtonElement) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLButtonElement) GetRootNode(args ...interface{}) Node {
+	val := h.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) HasAttribute(args ...interface{}) bool {
+	val := h.Call("hasAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) HasAttributeNS(args ...interface{}) bool {
+	val := h.Call("hasAttributeNS", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) HasAttributes(args ...interface{}) bool {
+	val := h.Call("hasAttributes", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) HasChildNodes(args ...interface{}) bool {
+	val := h.Call("hasChildNodes", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) GetHidden() bool {
+	val := h.Get("hidden")
+	return val.Bool()
+}
+func (h HTMLButtonElement) SetHidden(val bool) {
+	h.Set("hidden", val)
+}
+func (h HTMLButtonElement) GetId() string {
+	val := h.Get("id")
+	return val.String()
+}
+func (h HTMLButtonElement) SetId(val string) {
+	h.Set("id", val)
+}
+func (h HTMLButtonElement) GetInnerText() string {
+	val := h.Get("innerText")
+	return val.String()
+}
+func (h HTMLButtonElement) SetInnerText(val string) {
+	h.Set("innerText", val)
+}
+func (h HTMLButtonElement) InsertAdjacentElement(args ...interface{}) Element {
+	val := h.Call("insertAdjacentElement", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLButtonElement) InsertAdjacentText(args ...interface{}) {
+	h.Call("insertAdjacentText", args...)
+}
+func (h HTMLButtonElement) InsertBefore(args ...interface{}) Node {
+	val := h.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) GetIsConnected() bool {
+	val := h.Get("isConnected")
+	return val.Bool()
+}
+func (h HTMLButtonElement) IsDefaultNamespace(args ...interface{}) bool {
+	val := h.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) IsEqualNode(args ...interface{}) bool {
+	val := h.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) IsSameNode(args ...interface{}) bool {
+	val := h.Call("isSameNode", args...)
+	return val.Bool()
+}
 func (h HTMLButtonElement) GetLabels() NodeList {
 	val := h.Get("labels")
 	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLButtonElement) GetLang() string {
+	val := h.Get("lang")
+	return val.String()
+}
+func (h HTMLButtonElement) SetLang(val string) {
+	h.Set("lang", val)
+}
+func (h HTMLButtonElement) GetLastChild() Node {
+	val := h.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) GetLocalName() string {
+	val := h.Get("localName")
+	return val.String()
+}
+func (h HTMLButtonElement) LookupNamespaceURI(args ...interface{}) string {
+	val := h.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (h HTMLButtonElement) LookupPrefix(args ...interface{}) string {
+	val := h.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (h HTMLButtonElement) Matches(args ...interface{}) bool {
+	val := h.Call("matches", args...)
+	return val.Bool()
 }
 func (h HTMLButtonElement) GetName() string {
 	val := h.Get("name")
@@ -211,12 +426,140 @@ func (h HTMLButtonElement) GetName() string {
 func (h HTMLButtonElement) SetName(val string) {
 	h.Set("name", val)
 }
+func (h HTMLButtonElement) GetNamespaceURI() string {
+	val := h.Get("namespaceURI")
+	return val.String()
+}
+func (h HTMLButtonElement) GetNextSibling() Node {
+	val := h.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) GetNodeName() string {
+	val := h.Get("nodeName")
+	return val.String()
+}
+func (h HTMLButtonElement) GetNodeType() int {
+	val := h.Get("nodeType")
+	return val.Int()
+}
+func (h HTMLButtonElement) GetNodeValue() string {
+	val := h.Get("nodeValue")
+	return val.String()
+}
+func (h HTMLButtonElement) SetNodeValue(val string) {
+	h.Set("nodeValue", val)
+}
+func (h HTMLButtonElement) Normalize(args ...interface{}) {
+	h.Call("normalize", args...)
+}
+func (h HTMLButtonElement) GetOwnerDocument() Document {
+	val := h.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (h HTMLButtonElement) GetParentElement() Element {
+	val := h.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLButtonElement) GetParentNode() Node {
+	val := h.Get("parentNode")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) GetPrefix() string {
+	val := h.Get("prefix")
+	return val.String()
+}
+func (h HTMLButtonElement) GetPreviousSibling() Node {
+	val := h.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) RemoveAttribute(args ...interface{}) {
+	h.Call("removeAttribute", args...)
+}
+func (h HTMLButtonElement) RemoveAttributeNS(args ...interface{}) {
+	h.Call("removeAttributeNS", args...)
+}
+func (h HTMLButtonElement) RemoveAttributeNode(args ...interface{}) Attr {
+	val := h.Call("removeAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLButtonElement) RemoveChild(args ...interface{}) Node {
+	val := h.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLButtonElement) RemoveEventListener(args ...interface{}) {
+	h.Call("removeEventListener", args...)
+}
+func (h HTMLButtonElement) ReplaceChild(args ...interface{}) Node {
+	val := h.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLButtonElement) ReportValidity(args ...interface{}) bool {
 	val := h.Call("reportValidity", args...)
 	return val.Bool()
 }
+func (h HTMLButtonElement) SetAttribute(args ...interface{}) {
+	h.Call("setAttribute", args...)
+}
+func (h HTMLButtonElement) SetAttributeNS(args ...interface{}) {
+	h.Call("setAttributeNS", args...)
+}
+func (h HTMLButtonElement) SetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("setAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLButtonElement) SetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("setAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
 func (h HTMLButtonElement) SetCustomValidity(args ...interface{}) {
 	h.Call("setCustomValidity", args...)
+}
+func (h HTMLButtonElement) GetShadowRoot() ShadowRoot {
+	val := h.Get("shadowRoot")
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLButtonElement) GetSlot() string {
+	val := h.Get("slot")
+	return val.String()
+}
+func (h HTMLButtonElement) SetSlot(val string) {
+	h.Set("slot", val)
+}
+func (h HTMLButtonElement) GetSpellcheck() bool {
+	val := h.Get("spellcheck")
+	return val.Bool()
+}
+func (h HTMLButtonElement) SetSpellcheck(val bool) {
+	h.Set("spellcheck", val)
+}
+func (h HTMLButtonElement) GetTagName() string {
+	val := h.Get("tagName")
+	return val.String()
+}
+func (h HTMLButtonElement) GetTextContent() string {
+	val := h.Get("textContent")
+	return val.String()
+}
+func (h HTMLButtonElement) SetTextContent(val string) {
+	h.Set("textContent", val)
+}
+func (h HTMLButtonElement) GetTitle() string {
+	val := h.Get("title")
+	return val.String()
+}
+func (h HTMLButtonElement) SetTitle(val string) {
+	h.Set("title", val)
+}
+func (h HTMLButtonElement) ToggleAttribute(args ...interface{}) bool {
+	val := h.Call("toggleAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLButtonElement) GetTranslate() bool {
+	val := h.Get("translate")
+	return val.Bool()
+}
+func (h HTMLButtonElement) SetTranslate(val bool) {
+	h.Set("translate", val)
 }
 func (h HTMLButtonElement) GetType() string {
 	val := h.Get("type")
@@ -239,6 +582,10 @@ func (h HTMLButtonElement) GetValue() string {
 }
 func (h HTMLButtonElement) SetValue(val string) {
 	h.Set("value", val)
+}
+func (h HTMLButtonElement) WebkitMatchesSelector(args ...interface{}) bool {
+	val := h.Call("webkitMatchesSelector", args...)
+	return val.Bool()
 }
 func (h HTMLButtonElement) GetWillValidate() bool {
 	val := h.Get("willValidate")

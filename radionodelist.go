@@ -12,7 +12,6 @@ type RadioNodeListIFace interface {
 }
 type RadioNodeList struct {
 	Value
-	NodeList
 }
 
 func JSValueToRadioNodeList(val js.Value) RadioNodeList {
@@ -21,6 +20,14 @@ func JSValueToRadioNodeList(val js.Value) RadioNodeList {
 func (v Value) AsRadioNodeList() RadioNodeList { return RadioNodeList{Value: v} }
 func NewRadioNodeList(args ...interface{}) RadioNodeList {
 	return RadioNodeList{Value: JSValueToValue(js.Global().Get("RadioNodeList").New(args...))}
+}
+func (r RadioNodeList) Item(args ...interface{}) Node {
+	val := r.Call("item", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (r RadioNodeList) GetLength() int {
+	val := r.Get("length")
+	return val.Int()
 }
 func (r RadioNodeList) GetValue() string {
 	val := r.Get("value")

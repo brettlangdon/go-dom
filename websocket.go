@@ -31,13 +31,15 @@ type WebSocketIFace interface {
 }
 type WebSocket struct {
 	Value
-	EventTarget
 }
 
 func JSValueToWebSocket(val js.Value) WebSocket { return WebSocket{Value: JSValueToValue(val)} }
 func (v Value) AsWebSocket() WebSocket          { return WebSocket{Value: v} }
 func NewWebSocket(args ...interface{}) WebSocket {
 	return WebSocket{Value: JSValueToValue(js.Global().Get("WebSocket").New(args...))}
+}
+func (w WebSocket) AddEventListener(args ...interface{}) {
+	w.Call("addEventListener", args...)
 }
 func (w WebSocket) GetBinaryType() BinaryType {
 	val := w.Get("binaryType")
@@ -52,6 +54,10 @@ func (w WebSocket) GetBufferedAmount() int {
 }
 func (w WebSocket) Close(args ...interface{}) {
 	w.Call("close", args...)
+}
+func (w WebSocket) DispatchEvent(args ...interface{}) bool {
+	val := w.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (w WebSocket) GetExtensions() string {
 	val := w.Get("extensions")
@@ -92,6 +98,9 @@ func (w WebSocket) GetProtocol() string {
 func (w WebSocket) GetReadyState() int {
 	val := w.Get("readyState")
 	return val.Int()
+}
+func (w WebSocket) RemoveEventListener(args ...interface{}) {
+	w.Call("removeEventListener", args...)
 }
 func (w WebSocket) SendWithArrayBuffer(args ...interface{}) {
 	w.Call("sendWithArrayBuffer", args...)

@@ -19,14 +19,38 @@ type CSSPageRuleIFace interface {
 }
 type CSSPageRule struct {
 	Value
-	CSSGroupingRule
-	CSSRule
 }
 
 func JSValueToCSSPageRule(val js.Value) CSSPageRule { return CSSPageRule{Value: JSValueToValue(val)} }
 func (v Value) AsCSSPageRule() CSSPageRule          { return CSSPageRule{Value: v} }
 func NewCSSPageRule(args ...interface{}) CSSPageRule {
 	return CSSPageRule{Value: JSValueToValue(js.Global().Get("CSSPageRule").New(args...))}
+}
+func (c CSSPageRule) GetCssRules() CSSRuleList {
+	val := c.Get("cssRules")
+	return JSValueToCSSRuleList(val.JSValue())
+}
+func (c CSSPageRule) GetCssText() string {
+	val := c.Get("cssText")
+	return val.String()
+}
+func (c CSSPageRule) SetCssText(val string) {
+	c.Set("cssText", val)
+}
+func (c CSSPageRule) DeleteRule(args ...interface{}) {
+	c.Call("deleteRule", args...)
+}
+func (c CSSPageRule) InsertRule(args ...interface{}) int {
+	val := c.Call("insertRule", args...)
+	return val.Int()
+}
+func (c CSSPageRule) GetParentRule() CSSRule {
+	val := c.Get("parentRule")
+	return JSValueToCSSRule(val.JSValue())
+}
+func (c CSSPageRule) GetParentStyleSheet() CSSStyleSheet {
+	val := c.Get("parentStyleSheet")
+	return JSValueToCSSStyleSheet(val.JSValue())
 }
 func (c CSSPageRule) GetSelectorText() string {
 	val := c.Get("selectorText")
@@ -38,4 +62,8 @@ func (c CSSPageRule) SetSelectorText(val string) {
 func (c CSSPageRule) GetStyle() CSSStyleDeclaration {
 	val := c.Get("style")
 	return JSValueToCSSStyleDeclaration(val.JSValue())
+}
+func (c CSSPageRule) GetType() int {
+	val := c.Get("type")
+	return val.Int()
 }

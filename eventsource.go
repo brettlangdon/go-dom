@@ -21,7 +21,6 @@ type EventSourceIFace interface {
 }
 type EventSource struct {
 	Value
-	EventTarget
 }
 
 func JSValueToEventSource(val js.Value) EventSource { return EventSource{Value: JSValueToValue(val)} }
@@ -29,8 +28,15 @@ func (v Value) AsEventSource() EventSource          { return EventSource{Value: 
 func NewEventSource(args ...interface{}) EventSource {
 	return EventSource{Value: JSValueToValue(js.Global().Get("EventSource").New(args...))}
 }
+func (e EventSource) AddEventListener(args ...interface{}) {
+	e.Call("addEventListener", args...)
+}
 func (e EventSource) Close(args ...interface{}) {
 	e.Call("close", args...)
+}
+func (e EventSource) DispatchEvent(args ...interface{}) bool {
+	val := e.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (e EventSource) GetOnerror() EventHandler {
 	val := e.Get("onerror")
@@ -56,6 +62,9 @@ func (e EventSource) SetOnopen(val EventHandler) {
 func (e EventSource) GetReadyState() int {
 	val := e.Get("readyState")
 	return val.Int()
+}
+func (e EventSource) RemoveEventListener(args ...interface{}) {
+	e.Call("removeEventListener", args...)
 }
 func (e EventSource) GetUrl() string {
 	val := e.Get("url")

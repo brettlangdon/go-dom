@@ -19,7 +19,6 @@ type DOMPointIFace interface {
 }
 type DOMPoint struct {
 	Value
-	DOMPointReadOnly
 }
 
 func JSValueToDOMPoint(val js.Value) DOMPoint { return DOMPoint{Value: JSValueToValue(val)} }
@@ -30,6 +29,14 @@ func NewDOMPoint(args ...interface{}) DOMPoint {
 func (d DOMPoint) FromPoint(args ...interface{}) DOMPoint {
 	val := d.Call("fromPoint", args...)
 	return JSValueToDOMPoint(val.JSValue())
+}
+func (d DOMPoint) MatrixTransform(args ...interface{}) DOMPoint {
+	val := d.Call("matrixTransform", args...)
+	return JSValueToDOMPoint(val.JSValue())
+}
+func (d DOMPoint) ToJSON(args ...interface{}) Value {
+	val := d.Call("toJSON", args...)
+	return val
 }
 func (d DOMPoint) GetW() float64 {
 	val := d.Get("w")

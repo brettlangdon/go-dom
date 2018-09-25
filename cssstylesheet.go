@@ -20,7 +20,6 @@ type CSSStyleSheetIFace interface {
 }
 type CSSStyleSheet struct {
 	Value
-	StyleSheet
 }
 
 func JSValueToCSSStyleSheet(val js.Value) CSSStyleSheet {
@@ -37,11 +36,42 @@ func (c CSSStyleSheet) GetCssRules() CSSRuleList {
 func (c CSSStyleSheet) DeleteRule(args ...interface{}) {
 	c.Call("deleteRule", args...)
 }
+func (c CSSStyleSheet) GetDisabled() bool {
+	val := c.Get("disabled")
+	return val.Bool()
+}
+func (c CSSStyleSheet) SetDisabled(val bool) {
+	c.Set("disabled", val)
+}
+func (c CSSStyleSheet) GetHref() string {
+	val := c.Get("href")
+	return val.String()
+}
 func (c CSSStyleSheet) InsertRule(args ...interface{}) int {
 	val := c.Call("insertRule", args...)
 	return val.Int()
 }
+func (c CSSStyleSheet) GetMedia() MediaList {
+	val := c.Get("media")
+	return JSValueToMediaList(val.JSValue())
+}
+func (c CSSStyleSheet) GetOwnerNode() Value {
+	val := c.Get("ownerNode")
+	return val
+}
 func (c CSSStyleSheet) GetOwnerRule() CSSRule {
 	val := c.Get("ownerRule")
 	return JSValueToCSSRule(val.JSValue())
+}
+func (c CSSStyleSheet) GetParentStyleSheet() StyleSheet {
+	val := c.Get("parentStyleSheet")
+	return JSValueToStyleSheet(val.JSValue())
+}
+func (c CSSStyleSheet) GetTitle() string {
+	val := c.Get("title")
+	return val.String()
+}
+func (c CSSStyleSheet) GetType() string {
+	val := c.Get("type")
+	return val.String()
 }

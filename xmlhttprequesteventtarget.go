@@ -25,7 +25,6 @@ type XMLHttpRequestEventTargetIFace interface {
 }
 type XMLHttpRequestEventTarget struct {
 	Value
-	EventTarget
 }
 
 func JSValueToXMLHttpRequestEventTarget(val js.Value) XMLHttpRequestEventTarget {
@@ -36,6 +35,13 @@ func (v Value) AsXMLHttpRequestEventTarget() XMLHttpRequestEventTarget {
 }
 func NewXMLHttpRequestEventTarget(args ...interface{}) XMLHttpRequestEventTarget {
 	return XMLHttpRequestEventTarget{Value: JSValueToValue(js.Global().Get("XMLHttpRequestEventTarget").New(args...))}
+}
+func (x XMLHttpRequestEventTarget) AddEventListener(args ...interface{}) {
+	x.Call("addEventListener", args...)
+}
+func (x XMLHttpRequestEventTarget) DispatchEvent(args ...interface{}) bool {
+	val := x.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (x XMLHttpRequestEventTarget) GetOnabort() EventHandler {
 	val := x.Get("onabort")
@@ -85,4 +91,7 @@ func (x XMLHttpRequestEventTarget) GetOntimeout() EventHandler {
 }
 func (x XMLHttpRequestEventTarget) SetOntimeout(val EventHandler) {
 	x.Set("ontimeout", val)
+}
+func (x XMLHttpRequestEventTarget) RemoveEventListener(args ...interface{}) {
+	x.Call("removeEventListener", args...)
 }

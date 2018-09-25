@@ -223,13 +223,15 @@ type WindowIFace interface {
 }
 type Window struct {
 	Value
-	EventTarget
 }
 
 func JSValueToWindow(val js.Value) Window { return Window{Value: JSValueToValue(val)} }
 func (v Value) AsWindow() Window          { return Window{Value: v} }
 func NewWindow(args ...interface{}) Window {
 	return Window{Value: JSValueToValue(js.Global().Get("Window").New(args...))}
+}
+func (w Window) AddEventListener(args ...interface{}) {
+	w.Call("addEventListener", args...)
 }
 func (w Window) Alert(args ...interface{}) {
 	w.Call("alert", args...)
@@ -284,6 +286,10 @@ func (w Window) CreateImageBitmapWithArgs(args ...interface{}) {
 func (w Window) GetCustomElements() CustomElementRegistry {
 	val := w.Get("customElements")
 	return JSValueToCustomElementRegistry(val.JSValue())
+}
+func (w Window) DispatchEvent(args ...interface{}) bool {
+	val := w.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (w Window) GetDocument() Document {
 	val := w.Get("document")
@@ -931,6 +937,9 @@ func (w Window) QueueMicrotask(args ...interface{}) {
 }
 func (w Window) ReleaseEvents(args ...interface{}) {
 	w.Call("releaseEvents", args...)
+}
+func (w Window) RemoveEventListener(args ...interface{}) {
+	w.Call("removeEventListener", args...)
 }
 func (w Window) RequestAnimationFrame(args ...interface{}) int {
 	val := w.Call("requestAnimationFrame", args...)

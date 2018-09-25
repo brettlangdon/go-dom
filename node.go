@@ -42,13 +42,15 @@ type NodeIFace interface {
 }
 type Node struct {
 	Value
-	EventTarget
 }
 
 func JSValueToNode(val js.Value) Node { return Node{Value: JSValueToValue(val)} }
 func (v Value) AsNode() Node          { return Node{Value: v} }
 func NewNode(args ...interface{}) Node {
 	return Node{Value: JSValueToValue(js.Global().Get("Node").New(args...))}
+}
+func (n Node) AddEventListener(args ...interface{}) {
+	n.Call("addEventListener", args...)
 }
 func (n Node) AppendChild(args ...interface{}) Node {
 	val := n.Call("appendChild", args...)
@@ -72,6 +74,10 @@ func (n Node) CompareDocumentPosition(args ...interface{}) int {
 }
 func (n Node) Contains(args ...interface{}) bool {
 	val := n.Call("contains", args...)
+	return val.Bool()
+}
+func (n Node) DispatchEvent(args ...interface{}) bool {
+	val := n.Call("dispatchEvent", args...)
 	return val.Bool()
 }
 func (n Node) GetFirstChild() Node {
@@ -159,6 +165,9 @@ func (n Node) GetPreviousSibling() Node {
 func (n Node) RemoveChild(args ...interface{}) Node {
 	val := n.Call("removeChild", args...)
 	return JSValueToNode(val.JSValue())
+}
+func (n Node) RemoveEventListener(args ...interface{}) {
+	n.Call("removeEventListener", args...)
 }
 func (n Node) ReplaceChild(args ...interface{}) Node {
 	val := n.Call("replaceChild", args...)

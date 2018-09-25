@@ -142,10 +142,6 @@ type HTMLAreaElementIFace interface {
 }
 type HTMLAreaElement struct {
 	Value
-	HTMLElement
-	Element
-	Node
-	EventTarget
 }
 
 func JSValueToHTMLAreaElement(val js.Value) HTMLAreaElement {
@@ -155,12 +151,83 @@ func (v Value) AsHTMLAreaElement() HTMLAreaElement { return HTMLAreaElement{Valu
 func NewHTMLAreaElement(args ...interface{}) HTMLAreaElement {
 	return HTMLAreaElement{Value: JSValueToValue(js.Global().Get("HTMLAreaElement").New(args...))}
 }
+func (h HTMLAreaElement) GetAccessKey() string {
+	val := h.Get("accessKey")
+	return val.String()
+}
+func (h HTMLAreaElement) SetAccessKey(val string) {
+	h.Set("accessKey", val)
+}
+func (h HTMLAreaElement) GetAccessKeyLabel() string {
+	val := h.Get("accessKeyLabel")
+	return val.String()
+}
+func (h HTMLAreaElement) AddEventListener(args ...interface{}) {
+	h.Call("addEventListener", args...)
+}
 func (h HTMLAreaElement) GetAlt() string {
 	val := h.Get("alt")
 	return val.String()
 }
 func (h HTMLAreaElement) SetAlt(val string) {
 	h.Set("alt", val)
+}
+func (h HTMLAreaElement) AppendChild(args ...interface{}) Node {
+	val := h.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) AttachShadow(args ...interface{}) ShadowRoot {
+	val := h.Call("attachShadow", args...)
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLAreaElement) GetAttributes() NamedNodeMap {
+	val := h.Get("attributes")
+	return JSValueToNamedNodeMap(val.JSValue())
+}
+func (h HTMLAreaElement) GetAutocapitalize() string {
+	val := h.Get("autocapitalize")
+	return val.String()
+}
+func (h HTMLAreaElement) SetAutocapitalize(val string) {
+	h.Set("autocapitalize", val)
+}
+func (h HTMLAreaElement) GetBaseURI() string {
+	val := h.Get("baseURI")
+	return val.String()
+}
+func (h HTMLAreaElement) GetChildNodes() NodeList {
+	val := h.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLAreaElement) GetClassList() DOMTokenList {
+	val := h.Get("classList")
+	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLAreaElement) GetClassName() string {
+	val := h.Get("className")
+	return val.String()
+}
+func (h HTMLAreaElement) SetClassName(val string) {
+	h.Set("className", val)
+}
+func (h HTMLAreaElement) Click(args ...interface{}) {
+	h.Call("click", args...)
+}
+func (h HTMLAreaElement) CloneNode(args ...interface{}) Node {
+	val := h.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) Closest(args ...interface{}) Element {
+	val := h.Call("closest", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLAreaElement) CompareDocumentPosition(args ...interface{}) int {
+	val := h.Call("compareDocumentPosition", args...)
+	return val.Int()
+}
+func (h HTMLAreaElement) Contains(args ...interface{}) bool {
+	val := h.Call("contains", args...)
+	return val.Bool()
 }
 func (h HTMLAreaElement) GetCoords() string {
 	val := h.Get("coords")
@@ -169,6 +236,17 @@ func (h HTMLAreaElement) GetCoords() string {
 func (h HTMLAreaElement) SetCoords(val string) {
 	h.Set("coords", val)
 }
+func (h HTMLAreaElement) GetDir() string {
+	val := h.Get("dir")
+	return val.String()
+}
+func (h HTMLAreaElement) SetDir(val string) {
+	h.Set("dir", val)
+}
+func (h HTMLAreaElement) DispatchEvent(args ...interface{}) bool {
+	val := h.Call("dispatchEvent", args...)
+	return val.Bool()
+}
 func (h HTMLAreaElement) GetDownload() string {
 	val := h.Get("download")
 	return val.String()
@@ -176,12 +254,81 @@ func (h HTMLAreaElement) GetDownload() string {
 func (h HTMLAreaElement) SetDownload(val string) {
 	h.Set("download", val)
 }
+func (h HTMLAreaElement) GetDraggable() bool {
+	val := h.Get("draggable")
+	return val.Bool()
+}
+func (h HTMLAreaElement) SetDraggable(val bool) {
+	h.Set("draggable", val)
+}
+func (h HTMLAreaElement) GetFirstChild() Node {
+	val := h.Get("firstChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) GetAttribute(args ...interface{}) string {
+	val := h.Call("getAttribute", args...)
+	return val.String()
+}
+func (h HTMLAreaElement) GetAttributeNS(args ...interface{}) string {
+	val := h.Call("getAttributeNS", args...)
+	return val.String()
+}
+func (h HTMLAreaElement) GetAttributeNames(args ...interface{}) {
+	h.Call("getAttributeNames", args...)
+}
+func (h HTMLAreaElement) GetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("getAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLAreaElement) GetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("getAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLAreaElement) GetElementsByClassName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByClassName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLAreaElement) GetElementsByTagName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLAreaElement) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLAreaElement) GetRootNode(args ...interface{}) Node {
+	val := h.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) HasAttribute(args ...interface{}) bool {
+	val := h.Call("hasAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) HasAttributeNS(args ...interface{}) bool {
+	val := h.Call("hasAttributeNS", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) HasAttributes(args ...interface{}) bool {
+	val := h.Call("hasAttributes", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) HasChildNodes(args ...interface{}) bool {
+	val := h.Call("hasChildNodes", args...)
+	return val.Bool()
+}
 func (h HTMLAreaElement) GetHash() string {
 	val := h.Get("hash")
 	return val.String()
 }
 func (h HTMLAreaElement) SetHash(val string) {
 	h.Set("hash", val)
+}
+func (h HTMLAreaElement) GetHidden() bool {
+	val := h.Get("hidden")
+	return val.Bool()
+}
+func (h HTMLAreaElement) SetHidden(val bool) {
+	h.Set("hidden", val)
 }
 func (h HTMLAreaElement) GetHost() string {
 	val := h.Get("host")
@@ -204,6 +351,82 @@ func (h HTMLAreaElement) GetHref() string {
 func (h HTMLAreaElement) SetHref(val string) {
 	h.Set("href", val)
 }
+func (h HTMLAreaElement) GetId() string {
+	val := h.Get("id")
+	return val.String()
+}
+func (h HTMLAreaElement) SetId(val string) {
+	h.Set("id", val)
+}
+func (h HTMLAreaElement) GetInnerText() string {
+	val := h.Get("innerText")
+	return val.String()
+}
+func (h HTMLAreaElement) SetInnerText(val string) {
+	h.Set("innerText", val)
+}
+func (h HTMLAreaElement) InsertAdjacentElement(args ...interface{}) Element {
+	val := h.Call("insertAdjacentElement", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLAreaElement) InsertAdjacentText(args ...interface{}) {
+	h.Call("insertAdjacentText", args...)
+}
+func (h HTMLAreaElement) InsertBefore(args ...interface{}) Node {
+	val := h.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) GetIsConnected() bool {
+	val := h.Get("isConnected")
+	return val.Bool()
+}
+func (h HTMLAreaElement) IsDefaultNamespace(args ...interface{}) bool {
+	val := h.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) IsEqualNode(args ...interface{}) bool {
+	val := h.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) IsSameNode(args ...interface{}) bool {
+	val := h.Call("isSameNode", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) GetLang() string {
+	val := h.Get("lang")
+	return val.String()
+}
+func (h HTMLAreaElement) SetLang(val string) {
+	h.Set("lang", val)
+}
+func (h HTMLAreaElement) GetLastChild() Node {
+	val := h.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) GetLocalName() string {
+	val := h.Get("localName")
+	return val.String()
+}
+func (h HTMLAreaElement) LookupNamespaceURI(args ...interface{}) string {
+	val := h.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (h HTMLAreaElement) LookupPrefix(args ...interface{}) string {
+	val := h.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (h HTMLAreaElement) Matches(args ...interface{}) bool {
+	val := h.Call("matches", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) GetNamespaceURI() string {
+	val := h.Get("namespaceURI")
+	return val.String()
+}
+func (h HTMLAreaElement) GetNextSibling() Node {
+	val := h.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLAreaElement) GetNoHref() bool {
 	val := h.Get("noHref")
 	return val.Bool()
@@ -211,9 +434,39 @@ func (h HTMLAreaElement) GetNoHref() bool {
 func (h HTMLAreaElement) SetNoHref(val bool) {
 	h.Set("noHref", val)
 }
+func (h HTMLAreaElement) GetNodeName() string {
+	val := h.Get("nodeName")
+	return val.String()
+}
+func (h HTMLAreaElement) GetNodeType() int {
+	val := h.Get("nodeType")
+	return val.Int()
+}
+func (h HTMLAreaElement) GetNodeValue() string {
+	val := h.Get("nodeValue")
+	return val.String()
+}
+func (h HTMLAreaElement) SetNodeValue(val string) {
+	h.Set("nodeValue", val)
+}
+func (h HTMLAreaElement) Normalize(args ...interface{}) {
+	h.Call("normalize", args...)
+}
 func (h HTMLAreaElement) GetOrigin() string {
 	val := h.Get("origin")
 	return val.String()
+}
+func (h HTMLAreaElement) GetOwnerDocument() Document {
+	val := h.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (h HTMLAreaElement) GetParentElement() Element {
+	val := h.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLAreaElement) GetParentNode() Node {
+	val := h.Get("parentNode")
+	return JSValueToNode(val.JSValue())
 }
 func (h HTMLAreaElement) GetPassword() string {
 	val := h.Get("password")
@@ -243,6 +496,14 @@ func (h HTMLAreaElement) GetPort() string {
 func (h HTMLAreaElement) SetPort(val string) {
 	h.Set("port", val)
 }
+func (h HTMLAreaElement) GetPrefix() string {
+	val := h.Get("prefix")
+	return val.String()
+}
+func (h HTMLAreaElement) GetPreviousSibling() Node {
+	val := h.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLAreaElement) GetProtocol() string {
 	val := h.Get("protocol")
 	return val.String()
@@ -268,12 +529,51 @@ func (h HTMLAreaElement) GetRelList() DOMTokenList {
 	val := h.Get("relList")
 	return JSValueToDOMTokenList(val.JSValue())
 }
+func (h HTMLAreaElement) RemoveAttribute(args ...interface{}) {
+	h.Call("removeAttribute", args...)
+}
+func (h HTMLAreaElement) RemoveAttributeNS(args ...interface{}) {
+	h.Call("removeAttributeNS", args...)
+}
+func (h HTMLAreaElement) RemoveAttributeNode(args ...interface{}) Attr {
+	val := h.Call("removeAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLAreaElement) RemoveChild(args ...interface{}) Node {
+	val := h.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLAreaElement) RemoveEventListener(args ...interface{}) {
+	h.Call("removeEventListener", args...)
+}
+func (h HTMLAreaElement) ReplaceChild(args ...interface{}) Node {
+	val := h.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLAreaElement) GetSearch() string {
 	val := h.Get("search")
 	return val.String()
 }
 func (h HTMLAreaElement) SetSearch(val string) {
 	h.Set("search", val)
+}
+func (h HTMLAreaElement) SetAttribute(args ...interface{}) {
+	h.Call("setAttribute", args...)
+}
+func (h HTMLAreaElement) SetAttributeNS(args ...interface{}) {
+	h.Call("setAttributeNS", args...)
+}
+func (h HTMLAreaElement) SetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("setAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLAreaElement) SetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("setAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLAreaElement) GetShadowRoot() ShadowRoot {
+	val := h.Get("shadowRoot")
+	return JSValueToShadowRoot(val.JSValue())
 }
 func (h HTMLAreaElement) GetShape() string {
 	val := h.Get("shape")
@@ -282,6 +582,24 @@ func (h HTMLAreaElement) GetShape() string {
 func (h HTMLAreaElement) SetShape(val string) {
 	h.Set("shape", val)
 }
+func (h HTMLAreaElement) GetSlot() string {
+	val := h.Get("slot")
+	return val.String()
+}
+func (h HTMLAreaElement) SetSlot(val string) {
+	h.Set("slot", val)
+}
+func (h HTMLAreaElement) GetSpellcheck() bool {
+	val := h.Get("spellcheck")
+	return val.Bool()
+}
+func (h HTMLAreaElement) SetSpellcheck(val bool) {
+	h.Set("spellcheck", val)
+}
+func (h HTMLAreaElement) GetTagName() string {
+	val := h.Get("tagName")
+	return val.String()
+}
 func (h HTMLAreaElement) GetTarget() string {
 	val := h.Get("target")
 	return val.String()
@@ -289,10 +607,39 @@ func (h HTMLAreaElement) GetTarget() string {
 func (h HTMLAreaElement) SetTarget(val string) {
 	h.Set("target", val)
 }
+func (h HTMLAreaElement) GetTextContent() string {
+	val := h.Get("textContent")
+	return val.String()
+}
+func (h HTMLAreaElement) SetTextContent(val string) {
+	h.Set("textContent", val)
+}
+func (h HTMLAreaElement) GetTitle() string {
+	val := h.Get("title")
+	return val.String()
+}
+func (h HTMLAreaElement) SetTitle(val string) {
+	h.Set("title", val)
+}
+func (h HTMLAreaElement) ToggleAttribute(args ...interface{}) bool {
+	val := h.Call("toggleAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLAreaElement) GetTranslate() bool {
+	val := h.Get("translate")
+	return val.Bool()
+}
+func (h HTMLAreaElement) SetTranslate(val bool) {
+	h.Set("translate", val)
+}
 func (h HTMLAreaElement) GetUsername() string {
 	val := h.Get("username")
 	return val.String()
 }
 func (h HTMLAreaElement) SetUsername(val string) {
 	h.Set("username", val)
+}
+func (h HTMLAreaElement) WebkitMatchesSelector(args ...interface{}) bool {
+	val := h.Call("webkitMatchesSelector", args...)
+	return val.Bool()
 }

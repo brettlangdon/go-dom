@@ -22,13 +22,16 @@ type DOMRectIFace interface {
 }
 type DOMRect struct {
 	Value
-	DOMRectReadOnly
 }
 
 func JSValueToDOMRect(val js.Value) DOMRect { return DOMRect{Value: JSValueToValue(val)} }
 func (v Value) AsDOMRect() DOMRect          { return DOMRect{Value: v} }
 func NewDOMRect(args ...interface{}) DOMRect {
 	return DOMRect{Value: JSValueToValue(js.Global().Get("DOMRect").New(args...))}
+}
+func (d DOMRect) GetBottom() float64 {
+	val := d.Get("bottom")
+	return val.Float()
 }
 func (d DOMRect) FromRect(args ...interface{}) DOMRect {
 	val := d.Call("fromRect", args...)
@@ -40,6 +43,22 @@ func (d DOMRect) GetHeight() float64 {
 }
 func (d DOMRect) SetHeight(val float64) {
 	d.Set("height", val)
+}
+func (d DOMRect) GetLeft() float64 {
+	val := d.Get("left")
+	return val.Float()
+}
+func (d DOMRect) GetRight() float64 {
+	val := d.Get("right")
+	return val.Float()
+}
+func (d DOMRect) ToJSON(args ...interface{}) Value {
+	val := d.Call("toJSON", args...)
+	return val
+}
+func (d DOMRect) GetTop() float64 {
+	val := d.Get("top")
+	return val.Float()
 }
 func (d DOMRect) GetWidth() float64 {
 	val := d.Get("width")

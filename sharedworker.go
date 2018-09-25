@@ -14,13 +14,19 @@ type SharedWorkerIFace interface {
 }
 type SharedWorker struct {
 	Value
-	EventTarget
 }
 
 func JSValueToSharedWorker(val js.Value) SharedWorker { return SharedWorker{Value: JSValueToValue(val)} }
 func (v Value) AsSharedWorker() SharedWorker          { return SharedWorker{Value: v} }
 func NewSharedWorker(args ...interface{}) SharedWorker {
 	return SharedWorker{Value: JSValueToValue(js.Global().Get("SharedWorker").New(args...))}
+}
+func (s SharedWorker) AddEventListener(args ...interface{}) {
+	s.Call("addEventListener", args...)
+}
+func (s SharedWorker) DispatchEvent(args ...interface{}) bool {
+	val := s.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (s SharedWorker) GetOnerror() EventHandler {
 	val := s.Get("onerror")
@@ -32,4 +38,7 @@ func (s SharedWorker) SetOnerror(val EventHandler) {
 func (s SharedWorker) GetPort() MessagePort {
 	val := s.Get("port")
 	return JSValueToMessagePort(val.JSValue())
+}
+func (s SharedWorker) RemoveEventListener(args ...interface{}) {
+	s.Call("removeEventListener", args...)
 }

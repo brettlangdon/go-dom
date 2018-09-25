@@ -49,8 +49,6 @@ type XMLHttpRequestIFace interface {
 }
 type XMLHttpRequest struct {
 	Value
-	XMLHttpRequestEventTarget
-	EventTarget
 }
 
 func JSValueToXMLHttpRequest(val js.Value) XMLHttpRequest {
@@ -63,6 +61,13 @@ func NewXMLHttpRequest(args ...interface{}) XMLHttpRequest {
 func (x XMLHttpRequest) Abort(args ...interface{}) {
 	x.Call("abort", args...)
 }
+func (x XMLHttpRequest) AddEventListener(args ...interface{}) {
+	x.Call("addEventListener", args...)
+}
+func (x XMLHttpRequest) DispatchEvent(args ...interface{}) bool {
+	val := x.Call("dispatchEvent", args...)
+	return val.Bool()
+}
 func (x XMLHttpRequest) GetAllResponseHeaders(args ...interface{}) []byte {
 	val := x.Call("getAllResponseHeaders", args...)
 	return []byte(val.String())
@@ -71,12 +76,61 @@ func (x XMLHttpRequest) GetResponseHeader(args ...interface{}) []byte {
 	val := x.Call("getResponseHeader", args...)
 	return []byte(val.String())
 }
+func (x XMLHttpRequest) GetOnabort() EventHandler {
+	val := x.Get("onabort")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnabort(val EventHandler) {
+	x.Set("onabort", val)
+}
+func (x XMLHttpRequest) GetOnerror() EventHandler {
+	val := x.Get("onerror")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnerror(val EventHandler) {
+	x.Set("onerror", val)
+}
+func (x XMLHttpRequest) GetOnload() EventHandler {
+	val := x.Get("onload")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnload(val EventHandler) {
+	x.Set("onload", val)
+}
+func (x XMLHttpRequest) GetOnloadend() EventHandler {
+	val := x.Get("onloadend")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnloadend(val EventHandler) {
+	x.Set("onloadend", val)
+}
+func (x XMLHttpRequest) GetOnloadstart() EventHandler {
+	val := x.Get("onloadstart")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnloadstart(val EventHandler) {
+	x.Set("onloadstart", val)
+}
+func (x XMLHttpRequest) GetOnprogress() EventHandler {
+	val := x.Get("onprogress")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOnprogress(val EventHandler) {
+	x.Set("onprogress", val)
+}
 func (x XMLHttpRequest) GetOnreadystatechange() EventHandler {
 	val := x.Get("onreadystatechange")
 	return JSValueToEventHandler(val.JSValue())
 }
 func (x XMLHttpRequest) SetOnreadystatechange(val EventHandler) {
 	x.Set("onreadystatechange", val)
+}
+func (x XMLHttpRequest) GetOntimeout() EventHandler {
+	val := x.Get("ontimeout")
+	return JSValueToEventHandler(val.JSValue())
+}
+func (x XMLHttpRequest) SetOntimeout(val EventHandler) {
+	x.Set("ontimeout", val)
 }
 func (x XMLHttpRequest) Open(args ...interface{}) {
 	x.Call("open", args...)
@@ -90,6 +144,9 @@ func (x XMLHttpRequest) OverrideMimeType(args ...interface{}) {
 func (x XMLHttpRequest) GetReadyState() int {
 	val := x.Get("readyState")
 	return val.Int()
+}
+func (x XMLHttpRequest) RemoveEventListener(args ...interface{}) {
+	x.Call("removeEventListener", args...)
 }
 func (x XMLHttpRequest) GetResponse() Value {
 	val := x.Get("response")

@@ -18,7 +18,6 @@ type OffscreenCanvasIFace interface {
 }
 type OffscreenCanvas struct {
 	Value
-	EventTarget
 }
 
 func JSValueToOffscreenCanvas(val js.Value) OffscreenCanvas {
@@ -28,8 +27,15 @@ func (v Value) AsOffscreenCanvas() OffscreenCanvas { return OffscreenCanvas{Valu
 func NewOffscreenCanvas(args ...interface{}) OffscreenCanvas {
 	return OffscreenCanvas{Value: JSValueToValue(js.Global().Get("OffscreenCanvas").New(args...))}
 }
+func (o OffscreenCanvas) AddEventListener(args ...interface{}) {
+	o.Call("addEventListener", args...)
+}
 func (o OffscreenCanvas) ConvertToBlob(args ...interface{}) {
 	o.Call("convertToBlob", args...)
+}
+func (o OffscreenCanvas) DispatchEvent(args ...interface{}) bool {
+	val := o.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (o OffscreenCanvas) GetContext(args ...interface{}) OffscreenRenderingContext {
 	val := o.Call("getContext", args...)
@@ -41,6 +47,9 @@ func (o OffscreenCanvas) GetHeight() int {
 }
 func (o OffscreenCanvas) SetHeight(val int) {
 	o.Set("height", val)
+}
+func (o OffscreenCanvas) RemoveEventListener(args ...interface{}) {
+	o.Call("removeEventListener", args...)
 }
 func (o OffscreenCanvas) TransferToImageBitmap(args ...interface{}) ImageBitmap {
 	val := o.Call("transferToImageBitmap", args...)

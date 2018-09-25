@@ -31,7 +31,6 @@ type FileReaderIFace interface {
 }
 type FileReader struct {
 	Value
-	EventTarget
 }
 
 func JSValueToFileReader(val js.Value) FileReader { return FileReader{Value: JSValueToValue(val)} }
@@ -41,6 +40,13 @@ func NewFileReader(args ...interface{}) FileReader {
 }
 func (f FileReader) Abort(args ...interface{}) {
 	f.Call("abort", args...)
+}
+func (f FileReader) AddEventListener(args ...interface{}) {
+	f.Call("addEventListener", args...)
+}
+func (f FileReader) DispatchEvent(args ...interface{}) bool {
+	val := f.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (f FileReader) GetError() DOMException {
 	val := f.Get("error")
@@ -103,6 +109,9 @@ func (f FileReader) ReadAsText(args ...interface{}) {
 func (f FileReader) GetReadyState() int {
 	val := f.Get("readyState")
 	return val.Int()
+}
+func (f FileReader) RemoveEventListener(args ...interface{}) {
+	f.Call("removeEventListener", args...)
 }
 func (f FileReader) GetResult() Value {
 	val := f.Get("result")

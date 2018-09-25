@@ -31,7 +31,6 @@ type ApplicationCacheIFace interface {
 }
 type ApplicationCache struct {
 	Value
-	EventTarget
 }
 
 func JSValueToApplicationCache(val js.Value) ApplicationCache {
@@ -43,6 +42,13 @@ func NewApplicationCache(args ...interface{}) ApplicationCache {
 }
 func (a ApplicationCache) Abort(args ...interface{}) {
 	a.Call("abort", args...)
+}
+func (a ApplicationCache) AddEventListener(args ...interface{}) {
+	a.Call("addEventListener", args...)
+}
+func (a ApplicationCache) DispatchEvent(args ...interface{}) bool {
+	val := a.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (a ApplicationCache) GetOncached() EventHandler {
 	val := a.Get("oncached")
@@ -99,6 +105,9 @@ func (a ApplicationCache) GetOnupdateready() EventHandler {
 }
 func (a ApplicationCache) SetOnupdateready(val EventHandler) {
 	a.Set("onupdateready", val)
+}
+func (a ApplicationCache) RemoveEventListener(args ...interface{}) {
+	a.Call("removeEventListener", args...)
 }
 func (a ApplicationCache) GetStatus() int {
 	val := a.Get("status")

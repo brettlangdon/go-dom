@@ -24,7 +24,6 @@ type TextTrackIFace interface {
 }
 type TextTrack struct {
 	Value
-	EventTarget
 }
 
 func JSValueToTextTrack(val js.Value) TextTrack { return TextTrack{Value: JSValueToValue(val)} }
@@ -39,9 +38,16 @@ func (t TextTrack) GetActiveCues() TextTrackCueList {
 func (t TextTrack) AddCue(args ...interface{}) {
 	t.Call("addCue", args...)
 }
+func (t TextTrack) AddEventListener(args ...interface{}) {
+	t.Call("addEventListener", args...)
+}
 func (t TextTrack) GetCues() TextTrackCueList {
 	val := t.Get("cues")
 	return JSValueToTextTrackCueList(val.JSValue())
+}
+func (t TextTrack) DispatchEvent(args ...interface{}) bool {
+	val := t.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (t TextTrack) GetId() string {
 	val := t.Get("id")
@@ -79,4 +85,7 @@ func (t TextTrack) SetOncuechange(val EventHandler) {
 }
 func (t TextTrack) RemoveCue(args ...interface{}) {
 	t.Call("removeCue", args...)
+}
+func (t TextTrack) RemoveEventListener(args ...interface{}) {
+	t.Call("removeEventListener", args...)
 }

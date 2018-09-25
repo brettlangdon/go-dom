@@ -146,10 +146,6 @@ type HTMLBodyElementIFace interface {
 }
 type HTMLBodyElement struct {
 	Value
-	HTMLElement
-	Element
-	Node
-	EventTarget
 }
 
 func JSValueToHTMLBodyElement(val js.Value) HTMLBodyElement {
@@ -166,12 +162,49 @@ func (h HTMLBodyElement) GetALink() string {
 func (h HTMLBodyElement) SetALink(val string) {
 	h.Set("aLink", val)
 }
+func (h HTMLBodyElement) GetAccessKey() string {
+	val := h.Get("accessKey")
+	return val.String()
+}
+func (h HTMLBodyElement) SetAccessKey(val string) {
+	h.Set("accessKey", val)
+}
+func (h HTMLBodyElement) GetAccessKeyLabel() string {
+	val := h.Get("accessKeyLabel")
+	return val.String()
+}
+func (h HTMLBodyElement) AddEventListener(args ...interface{}) {
+	h.Call("addEventListener", args...)
+}
+func (h HTMLBodyElement) AppendChild(args ...interface{}) Node {
+	val := h.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) AttachShadow(args ...interface{}) ShadowRoot {
+	val := h.Call("attachShadow", args...)
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLBodyElement) GetAttributes() NamedNodeMap {
+	val := h.Get("attributes")
+	return JSValueToNamedNodeMap(val.JSValue())
+}
+func (h HTMLBodyElement) GetAutocapitalize() string {
+	val := h.Get("autocapitalize")
+	return val.String()
+}
+func (h HTMLBodyElement) SetAutocapitalize(val string) {
+	h.Set("autocapitalize", val)
+}
 func (h HTMLBodyElement) GetBackground() string {
 	val := h.Get("background")
 	return val.String()
 }
 func (h HTMLBodyElement) SetBackground(val string) {
 	h.Set("background", val)
+}
+func (h HTMLBodyElement) GetBaseURI() string {
+	val := h.Get("baseURI")
+	return val.String()
 }
 func (h HTMLBodyElement) GetBgColor() string {
 	val := h.Get("bgColor")
@@ -180,12 +213,220 @@ func (h HTMLBodyElement) GetBgColor() string {
 func (h HTMLBodyElement) SetBgColor(val string) {
 	h.Set("bgColor", val)
 }
+func (h HTMLBodyElement) GetChildNodes() NodeList {
+	val := h.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLBodyElement) GetClassList() DOMTokenList {
+	val := h.Get("classList")
+	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLBodyElement) GetClassName() string {
+	val := h.Get("className")
+	return val.String()
+}
+func (h HTMLBodyElement) SetClassName(val string) {
+	h.Set("className", val)
+}
+func (h HTMLBodyElement) Click(args ...interface{}) {
+	h.Call("click", args...)
+}
+func (h HTMLBodyElement) CloneNode(args ...interface{}) Node {
+	val := h.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) Closest(args ...interface{}) Element {
+	val := h.Call("closest", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLBodyElement) CompareDocumentPosition(args ...interface{}) int {
+	val := h.Call("compareDocumentPosition", args...)
+	return val.Int()
+}
+func (h HTMLBodyElement) Contains(args ...interface{}) bool {
+	val := h.Call("contains", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetDir() string {
+	val := h.Get("dir")
+	return val.String()
+}
+func (h HTMLBodyElement) SetDir(val string) {
+	h.Set("dir", val)
+}
+func (h HTMLBodyElement) DispatchEvent(args ...interface{}) bool {
+	val := h.Call("dispatchEvent", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetDraggable() bool {
+	val := h.Get("draggable")
+	return val.Bool()
+}
+func (h HTMLBodyElement) SetDraggable(val bool) {
+	h.Set("draggable", val)
+}
+func (h HTMLBodyElement) GetFirstChild() Node {
+	val := h.Get("firstChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) GetAttribute(args ...interface{}) string {
+	val := h.Call("getAttribute", args...)
+	return val.String()
+}
+func (h HTMLBodyElement) GetAttributeNS(args ...interface{}) string {
+	val := h.Call("getAttributeNS", args...)
+	return val.String()
+}
+func (h HTMLBodyElement) GetAttributeNames(args ...interface{}) {
+	h.Call("getAttributeNames", args...)
+}
+func (h HTMLBodyElement) GetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("getAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLBodyElement) GetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("getAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLBodyElement) GetElementsByClassName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByClassName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLBodyElement) GetElementsByTagName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLBodyElement) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLBodyElement) GetRootNode(args ...interface{}) Node {
+	val := h.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) HasAttribute(args ...interface{}) bool {
+	val := h.Call("hasAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) HasAttributeNS(args ...interface{}) bool {
+	val := h.Call("hasAttributeNS", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) HasAttributes(args ...interface{}) bool {
+	val := h.Call("hasAttributes", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) HasChildNodes(args ...interface{}) bool {
+	val := h.Call("hasChildNodes", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetHidden() bool {
+	val := h.Get("hidden")
+	return val.Bool()
+}
+func (h HTMLBodyElement) SetHidden(val bool) {
+	h.Set("hidden", val)
+}
+func (h HTMLBodyElement) GetId() string {
+	val := h.Get("id")
+	return val.String()
+}
+func (h HTMLBodyElement) SetId(val string) {
+	h.Set("id", val)
+}
+func (h HTMLBodyElement) GetInnerText() string {
+	val := h.Get("innerText")
+	return val.String()
+}
+func (h HTMLBodyElement) SetInnerText(val string) {
+	h.Set("innerText", val)
+}
+func (h HTMLBodyElement) InsertAdjacentElement(args ...interface{}) Element {
+	val := h.Call("insertAdjacentElement", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLBodyElement) InsertAdjacentText(args ...interface{}) {
+	h.Call("insertAdjacentText", args...)
+}
+func (h HTMLBodyElement) InsertBefore(args ...interface{}) Node {
+	val := h.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) GetIsConnected() bool {
+	val := h.Get("isConnected")
+	return val.Bool()
+}
+func (h HTMLBodyElement) IsDefaultNamespace(args ...interface{}) bool {
+	val := h.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) IsEqualNode(args ...interface{}) bool {
+	val := h.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) IsSameNode(args ...interface{}) bool {
+	val := h.Call("isSameNode", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetLang() string {
+	val := h.Get("lang")
+	return val.String()
+}
+func (h HTMLBodyElement) SetLang(val string) {
+	h.Set("lang", val)
+}
+func (h HTMLBodyElement) GetLastChild() Node {
+	val := h.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLBodyElement) GetLink() string {
 	val := h.Get("link")
 	return val.String()
 }
 func (h HTMLBodyElement) SetLink(val string) {
 	h.Set("link", val)
+}
+func (h HTMLBodyElement) GetLocalName() string {
+	val := h.Get("localName")
+	return val.String()
+}
+func (h HTMLBodyElement) LookupNamespaceURI(args ...interface{}) string {
+	val := h.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (h HTMLBodyElement) LookupPrefix(args ...interface{}) string {
+	val := h.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (h HTMLBodyElement) Matches(args ...interface{}) bool {
+	val := h.Call("matches", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetNamespaceURI() string {
+	val := h.Get("namespaceURI")
+	return val.String()
+}
+func (h HTMLBodyElement) GetNextSibling() Node {
+	val := h.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) GetNodeName() string {
+	val := h.Get("nodeName")
+	return val.String()
+}
+func (h HTMLBodyElement) GetNodeType() int {
+	val := h.Get("nodeType")
+	return val.Int()
+}
+func (h HTMLBodyElement) GetNodeValue() string {
+	val := h.Get("nodeValue")
+	return val.String()
+}
+func (h HTMLBodyElement) SetNodeValue(val string) {
+	h.Set("nodeValue", val)
+}
+func (h HTMLBodyElement) Normalize(args ...interface{}) {
+	h.Call("normalize", args...)
 }
 func (h HTMLBodyElement) GetOnafterprint() EventHandler {
 	val := h.Get("onafterprint")
@@ -299,6 +540,83 @@ func (h HTMLBodyElement) GetOnunload() EventHandler {
 func (h HTMLBodyElement) SetOnunload(val EventHandler) {
 	h.Set("onunload", val)
 }
+func (h HTMLBodyElement) GetOwnerDocument() Document {
+	val := h.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (h HTMLBodyElement) GetParentElement() Element {
+	val := h.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLBodyElement) GetParentNode() Node {
+	val := h.Get("parentNode")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) GetPrefix() string {
+	val := h.Get("prefix")
+	return val.String()
+}
+func (h HTMLBodyElement) GetPreviousSibling() Node {
+	val := h.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) RemoveAttribute(args ...interface{}) {
+	h.Call("removeAttribute", args...)
+}
+func (h HTMLBodyElement) RemoveAttributeNS(args ...interface{}) {
+	h.Call("removeAttributeNS", args...)
+}
+func (h HTMLBodyElement) RemoveAttributeNode(args ...interface{}) Attr {
+	val := h.Call("removeAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLBodyElement) RemoveChild(args ...interface{}) Node {
+	val := h.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) RemoveEventListener(args ...interface{}) {
+	h.Call("removeEventListener", args...)
+}
+func (h HTMLBodyElement) ReplaceChild(args ...interface{}) Node {
+	val := h.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLBodyElement) SetAttribute(args ...interface{}) {
+	h.Call("setAttribute", args...)
+}
+func (h HTMLBodyElement) SetAttributeNS(args ...interface{}) {
+	h.Call("setAttributeNS", args...)
+}
+func (h HTMLBodyElement) SetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("setAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLBodyElement) SetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("setAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLBodyElement) GetShadowRoot() ShadowRoot {
+	val := h.Get("shadowRoot")
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLBodyElement) GetSlot() string {
+	val := h.Get("slot")
+	return val.String()
+}
+func (h HTMLBodyElement) SetSlot(val string) {
+	h.Set("slot", val)
+}
+func (h HTMLBodyElement) GetSpellcheck() bool {
+	val := h.Get("spellcheck")
+	return val.Bool()
+}
+func (h HTMLBodyElement) SetSpellcheck(val bool) {
+	h.Set("spellcheck", val)
+}
+func (h HTMLBodyElement) GetTagName() string {
+	val := h.Get("tagName")
+	return val.String()
+}
 func (h HTMLBodyElement) GetText() string {
 	val := h.Get("text")
 	return val.String()
@@ -306,10 +624,39 @@ func (h HTMLBodyElement) GetText() string {
 func (h HTMLBodyElement) SetText(val string) {
 	h.Set("text", val)
 }
+func (h HTMLBodyElement) GetTextContent() string {
+	val := h.Get("textContent")
+	return val.String()
+}
+func (h HTMLBodyElement) SetTextContent(val string) {
+	h.Set("textContent", val)
+}
+func (h HTMLBodyElement) GetTitle() string {
+	val := h.Get("title")
+	return val.String()
+}
+func (h HTMLBodyElement) SetTitle(val string) {
+	h.Set("title", val)
+}
+func (h HTMLBodyElement) ToggleAttribute(args ...interface{}) bool {
+	val := h.Call("toggleAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLBodyElement) GetTranslate() bool {
+	val := h.Get("translate")
+	return val.Bool()
+}
+func (h HTMLBodyElement) SetTranslate(val bool) {
+	h.Set("translate", val)
+}
 func (h HTMLBodyElement) GetVLink() string {
 	val := h.Get("vLink")
 	return val.String()
 }
 func (h HTMLBodyElement) SetVLink(val string) {
 	h.Set("vLink", val)
+}
+func (h HTMLBodyElement) WebkitMatchesSelector(args ...interface{}) bool {
+	val := h.Call("webkitMatchesSelector", args...)
+	return val.Bool()
 }

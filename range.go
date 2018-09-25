@@ -35,7 +35,6 @@ type RangeIFace interface {
 }
 type Range struct {
 	Value
-	AbstractRange
 }
 
 func JSValueToRange(val js.Value) Range { return Range{Value: JSValueToValue(val)} }
@@ -53,6 +52,10 @@ func (r Range) CloneRange(args ...interface{}) Range {
 }
 func (r Range) Collapse(args ...interface{}) {
 	r.Call("collapse", args...)
+}
+func (r Range) GetCollapsed() bool {
+	val := r.Get("collapsed")
+	return val.Bool()
 }
 func (r Range) GetCommonAncestorContainer() Node {
 	val := r.Get("commonAncestorContainer")
@@ -75,6 +78,14 @@ func (r Range) DeleteContents(args ...interface{}) {
 }
 func (r Range) Detach(args ...interface{}) {
 	r.Call("detach", args...)
+}
+func (r Range) GetEndContainer() Node {
+	val := r.Get("endContainer")
+	return JSValueToNode(val.JSValue())
+}
+func (r Range) GetEndOffset() int {
+	val := r.Get("endOffset")
+	return val.Int()
 }
 func (r Range) ExtractContents(args ...interface{}) DocumentFragment {
 	val := r.Call("extractContents", args...)
@@ -114,6 +125,14 @@ func (r Range) SetStartAfter(args ...interface{}) {
 }
 func (r Range) SetStartBefore(args ...interface{}) {
 	r.Call("setStartBefore", args...)
+}
+func (r Range) GetStartContainer() Node {
+	val := r.Get("startContainer")
+	return JSValueToNode(val.JSValue())
+}
+func (r Range) GetStartOffset() int {
+	val := r.Get("startOffset")
+	return val.Int()
 }
 func (r Range) SurroundContents(args ...interface{}) {
 	r.Call("surroundContents", args...)

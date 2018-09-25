@@ -19,7 +19,6 @@ type AudioTrackListIFace interface {
 }
 type AudioTrackList struct {
 	Value
-	EventTarget
 }
 
 func JSValueToAudioTrackList(val js.Value) AudioTrackList {
@@ -28,6 +27,13 @@ func JSValueToAudioTrackList(val js.Value) AudioTrackList {
 func (v Value) AsAudioTrackList() AudioTrackList { return AudioTrackList{Value: v} }
 func NewAudioTrackList(args ...interface{}) AudioTrackList {
 	return AudioTrackList{Value: JSValueToValue(js.Global().Get("AudioTrackList").New(args...))}
+}
+func (a AudioTrackList) AddEventListener(args ...interface{}) {
+	a.Call("addEventListener", args...)
+}
+func (a AudioTrackList) DispatchEvent(args ...interface{}) bool {
+	val := a.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (a AudioTrackList) GetTrackById(args ...interface{}) AudioTrack {
 	val := a.Call("getTrackById", args...)
@@ -57,4 +63,7 @@ func (a AudioTrackList) GetOnremovetrack() EventHandler {
 }
 func (a AudioTrackList) SetOnremovetrack(val EventHandler) {
 	a.Set("onremovetrack", val)
+}
+func (a AudioTrackList) RemoveEventListener(args ...interface{}) {
+	a.Call("removeEventListener", args...)
 }

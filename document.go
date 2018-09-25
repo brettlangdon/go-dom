@@ -268,8 +268,6 @@ type DocumentIFace interface {
 }
 type Document struct {
 	Value
-	Node
-	EventTarget
 }
 
 func JSValueToDocument(val js.Value) Document { return Document{Value: JSValueToValue(val)} }
@@ -280,6 +278,9 @@ func NewDocument(args ...interface{}) Document {
 func (d Document) GetActiveElement() Element {
 	val := d.Get("activeElement")
 	return JSValueToElement(val.JSValue())
+}
+func (d Document) AddEventListener(args ...interface{}) {
+	d.Call("addEventListener", args...)
 }
 func (d Document) AdoptNode(args ...interface{}) Node {
 	val := d.Call("adoptNode", args...)
@@ -303,9 +304,17 @@ func (d Document) GetAnchors() HTMLCollection {
 func (d Document) Append(args ...interface{}) {
 	d.Call("append", args...)
 }
+func (d Document) AppendChild(args ...interface{}) Node {
+	val := d.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) GetApplets() HTMLCollection {
 	val := d.Get("applets")
 	return JSValueToHTMLCollection(val.JSValue())
+}
+func (d Document) GetBaseURI() string {
+	val := d.Get("baseURI")
+	return val.String()
 }
 func (d Document) GetBgColor() string {
 	val := d.Get("bgColor")
@@ -336,6 +345,10 @@ func (d Document) GetChildElementCount() int {
 	val := d.Get("childElementCount")
 	return val.Int()
 }
+func (d Document) GetChildNodes() NodeList {
+	val := d.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
 func (d Document) GetChildren() HTMLCollection {
 	val := d.Get("children")
 	return JSValueToHTMLCollection(val.JSValue())
@@ -343,12 +356,24 @@ func (d Document) GetChildren() HTMLCollection {
 func (d Document) Clear(args ...interface{}) {
 	d.Call("clear", args...)
 }
+func (d Document) CloneNode(args ...interface{}) Node {
+	val := d.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) Close(args ...interface{}) {
 	d.Call("close", args...)
+}
+func (d Document) CompareDocumentPosition(args ...interface{}) int {
+	val := d.Call("compareDocumentPosition", args...)
+	return val.Int()
 }
 func (d Document) GetCompatMode() string {
 	val := d.Get("compatMode")
 	return val.String()
+}
+func (d Document) Contains(args ...interface{}) bool {
+	val := d.Call("contains", args...)
+	return val.Bool()
 }
 func (d Document) GetContentType() string {
 	val := d.Get("contentType")
@@ -435,6 +460,10 @@ func (d Document) GetDir() string {
 func (d Document) SetDir(val string) {
 	d.Set("dir", val)
 }
+func (d Document) DispatchEvent(args ...interface{}) bool {
+	val := d.Call("dispatchEvent", args...)
+	return val.Bool()
+}
 func (d Document) GetDoctype() DocumentType {
 	val := d.Get("doctype")
 	return JSValueToDocumentType(val.JSValue())
@@ -469,6 +498,10 @@ func (d Document) GetFgColor() string {
 func (d Document) SetFgColor(val string) {
 	d.Set("fgColor", val)
 }
+func (d Document) GetFirstChild() Node {
+	val := d.Get("firstChild")
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) GetFirstElementChild() Element {
 	val := d.Get("firstElementChild")
 	return JSValueToElement(val.JSValue())
@@ -497,6 +530,14 @@ func (d Document) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
 	val := d.Call("getElementsByTagNameNS", args...)
 	return JSValueToHTMLCollection(val.JSValue())
 }
+func (d Document) GetRootNode(args ...interface{}) Node {
+	val := d.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (d Document) HasChildNodes(args ...interface{}) bool {
+	val := d.Call("hasChildNodes", args...)
+	return val.Bool()
+}
 func (d Document) HasFocus(args ...interface{}) bool {
 	val := d.Call("hasFocus", args...)
 	return val.Bool()
@@ -521,6 +562,30 @@ func (d Document) GetInputEncoding() string {
 	val := d.Get("inputEncoding")
 	return val.String()
 }
+func (d Document) InsertBefore(args ...interface{}) Node {
+	val := d.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (d Document) GetIsConnected() bool {
+	val := d.Get("isConnected")
+	return val.Bool()
+}
+func (d Document) IsDefaultNamespace(args ...interface{}) bool {
+	val := d.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (d Document) IsEqualNode(args ...interface{}) bool {
+	val := d.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (d Document) IsSameNode(args ...interface{}) bool {
+	val := d.Call("isSameNode", args...)
+	return val.Bool()
+}
+func (d Document) GetLastChild() Node {
+	val := d.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) GetLastElementChild() Element {
 	val := d.Get("lastElementChild")
 	return JSValueToElement(val.JSValue())
@@ -543,6 +608,36 @@ func (d Document) GetLinks() HTMLCollection {
 func (d Document) GetLocation() Location {
 	val := d.Get("location")
 	return JSValueToLocation(val.JSValue())
+}
+func (d Document) LookupNamespaceURI(args ...interface{}) string {
+	val := d.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (d Document) LookupPrefix(args ...interface{}) string {
+	val := d.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (d Document) GetNextSibling() Node {
+	val := d.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (d Document) GetNodeName() string {
+	val := d.Get("nodeName")
+	return val.String()
+}
+func (d Document) GetNodeType() int {
+	val := d.Get("nodeType")
+	return val.Int()
+}
+func (d Document) GetNodeValue() string {
+	val := d.Get("nodeValue")
+	return val.String()
+}
+func (d Document) SetNodeValue(val string) {
+	d.Set("nodeValue", val)
+}
+func (d Document) Normalize(args ...interface{}) {
+	d.Call("normalize", args...)
 }
 func (d Document) GetOnabort() EventHandler {
 	val := d.Get("onabort")
@@ -1018,12 +1113,28 @@ func (d Document) GetOrigin() string {
 	val := d.Get("origin")
 	return val.String()
 }
+func (d Document) GetOwnerDocument() Document {
+	val := d.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (d Document) GetParentElement() Element {
+	val := d.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (d Document) GetParentNode() Node {
+	val := d.Get("parentNode")
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) GetPlugins() HTMLCollection {
 	val := d.Get("plugins")
 	return JSValueToHTMLCollection(val.JSValue())
 }
 func (d Document) Prepend(args ...interface{}) {
 	d.Call("prepend", args...)
+}
+func (d Document) GetPreviousSibling() Node {
+	val := d.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
 }
 func (d Document) QueryCommandEnabled(args ...interface{}) bool {
 	val := d.Call("queryCommandEnabled", args...)
@@ -1064,6 +1175,17 @@ func (d Document) GetReferrer() string {
 func (d Document) ReleaseEvents(args ...interface{}) {
 	d.Call("releaseEvents", args...)
 }
+func (d Document) RemoveChild(args ...interface{}) Node {
+	val := d.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (d Document) RemoveEventListener(args ...interface{}) {
+	d.Call("removeEventListener", args...)
+}
+func (d Document) ReplaceChild(args ...interface{}) Node {
+	val := d.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
+}
 func (d Document) GetScripts() HTMLCollection {
 	val := d.Get("scripts")
 	return JSValueToHTMLCollection(val.JSValue())
@@ -1071,6 +1193,13 @@ func (d Document) GetScripts() HTMLCollection {
 func (d Document) GetStyleSheets() StyleSheetList {
 	val := d.Get("styleSheets")
 	return JSValueToStyleSheetList(val.JSValue())
+}
+func (d Document) GetTextContent() string {
+	val := d.Get("textContent")
+	return val.String()
+}
+func (d Document) SetTextContent(val string) {
+	d.Set("textContent", val)
 }
 func (d Document) GetTitle() string {
 	val := d.Get("title")

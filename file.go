@@ -13,7 +13,6 @@ type FileIFace interface {
 }
 type File struct {
 	Value
-	Blob
 }
 
 func JSValueToFile(val js.Value) File { return File{Value: JSValueToValue(val)} }
@@ -27,5 +26,17 @@ func (f File) GetLastModified() int {
 }
 func (f File) GetName() string {
 	val := f.Get("name")
+	return val.String()
+}
+func (f File) GetSize() int {
+	val := f.Get("size")
+	return val.Int()
+}
+func (f File) Slice(args ...interface{}) Blob {
+	val := f.Call("slice", args...)
+	return JSValueToBlob(val.JSValue())
+}
+func (f File) GetType() string {
+	val := f.Get("type")
 	return val.String()
 }

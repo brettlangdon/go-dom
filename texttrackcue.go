@@ -24,13 +24,19 @@ type TextTrackCueIFace interface {
 }
 type TextTrackCue struct {
 	Value
-	EventTarget
 }
 
 func JSValueToTextTrackCue(val js.Value) TextTrackCue { return TextTrackCue{Value: JSValueToValue(val)} }
 func (v Value) AsTextTrackCue() TextTrackCue          { return TextTrackCue{Value: v} }
 func NewTextTrackCue(args ...interface{}) TextTrackCue {
 	return TextTrackCue{Value: JSValueToValue(js.Global().Get("TextTrackCue").New(args...))}
+}
+func (t TextTrackCue) AddEventListener(args ...interface{}) {
+	t.Call("addEventListener", args...)
+}
+func (t TextTrackCue) DispatchEvent(args ...interface{}) bool {
+	val := t.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (t TextTrackCue) GetEndTime() float64 {
 	val := t.Get("endTime")
@@ -66,6 +72,9 @@ func (t TextTrackCue) GetPauseOnExit() bool {
 }
 func (t TextTrackCue) SetPauseOnExit(val bool) {
 	t.Set("pauseOnExit", val)
+}
+func (t TextTrackCue) RemoveEventListener(args ...interface{}) {
+	t.Call("removeEventListener", args...)
 }
 func (t TextTrackCue) GetStartTime() float64 {
 	val := t.Get("startTime")

@@ -18,7 +18,6 @@ type BroadcastChannelIFace interface {
 }
 type BroadcastChannel struct {
 	Value
-	EventTarget
 }
 
 func JSValueToBroadcastChannel(val js.Value) BroadcastChannel {
@@ -28,8 +27,15 @@ func (v Value) AsBroadcastChannel() BroadcastChannel { return BroadcastChannel{V
 func NewBroadcastChannel(args ...interface{}) BroadcastChannel {
 	return BroadcastChannel{Value: JSValueToValue(js.Global().Get("BroadcastChannel").New(args...))}
 }
+func (b BroadcastChannel) AddEventListener(args ...interface{}) {
+	b.Call("addEventListener", args...)
+}
 func (b BroadcastChannel) Close(args ...interface{}) {
 	b.Call("close", args...)
+}
+func (b BroadcastChannel) DispatchEvent(args ...interface{}) bool {
+	val := b.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (b BroadcastChannel) GetName() string {
 	val := b.Get("name")
@@ -51,4 +57,7 @@ func (b BroadcastChannel) SetOnmessageerror(val EventHandler) {
 }
 func (b BroadcastChannel) PostMessage(args ...interface{}) {
 	b.Call("postMessage", args...)
+}
+func (b BroadcastChannel) RemoveEventListener(args ...interface{}) {
+	b.Call("removeEventListener", args...)
 }

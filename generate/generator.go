@@ -156,22 +156,13 @@ func (g *Generator) generateInterface(spec Spec) error {
 	// Implementation
 	b.WriteF("type %s struct {", spec.Name)
 	b.WriteString("Value")
-
-	inheritance, err := spec.ResolveInheritance(g.specs)
-	if err != nil {
-		return err
-	}
-	for _, i := range inheritance {
-		b.WriteString(i.Name)
-	}
-
 	b.WriteString("}")
 
 	b.WriteF("func JSValueTo%s(val js.Value) %s { return %s{ Value: JSValueToValue(val) } }", spec.Name, spec.Name, spec.Name)
 	b.WriteF("func (v Value) As%s() %s { return %s{Value: v} }", spec.Name, spec.Name, spec.Name)
 	b.WriteF("func New%s(args ...interface{}) %s { return %s{ Value: JSValueToValue(js.Global().Get(\"%s\").New(args...)) } }", spec.Name, spec.Name, spec.Name, spec.Name)
 
-	mems, err = spec.ResolveMembers(g.specs, false)
+	mems, err = spec.ResolveMembers(g.specs, true)
 	if err != nil {
 		return err
 	}

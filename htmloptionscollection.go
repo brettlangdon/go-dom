@@ -16,7 +16,6 @@ type HTMLOptionsCollectionIFace interface {
 }
 type HTMLOptionsCollection struct {
 	Value
-	HTMLCollection
 }
 
 func JSValueToHTMLOptionsCollection(val js.Value) HTMLOptionsCollection {
@@ -29,12 +28,20 @@ func NewHTMLOptionsCollection(args ...interface{}) HTMLOptionsCollection {
 func (h HTMLOptionsCollection) Add(args ...interface{}) {
 	h.Call("add", args...)
 }
+func (h HTMLOptionsCollection) Item(args ...interface{}) Element {
+	val := h.Call("item", args...)
+	return JSValueToElement(val.JSValue())
+}
 func (h HTMLOptionsCollection) GetLength() int {
 	val := h.Get("length")
 	return val.Int()
 }
 func (h HTMLOptionsCollection) SetLength(val int) {
 	h.Set("length", val)
+}
+func (h HTMLOptionsCollection) NamedItem(args ...interface{}) Element {
+	val := h.Call("namedItem", args...)
+	return JSValueToElement(val.JSValue())
 }
 func (h HTMLOptionsCollection) Remove(args ...interface{}) {
 	h.Call("remove", args...)

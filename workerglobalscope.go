@@ -37,7 +37,6 @@ type WorkerGlobalScopeIFace interface {
 }
 type WorkerGlobalScope struct {
 	Value
-	EventTarget
 }
 
 func JSValueToWorkerGlobalScope(val js.Value) WorkerGlobalScope {
@@ -46,6 +45,9 @@ func JSValueToWorkerGlobalScope(val js.Value) WorkerGlobalScope {
 func (v Value) AsWorkerGlobalScope() WorkerGlobalScope { return WorkerGlobalScope{Value: v} }
 func NewWorkerGlobalScope(args ...interface{}) WorkerGlobalScope {
 	return WorkerGlobalScope{Value: JSValueToValue(js.Global().Get("WorkerGlobalScope").New(args...))}
+}
+func (w WorkerGlobalScope) AddEventListener(args ...interface{}) {
+	w.Call("addEventListener", args...)
 }
 func (w WorkerGlobalScope) Atob(args ...interface{}) []byte {
 	val := w.Call("atob", args...)
@@ -66,6 +68,10 @@ func (w WorkerGlobalScope) CreateImageBitmap(args ...interface{}) {
 }
 func (w WorkerGlobalScope) CreateImageBitmapWithArgs(args ...interface{}) {
 	w.Call("createImageBitmapWithArgs", args...)
+}
+func (w WorkerGlobalScope) DispatchEvent(args ...interface{}) bool {
+	val := w.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (w WorkerGlobalScope) ImportScripts(args ...interface{}) {
 	w.Call("importScripts", args...)
@@ -126,6 +132,9 @@ func (w WorkerGlobalScope) GetOrigin() string {
 }
 func (w WorkerGlobalScope) QueueMicrotask(args ...interface{}) {
 	w.Call("queueMicrotask", args...)
+}
+func (w WorkerGlobalScope) RemoveEventListener(args ...interface{}) {
+	w.Call("removeEventListener", args...)
 }
 func (w WorkerGlobalScope) GetSelf() WorkerGlobalScope {
 	val := w.Get("self")

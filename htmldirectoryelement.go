@@ -104,10 +104,6 @@ type HTMLDirectoryElementIFace interface {
 }
 type HTMLDirectoryElement struct {
 	Value
-	HTMLElement
-	Element
-	Node
-	EventTarget
 }
 
 func JSValueToHTMLDirectoryElement(val js.Value) HTMLDirectoryElement {
@@ -117,10 +113,361 @@ func (v Value) AsHTMLDirectoryElement() HTMLDirectoryElement { return HTMLDirect
 func NewHTMLDirectoryElement(args ...interface{}) HTMLDirectoryElement {
 	return HTMLDirectoryElement{Value: JSValueToValue(js.Global().Get("HTMLDirectoryElement").New(args...))}
 }
+func (h HTMLDirectoryElement) GetAccessKey() string {
+	val := h.Get("accessKey")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetAccessKey(val string) {
+	h.Set("accessKey", val)
+}
+func (h HTMLDirectoryElement) GetAccessKeyLabel() string {
+	val := h.Get("accessKeyLabel")
+	return val.String()
+}
+func (h HTMLDirectoryElement) AddEventListener(args ...interface{}) {
+	h.Call("addEventListener", args...)
+}
+func (h HTMLDirectoryElement) AppendChild(args ...interface{}) Node {
+	val := h.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) AttachShadow(args ...interface{}) ShadowRoot {
+	val := h.Call("attachShadow", args...)
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetAttributes() NamedNodeMap {
+	val := h.Get("attributes")
+	return JSValueToNamedNodeMap(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetAutocapitalize() string {
+	val := h.Get("autocapitalize")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetAutocapitalize(val string) {
+	h.Set("autocapitalize", val)
+}
+func (h HTMLDirectoryElement) GetBaseURI() string {
+	val := h.Get("baseURI")
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetChildNodes() NodeList {
+	val := h.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetClassList() DOMTokenList {
+	val := h.Get("classList")
+	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetClassName() string {
+	val := h.Get("className")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetClassName(val string) {
+	h.Set("className", val)
+}
+func (h HTMLDirectoryElement) Click(args ...interface{}) {
+	h.Call("click", args...)
+}
+func (h HTMLDirectoryElement) CloneNode(args ...interface{}) Node {
+	val := h.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) Closest(args ...interface{}) Element {
+	val := h.Call("closest", args...)
+	return JSValueToElement(val.JSValue())
+}
 func (h HTMLDirectoryElement) GetCompact() bool {
 	val := h.Get("compact")
 	return val.Bool()
 }
 func (h HTMLDirectoryElement) SetCompact(val bool) {
 	h.Set("compact", val)
+}
+func (h HTMLDirectoryElement) CompareDocumentPosition(args ...interface{}) int {
+	val := h.Call("compareDocumentPosition", args...)
+	return val.Int()
+}
+func (h HTMLDirectoryElement) Contains(args ...interface{}) bool {
+	val := h.Call("contains", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetDir() string {
+	val := h.Get("dir")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetDir(val string) {
+	h.Set("dir", val)
+}
+func (h HTMLDirectoryElement) DispatchEvent(args ...interface{}) bool {
+	val := h.Call("dispatchEvent", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetDraggable() bool {
+	val := h.Get("draggable")
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) SetDraggable(val bool) {
+	h.Set("draggable", val)
+}
+func (h HTMLDirectoryElement) GetFirstChild() Node {
+	val := h.Get("firstChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetAttribute(args ...interface{}) string {
+	val := h.Call("getAttribute", args...)
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetAttributeNS(args ...interface{}) string {
+	val := h.Call("getAttributeNS", args...)
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetAttributeNames(args ...interface{}) {
+	h.Call("getAttributeNames", args...)
+}
+func (h HTMLDirectoryElement) GetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("getAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("getAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetElementsByClassName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByClassName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetElementsByTagName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetRootNode(args ...interface{}) Node {
+	val := h.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) HasAttribute(args ...interface{}) bool {
+	val := h.Call("hasAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) HasAttributeNS(args ...interface{}) bool {
+	val := h.Call("hasAttributeNS", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) HasAttributes(args ...interface{}) bool {
+	val := h.Call("hasAttributes", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) HasChildNodes(args ...interface{}) bool {
+	val := h.Call("hasChildNodes", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetHidden() bool {
+	val := h.Get("hidden")
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) SetHidden(val bool) {
+	h.Set("hidden", val)
+}
+func (h HTMLDirectoryElement) GetId() string {
+	val := h.Get("id")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetId(val string) {
+	h.Set("id", val)
+}
+func (h HTMLDirectoryElement) GetInnerText() string {
+	val := h.Get("innerText")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetInnerText(val string) {
+	h.Set("innerText", val)
+}
+func (h HTMLDirectoryElement) InsertAdjacentElement(args ...interface{}) Element {
+	val := h.Call("insertAdjacentElement", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLDirectoryElement) InsertAdjacentText(args ...interface{}) {
+	h.Call("insertAdjacentText", args...)
+}
+func (h HTMLDirectoryElement) InsertBefore(args ...interface{}) Node {
+	val := h.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetIsConnected() bool {
+	val := h.Get("isConnected")
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) IsDefaultNamespace(args ...interface{}) bool {
+	val := h.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) IsEqualNode(args ...interface{}) bool {
+	val := h.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) IsSameNode(args ...interface{}) bool {
+	val := h.Call("isSameNode", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetLang() string {
+	val := h.Get("lang")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetLang(val string) {
+	h.Set("lang", val)
+}
+func (h HTMLDirectoryElement) GetLastChild() Node {
+	val := h.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetLocalName() string {
+	val := h.Get("localName")
+	return val.String()
+}
+func (h HTMLDirectoryElement) LookupNamespaceURI(args ...interface{}) string {
+	val := h.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (h HTMLDirectoryElement) LookupPrefix(args ...interface{}) string {
+	val := h.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (h HTMLDirectoryElement) Matches(args ...interface{}) bool {
+	val := h.Call("matches", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetNamespaceURI() string {
+	val := h.Get("namespaceURI")
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetNextSibling() Node {
+	val := h.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetNodeName() string {
+	val := h.Get("nodeName")
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetNodeType() int {
+	val := h.Get("nodeType")
+	return val.Int()
+}
+func (h HTMLDirectoryElement) GetNodeValue() string {
+	val := h.Get("nodeValue")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetNodeValue(val string) {
+	h.Set("nodeValue", val)
+}
+func (h HTMLDirectoryElement) Normalize(args ...interface{}) {
+	h.Call("normalize", args...)
+}
+func (h HTMLDirectoryElement) GetOwnerDocument() Document {
+	val := h.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetParentElement() Element {
+	val := h.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetParentNode() Node {
+	val := h.Get("parentNode")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetPrefix() string {
+	val := h.Get("prefix")
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetPreviousSibling() Node {
+	val := h.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) RemoveAttribute(args ...interface{}) {
+	h.Call("removeAttribute", args...)
+}
+func (h HTMLDirectoryElement) RemoveAttributeNS(args ...interface{}) {
+	h.Call("removeAttributeNS", args...)
+}
+func (h HTMLDirectoryElement) RemoveAttributeNode(args ...interface{}) Attr {
+	val := h.Call("removeAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLDirectoryElement) RemoveChild(args ...interface{}) Node {
+	val := h.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) RemoveEventListener(args ...interface{}) {
+	h.Call("removeEventListener", args...)
+}
+func (h HTMLDirectoryElement) ReplaceChild(args ...interface{}) Node {
+	val := h.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLDirectoryElement) SetAttribute(args ...interface{}) {
+	h.Call("setAttribute", args...)
+}
+func (h HTMLDirectoryElement) SetAttributeNS(args ...interface{}) {
+	h.Call("setAttributeNS", args...)
+}
+func (h HTMLDirectoryElement) SetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("setAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLDirectoryElement) SetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("setAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetShadowRoot() ShadowRoot {
+	val := h.Get("shadowRoot")
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLDirectoryElement) GetSlot() string {
+	val := h.Get("slot")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetSlot(val string) {
+	h.Set("slot", val)
+}
+func (h HTMLDirectoryElement) GetSpellcheck() bool {
+	val := h.Get("spellcheck")
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) SetSpellcheck(val bool) {
+	h.Set("spellcheck", val)
+}
+func (h HTMLDirectoryElement) GetTagName() string {
+	val := h.Get("tagName")
+	return val.String()
+}
+func (h HTMLDirectoryElement) GetTextContent() string {
+	val := h.Get("textContent")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetTextContent(val string) {
+	h.Set("textContent", val)
+}
+func (h HTMLDirectoryElement) GetTitle() string {
+	val := h.Get("title")
+	return val.String()
+}
+func (h HTMLDirectoryElement) SetTitle(val string) {
+	h.Set("title", val)
+}
+func (h HTMLDirectoryElement) ToggleAttribute(args ...interface{}) bool {
+	val := h.Call("toggleAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) GetTranslate() bool {
+	val := h.Get("translate")
+	return val.Bool()
+}
+func (h HTMLDirectoryElement) SetTranslate(val bool) {
+	h.Set("translate", val)
+}
+func (h HTMLDirectoryElement) WebkitMatchesSelector(args ...interface{}) bool {
+	val := h.Call("webkitMatchesSelector", args...)
+	return val.Bool()
 }

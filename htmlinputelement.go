@@ -197,10 +197,6 @@ type HTMLInputElementIFace interface {
 }
 type HTMLInputElement struct {
 	Value
-	HTMLElement
-	Element
-	Node
-	EventTarget
 }
 
 func JSValueToHTMLInputElement(val js.Value) HTMLInputElement {
@@ -217,6 +213,20 @@ func (h HTMLInputElement) GetAccept() string {
 func (h HTMLInputElement) SetAccept(val string) {
 	h.Set("accept", val)
 }
+func (h HTMLInputElement) GetAccessKey() string {
+	val := h.Get("accessKey")
+	return val.String()
+}
+func (h HTMLInputElement) SetAccessKey(val string) {
+	h.Set("accessKey", val)
+}
+func (h HTMLInputElement) GetAccessKeyLabel() string {
+	val := h.Get("accessKeyLabel")
+	return val.String()
+}
+func (h HTMLInputElement) AddEventListener(args ...interface{}) {
+	h.Call("addEventListener", args...)
+}
 func (h HTMLInputElement) GetAlign() string {
 	val := h.Get("align")
 	return val.String()
@@ -230,6 +240,25 @@ func (h HTMLInputElement) GetAlt() string {
 }
 func (h HTMLInputElement) SetAlt(val string) {
 	h.Set("alt", val)
+}
+func (h HTMLInputElement) AppendChild(args ...interface{}) Node {
+	val := h.Call("appendChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) AttachShadow(args ...interface{}) ShadowRoot {
+	val := h.Call("attachShadow", args...)
+	return JSValueToShadowRoot(val.JSValue())
+}
+func (h HTMLInputElement) GetAttributes() NamedNodeMap {
+	val := h.Get("attributes")
+	return JSValueToNamedNodeMap(val.JSValue())
+}
+func (h HTMLInputElement) GetAutocapitalize() string {
+	val := h.Get("autocapitalize")
+	return val.String()
+}
+func (h HTMLInputElement) SetAutocapitalize(val string) {
+	h.Set("autocapitalize", val)
 }
 func (h HTMLInputElement) GetAutocomplete() string {
 	val := h.Get("autocomplete")
@@ -245,6 +274,10 @@ func (h HTMLInputElement) GetAutofocus() bool {
 func (h HTMLInputElement) SetAutofocus(val bool) {
 	h.Set("autofocus", val)
 }
+func (h HTMLInputElement) GetBaseURI() string {
+	val := h.Get("baseURI")
+	return val.String()
+}
 func (h HTMLInputElement) CheckValidity(args ...interface{}) bool {
 	val := h.Call("checkValidity", args...)
 	return val.Bool()
@@ -255,6 +288,40 @@ func (h HTMLInputElement) GetChecked() bool {
 }
 func (h HTMLInputElement) SetChecked(val bool) {
 	h.Set("checked", val)
+}
+func (h HTMLInputElement) GetChildNodes() NodeList {
+	val := h.Get("childNodes")
+	return JSValueToNodeList(val.JSValue())
+}
+func (h HTMLInputElement) GetClassList() DOMTokenList {
+	val := h.Get("classList")
+	return JSValueToDOMTokenList(val.JSValue())
+}
+func (h HTMLInputElement) GetClassName() string {
+	val := h.Get("className")
+	return val.String()
+}
+func (h HTMLInputElement) SetClassName(val string) {
+	h.Set("className", val)
+}
+func (h HTMLInputElement) Click(args ...interface{}) {
+	h.Call("click", args...)
+}
+func (h HTMLInputElement) CloneNode(args ...interface{}) Node {
+	val := h.Call("cloneNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) Closest(args ...interface{}) Element {
+	val := h.Call("closest", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLInputElement) CompareDocumentPosition(args ...interface{}) int {
+	val := h.Call("compareDocumentPosition", args...)
+	return val.Int()
+}
+func (h HTMLInputElement) Contains(args ...interface{}) bool {
+	val := h.Call("contains", args...)
+	return val.Bool()
 }
 func (h HTMLInputElement) GetDefaultChecked() bool {
 	val := h.Get("defaultChecked")
@@ -270,6 +337,13 @@ func (h HTMLInputElement) GetDefaultValue() string {
 func (h HTMLInputElement) SetDefaultValue(val string) {
 	h.Set("defaultValue", val)
 }
+func (h HTMLInputElement) GetDir() string {
+	val := h.Get("dir")
+	return val.String()
+}
+func (h HTMLInputElement) SetDir(val string) {
+	h.Set("dir", val)
+}
 func (h HTMLInputElement) GetDirName() string {
 	val := h.Get("dirName")
 	return val.String()
@@ -284,12 +358,27 @@ func (h HTMLInputElement) GetDisabled() bool {
 func (h HTMLInputElement) SetDisabled(val bool) {
 	h.Set("disabled", val)
 }
+func (h HTMLInputElement) DispatchEvent(args ...interface{}) bool {
+	val := h.Call("dispatchEvent", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) GetDraggable() bool {
+	val := h.Get("draggable")
+	return val.Bool()
+}
+func (h HTMLInputElement) SetDraggable(val bool) {
+	h.Set("draggable", val)
+}
 func (h HTMLInputElement) GetFiles() FileList {
 	val := h.Get("files")
 	return JSValueToFileList(val.JSValue())
 }
 func (h HTMLInputElement) SetFiles(val FileList) {
 	h.Set("files", val)
+}
+func (h HTMLInputElement) GetFirstChild() Node {
+	val := h.Get("firstChild")
+	return JSValueToNode(val.JSValue())
 }
 func (h HTMLInputElement) GetForm() HTMLFormElement {
 	val := h.Get("form")
@@ -330,12 +419,77 @@ func (h HTMLInputElement) GetFormTarget() string {
 func (h HTMLInputElement) SetFormTarget(val string) {
 	h.Set("formTarget", val)
 }
+func (h HTMLInputElement) GetAttribute(args ...interface{}) string {
+	val := h.Call("getAttribute", args...)
+	return val.String()
+}
+func (h HTMLInputElement) GetAttributeNS(args ...interface{}) string {
+	val := h.Call("getAttributeNS", args...)
+	return val.String()
+}
+func (h HTMLInputElement) GetAttributeNames(args ...interface{}) {
+	h.Call("getAttributeNames", args...)
+}
+func (h HTMLInputElement) GetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("getAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLInputElement) GetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("getAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLInputElement) GetElementsByClassName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByClassName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLInputElement) GetElementsByTagName(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagName", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLInputElement) GetElementsByTagNameNS(args ...interface{}) HTMLCollection {
+	val := h.Call("getElementsByTagNameNS", args...)
+	return JSValueToHTMLCollection(val.JSValue())
+}
+func (h HTMLInputElement) GetRootNode(args ...interface{}) Node {
+	val := h.Call("getRootNode", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) HasAttribute(args ...interface{}) bool {
+	val := h.Call("hasAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) HasAttributeNS(args ...interface{}) bool {
+	val := h.Call("hasAttributeNS", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) HasAttributes(args ...interface{}) bool {
+	val := h.Call("hasAttributes", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) HasChildNodes(args ...interface{}) bool {
+	val := h.Call("hasChildNodes", args...)
+	return val.Bool()
+}
 func (h HTMLInputElement) GetHeight() int {
 	val := h.Get("height")
 	return val.Int()
 }
 func (h HTMLInputElement) SetHeight(val int) {
 	h.Set("height", val)
+}
+func (h HTMLInputElement) GetHidden() bool {
+	val := h.Get("hidden")
+	return val.Bool()
+}
+func (h HTMLInputElement) SetHidden(val bool) {
+	h.Set("hidden", val)
+}
+func (h HTMLInputElement) GetId() string {
+	val := h.Get("id")
+	return val.String()
+}
+func (h HTMLInputElement) SetId(val string) {
+	h.Set("id", val)
 }
 func (h HTMLInputElement) GetIndeterminate() bool {
 	val := h.Get("indeterminate")
@@ -344,13 +498,74 @@ func (h HTMLInputElement) GetIndeterminate() bool {
 func (h HTMLInputElement) SetIndeterminate(val bool) {
 	h.Set("indeterminate", val)
 }
+func (h HTMLInputElement) GetInnerText() string {
+	val := h.Get("innerText")
+	return val.String()
+}
+func (h HTMLInputElement) SetInnerText(val string) {
+	h.Set("innerText", val)
+}
+func (h HTMLInputElement) InsertAdjacentElement(args ...interface{}) Element {
+	val := h.Call("insertAdjacentElement", args...)
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLInputElement) InsertAdjacentText(args ...interface{}) {
+	h.Call("insertAdjacentText", args...)
+}
+func (h HTMLInputElement) InsertBefore(args ...interface{}) Node {
+	val := h.Call("insertBefore", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) GetIsConnected() bool {
+	val := h.Get("isConnected")
+	return val.Bool()
+}
+func (h HTMLInputElement) IsDefaultNamespace(args ...interface{}) bool {
+	val := h.Call("isDefaultNamespace", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) IsEqualNode(args ...interface{}) bool {
+	val := h.Call("isEqualNode", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) IsSameNode(args ...interface{}) bool {
+	val := h.Call("isSameNode", args...)
+	return val.Bool()
+}
 func (h HTMLInputElement) GetLabels() NodeList {
 	val := h.Get("labels")
 	return JSValueToNodeList(val.JSValue())
 }
+func (h HTMLInputElement) GetLang() string {
+	val := h.Get("lang")
+	return val.String()
+}
+func (h HTMLInputElement) SetLang(val string) {
+	h.Set("lang", val)
+}
+func (h HTMLInputElement) GetLastChild() Node {
+	val := h.Get("lastChild")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLInputElement) GetList() HTMLElement {
 	val := h.Get("list")
 	return JSValueToHTMLElement(val.JSValue())
+}
+func (h HTMLInputElement) GetLocalName() string {
+	val := h.Get("localName")
+	return val.String()
+}
+func (h HTMLInputElement) LookupNamespaceURI(args ...interface{}) string {
+	val := h.Call("lookupNamespaceURI", args...)
+	return val.String()
+}
+func (h HTMLInputElement) LookupPrefix(args ...interface{}) string {
+	val := h.Call("lookupPrefix", args...)
+	return val.String()
+}
+func (h HTMLInputElement) Matches(args ...interface{}) bool {
+	val := h.Call("matches", args...)
+	return val.Bool()
 }
 func (h HTMLInputElement) GetMax() string {
 	val := h.Get("max")
@@ -394,6 +609,44 @@ func (h HTMLInputElement) GetName() string {
 func (h HTMLInputElement) SetName(val string) {
 	h.Set("name", val)
 }
+func (h HTMLInputElement) GetNamespaceURI() string {
+	val := h.Get("namespaceURI")
+	return val.String()
+}
+func (h HTMLInputElement) GetNextSibling() Node {
+	val := h.Get("nextSibling")
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) GetNodeName() string {
+	val := h.Get("nodeName")
+	return val.String()
+}
+func (h HTMLInputElement) GetNodeType() int {
+	val := h.Get("nodeType")
+	return val.Int()
+}
+func (h HTMLInputElement) GetNodeValue() string {
+	val := h.Get("nodeValue")
+	return val.String()
+}
+func (h HTMLInputElement) SetNodeValue(val string) {
+	h.Set("nodeValue", val)
+}
+func (h HTMLInputElement) Normalize(args ...interface{}) {
+	h.Call("normalize", args...)
+}
+func (h HTMLInputElement) GetOwnerDocument() Document {
+	val := h.Get("ownerDocument")
+	return JSValueToDocument(val.JSValue())
+}
+func (h HTMLInputElement) GetParentElement() Element {
+	val := h.Get("parentElement")
+	return JSValueToElement(val.JSValue())
+}
+func (h HTMLInputElement) GetParentNode() Node {
+	val := h.Get("parentNode")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLInputElement) GetPattern() string {
 	val := h.Get("pattern")
 	return val.String()
@@ -408,12 +661,41 @@ func (h HTMLInputElement) GetPlaceholder() string {
 func (h HTMLInputElement) SetPlaceholder(val string) {
 	h.Set("placeholder", val)
 }
+func (h HTMLInputElement) GetPrefix() string {
+	val := h.Get("prefix")
+	return val.String()
+}
+func (h HTMLInputElement) GetPreviousSibling() Node {
+	val := h.Get("previousSibling")
+	return JSValueToNode(val.JSValue())
+}
 func (h HTMLInputElement) GetReadOnly() bool {
 	val := h.Get("readOnly")
 	return val.Bool()
 }
 func (h HTMLInputElement) SetReadOnly(val bool) {
 	h.Set("readOnly", val)
+}
+func (h HTMLInputElement) RemoveAttribute(args ...interface{}) {
+	h.Call("removeAttribute", args...)
+}
+func (h HTMLInputElement) RemoveAttributeNS(args ...interface{}) {
+	h.Call("removeAttributeNS", args...)
+}
+func (h HTMLInputElement) RemoveAttributeNode(args ...interface{}) Attr {
+	val := h.Call("removeAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLInputElement) RemoveChild(args ...interface{}) Node {
+	val := h.Call("removeChild", args...)
+	return JSValueToNode(val.JSValue())
+}
+func (h HTMLInputElement) RemoveEventListener(args ...interface{}) {
+	h.Call("removeEventListener", args...)
+}
+func (h HTMLInputElement) ReplaceChild(args ...interface{}) Node {
+	val := h.Call("replaceChild", args...)
+	return JSValueToNode(val.JSValue())
 }
 func (h HTMLInputElement) ReportValidity(args ...interface{}) bool {
 	val := h.Call("reportValidity", args...)
@@ -450,6 +732,20 @@ func (h HTMLInputElement) GetSelectionStart() int {
 func (h HTMLInputElement) SetSelectionStart(val int) {
 	h.Set("selectionStart", val)
 }
+func (h HTMLInputElement) SetAttribute(args ...interface{}) {
+	h.Call("setAttribute", args...)
+}
+func (h HTMLInputElement) SetAttributeNS(args ...interface{}) {
+	h.Call("setAttributeNS", args...)
+}
+func (h HTMLInputElement) SetAttributeNode(args ...interface{}) Attr {
+	val := h.Call("setAttributeNode", args...)
+	return JSValueToAttr(val.JSValue())
+}
+func (h HTMLInputElement) SetAttributeNodeNS(args ...interface{}) Attr {
+	val := h.Call("setAttributeNodeNS", args...)
+	return JSValueToAttr(val.JSValue())
+}
 func (h HTMLInputElement) SetCustomValidity(args ...interface{}) {
 	h.Call("setCustomValidity", args...)
 }
@@ -462,12 +758,30 @@ func (h HTMLInputElement) SetRangeTextWithArgs(args ...interface{}) {
 func (h HTMLInputElement) SetSelectionRange(args ...interface{}) {
 	h.Call("setSelectionRange", args...)
 }
+func (h HTMLInputElement) GetShadowRoot() ShadowRoot {
+	val := h.Get("shadowRoot")
+	return JSValueToShadowRoot(val.JSValue())
+}
 func (h HTMLInputElement) GetSize() int {
 	val := h.Get("size")
 	return val.Int()
 }
 func (h HTMLInputElement) SetSize(val int) {
 	h.Set("size", val)
+}
+func (h HTMLInputElement) GetSlot() string {
+	val := h.Get("slot")
+	return val.String()
+}
+func (h HTMLInputElement) SetSlot(val string) {
+	h.Set("slot", val)
+}
+func (h HTMLInputElement) GetSpellcheck() bool {
+	val := h.Get("spellcheck")
+	return val.Bool()
+}
+func (h HTMLInputElement) SetSpellcheck(val bool) {
+	h.Set("spellcheck", val)
 }
 func (h HTMLInputElement) GetSrc() string {
 	val := h.Get("src")
@@ -488,6 +802,35 @@ func (h HTMLInputElement) StepDown(args ...interface{}) {
 }
 func (h HTMLInputElement) StepUp(args ...interface{}) {
 	h.Call("stepUp", args...)
+}
+func (h HTMLInputElement) GetTagName() string {
+	val := h.Get("tagName")
+	return val.String()
+}
+func (h HTMLInputElement) GetTextContent() string {
+	val := h.Get("textContent")
+	return val.String()
+}
+func (h HTMLInputElement) SetTextContent(val string) {
+	h.Set("textContent", val)
+}
+func (h HTMLInputElement) GetTitle() string {
+	val := h.Get("title")
+	return val.String()
+}
+func (h HTMLInputElement) SetTitle(val string) {
+	h.Set("title", val)
+}
+func (h HTMLInputElement) ToggleAttribute(args ...interface{}) bool {
+	val := h.Call("toggleAttribute", args...)
+	return val.Bool()
+}
+func (h HTMLInputElement) GetTranslate() bool {
+	val := h.Get("translate")
+	return val.Bool()
+}
+func (h HTMLInputElement) SetTranslate(val bool) {
+	h.Set("translate", val)
 }
 func (h HTMLInputElement) GetType() string {
 	val := h.Get("type")
@@ -531,6 +874,10 @@ func (h HTMLInputElement) GetValueAsNumber() float64 {
 }
 func (h HTMLInputElement) SetValueAsNumber(val float64) {
 	h.Set("valueAsNumber", val)
+}
+func (h HTMLInputElement) WebkitMatchesSelector(args ...interface{}) bool {
+	val := h.Call("webkitMatchesSelector", args...)
+	return val.Bool()
 }
 func (h HTMLInputElement) GetWidth() int {
 	val := h.Get("width")

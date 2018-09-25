@@ -19,13 +19,19 @@ type WorkerIFace interface {
 }
 type Worker struct {
 	Value
-	EventTarget
 }
 
 func JSValueToWorker(val js.Value) Worker { return Worker{Value: JSValueToValue(val)} }
 func (v Value) AsWorker() Worker          { return Worker{Value: v} }
 func NewWorker(args ...interface{}) Worker {
 	return Worker{Value: JSValueToValue(js.Global().Get("Worker").New(args...))}
+}
+func (w Worker) AddEventListener(args ...interface{}) {
+	w.Call("addEventListener", args...)
+}
+func (w Worker) DispatchEvent(args ...interface{}) bool {
+	val := w.Call("dispatchEvent", args...)
+	return val.Bool()
 }
 func (w Worker) GetOnerror() EventHandler {
 	val := w.Get("onerror")
@@ -50,6 +56,9 @@ func (w Worker) SetOnmessageerror(val EventHandler) {
 }
 func (w Worker) PostMessage(args ...interface{}) {
 	w.Call("postMessage", args...)
+}
+func (w Worker) RemoveEventListener(args ...interface{}) {
+	w.Call("removeEventListener", args...)
 }
 func (w Worker) Terminate(args ...interface{}) {
 	w.Call("terminate", args...)
